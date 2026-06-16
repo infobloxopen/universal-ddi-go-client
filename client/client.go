@@ -1,20 +1,20 @@
 package client
 
 import (
-	"github.com/infobloxopen/bloxone-go-client/anycast"
-	"github.com/infobloxopen/bloxone-go-client/clouddiscovery"
-	"github.com/infobloxopen/bloxone-go-client/dfp"
-	"github.com/infobloxopen/bloxone-go-client/dnsconfig"
-	"github.com/infobloxopen/bloxone-go-client/dnsdata"
-	"github.com/infobloxopen/bloxone-go-client/fw"
-	"github.com/infobloxopen/bloxone-go-client/inframgmt"
-	"github.com/infobloxopen/bloxone-go-client/infraprovision"
-	"github.com/infobloxopen/bloxone-go-client/ipam"
-	"github.com/infobloxopen/bloxone-go-client/ipamfederation"
-	"github.com/infobloxopen/bloxone-go-client/keys"
-	"github.com/infobloxopen/bloxone-go-client/option"
-	"github.com/infobloxopen/bloxone-go-client/redirect"
-	"github.com/infobloxopen/bloxone-go-client/upgradepolicy"
+	"github.com/infobloxopen/universal-ddi-go-client/anycast"
+	"github.com/infobloxopen/universal-ddi-go-client/clouddiscovery"
+	"github.com/infobloxopen/universal-ddi-go-client/dfp"
+	"github.com/infobloxopen/universal-ddi-go-client/dnsconfig"
+	"github.com/infobloxopen/universal-ddi-go-client/dnsdata"
+	"github.com/infobloxopen/universal-ddi-go-client/fw"
+	"github.com/infobloxopen/universal-ddi-go-client/inframgmt"
+	"github.com/infobloxopen/universal-ddi-go-client/infraprovision"
+	"github.com/infobloxopen/universal-ddi-go-client/ipam"
+	"github.com/infobloxopen/universal-ddi-go-client/ipamfederation"
+	"github.com/infobloxopen/universal-ddi-go-client/keys"
+	"github.com/infobloxopen/universal-ddi-go-client/option"
+	"github.com/infobloxopen/universal-ddi-go-client/redirect"
+	"github.com/infobloxopen/universal-ddi-go-client/upgradepolicy"
 )
 
 // APIClient is an aggregation of different BloxOne API clients.

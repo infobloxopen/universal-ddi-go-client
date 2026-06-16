@@ -30,7 +30,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/upgradepolicy"
+	"github.com/infobloxopen/universal-ddi-go-client/upgradepolicy"
 )
 
 func main() {
@@ -94,7 +94,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/upgradepolicy"
+	"github.com/infobloxopen/universal-ddi-go-client/upgradepolicy"
 )
 
 func main() {
@@ -158,7 +158,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/upgradepolicy"
+	"github.com/infobloxopen/universal-ddi-go-client/upgradepolicy"
 )
 
 func main() {
@@ -222,7 +222,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/upgradepolicy"
+	"github.com/infobloxopen/universal-ddi-go-client/upgradepolicy"
 )
 
 func main() {
@@ -289,7 +289,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/upgradepolicy"
+	"github.com/infobloxopen/universal-ddi-go-client/upgradepolicy"
 )
 
 func main() {
@@ -356,7 +356,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/upgradepolicy"
+	"github.com/infobloxopen/universal-ddi-go-client/upgradepolicy"
 )
 
 func main() {
@@ -419,7 +419,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/upgradepolicy"
+	"github.com/infobloxopen/universal-ddi-go-client/upgradepolicy"
 )
 
 func main() {

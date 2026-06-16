@@ -28,7 +28,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/infraprovision"
+	"github.com/infobloxopen/universal-ddi-go-client/infraprovision"
 )
 
 func main() {
@@ -97,7 +97,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/infraprovision"
+	"github.com/infobloxopen/universal-ddi-go-client/infraprovision"
 )
 
 func main() {
@@ -166,7 +166,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/infraprovision"
+	"github.com/infobloxopen/universal-ddi-go-client/infraprovision"
 )
 
 func main() {
@@ -237,7 +237,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/infraprovision"
+	"github.com/infobloxopen/universal-ddi-go-client/infraprovision"
 )
 
 func main() {
@@ -308,11 +308,11 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/infraprovision"
+	"github.com/infobloxopen/universal-ddi-go-client/infraprovision"
 )
 
 func main() {
-	ophid := "ophid_example" // string | On-prem host ID which can be obtained either from on-prem or BloxOne UI portal(Manage > Infrastructure > Hosts > Select the onprem > click on 3 dots on top right side > General Information > Ophid) .
+	ophid := "ophid_example" // string | On-prem host ID which can be obtained either from on-prem or NIOS-X UI portal(Manage > Infrastructure > Hosts > Select the onprem > click on 3 dots on top right side > General Information > Ophid) .
 	body := *infraprovision.NewRevokeCertRequest() // RevokeCertRequest | 
 
 	apiClient := infraprovision.NewAPIClient()
@@ -332,7 +332,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**ophid** | **string** | On-prem host ID which can be obtained either from on-prem or BloxOne UI portal(Manage &gt; Infrastructure &gt; Hosts &gt; Select the onprem &gt; click on 3 dots on top right side &gt; General Information &gt; Ophid) . | 
+**ophid** | **string** | On-prem host ID which can be obtained either from on-prem or NIOS-X UI portal(Manage &gt; Infrastructure &gt; Hosts &gt; Select the onprem &gt; click on 3 dots on top right side &gt; General Information &gt; Ophid) . | 
 
 ### Other Parameters
 

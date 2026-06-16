@@ -28,9 +28,11 @@ const (
 	headerSDK           = "x-infoblox-sdk"
 	headerAuthorization = "Authorization"
 
-	envBloxOneCSPURL = "BLOXONE_CSP_URL"
-	envBloxOneAPIKey = "BLOXONE_API_KEY"
-	envIBLogLevel    = "IB_LOG_LEVEL"
+	envBloxOneCSPURL      = "BLOXONE_CSP_URL"
+	envUniversalDDICSPURL = "UNIVERSAL_DDI_CSP_URL"
+	envBloxOneAPIKey      = "BLOXONE_API_KEY"
+	envUniversalDDIAPIKey = "UNIVERSAL_DDI_API_KEY"
+	envIBLogLevel         = "IB_LOG_LEVEL"
 
 	version       = "0.1"
 	sdkIdentifier = "golang-sdk"

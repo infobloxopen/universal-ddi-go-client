@@ -1,7 +1,7 @@
 /*
 DDI Keys API
 
-The DDI Keys application is a BloxOne DDI service for managing TSIG keys and GSS-TSIG (Kerberos) keys which are used by other BloxOne DDI applications. It is part of the full-featured, DDI cloud solution that enables customers to deploy large numbers of protocol servers to deliver DNS and DHCP throughout their enterprise network.
+The DDI Keys application is a Universal DDI service for managing TSIG keys and GSS-TSIG (Kerberos) keys which are used by other Universal DDI applications. It is part of the full-featured, DDI cloud solution that enables customers to deploy large numbers of protocol servers to deliver DNS and DHCP throughout their enterprise network.   
 
 API version: v1
 */
@@ -11,8 +11,8 @@ API version: v1
 package keys
 
 import (
-	"github.com/infobloxopen/bloxone-go-client/internal"
-	"github.com/infobloxopen/bloxone-go-client/option"
+	"github.com/infobloxopen/universal-ddi-go-client/internal"
+	"github.com/infobloxopen/universal-ddi-go-client/option"
 )
 
 const serviceBasePath = "/api/ddi/v1"
@@ -24,9 +24,9 @@ type APIClient struct {
 
 	// API Services
 	GenerateTsigAPI GenerateTsigAPI
-	KerberosAPI     KerberosAPI
-	TsigAPI         TsigAPI
-	UploadAPI       UploadAPI
+	KerberosAPI KerberosAPI
+	TsigAPI TsigAPI
+	UploadAPI UploadAPI
 }
 
 // NewAPIClient creates a new API client.

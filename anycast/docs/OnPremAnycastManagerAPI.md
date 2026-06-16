@@ -42,7 +42,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/anycast"
+	"github.com/infobloxopen/universal-ddi-go-client/anycast"
 )
 
 func main() {
@@ -108,7 +108,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/anycast"
+	"github.com/infobloxopen/universal-ddi-go-client/anycast"
 )
 
 func main() {
@@ -177,7 +177,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/anycast"
+	"github.com/infobloxopen/universal-ddi-go-client/anycast"
 )
 
 func main() {
@@ -246,7 +246,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/anycast"
+	"github.com/infobloxopen/universal-ddi-go-client/anycast"
 )
 
 func main() {
@@ -315,7 +315,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/anycast"
+	"github.com/infobloxopen/universal-ddi-go-client/anycast"
 )
 
 func main() {
@@ -384,7 +384,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/anycast"
+	"github.com/infobloxopen/universal-ddi-go-client/anycast"
 )
 
 func main() {
@@ -453,7 +453,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/anycast"
+	"github.com/infobloxopen/universal-ddi-go-client/anycast"
 )
 
 func main() {
@@ -524,7 +524,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/anycast"
+	"github.com/infobloxopen/universal-ddi-go-client/anycast"
 )
 
 func main() {
@@ -593,7 +593,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/anycast"
+	"github.com/infobloxopen/universal-ddi-go-client/anycast"
 )
 
 func main() {
@@ -666,7 +666,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/anycast"
+	"github.com/infobloxopen/universal-ddi-go-client/anycast"
 )
 
 func main() {
@@ -739,7 +739,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/anycast"
+	"github.com/infobloxopen/universal-ddi-go-client/anycast"
 )
 
 func main() {
@@ -808,7 +808,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/anycast"
+	"github.com/infobloxopen/universal-ddi-go-client/anycast"
 )
 
 func main() {
@@ -877,7 +877,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/anycast"
+	"github.com/infobloxopen/universal-ddi-go-client/anycast"
 )
 
 func main() {
@@ -946,7 +946,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/anycast"
+	"github.com/infobloxopen/universal-ddi-go-client/anycast"
 )
 
 func main() {
@@ -1017,7 +1017,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/anycast"
+	"github.com/infobloxopen/universal-ddi-go-client/anycast"
 )
 
 func main() {
@@ -1086,7 +1086,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/anycast"
+	"github.com/infobloxopen/universal-ddi-go-client/anycast"
 )
 
 func main() {
@@ -1157,7 +1157,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/anycast"
+	"github.com/infobloxopen/universal-ddi-go-client/anycast"
 )
 
 func main() {

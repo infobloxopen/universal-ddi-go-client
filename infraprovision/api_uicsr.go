@@ -18,7 +18,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/infobloxopen/bloxone-go-client/internal"
+	"github.com/infobloxopen/universal-ddi-go-client/internal"
 )
 
 type UICSRAPI interface {
@@ -83,7 +83,7 @@ type UICSRAPI interface {
 		- "revoke_reason" is optional
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-			@param ophid On-prem host ID which can be obtained either from on-prem or BloxOne UI portal(Manage > Infrastructure > Hosts > Select the onprem > click on 3 dots on top right side > General Information > Ophid) .
+			@param ophid On-prem host ID which can be obtained either from on-prem or NIOS-X UI portal(Manage > Infrastructure > Hosts > Select the onprem > click on 3 dots on top right side > General Information > Ophid) .
 			@return UICSRAPIRevoke2Request
 	*/
 	Revoke2(ctx context.Context, ophid string) UICSRAPIRevoke2Request
@@ -605,7 +605,7 @@ Validation:
 - "revoke_reason" is optional
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param ophid On-prem host ID which can be obtained either from on-prem or BloxOne UI portal(Manage > Infrastructure > Hosts > Select the onprem > click on 3 dots on top right side > General Information > Ophid) .
+	@param ophid On-prem host ID which can be obtained either from on-prem or NIOS-X UI portal(Manage > Infrastructure > Hosts > Select the onprem > click on 3 dots on top right side > General Information > Ophid) .
 	@return UICSRAPIRevoke2Request
 */
 func (a *UICSRAPIService) Revoke2(ctx context.Context, ophid string) UICSRAPIRevoke2Request {

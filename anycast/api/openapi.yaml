@@ -1,13 +1,13 @@
 openapi: 3.0.1
 info:
   description: |+
-    Anycast capability enables HA (High Availability) configuration of BloxOne applications that run on equipment located on customer's premises (on-prem hosts). Anycast supports DNS, as well as DNS-forwarding services.
+    Anycast capability enables HA (High Availability) configuration of Universal DDI applications that run on equipment located on customer's premises (on-prem hosts). Anycast supports DNS, as well as DNS-forwarding services.
 
     Anycast-enabled application setups use multiple on-premises installations for one particular application type. Multiple application instances are configured to use the same endpoint address. Anycast capability is collocated with such application instance, monitoring the local application instance and advertising to the upstream router (a customer equipment) a per-instance, local route to the common application endpoint address, as long as the local application instance is available. Depending on the type of the upstream router, the customer may configure local route advertisement via either BGP (Boarder Gateway Protocol) or OSPF (Open Shortest Path First) routing protocols. Both protocols may be enabled as well. Multiple routes to the common application service address provide redundancy without the need to reconfigure application clients.
 
     Should an application instance become unavailable, the local route advertisements stop, resulting in withdrawal of the route (in the upstream router) to the application instance that has gone out of service and ensuring that subsequent application requests thus get routed to the remaining available application instances.
 
-  title: BloxOne Anycast API
+  title: Universal DDI Anycast API
   version: v1
 servers:
 - url: http://csp.infoblox.com/api/anycast/v1/
@@ -103,6 +103,8 @@ paths:
         schema:
           format: int64
           type: integer
+          x-gosdk-type: integer_id
+        x-gosdk-type: integer_id
       responses:
         "200":
           content:
@@ -127,6 +129,8 @@ paths:
         schema:
           format: int64
           type: integer
+          x-gosdk-type: integer_id
+        x-gosdk-type: integer_id
       responses:
         "200":
           content:
@@ -150,6 +154,8 @@ paths:
         schema:
           format: int64
           type: integer
+          x-gosdk-type: integer_id
+        x-gosdk-type: integer_id
       requestBody:
         content:
           application/json:
@@ -231,6 +237,8 @@ paths:
         schema:
           format: int64
           type: integer
+          x-gosdk-type: integer_id
+        x-gosdk-type: integer_id
       responses:
         "200":
           content:
@@ -255,6 +263,8 @@ paths:
         schema:
           format: int64
           type: integer
+          x-gosdk-type: integer_id
+        x-gosdk-type: integer_id
       responses:
         "200":
           content:
@@ -278,6 +288,8 @@ paths:
         schema:
           format: int64
           type: integer
+          x-gosdk-type: integer_id
+        x-gosdk-type: integer_id
       responses:
         "200":
           content:
@@ -300,6 +312,8 @@ paths:
         schema:
           format: int64
           type: integer
+          x-gosdk-type: integer_id
+        x-gosdk-type: integer_id
       responses:
         "200":
           content:
@@ -325,6 +339,8 @@ paths:
         schema:
           format: int64
           type: integer
+          x-gosdk-type: integer_id
+        x-gosdk-type: integer_id
       responses:
         "200":
           content:
@@ -349,6 +365,8 @@ paths:
         schema:
           format: int64
           type: integer
+          x-gosdk-type: integer_id
+        x-gosdk-type: integer_id
       responses:
         "200":
           content:
@@ -373,6 +391,8 @@ paths:
         schema:
           format: int64
           type: integer
+          x-gosdk-type: integer_id
+        x-gosdk-type: integer_id
       requestBody:
         content:
           application/json:

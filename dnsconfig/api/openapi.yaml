@@ -2305,6 +2305,19 @@ paths:
         name: _torder_by
         schema:
           type: string
+      - description: |-
+          This parameter is used for getting inheritance_sources.
+
+          Allowed values:
+          * _none_,
+          * _partial_,
+          * _full_.
+
+          Defaults to _none
+        in: query
+        name: _inherit
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -2318,6 +2331,20 @@ paths:
     post:
       description: Use this method to create a __LBDN__ object.
       operationId: lbdnCreate
+      parameters:
+      - description: |-
+          This parameter is used for getting inheritance_sources.
+
+          Allowed values:
+          * _none_,
+          * _partial_,
+          * _full_.
+
+          Defaults to _none
+        in: query
+        name: _inherit
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -2376,6 +2403,19 @@ paths:
         name: _fields
         schema:
           type: string
+      - description: |-
+          This parameter is used for getting inheritance_sources.
+
+          Allowed values:
+          * _none_,
+          * _partial_,
+          * _full_.
+
+          Defaults to _none
+        in: query
+        name: _inherit
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -2394,6 +2434,19 @@ paths:
         in: path
         name: id
         required: true
+        schema:
+          type: string
+      - description: |-
+          This parameter is used for getting inheritance_sources.
+
+          Allowed values:
+          * _none_,
+          * _partial_,
+          * _full_.
+
+          Defaults to _none
+        in: query
+        name: _inherit
         schema:
           type: string
       requestBody:

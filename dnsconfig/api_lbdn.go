@@ -18,7 +18,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/infobloxopen/bloxone-go-client/internal"
+	"github.com/infobloxopen/universal-ddi-go-client/internal"
 )
 
 type LbdnAPI interface {
@@ -98,10 +98,17 @@ type LbdnAPICreateRequest struct {
 	ctx        context.Context
 	ApiService LbdnAPI
 	body       *LBDN
+	inherit    *string
 }
 
 func (r LbdnAPICreateRequest) Body(body LBDN) LbdnAPICreateRequest {
 	r.body = &body
+	return r
+}
+
+// This parameter is used for getting inheritance_sources.  Allowed values: * _none_, * _partial_, * _full_.  Defaults to _none
+func (r LbdnAPICreateRequest) Inherit(inherit string) LbdnAPICreateRequest {
+	r.inherit = &inherit
 	return r
 }
 
@@ -149,6 +156,9 @@ func (a *LbdnAPIService) CreateExecute(r LbdnAPICreateRequest) (*CreateLBDNRespo
 		return localVarReturnValue, nil, internal.ReportError("body is required and must be specified")
 	}
 
+	if r.inherit != nil {
+		internal.ParameterAddToHeaderOrQuery(localVarQueryParams, "_inherit", r.inherit, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -308,6 +318,7 @@ type LbdnAPIListRequest struct {
 	orderBy    *string
 	tfilter    *string
 	torderBy   *string
+	inherit    *string
 }
 
 // A collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.  Specify this parameter as a comma-separated list of JSON tag names.
@@ -355,6 +366,12 @@ func (r LbdnAPIListRequest) Tfilter(tfilter string) LbdnAPIListRequest {
 // This parameter is used for sorting by tags.
 func (r LbdnAPIListRequest) TorderBy(torderBy string) LbdnAPIListRequest {
 	r.torderBy = &torderBy
+	return r
+}
+
+// This parameter is used for getting inheritance_sources.  Allowed values: * _none_, * _partial_, * _full_.  Defaults to _none
+func (r LbdnAPIListRequest) Inherit(inherit string) LbdnAPIListRequest {
+	r.inherit = &inherit
 	return r
 }
 
@@ -423,6 +440,9 @@ func (a *LbdnAPIService) ListExecute(r LbdnAPIListRequest) (*ListLBDNResponse, *
 	if r.torderBy != nil {
 		internal.ParameterAddToHeaderOrQuery(localVarQueryParams, "_torder_by", r.torderBy, "")
 	}
+	if r.inherit != nil {
+		internal.ParameterAddToHeaderOrQuery(localVarQueryParams, "_inherit", r.inherit, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -475,11 +495,18 @@ type LbdnAPIReadRequest struct {
 	ApiService LbdnAPI
 	id         string
 	fields     *string
+	inherit    *string
 }
 
 // A collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.  Specify this parameter as a comma-separated list of JSON tag names.
 func (r LbdnAPIReadRequest) Fields(fields string) LbdnAPIReadRequest {
 	r.fields = &fields
+	return r
+}
+
+// This parameter is used for getting inheritance_sources.  Allowed values: * _none_, * _partial_, * _full_.  Defaults to _none
+func (r LbdnAPIReadRequest) Inherit(inherit string) LbdnAPIReadRequest {
+	r.inherit = &inherit
 	return r
 }
 
@@ -529,6 +556,9 @@ func (a *LbdnAPIService) ReadExecute(r LbdnAPIReadRequest) (*ReadLBDNResponse, *
 
 	if r.fields != nil {
 		internal.ParameterAddToHeaderOrQuery(localVarQueryParams, "_fields", r.fields, "")
+	}
+	if r.inherit != nil {
+		internal.ParameterAddToHeaderOrQuery(localVarQueryParams, "_inherit", r.inherit, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -582,10 +612,17 @@ type LbdnAPIUpdateRequest struct {
 	ApiService LbdnAPI
 	id         string
 	body       *LBDN
+	inherit    *string
 }
 
 func (r LbdnAPIUpdateRequest) Body(body LBDN) LbdnAPIUpdateRequest {
 	r.body = &body
+	return r
+}
+
+// This parameter is used for getting inheritance_sources.  Allowed values: * _none_, * _partial_, * _full_.  Defaults to _none
+func (r LbdnAPIUpdateRequest) Inherit(inherit string) LbdnAPIUpdateRequest {
+	r.inherit = &inherit
 	return r
 }
 
@@ -636,6 +673,9 @@ func (a *LbdnAPIService) UpdateExecute(r LbdnAPIUpdateRequest) (*UpdateLBDNRespo
 		return localVarReturnValue, nil, internal.ReportError("body is required and must be specified")
 	}
 
+	if r.inherit != nil {
+		internal.ParameterAddToHeaderOrQuery(localVarQueryParams, "_inherit", r.inherit, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

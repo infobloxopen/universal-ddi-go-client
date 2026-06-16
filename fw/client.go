@@ -1,7 +1,7 @@
 /*
-BloxOne FW API
+Infoblox FW API
 
-BloxOne Threat Defense Cloud is an extension of the BloxOne Suite that provides visibility into infected and compromised off-premises devices, roaming users, remote sites, and branch offices. You can subscribe to BloxOne Cloud and use its functionality to mitigate and control malware as well as provide unprecedented insight into your network security posture and enable timely action. BloxOne Cloud also offers unified policy management, reporting, and threat analytics across the entire spectrum. Using automated and high-quality threat intelligence feeds and unique behavioral analytics, it automatically stops device communications with C&Cs/botnets and prevents DNS based data exfiltration.  The mission-critical DNS infrastructure can become a vulnerable component in your network when it is inadequately protected by traditional security solutions and consequently used as an attack surface. Compromised DNS services can result in catastrophic network and system failures. To fully protect your network in today’s cyber security threat environment, Infoblox sets a new DNS security standard by offering scalable, enterprise-grade, and integrated protection for your DNS infrastructure.  Through the Infoblox Cloud Services Portal, you can view the status of your subscription and threat intelligence feeds, manage your network scope and roaming end users, and learn more about threats on your networks through the Infoblox Threat Lookup tool and predefined reports.
+Infoblox Threat Defense Cloud is an extension of the Infoblox Suite that provides visibility into infected and compromised off-premises devices, roaming users, remote sites, and branch offices. You can subscribe to Infoblox Cloud and use its functionality to mitigate and control malware as well as provide unprecedented insight into your network security posture and enable timely action. Infoblox Cloud also offers unified policy management, reporting, and threat analytics across the entire spectrum. Using automated and high-quality threat intelligence feeds and unique behavioral analytics, it automatically stops device communications with C&Cs/botnets and prevents DNS based data exfiltration.  The mission-critical DNS infrastructure can become a vulnerable component in your network when it is inadequately protected by traditional security solutions and consequently used as an attack surface. Compromised DNS services can result in catastrophic network and system failures. To fully protect your network in today’s cyber security threat environment, Infoblox sets a new DNS security standard by offering scalable, enterprise-grade, and integrated protection for your DNS infrastructure.  Through the Infoblox Cloud Services Portal, you can view the status of your subscription and threat intelligence feeds, manage your network scope and roaming end users, and learn more about threats on your networks through the Infoblox Threat Lookup tool and predefined reports. 
 
 API version: v1
 */
@@ -11,31 +11,31 @@ API version: v1
 package fw
 
 import (
-	"github.com/infobloxopen/bloxone-go-client/internal"
-	"github.com/infobloxopen/bloxone-go-client/option"
+	"github.com/infobloxopen/universal-ddi-go-client/internal"
+	"github.com/infobloxopen/universal-ddi-go-client/option"
 )
 
 const serviceBasePath = "/api/atcfw/v1"
 
-// APIClient manages communication with the BloxOne FW API v1
+// APIClient manages communication with the Infoblox FW API v1
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	*internal.APIClient
 
 	// API Services
-	AccessCodesAPI         AccessCodesAPI
-	AppApprovalsAPI        AppApprovalsAPI
-	ApplicationFiltersAPI  ApplicationFiltersAPI
-	CategoryFiltersAPI     CategoryFiltersAPI
-	ContentCategoriesAPI   ContentCategoriesAPI
+	AccessCodesAPI AccessCodesAPI
+	AppApprovalsAPI AppApprovalsAPI
+	ApplicationFiltersAPI ApplicationFiltersAPI
+	CategoryFiltersAPI CategoryFiltersAPI
+	ContentCategoriesAPI ContentCategoriesAPI
 	InternalDomainListsAPI InternalDomainListsAPI
-	NamedListItemsAPI      NamedListItemsAPI
-	NamedListsAPI          NamedListsAPI
-	NetworkListsAPI        NetworkListsAPI
-	PopRegionsAPI          PopRegionsAPI
-	SecurityPoliciesAPI    SecurityPoliciesAPI
+	NamedListItemsAPI NamedListItemsAPI
+	NamedListsAPI NamedListsAPI
+	NetworkListsAPI NetworkListsAPI
+	PopRegionsAPI PopRegionsAPI
+	SecurityPoliciesAPI SecurityPoliciesAPI
 	SecurityPolicyRulesAPI SecurityPolicyRulesAPI
-	ThreatFeedsAPI         ThreatFeedsAPI
+	ThreatFeedsAPI ThreatFeedsAPI
 }
 
 // NewAPIClient creates a new API client.

@@ -1,7 +1,7 @@
 /*
 Discovery Configuration API V2
 
-The Discovery configuration service is a BloxOne Service that provides configuration for accessing and syncing the Cloud assets   Base Paths:  1. provider: **_/api/cloud_discovery/v2/_**
+The Discovery configuration service is a Universal DDI Service that provides configuration for accessing and syncing the Cloud assets   Base Paths:  1. provider: **_/api/cloud_discovery/v2/_**
 
 API version: v2
 */
@@ -17,7 +17,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/infobloxopen/bloxone-go-client/internal"
+	"github.com/infobloxopen/universal-ddi-go-client/internal"
 )
 
 type SubAccountsAPI interface {

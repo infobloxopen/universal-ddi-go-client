@@ -23,4 +23,5 @@ model_record_inheritance.go
 model_soa_serial_increment_request.go
 model_soa_serial_increment_response.go
 model_update_record_response.go
+test/api_record_test.go
 utils.go

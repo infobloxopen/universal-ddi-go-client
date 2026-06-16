@@ -28,7 +28,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/dfp"
+	"github.com/infobloxopen/universal-ddi-go-client/dfp"
 )
 
 func main() {
@@ -99,7 +99,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/dfp"
+	"github.com/infobloxopen/universal-ddi-go-client/dfp"
 )
 
 func main() {
@@ -168,7 +168,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/dfp"
+	"github.com/infobloxopen/universal-ddi-go-client/dfp"
 )
 
 func main() {

@@ -1,5 +1,5 @@
 /*
-BloxOne Redirect API
+Infoblox Redirect API
 
 Testing RedirectPageAPIService
 
@@ -16,7 +16,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/infobloxopen/bloxone-go-client/redirect"
+	"github.com/infobloxopen/universal-ddi-go-client/redirect"
 )
 
 func TestRedirectPageAPIService(t *testing.T) {

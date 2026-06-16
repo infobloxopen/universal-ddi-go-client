@@ -303,7 +303,7 @@ components:
               value: 0
           dns_absolute_zone_name: dns_absolute_zone_name
           comment: comment
-          name_in_zone: ""
+          name_in_zone: name_in_zone
           provider_metadata: "{}"
           delegation: delegation
           dns_rdata: dns_rdata
@@ -347,7 +347,7 @@ components:
               value: 0
           dns_absolute_zone_name: dns_absolute_zone_name
           comment: comment
-          name_in_zone: ""
+          name_in_zone: name_in_zone
           provider_metadata: "{}"
           delegation: delegation
           dns_rdata: dns_rdata
@@ -382,7 +382,7 @@ components:
               value: 0
           dns_absolute_zone_name: dns_absolute_zone_name
           comment: comment
-          name_in_zone: ""
+          name_in_zone: name_in_zone
           provider_metadata: "{}"
           delegation: delegation
           dns_rdata: dns_rdata
@@ -429,7 +429,7 @@ components:
               value: 0
           dns_absolute_zone_name: dns_absolute_zone_name
           comment: comment
-          name_in_zone: ""
+          name_in_zone: name_in_zone
           provider_metadata: "{}"
           delegation: delegation
           dns_rdata: dns_rdata
@@ -477,7 +477,7 @@ components:
             value: 0
         dns_absolute_zone_name: dns_absolute_zone_name
         comment: comment
-        name_in_zone: ""
+        name_in_zone: name_in_zone
         provider_metadata: "{}"
         delegation: delegation
         dns_rdata: dns_rdata
@@ -545,7 +545,6 @@ components:
           readOnly: true
           type: string
         name_in_zone:
-          default: ""
           description: The relative owner name to the zone origin. Must be specified
             for creating the DNS resource record and is read only for other operations.
           type: string
@@ -906,7 +905,7 @@ components:
               value: 0
           dns_absolute_zone_name: dns_absolute_zone_name
           comment: comment
-          name_in_zone: ""
+          name_in_zone: name_in_zone
           provider_metadata: "{}"
           delegation: delegation
           dns_rdata: dns_rdata
@@ -950,7 +949,7 @@ components:
               value: 0
           dns_absolute_zone_name: dns_absolute_zone_name
           comment: comment
-          name_in_zone: ""
+          name_in_zone: name_in_zone
           provider_metadata: "{}"
           delegation: delegation
           dns_rdata: dns_rdata

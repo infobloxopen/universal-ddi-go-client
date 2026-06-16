@@ -1,7 +1,7 @@
 /*
-BloxOne Anycast API
+Universal DDI Anycast API
 
-Anycast capability enables HA (High Availability) configuration of BloxOne applications that run on equipment located on customer's premises (on-prem hosts). Anycast supports DNS, as well as DNS-forwarding services.  Anycast-enabled application setups use multiple on-premises installations for one particular application type. Multiple application instances are configured to use the same endpoint address. Anycast capability is collocated with such application instance, monitoring the local application instance and advertising to the upstream router (a customer equipment) a per-instance, local route to the common application endpoint address, as long as the local application instance is available. Depending on the type of the upstream router, the customer may configure local route advertisement via either BGP (Boarder Gateway Protocol) or OSPF (Open Shortest Path First) routing protocols. Both protocols may be enabled as well. Multiple routes to the common application service address provide redundancy without the need to reconfigure application clients.  Should an application instance become unavailable, the local route advertisements stop, resulting in withdrawal of the route (in the upstream router) to the application instance that has gone out of service and ensuring that subsequent application requests thus get routed to the remaining available application instances.
+Anycast capability enables HA (High Availability) configuration of Universal DDI applications that run on equipment located on customer's premises (on-prem hosts). Anycast supports DNS, as well as DNS-forwarding services.  Anycast-enabled application setups use multiple on-premises installations for one particular application type. Multiple application instances are configured to use the same endpoint address. Anycast capability is collocated with such application instance, monitoring the local application instance and advertising to the upstream router (a customer equipment) a per-instance, local route to the common application endpoint address, as long as the local application instance is available. Depending on the type of the upstream router, the customer may configure local route advertisement via either BGP (Boarder Gateway Protocol) or OSPF (Open Shortest Path First) routing protocols. Both protocols may be enabled as well. Multiple routes to the common application service address provide redundancy without the need to reconfigure application clients.  Should an application instance become unavailable, the local route advertisements stop, resulting in withdrawal of the route (in the upstream router) to the application instance that has gone out of service and ensuring that subsequent application requests thus get routed to the remaining available application instances.
 
 API version: v1
 */
@@ -18,7 +18,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/infobloxopen/bloxone-go-client/internal"
+	"github.com/infobloxopen/universal-ddi-go-client/internal"
 )
 
 type OnPremAnycastManagerAPI interface {
@@ -464,7 +464,7 @@ func (a *OnPremAnycastManagerAPIService) CreateAnycastVersionExecute(r OnPremAny
 	}
 
 	localVarPath := localBasePath + "/accm/ac_version/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(internal.ParameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(internal.ParameterValueToStringForType(r.id, "id", "integer_id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -563,7 +563,7 @@ func (a *OnPremAnycastManagerAPIService) DeleteAnycastConfigExecute(r OnPremAnyc
 	}
 
 	localVarPath := localBasePath + "/accm/ac_configs/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(internal.ParameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(internal.ParameterValueToStringForType(r.id, "id", "integer_id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -662,7 +662,7 @@ func (a *OnPremAnycastManagerAPIService) DeleteAnycastVersionExecute(r OnPremAny
 	}
 
 	localVarPath := localBasePath + "/accm/ac_version/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(internal.ParameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(internal.ParameterValueToStringForType(r.id, "id", "integer_id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -762,7 +762,7 @@ func (a *OnPremAnycastManagerAPIService) DeleteOnpremHostExecute(r OnPremAnycast
 	}
 
 	localVarPath := localBasePath + "/accm/op_hosts/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(internal.ParameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(internal.ParameterValueToStringForType(r.id, "id", "integer_id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -862,7 +862,7 @@ func (a *OnPremAnycastManagerAPIService) GetAnycastConfigExecute(r OnPremAnycast
 	}
 
 	localVarPath := localBasePath + "/accm/ac_configs/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(internal.ParameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(internal.ParameterValueToStringForType(r.id, "id", "integer_id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1118,7 +1118,7 @@ func (a *OnPremAnycastManagerAPIService) GetAnycastVersionExecute(r OnPremAnycas
 	}
 
 	localVarPath := localBasePath + "/accm/ac_version/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(internal.ParameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(internal.ParameterValueToStringForType(r.id, "id", "integer_id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1462,7 +1462,7 @@ func (a *OnPremAnycastManagerAPIService) GetOnpremHostExecute(r OnPremAnycastMan
 	}
 
 	localVarPath := localBasePath + "/accm/op_hosts/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(internal.ParameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(internal.ParameterValueToStringForType(r.id, "id", "integer_id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1919,7 +1919,7 @@ func (a *OnPremAnycastManagerAPIService) ReadAnycastConfigWithRuntimeStatusExecu
 	}
 
 	localVarPath := localBasePath + "/accm/ac_runtime_statuses/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(internal.ParameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(internal.ParameterValueToStringForType(r.id, "id", "integer_id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2024,7 +2024,7 @@ func (a *OnPremAnycastManagerAPIService) UpdateAnycastConfigExecute(r OnPremAnyc
 	}
 
 	localVarPath := localBasePath + "/accm/ac_configs/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(internal.ParameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(internal.ParameterValueToStringForType(r.id, "id", "integer_id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2144,7 +2144,7 @@ func (a *OnPremAnycastManagerAPIService) UpdateOnpremHostExecute(r OnPremAnycast
 	}
 
 	localVarPath := localBasePath + "/accm/op_hosts/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(internal.ParameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(internal.ParameterValueToStringForType(r.id, "id", "integer_id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

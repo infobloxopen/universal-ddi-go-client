@@ -30,7 +30,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/clouddiscovery"
+	"github.com/infobloxopen/universal-ddi-go-client/clouddiscovery"
 )
 
 func main() {
@@ -96,7 +96,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/clouddiscovery"
+	"github.com/infobloxopen/universal-ddi-go-client/clouddiscovery"
 )
 
 func main() {
@@ -163,7 +163,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/clouddiscovery"
+	"github.com/infobloxopen/universal-ddi-go-client/clouddiscovery"
 )
 
 func main() {
@@ -235,7 +235,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/clouddiscovery"
+	"github.com/infobloxopen/universal-ddi-go-client/clouddiscovery"
 )
 
 func main() {
@@ -305,7 +305,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/clouddiscovery"
+	"github.com/infobloxopen/universal-ddi-go-client/clouddiscovery"
 )
 
 func main() {

@@ -3,7 +3,7 @@ package option
 import (
 	"net/http"
 
-	"github.com/infobloxopen/bloxone-go-client/internal"
+	"github.com/infobloxopen/universal-ddi-go-client/internal"
 )
 
 // ClientOption is a function that applies configuration options to the API Client.
@@ -55,7 +55,7 @@ func WithDefaultTags(defaultTags map[string]string) ClientOption {
 
 // WithClientName returns a ClientOption that sets the name of the client using the SDK.
 // This can be used to identify the client in the audit logs.
-// Optional. If not provided, the client name will be set to "bloxone-go-client".
+// Optional. If not provided, the client name will be set to "universal-ddi-go-client".
 func WithClientName(clientName string) ClientOption {
 	return func(configuration *internal.Configuration) {
 		if clientName != "" {

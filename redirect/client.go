@@ -1,7 +1,7 @@
 /*
-BloxOne Redirect API
+Infoblox Redirect API
 
-You can configure BloxOne Threat Defense Cloud to redirect traffic to the Infoblox server that displays the default or customized redirect page. You can redirect traffic to a custom destination using custom redirects.
+You can configure Infoblox Threat Defense Cloud to redirect traffic to the Infoblox server that displays the default or customized redirect page. You can redirect traffic to a custom destination using custom redirects. 
 
 API version: v1
 */
@@ -11,21 +11,21 @@ API version: v1
 package redirect
 
 import (
-	"github.com/infobloxopen/bloxone-go-client/internal"
-	"github.com/infobloxopen/bloxone-go-client/option"
+	"github.com/infobloxopen/universal-ddi-go-client/internal"
+	"github.com/infobloxopen/universal-ddi-go-client/option"
 )
 
 const serviceBasePath = "/api/atcfw/v1"
 
-// APIClient manages communication with the BloxOne Redirect API v1
+// APIClient manages communication with the Infoblox Redirect API v1
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	*internal.APIClient
 
 	// API Services
-	CertificateAPI     CertificateAPI
+	CertificateAPI CertificateAPI
 	CustomRedirectsAPI CustomRedirectsAPI
-	RedirectPageAPI    RedirectPageAPI
+	RedirectPageAPI RedirectPageAPI
 }
 
 // NewAPIClient creates a new API client.

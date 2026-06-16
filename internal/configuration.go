@@ -70,15 +70,15 @@ type Configuration struct {
 
 // NewConfiguration returns a new Configuration object.
 // The following default values are set:
-// - ClientName: "bloxone-go-client"
+// - ClientName: "universal-ddi-go-client"
 // - CSPURL: "https://csp.infoblox.com"
-// - UserAgent: "bloxone-go-client/version"
+// - UserAgent: "universal-ddi-go-client/version"
 // - Debug: false
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
-		ClientName:       "bloxone-go-client",
-		CSPURL:           lookupEnv(envBloxOneCSPURL, "https://csp.infoblox.com"),
-		APIKey:           lookupEnv(envBloxOneAPIKey, ""),
+		ClientName:       "universal-ddi-go-client",
+		CSPURL:           lookupEnvAny([]string{envUniversalDDICSPURL, envBloxOneCSPURL}, "https://csp.infoblox.com"),
+		APIKey:           lookupEnvAny([]string{envUniversalDDIAPIKey, envBloxOneAPIKey}, ""),
 		DefaultHeader:    make(map[string]string),
 		Debug:            lookupEnvBool(envIBLogLevel, false),
 		UserAgent:        fmt.Sprintf("bloxone-%s/%s", sdkIdentifier, version),
@@ -216,6 +216,15 @@ func lookupEnvBool(key string, def bool) bool {
 	if logLvlStr, ok := os.LookupEnv(key); ok {
 		if logLvl, err := strconv.ParseBool(logLvlStr); err == nil {
 			return logLvl
+		}
+	}
+	return def
+}
+
+func lookupEnvAny(keys []string, def string) string {
+	for _, key := range keys {
+		if v, ok := os.LookupEnv(key); ok {
+			return v
 		}
 	}
 	return def

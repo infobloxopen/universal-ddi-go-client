@@ -11,8 +11,8 @@ API version: v1
 package infraprovision
 
 import (
-	"github.com/infobloxopen/bloxone-go-client/internal"
-	"github.com/infobloxopen/bloxone-go-client/option"
+	"github.com/infobloxopen/universal-ddi-go-client/internal"
+	"github.com/infobloxopen/universal-ddi-go-client/option"
 )
 
 const serviceBasePath = "/host-activation/v1"
@@ -23,7 +23,7 @@ type APIClient struct {
 	*internal.APIClient
 
 	// API Services
-	UICSRAPI       UICSRAPI
+	UICSRAPI UICSRAPI
 	UIJoinTokenAPI UIJoinTokenAPI
 }
 

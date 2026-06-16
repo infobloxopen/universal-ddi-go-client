@@ -37,4 +37,5 @@ model_service_config.go
 model_service_config_object.go
 model_service_status_code.go
 model_service_status_update_request.go
+test/api_on_prem_anycast_manager_test.go
 utils.go
