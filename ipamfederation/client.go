@@ -1,7 +1,7 @@
 /*
 IPAM Federation API
 
-The DDI IPAM Federation application enables a SaaS administrator to manage multiple IPAM systems from one central control point CSP.    
+The DDI IPAM Federation application enables a SaaS administrator to manage multiple IPAM systems from one central control point CSP.
 
 API version: v1
 */
@@ -23,13 +23,13 @@ type APIClient struct {
 	*internal.APIClient
 
 	// API Services
-	FederatedBlockAPI FederatedBlockAPI
-	FederatedRealmAPI FederatedRealmAPI
-	NextAvailableFederatedBlockAPI NextAvailableFederatedBlockAPI
+	FederatedBlockAPI                FederatedBlockAPI
+	FederatedRealmAPI                FederatedRealmAPI
+	NextAvailableFederatedBlockAPI   NextAvailableFederatedBlockAPI
 	NextAvailableOverlappingBlockAPI NextAvailableOverlappingBlockAPI
-	NextAvailableReservedBlockAPI NextAvailableReservedBlockAPI
-	OverlappingBlockAPI OverlappingBlockAPI
-	ReservedBlockAPI ReservedBlockAPI
+	NextAvailableReservedBlockAPI    NextAvailableReservedBlockAPI
+	OverlappingBlockAPI              OverlappingBlockAPI
+	ReservedBlockAPI                 ReservedBlockAPI
 }
 
 // NewAPIClient creates a new API client.

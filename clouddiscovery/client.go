@@ -1,7 +1,7 @@
 /*
 Discovery Configuration API V2
 
-The Discovery configuration service is a Universal DDI Service that provides configuration for accessing and syncing the Cloud assets   Base Paths:  1. provider: **_/api/cloud_discovery/v2/_**  
+The Discovery configuration service is a Universal DDI Service that provides configuration for accessing and syncing the Cloud assets   Base Paths:  1. provider: **_/api/cloud_discovery/v2/_**
 
 API version: v2
 */
@@ -23,8 +23,8 @@ type APIClient struct {
 	*internal.APIClient
 
 	// API Services
-	AccountsAPI AccountsAPI
-	ProvidersAPI ProvidersAPI
+	AccountsAPI    AccountsAPI
+	ProvidersAPI   ProvidersAPI
 	SubAccountsAPI SubAccountsAPI
 }
 
