@@ -17,7 +17,7 @@ import (
 	"github.com/infobloxopen/universal-ddi-go-client/upgradepolicy"
 )
 
-// APIClient is an aggregation of different BloxOne API clients.
+// APIClient is an aggregation of different UniversalDDI API clients.
 type APIClient struct {
 	IPAddressManagementAPI      *ipam.APIClient
 	IPAMFederationAPI           *ipamfederation.APIClient
@@ -34,8 +34,8 @@ type APIClient struct {
 	UpgradePolicyClientAPI      *upgradepolicy.APIClient
 }
 
-// NewAPIClient creates a new BloxOne API Client.
-// This is an aggregation of different BloxOne API clients.
+// NewAPIClient creates a new UniversalDDI API Client.
+// This is an aggregation of different UniversalDDI API clients.
 // The following clients are available:
 // - IPAddressManagementAPI
 // - IPAMFederationAPI
@@ -52,8 +52,8 @@ type APIClient struct {
 //
 // The client can be configured with a variadic option. The following options are available:
 // - WithClientName(string) sets the name of the client using the SDK.
-// - WithCSPUrl(string) sets the URL for BloxOne Cloud Services Portal.
-// - WithAPIKey(string) sets the APIKey for accessing the BloxOne API.
+// - WithCSPUrl(string) sets the URL for UniversalDDI Cloud Services Portal.
+// - WithAPIKey(string) sets the APIKey for accessing the UniversalDDI API.
 // - WithHTTPClient(*http.Client) sets the HTTPClient to use for the SDK.
 // - WithDefaultTags(map[string]string) sets the tags the client can set by default for objects that has tags support.
 // - WithDebug() sets the debug mode.
