@@ -56,11 +56,11 @@ The default URL for the Cloud Services Portal is `https://csp.infoblox.com`. If 
 client := dnsconfig.NewAPIClient(option.WithCSPUrl("https://csp.eu.infoblox.com"))
 ```
 
-You can also set the URL using the environment variable `UniversalDDI_CSP_URL`
+You can also set the URL using the environment variable `BLOXONE_CSP_URL`
 
 ### Authorization
 
-An API key is required to access DNS Configuration API. You can obtain an API key by following the instructions in the guide for [Configuring User API Keys](https://docs.infoblox.com/space/UniversalDDICloud/35430405/Configuring+User+API+Keys).
+An API key is required to access DNS Configuration API. You can obtain an API key by following the instructions in the guide for [Configuring User API Keys](https://docs.infoblox.com/space/BloxOneCloud/35430405/Configuring+User+API+Keys).
 
 To use an API key with DNS Configuration API, you can use the `option.WithAPIKey` option. For example:
 
@@ -68,7 +68,7 @@ To use an API key with DNS Configuration API, you can use the `option.WithAPIKey
 client := dnsconfig.NewAPIClient(option.WithAPIKey("YOUR_API_KEY"))
 ```
 
-You can also set the API key using the environment variable `UniversalDDI_API_KEY`
+You can also set the API key using the environment variable `BLOXONE_API_KEY`
 
 Note: The API key is a secret and should be handled securely. Hardcoding the API key in your code is not recommended.
 

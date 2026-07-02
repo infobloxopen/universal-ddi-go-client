@@ -115,7 +115,7 @@ type View struct {
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// Optional. Use default forwarders to resolve queries for subzones.  Defaults to _true_.
 	UseForwardersForSubzones *bool `json:"use_forwarders_for_subzones,omitempty"`
-	// _use_root_forwarders_for_local_resolution_with_b1td_ allows DNS recursive queries sent to root forwarders for local resolution when deployed alongside BloxOne Thread Defense. Defaults to _false_.
+	// _use_root_forwarders_for_local_resolution_with_b1td_ allows DNS recursive queries sent to root forwarders for local resolution when deployed alongside Universal Thread Defense. Defaults to _false_.
 	UseRootForwardersForLocalResolutionWithB1td *bool `json:"use_root_forwarders_for_local_resolution_with_b1td,omitempty"`
 	// Optional. ZoneAuthority.
 	ZoneAuthority        *ZoneAuthority `json:"zone_authority,omitempty"`

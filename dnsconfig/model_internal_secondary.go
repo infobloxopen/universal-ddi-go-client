@@ -18,7 +18,7 @@ import (
 // checks if the InternalSecondary type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InternalSecondary{}
 
-// InternalSecondary BloxOne DDI host acting as DNS secondary.
+// InternalSecondary Universal DDI host acting as DNS secondary.
 type InternalSecondary struct {
 	// The resource identifier.
 	Host                 string `json:"host"`

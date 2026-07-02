@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ExternalPrimaries** | Pointer to [**[]ExternalPrimary**](ExternalPrimary.md) | Optional. DNS primaries external to BloxOne DDI. Order is not significant. | [optional] 
-**ExternalSecondaries** | Pointer to [**[]ExternalSecondary**](ExternalSecondary.md) | DNS secondaries external to BloxOne DDI. Order is not significant. | [optional] 
-**InternalSecondaries** | Pointer to [**[]InternalSecondary**](InternalSecondary.md) | Optional. BloxOne DDI hosts acting as internal secondaries. Order is not significant. | [optional] 
+**ExternalPrimaries** | Pointer to [**[]ExternalPrimary**](ExternalPrimary.md) | Optional. DNS primaries external to Universal DDI. Order is not significant. | [optional] 
+**ExternalSecondaries** | Pointer to [**[]ExternalSecondary**](ExternalSecondary.md) | DNS secondaries external to Universal DDI. Order is not significant. | [optional] 
+**InternalSecondaries** | Pointer to [**[]InternalSecondary**](InternalSecondary.md) | Optional. Universal DDI hosts acting as internal secondaries. Order is not significant. | [optional] 
 **Nsgs** | Pointer to **[]string** | The resource identifier. | [optional] 
 
 ## Methods
