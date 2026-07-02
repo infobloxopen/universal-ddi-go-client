@@ -23,36 +23,36 @@ type APIClient struct {
 	*internal.APIClient
 
 	// API Services
-	AddressAPI        AddressAPI
-	AddressBlockAPI   AddressBlockAPI
-	AsmAPI            AsmAPI
-	ConfigProfileAPI  ConfigProfileAPI
-	DhcpHostAPI       DhcpHostAPI
-	DnsUsageAPI       DnsUsageAPI
-	FilterAPI         FilterAPI
-	FixedAddressAPI   FixedAddressAPI
-	GlobalAPI         GlobalAPI
-	HaGroupAPI        HaGroupAPI
+	AddressAPI AddressAPI
+	AddressBlockAPI AddressBlockAPI
+	AsmAPI AsmAPI
+	ConfigProfileAPI ConfigProfileAPI
+	DhcpHostAPI DhcpHostAPI
+	DnsUsageAPI DnsUsageAPI
+	FilterAPI FilterAPI
+	FixedAddressAPI FixedAddressAPI
+	GlobalAPI GlobalAPI
+	HaGroupAPI HaGroupAPI
 	HardwareFilterAPI HardwareFilterAPI
-	IpSpaceAPI        IpSpaceAPI
-	IpamHostAPI       IpamHostAPI
-	LeasesCommandAPI  LeasesCommandAPI
+	IpSpaceAPI IpSpaceAPI
+	IpamHostAPI IpamHostAPI
+	LeasesCommandAPI LeasesCommandAPI
 	MacAddressItemAPI MacAddressItemAPI
-	OptionCodeAPI     OptionCodeAPI
-	OptionFilterAPI   OptionFilterAPI
-	OptionGroupAPI    OptionGroupAPI
-	OptionSpaceAPI    OptionSpaceAPI
-	RangeAPI          RangeAPI
-	ServerAPI         ServerAPI
-	ServiceAPI        ServiceAPI
-	SubnetAPI         SubnetAPI
+	OptionCodeAPI OptionCodeAPI
+	OptionFilterAPI OptionFilterAPI
+	OptionGroupAPI OptionGroupAPI
+	OptionSpaceAPI OptionSpaceAPI
+	RangeAPI RangeAPI
+	ServerAPI ServerAPI
+	ServiceAPI ServiceAPI
+	SubnetAPI SubnetAPI
 }
 
 // NewAPIClient creates a new API client.
 // The client can be configured with a variadic option. The following options are available:
 // - WithClientName(string) sets the name of the client using the SDK.
-// - WithCSPUrl(string) sets the URL for UniversalDDI Cloud Services Portal.
-// - WithAPIKey(string) sets the APIKey for accessing the UniversalDDI API.
+// - WithCSPUrl(string) sets the URL for Universal DDI Cloud Services Portal.
+// - WithAPIKey(string) sets the APIKey for accessing the Universal DDI API.
 // - WithHTTPClient(*http.Client) sets the HTTPClient to use for the SDK.
 // - WithDefaultTags(map[string]string) sets the tags the client can set by default for objects that has tags support.
 // - WithDebug() sets the debug mode.
