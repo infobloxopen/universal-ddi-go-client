@@ -81,7 +81,7 @@ func NewConfiguration() *Configuration {
 		APIKey:           lookupEnvAny([]string{envUniversalDDIAPIKey, envBloxOneAPIKey}, ""),
 		DefaultHeader:    make(map[string]string),
 		Debug:            lookupEnvBool(envIBLogLevel, false),
-		UserAgent:        fmt.Sprintf("bloxone-%s/%s", sdkIdentifier, version),
+		UserAgent:        fmt.Sprintf("universal-ddi-%s/%s", sdkIdentifier, version),
 		Servers:          ServerConfigurations{},
 		OperationServers: map[string]ServerConfigurations{},
 		DefaultTags:      make(map[string]string),
