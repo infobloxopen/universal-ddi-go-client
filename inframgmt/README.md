@@ -103,7 +103,7 @@ The default URL for the Cloud Services Portal is `https://csp.infoblox.com`. If 
 client := inframgmt.NewAPIClient(option.WithCSPUrl("https://csp.eu.infoblox.com"))
 ```
 
-You can also set the URL using the environment variable `UNIVERSAL_DDI_CSP_URL`
+You can also set the URL using the environment variable `INFOBLOX_PORTAL_URL`
 
 ### Authorization
 
@@ -115,7 +115,7 @@ To use an API key with Infrastructure Management API, you can use the `option.Wi
 client := inframgmt.NewAPIClient(option.WithAPIKey("YOUR_API_KEY"))
 ```
 
-You can also set the API key using the environment variable `UNIVERSAL_DDI_API_KEY`
+You can also set the API key using the environment variable `INFOBLOX_PORTAL_KEY`
 
 Note: The API key is a secret and should be handled securely. Hardcoding the API key in your code is not recommended.
 

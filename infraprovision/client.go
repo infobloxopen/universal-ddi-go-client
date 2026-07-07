@@ -23,7 +23,7 @@ type APIClient struct {
 	*internal.APIClient
 
 	// API Services
-	UICSRAPI       UICSRAPI
+	UICSRAPI UICSRAPI
 	UIJoinTokenAPI UIJoinTokenAPI
 }
 

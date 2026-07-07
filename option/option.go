@@ -9,8 +9,8 @@ import (
 // ClientOption is a function that applies configuration options to the API Client.
 type ClientOption func(configuration *internal.Configuration)
 
-// WithCSPUrl returns a ClientOption that sets the URL for UniversalDDI Cloud Services Portal.
-// Can also be configured using the `Universal_DDI_CSP_URL` environment variable.
+// WithCSPUrl returns a ClientOption that sets the URL for Universal DDI Cloud Services Portal.
+// Can also be configured using the `INFOBLOX_PORTAL_URL` environment variable.
 // Optional. Default is https://csp.infoblox.com
 func WithCSPUrl(cspURL string) ClientOption {
 	return func(configuration *internal.Configuration) {
@@ -20,13 +20,13 @@ func WithCSPUrl(cspURL string) ClientOption {
 	}
 }
 
-// WithAPIKey returns a ClientOption that sets the APIKey for accessing the UniversalDDI API.
-// Can also be configured by using the `Universal_DDI_API_KEY` environment variable.
+// WithAPIKey returns a ClientOption that sets the APIKey for accessing the Universal DDI API.
+// Can also be configured by using the `INFOBLOX_PORTAL_KEY` environment variable.
 //
-// You can configure an API key for your user account in the UniversalDDI Cloud Services Portal.
-// Please refer to the following link for more information: https://docs.infoblox.com/space/UniversalDDICloud/35430405/Configuring+User+API+Keys
+// You can configure an API key for your user account in the Universal DDI Cloud Services Portal.
+// Please refer to the following link for more information: https://docs.infoblox.com/space/Universal DDICloud/35430405/Configuring+User+API+Keys
 //
-// Required.
+// Required.ß
 func WithAPIKey(apiKey string) ClientOption {
 	return func(configuration *internal.Configuration) {
 		if apiKey != "" {
