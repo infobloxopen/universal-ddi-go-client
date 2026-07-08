@@ -31,7 +31,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/dnsconfig"
+	"github.com/infobloxopen/universal-ddi-go-client/dnsconfig"
 )
 
 func main() {
@@ -97,7 +97,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/dnsconfig"
+	"github.com/infobloxopen/universal-ddi-go-client/dnsconfig"
 )
 
 func main() {
@@ -164,7 +164,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/dnsconfig"
+	"github.com/infobloxopen/universal-ddi-go-client/dnsconfig"
 )
 
 func main() {
@@ -231,7 +231,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/dnsconfig"
+	"github.com/infobloxopen/universal-ddi-go-client/dnsconfig"
 )
 
 func main() {
@@ -304,7 +304,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/dnsconfig"
+	"github.com/infobloxopen/universal-ddi-go-client/dnsconfig"
 )
 
 func main() {
@@ -375,7 +375,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/dnsconfig"
+	"github.com/infobloxopen/universal-ddi-go-client/dnsconfig"
 )
 
 func main() {

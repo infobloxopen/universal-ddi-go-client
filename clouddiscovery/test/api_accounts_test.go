@@ -11,22 +11,23 @@ package clouddiscovery
 
 import (
 	"context"
-	"github.com/infobloxopen/bloxone-go-client/client"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+
+	"github.com/infobloxopen/universal-ddi-go-client/clouddiscovery"
 )
 
 func TestAccountsAPIService(t *testing.T) {
 
-	apiClient := client.NewAPIClient()
+	apiClient := clouddiscovery.NewAPIClient()
 
 	t.Run("Test AccountsAPIService List", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
 
-		resp, httpRes, err := apiClient.DiscoveryConfigurationAPIV2.AccountsAPI.List(context.Background()).Execute()
+		resp, httpRes, err := apiClient.AccountsAPI.List(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

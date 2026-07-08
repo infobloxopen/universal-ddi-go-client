@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **NetworkLists** | Pointer to **[]int64** | The list of Network Lists identifiers that represents networks that you want to protect from malicious attacks. | [optional] 
 **OnpremResolve** | Pointer to **bool** | Use DNS resolve on onprem side | [optional] 
 **Precedence** | Pointer to **int32** | Security precedence enable selection of the highest priority policy, in cases where a query matches multiple policies. | [optional] 
-**RoamingDeviceGroups** | Pointer to **[]int32** | The list of BloxOne Endpoint groups identifiers. | [optional] 
+**RoamingDeviceGroups** | Pointer to **[]int32** | The list of Infoblox Endpoint groups identifiers. | [optional] 
 **Rules** | Pointer to [**[]SecurityPolicyRule**](SecurityPolicyRule.md) | The list of Security Policy Rules objects that represent the set of rules and actions that you define to balance access and constraints so you can mitigate malicious attacks and provide security for your networks. | [optional] 
 **SafeSearch** | Pointer to **bool** | Apply automated rules to enforce safe search | [optional] 
 **Tags** | Pointer to **map[string]interface{}** | Enables tag support for resource where tags attribute contains user-defined key value pairs | [optional] 

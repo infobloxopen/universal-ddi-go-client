@@ -16,7 +16,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/infobloxopen/bloxone-go-client/dfp"
+	"github.com/infobloxopen/universal-ddi-go-client/dfp"
 )
 
 func TestAccountsAPIService(t *testing.T) {

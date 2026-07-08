@@ -31,7 +31,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/fw"
+	"github.com/infobloxopen/universal-ddi-go-client/fw"
 )
 
 func main() {
@@ -97,7 +97,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/fw"
+	"github.com/infobloxopen/universal-ddi-go-client/fw"
 )
 
 func main() {
@@ -161,7 +161,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/fw"
+	"github.com/infobloxopen/universal-ddi-go-client/fw"
 )
 
 func main() {
@@ -228,7 +228,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/fw"
+	"github.com/infobloxopen/universal-ddi-go-client/fw"
 )
 
 func main() {
@@ -296,7 +296,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/fw"
+	"github.com/infobloxopen/universal-ddi-go-client/fw"
 )
 
 func main() {
@@ -366,7 +366,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/fw"
+	"github.com/infobloxopen/universal-ddi-go-client/fw"
 )
 
 func main() {

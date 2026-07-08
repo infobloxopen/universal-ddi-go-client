@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Address** | Pointer to **string** | address that can be used as resolver | [optional] 
-**IsFallback** | Pointer to **bool** | Mark it true to set default DNS resolvers that will be used in case if the BloxOne Cloud is unreachable. | [optional] 
+**IsFallback** | Pointer to **bool** | Mark it true to set default DNS resolvers that will be used in case if the Infoblox Cloud is unreachable. | [optional] 
 **IsLocal** | Pointer to **bool** | Mark it true to set internal or local DNS servers&#39; IPv4 or IPv6 addresses that are used as DNS resolvers | [optional] 
 **Protocols** | Pointer to [**[]DNSProtocol**](DNSProtocol.md) | The list of DNS resolver communication protocols. | [optional] 
 

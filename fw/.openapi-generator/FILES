@@ -337,4 +337,17 @@ model_security_policy_update_response.go
 model_threat_feed.go
 model_threat_feed_multi_response.go
 model_threat_feed_source.go
+test/api_access_codes_test.go
+test/api_app_approvals_test.go
+test/api_application_filters_test.go
+test/api_category_filters_test.go
+test/api_content_categories_test.go
+test/api_internal_domain_lists_test.go
+test/api_named_list_items_test.go
+test/api_named_lists_test.go
+test/api_network_lists_test.go
+test/api_pop_regions_test.go
+test/api_security_policies_test.go
+test/api_security_policy_rules_test.go
+test/api_threat_feeds_test.go
 utils.go

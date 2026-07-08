@@ -5067,7 +5067,7 @@ components:
       type: object
     inheritanceAssignedHost:
       description: |-
-        _ddi/assigned_host_ represents a BloxOne DDI host assigned to one of the following:
+        _ddi/assigned_host_ represents a Universal DDI host assigned to one of the following:
          * Subnet (_ipam/subnet_)
          * Range (_ipam/range_)
          * Fixed Address (_dhcp/fixed_address_)
@@ -6206,7 +6206,7 @@ components:
             The usage is a combination of indicators, each tracking a specific associated use. Listed below are usage indicators with their meaning:
              usage indicator        | description
              ---------------------- | --------------------------------
-             _IPAM_                 |  AddressBlock is managed in BloxOne DDI.
+             _IPAM_                 |  AddressBlock is managed in Universal DDI.
              _DISCOVERED_           |  AddressBlock is discovered by some network discovery probe like Network Insight or NetMRI in NIOS.
           items:
             type: string
@@ -25323,8 +25323,7 @@ components:
             The usage is a combination of indicators, each tracking a specific associated use. Listed below are usage indicators with their meaning:
              usage indicator        | description
              ---------------------- | --------------------------------
-             _IPAM_                 |  Subnet is managed in BloxOne DDI.
-             _DHCP_                 |  Subnet is served by a DHCP Host.
+             _IPAM_                 |  Subnet is managed in Universal DDI.
              _DISCOVERED_           |  Subnet is discovered by some network discovery probe like Network Insight or NetMRI in NIOS.
           items:
             type: string

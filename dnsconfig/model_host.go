@@ -31,9 +31,9 @@ type Host struct {
 	Comment *string `json:"comment,omitempty"`
 	// Host current version.
 	CurrentVersion *string `json:"current_version,omitempty"`
-	// Below _dfp_ field is deprecated and not supported anymore. The indication whether or not BloxOne DDI DNS and BloxOne TD DFP are both active on the host will be migrated into the new _dfp_service_ field.
+	// Below _dfp_ field is deprecated and not supported anymore. The indication whether or not Universal DDI DNS and Universal TD DFP are both active on the host will be migrated into the new _dfp_service_ field.
 	Dfp *bool `json:"dfp,omitempty"`
-	// DFP service indicates whether or not BloxOne DDI DNS and BloxOne TD DFP are both active on the host. If so, BloxOne DDI DNS will augment recursive queries and forward them to BloxOne TD DFP. Allowed values:  * _unavailable_: BloxOne TD DFP application is not available,  * _enabled_: BloxOne TD DFP application is available and enabled,  * _disabled_: BloxOne TD DFP application is available but disabled.
+	// DFP service indicates whether or not Universal DDI DNS and Universal TD DFP are both active on the host. If so, Universal DDI DNS will augment recursive queries and forward them to Universal TD DFP. Allowed values:  * _unavailable_: Universal TD DFP application is not available,  * _enabled_: Universal TD DFP application is available and enabled,  * _disabled_: Universal TD DFP application is available but disabled.
 	DfpService *string `json:"dfp_service,omitempty"`
 	// The resource identifier.
 	Id *string `json:"id,omitempty"`

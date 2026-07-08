@@ -44,7 +44,7 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **map[string]interface{}** | The tags for the address block in JSON format. | [optional] 
 **Threshold** | Pointer to [**UtilizationThreshold**](UtilizationThreshold.md) | The IP address utilization thresholds for the address block. | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Time when the object has been updated. Equals to _created_at_ if not updated after creation. | [optional] [readonly] 
-**Usage** | Pointer to **[]string** | The usage is a combination of indicators, each tracking a specific associated use. Listed below are usage indicators with their meaning:  usage indicator        | description  ---------------------- | --------------------------------  _IPAM_                 |  AddressBlock is managed in BloxOne DDI.  _DISCOVERED_           |  AddressBlock is discovered by some network discovery probe like Network Insight or NetMRI in NIOS. | [optional] [readonly] 
+**Usage** | Pointer to **[]string** | The usage is a combination of indicators, each tracking a specific associated use. Listed below are usage indicators with their meaning:  usage indicator        | description  ---------------------- | --------------------------------  _IPAM_                 |  AddressBlock is managed in Universal DDI.  _DISCOVERED_           |  AddressBlock is discovered by some network discovery probe like Network Insight or NetMRI in NIOS. | [optional] [readonly] 
 **Utilization** | Pointer to [**Utilization**](Utilization.md) | The IPV4 address utilization statistics for the address block. | [optional] [readonly] 
 **UtilizationV6** | Pointer to [**UtilizationV6**](UtilizationV6.md) | The utilization of IPV6 addresses in the Address block. | [optional] [readonly] 
 

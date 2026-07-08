@@ -1,7 +1,7 @@
 /*
 DDI Keys API
 
-The DDI Keys application is a BloxOne DDI service for managing TSIG keys and GSS-TSIG (Kerberos) keys which are used by other BloxOne DDI applications. It is part of the full-featured, DDI cloud solution that enables customers to deploy large numbers of protocol servers to deliver DNS and DHCP throughout their enterprise network.
+The DDI Keys application is a Universal DDI service for managing TSIG keys and GSS-TSIG (Kerberos) keys which are used by other Universal DDI applications. It is part of the full-featured, DDI cloud solution that enables customers to deploy large numbers of protocol servers to deliver DNS and DHCP throughout their enterprise network.
 
 API version: v1
 */
@@ -11,8 +11,8 @@ API version: v1
 package keys
 
 import (
-	"github.com/infobloxopen/bloxone-go-client/internal"
-	"github.com/infobloxopen/bloxone-go-client/option"
+	"github.com/infobloxopen/universal-ddi-go-client/internal"
+	"github.com/infobloxopen/universal-ddi-go-client/option"
 )
 
 const serviceBasePath = "/api/ddi/v1"
@@ -32,8 +32,8 @@ type APIClient struct {
 // NewAPIClient creates a new API client.
 // The client can be configured with a variadic option. The following options are available:
 // - WithClientName(string) sets the name of the client using the SDK.
-// - WithCSPUrl(string) sets the URL for BloxOne Cloud Services Portal.
-// - WithAPIKey(string) sets the APIKey for accessing the BloxOne API.
+// - WithCSPUrl(string) sets the URL for Universal DDI Cloud Services Portal.
+// - WithAPIKey(string) sets the APIKey for accessing the Universal DDI API.
 // - WithHTTPClient(*http.Client) sets the HTTPClient to use for the SDK.
 // - WithDefaultTags(map[string]string) sets the tags the client can set by default for objects that has tags support.
 // - WithDebug() sets the debug mode.

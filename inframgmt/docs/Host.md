@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **CreatedBy** | Pointer to **string** | The creator of the Host (internal use only). | [optional] [readonly] 
 **Description** | Pointer to **string** | The description of the Host (optional). | [optional] 
 **DisplayName** | **string** | The name of the Host (unique). | 
-**HostSubtype** | Pointer to **string** | The sub-type of a specific Host type.  Example: For Host type BloxOne Appliance, sub-type could be \&quot;B105\&quot; or \&quot;VEP1425\&quot; | [optional] [readonly] 
-**HostType** | Pointer to **string** | The type of Host.  Should be one of: 1. NIOS , 2. NIOS HA, 3. BloxOne VM , 4. BloxOne Appliance, 5. BloxOne Container, 6. CNIOS | [optional] [readonly] 
+**HostSubtype** | Pointer to **string** | The sub-type of a specific Host type.  Example: For Host type NIOS-X Appliance, sub-type could be \&quot;B105\&quot; or \&quot;VEP1425\&quot; | [optional] [readonly] 
+**HostType** | Pointer to **string** | The type of Host.  Should be one of: 1. NIOS , 2. NIOS HA, 3. NIOS-X VM , 4. NIOS-X Appliance, 5. NIOS-X Container, 6. CNIOS | [optional] [readonly] 
 **HostVersion** | Pointer to **string** | The version of the Host platform services. | [optional] [readonly] 
 **Id** | Pointer to **string** | The resource identifier. | [optional] [readonly] 
 **IpAddress** | Pointer to **string** | The IP address of the Host. | [optional] [readonly] 

@@ -29,7 +29,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/keys"
+	"github.com/infobloxopen/universal-ddi-go-client/keys"
 )
 
 func main() {
@@ -96,7 +96,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/keys"
+	"github.com/infobloxopen/universal-ddi-go-client/keys"
 )
 
 func main() {
@@ -168,7 +168,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/keys"
+	"github.com/infobloxopen/universal-ddi-go-client/keys"
 )
 
 func main() {
@@ -238,7 +238,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/keys"
+	"github.com/infobloxopen/universal-ddi-go-client/keys"
 )
 
 func main() {

@@ -37,4 +37,6 @@ model_revoke_cert_request.go
 model_types_inet_value.go
 model_types_json_value.go
 model_update_join_token_response.go
+test/api_ui_join_token_test.go
+test/api_uicsr_test.go
 utils.go

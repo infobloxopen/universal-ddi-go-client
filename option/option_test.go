@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/infobloxopen/bloxone-go-client/internal"
+	"github.com/infobloxopen/universal-ddi-go-client/internal"
 )
 
 func TestWithCSPUrl(t *testing.T) {

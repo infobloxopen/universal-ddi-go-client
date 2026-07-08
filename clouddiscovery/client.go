@@ -1,7 +1,7 @@
 /*
 Discovery Configuration API V2
 
-The Discovery configuration service is a BloxOne Service that provides configuration for accessing and syncing the Cloud assets   Base Paths:  1. provider: **_/api/cloud_discovery/v2/_**
+The Discovery configuration service is a Universal DDI Service that provides configuration for accessing and syncing the Cloud assets   Base Paths:  1. provider: **_/api/cloud_discovery/v2/_**
 
 API version: v2
 */
@@ -11,8 +11,8 @@ API version: v2
 package clouddiscovery
 
 import (
-	"github.com/infobloxopen/bloxone-go-client/internal"
-	"github.com/infobloxopen/bloxone-go-client/option"
+	"github.com/infobloxopen/universal-ddi-go-client/internal"
+	"github.com/infobloxopen/universal-ddi-go-client/option"
 )
 
 const serviceBasePath = "/api/cloud_discovery/v2"
@@ -31,8 +31,8 @@ type APIClient struct {
 // NewAPIClient creates a new API client.
 // The client can be configured with a variadic option. The following options are available:
 // - WithClientName(string) sets the name of the client using the SDK.
-// - WithCSPUrl(string) sets the URL for BloxOne Cloud Services Portal.
-// - WithAPIKey(string) sets the APIKey for accessing the BloxOne API.
+// - WithCSPUrl(string) sets the URL for Universal DDI Cloud Services Portal.
+// - WithAPIKey(string) sets the APIKey for accessing the Universal DDI API.
 // - WithHTTPClient(*http.Client) sets the HTTPClient to use for the SDK.
 // - WithDefaultTags(map[string]string) sets the tags the client can set by default for objects that has tags support.
 // - WithDebug() sets the debug mode.

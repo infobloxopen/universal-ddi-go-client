@@ -1,7 +1,7 @@
 /*
-BloxOne Redirect API
+Infoblox Redirect API
 
-You can configure BloxOne Threat Defense Cloud to redirect traffic to the Infoblox server that displays the default or customized redirect page. You can redirect traffic to a custom destination using custom redirects.
+You can configure Infoblox Threat Defense Cloud to redirect traffic to the Infoblox server that displays the default or customized redirect page. You can redirect traffic to a custom destination using custom redirects.
 
 API version: v1
 */
@@ -18,7 +18,7 @@ import (
 // checks if the CustomRedirect type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CustomRedirect{}
 
-// CustomRedirect The Custom Redirect object.  You can configure BloxOne Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. BloxOne Cloud allows you to apply multiple redirect actions and integrate BloxOne Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
+// CustomRedirect The Custom Redirect object.  You can configure Infoblox Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. Infoblox Cloud allows you to apply multiple redirect actions and integrate Infoblox Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
 type CustomRedirect struct {
 	// The time when this Custom Redirect object was created.
 	CreatedTime *time.Time `json:"created_time,omitempty"`

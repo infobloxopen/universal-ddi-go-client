@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** | The timestamp of creation of Host. | [optional] 
 **Description** | Pointer to **string** | The description of the Host. | [optional] 
 **DisplayName** | Pointer to **string** | The name of the Host. | [optional] 
-**HostSubtype** | Pointer to **string** | The sub-type of a specific Host type.  Example: For Host type BloxOne Appliance, sub-type could be \&quot;B105\&quot; or \&quot;VEP1425\&quot; | [optional] 
+**HostSubtype** | Pointer to **string** | The sub-type of a specific Host type.  Example: For Host type NIOS-X Appliance, sub-type could be \&quot;B105\&quot; or \&quot;VEP1425\&quot; | [optional] 
 **HostType** | Pointer to **string** |  | [optional] 
 **HostVersion** | Pointer to **string** | The version of the Host platform services. | [optional] 
 **Id** | Pointer to **string** | The resource identifier. | [optional] [readonly] 

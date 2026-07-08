@@ -26,7 +26,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/redirect"
+	"github.com/infobloxopen/universal-ddi-go-client/redirect"
 )
 
 func main() {
