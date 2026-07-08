@@ -22,7 +22,6 @@ func WithCSPUrl(cspURL string) ClientOption {
 
 // WithAPIKey returns a ClientOption that sets the API Key for accessing the Universal DDI API.
 // Can also be configured by using the `INFOBLOX_PORTAL_KEY` environment variable.
-//
 // You can configure an API key for your user account in the Universal DDI Cloud Services Portal.
 // Please refer to the following link for more information: https://docs.infoblox.com/space/Universal DDICloud/35430405/Configuring+User+API+Keys
 //
