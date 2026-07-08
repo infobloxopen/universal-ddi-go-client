@@ -4,13 +4,13 @@ This library enables you to interact with the Infoblox Universal DDI APIs using 
 
 The following Universal DDI APIs are supported:
 
-## Universal DDI Cloud
+## Infoblox Cloud
 - [Infrastructure Management](infra_mgmt/README.md)
 - [Infrastructure Provision (HostActivation API)](infra_provision/README.md)
 - [Anycast Configuration Manager](anycast/README.md)
 - [Upgrade Policy](upgradePolicy/README.md)
 
-## Universal DDI Threat Defense
+## Infoblox Threat Defense
 - [Threat Defense Cloud (FW API)](fw/README.md)
 - [DNS Forwarding Proxy (DFP API)](dfp/README.md)
 - [Redirect](redirect/README.md)
