@@ -53,8 +53,8 @@ dnsConfigClient := client.DNSConfigurationAPI
 Alternatively, you can create a client for a specific API using the API package. For example, to create a client for the DNS Configuration API:
 
 ```go
-//import "github.com/infobloxopen/universal-ddi-go-client/dns_config"
-client := dns_config.NewAPIClient()
+import "github.com/infobloxopen/universal-ddi-go-client/dnsconfig"
+client := dnsconfig.NewAPIClient()
 ```
 
 # Configuration
