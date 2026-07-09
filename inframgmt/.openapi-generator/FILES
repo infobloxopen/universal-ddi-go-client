@@ -63,4 +63,7 @@ model_short_service_status.go
 model_unassign_tags_request.go
 model_update_host_response.go
 model_update_service_response.go
+test/api_detail_test.go
+test/api_hosts_test.go
+test/api_services_test.go
 utils.go

@@ -29,7 +29,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/ipam"
+	"github.com/infobloxopen/universal-ddi-go-client/ipam"
 )
 
 func main() {
@@ -101,7 +101,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/ipam"
+	"github.com/infobloxopen/universal-ddi-go-client/ipam"
 )
 
 func main() {
@@ -170,7 +170,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/ipam"
+	"github.com/infobloxopen/universal-ddi-go-client/ipam"
 )
 
 func main() {
@@ -240,7 +240,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/ipam"
+	"github.com/infobloxopen/universal-ddi-go-client/ipam"
 )
 
 func main() {

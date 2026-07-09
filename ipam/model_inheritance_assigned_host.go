@@ -17,7 +17,7 @@ import (
 // checks if the InheritanceAssignedHost type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InheritanceAssignedHost{}
 
-// InheritanceAssignedHost _ddi/assigned_host_ represents a BloxOne DDI host assigned to one of the following:  * Subnet (_ipam/subnet_)  * Range (_ipam/range_)  * Fixed Address (_dhcp/fixed_address_)  * Authoritative Zone (_dns/auth_zone_)
+// InheritanceAssignedHost _ddi/assigned_host_ represents a Universal DDI host assigned to one of the following:  * Subnet (_ipam/subnet_)  * Range (_ipam/range_)  * Fixed Address (_dhcp/fixed_address_)  * Authoritative Zone (_dns/auth_zone_)
 type InheritanceAssignedHost struct {
 	// The human-readable display name for the host referred to by _ophid_.
 	DisplayName *string `json:"display_name,omitempty"`

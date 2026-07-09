@@ -41,4 +41,6 @@ model_resolver.go
 model_types_config_check_request.go
 model_types_config_check_response.go
 model_types_config_check_result.go
+test/api_accounts_test.go
+test/api_infra_services_test.go
 utils.go

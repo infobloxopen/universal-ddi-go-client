@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Comment** | Pointer to **string** | A comment of the (copied) _dns/auth_zone_ object. | [optional] 
-**ExternalPrimaries** | Pointer to [**[]ExternalPrimary**](ExternalPrimary.md) | DNS primaries external to BloxOne DDI. Order is not significant. | [optional] 
-**ExternalSecondaries** | Pointer to [**[]ExternalSecondary**](ExternalSecondary.md) | DNS secondaries external to BloxOne DDI. Order is not significant. | [optional] 
+**ExternalPrimaries** | Pointer to [**[]ExternalPrimary**](ExternalPrimary.md) | DNS primaries external to Universal DDI. Order is not significant. | [optional] 
+**ExternalSecondaries** | Pointer to [**[]ExternalSecondary**](ExternalSecondary.md) | DNS secondaries external to Universal DDI. Order is not significant. | [optional] 
 **Id** | Pointer to **string** | The resource identifier. | [optional] [readonly] 
-**InternalSecondaries** | Pointer to [**[]InternalSecondary**](InternalSecondary.md) | BloxOne DDI hosts acting as internal secondaries. Order is not significant. | [optional] 
+**InternalSecondaries** | Pointer to [**[]InternalSecondary**](InternalSecondary.md) | Universal DDI hosts acting as internal secondaries. Order is not significant. | [optional] 
 **Nsgs** | Pointer to **[]string** | The resource identifier. | [optional] 
 **Recursive** | Pointer to **bool** | Indicates whether child objects should be copied or not.  Defaults to _false_. Reserved for future use. | [optional] 
 **SkipOnError** | Pointer to **bool** | Indicates whether copying should skip object in case of error and continue with next, or abort copying in case of error.  Defaults to _false_. | [optional] 

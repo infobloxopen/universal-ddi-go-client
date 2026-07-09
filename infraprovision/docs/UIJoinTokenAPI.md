@@ -31,7 +31,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/infraprovision"
+	"github.com/infobloxopen/universal-ddi-go-client/infraprovision"
 )
 
 func main() {
@@ -95,7 +95,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/infraprovision"
+	"github.com/infobloxopen/universal-ddi-go-client/infraprovision"
 )
 
 func main() {
@@ -160,7 +160,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/infraprovision"
+	"github.com/infobloxopen/universal-ddi-go-client/infraprovision"
 )
 
 func main() {
@@ -224,7 +224,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/infraprovision"
+	"github.com/infobloxopen/universal-ddi-go-client/infraprovision"
 )
 
 func main() {
@@ -293,7 +293,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/infraprovision"
+	"github.com/infobloxopen/universal-ddi-go-client/infraprovision"
 )
 
 func main() {
@@ -363,7 +363,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/infraprovision"
+	"github.com/infobloxopen/universal-ddi-go-client/infraprovision"
 )
 
 func main() {

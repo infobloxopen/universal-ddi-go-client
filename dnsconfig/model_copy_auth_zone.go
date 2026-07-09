@@ -22,13 +22,13 @@ var _ MappedNullable = &CopyAuthZone{}
 type CopyAuthZone struct {
 	// A comment of the (copied) _dns/auth_zone_ object.
 	Comment *string `json:"comment,omitempty"`
-	// DNS primaries external to BloxOne DDI. Order is not significant.
+	// DNS primaries external to Universal DDI. Order is not significant.
 	ExternalPrimaries []ExternalPrimary `json:"external_primaries,omitempty"`
-	// DNS secondaries external to BloxOne DDI. Order is not significant.
+	// DNS secondaries external to Universal DDI. Order is not significant.
 	ExternalSecondaries []ExternalSecondary `json:"external_secondaries,omitempty"`
 	// The resource identifier.
 	Id *string `json:"id,omitempty"`
-	// BloxOne DDI hosts acting as internal secondaries. Order is not significant.
+	// Universal DDI hosts acting as internal secondaries. Order is not significant.
 	InternalSecondaries []InternalSecondary `json:"internal_secondaries,omitempty"`
 	// The resource identifier.
 	Nsgs []string `json:"nsgs,omitempty"`

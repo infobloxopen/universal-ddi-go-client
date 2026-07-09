@@ -17,7 +17,7 @@ import (
 // checks if the Inheritance2AssignedHost type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Inheritance2AssignedHost{}
 
-// Inheritance2AssignedHost _ddi/assigned_host_ represents a BloxOne DDI host assigned to an object.
+// Inheritance2AssignedHost _ddi/assigned_host_ represents a Universal DDI host assigned to an object.
 type Inheritance2AssignedHost struct {
 	// The human-readable display name for the host referred to by _ophid_.
 	DisplayName *string `json:"display_name,omitempty"`

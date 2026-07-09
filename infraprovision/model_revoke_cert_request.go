@@ -20,7 +20,7 @@ var _ MappedNullable = &RevokeCertRequest{}
 // RevokeCertRequest struct for RevokeCertRequest
 type RevokeCertRequest struct {
 	CertSerial *string `json:"cert_serial,omitempty"`
-	// On-prem host ID which can be obtained either from on-prem or BloxOne UI portal(Manage > Infrastructure > Hosts > Select the onprem > click on 3 dots on top right side > General Information > Ophid) .
+	// On-prem host ID which can be obtained either from on-prem or NIOS-X UI portal(Manage > Infrastructure > Hosts > Select the onprem > click on 3 dots on top right side > General Information > Ophid) .
 	Ophid                *string `json:"ophid,omitempty"`
 	RevokeReason         *string `json:"revoke_reason,omitempty"`
 	AdditionalProperties map[string]interface{}

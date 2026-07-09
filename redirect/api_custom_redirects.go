@@ -1,7 +1,7 @@
 /*
-BloxOne Redirect API
+Infoblox Redirect API
 
-You can configure BloxOne Threat Defense Cloud to redirect traffic to the Infoblox server that displays the default or customized redirect page. You can redirect traffic to a custom destination using custom redirects.
+You can configure Infoblox Threat Defense Cloud to redirect traffic to the Infoblox server that displays the default or customized redirect page. You can redirect traffic to a custom destination using custom redirects.
 
 API version: v1
 */
@@ -18,7 +18,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/infobloxopen/bloxone-go-client/internal"
+	"github.com/infobloxopen/universal-ddi-go-client/internal"
 )
 
 type CustomRedirectsAPI interface {
@@ -27,7 +27,7 @@ type CustomRedirectsAPI interface {
 
 			Use this method to create a Custom Redirect object.
 
-		You can configure BloxOne Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. BloxOne Cloud allows you to apply multiple redirect actions and integrate BloxOne Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
+		You can configure Infoblox Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. Infoblox Cloud allows you to apply multiple redirect actions and integrate Infoblox Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
 
 		Required:
 		- name
@@ -47,7 +47,7 @@ type CustomRedirectsAPI interface {
 
 			Use this method to delete Custom Redirect objects. Deletion of multiple lists is an all-or-nothing operation (if any of the specified lists can not be deleted then none of the specified lists will be deleted).
 
-		You can configure BloxOne Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. BloxOne Cloud allows you to apply multiple redirect actions and integrate BloxOne Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
+		You can configure Infoblox Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. Infoblox Cloud allows you to apply multiple redirect actions and integrate Infoblox Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
 
 		Required:
 		- ids
@@ -65,7 +65,7 @@ type CustomRedirectsAPI interface {
 
 			Use this method to delete Custom Redirect object.
 
-		You can configure BloxOne Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. BloxOne Cloud allows you to apply multiple redirect actions and integrate BloxOne Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
+		You can configure Infoblox Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. Infoblox Cloud allows you to apply multiple redirect actions and integrate Infoblox Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
 
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -81,7 +81,7 @@ type CustomRedirectsAPI interface {
 
 			Use this method to retrieve information on all Custom Redirect objects for the account.
 
-		You can configure BloxOne Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. BloxOne Cloud allows you to apply multiple redirect actions and integrate BloxOne Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
+		You can configure Infoblox Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. Infoblox Cloud allows you to apply multiple redirect actions and integrate Infoblox Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
 
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -97,7 +97,7 @@ type CustomRedirectsAPI interface {
 
 			Use this method to retrieve information on the specified Custom Redirect object.
 
-		You can configure BloxOne Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. BloxOne Cloud allows you to apply multiple redirect actions and integrate BloxOne Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
+		You can configure Infoblox Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. Infoblox Cloud allows you to apply multiple redirect actions and integrate Infoblox Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
 
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -114,7 +114,7 @@ type CustomRedirectsAPI interface {
 
 			Use this method to update a specified Custom Redirect object.
 
-		You can configure BloxOne Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. BloxOne Cloud allows you to apply multiple redirect actions and integrate BloxOne Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
+		You can configure Infoblox Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. Infoblox Cloud allows you to apply multiple redirect actions and integrate Infoblox Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
 
 		Required:
 		- name
@@ -156,7 +156,7 @@ CreateCustomRedirect Create Custom Redirect.
 
 Use this method to create a Custom Redirect object.
 
-You can configure BloxOne Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. BloxOne Cloud allows you to apply multiple redirect actions and integrate BloxOne Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
+You can configure Infoblox Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. Infoblox Cloud allows you to apply multiple redirect actions and integrate Infoblox Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
 
 Required:
 - name
@@ -295,7 +295,7 @@ DeleteCustomRedirect Delete Custom Redirect.
 
 Use this method to delete Custom Redirect objects. Deletion of multiple lists is an all-or-nothing operation (if any of the specified lists can not be deleted then none of the specified lists will be deleted).
 
-You can configure BloxOne Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. BloxOne Cloud allows you to apply multiple redirect actions and integrate BloxOne Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
+You can configure Infoblox Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. Infoblox Cloud allows you to apply multiple redirect actions and integrate Infoblox Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
 
 Required:
 - ids
@@ -410,7 +410,7 @@ DeleteSingleCustomRedirect Delete Custom Redirect By Id.
 
 Use this method to delete Custom Redirect object.
 
-You can configure BloxOne Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. BloxOne Cloud allows you to apply multiple redirect actions and integrate BloxOne Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
+You can configure Infoblox Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. Infoblox Cloud allows you to apply multiple redirect actions and integrate Infoblox Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id The Custom Redirect object identifier.
@@ -533,7 +533,7 @@ ListCustomRedirect List Custom Redirects.
 
 Use this method to retrieve information on all Custom Redirect objects for the account.
 
-You can configure BloxOne Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. BloxOne Cloud allows you to apply multiple redirect actions and integrate BloxOne Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
+You can configure Infoblox Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. Infoblox Cloud allows you to apply multiple redirect actions and integrate Infoblox Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return CustomRedirectsAPIListCustomRedirectRequest
@@ -658,7 +658,7 @@ ReadCustomRedirect Read Custom Redirect.
 
 Use this method to retrieve information on the specified Custom Redirect object.
 
-You can configure BloxOne Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. BloxOne Cloud allows you to apply multiple redirect actions and integrate BloxOne Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
+You can configure Infoblox Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. Infoblox Cloud allows you to apply multiple redirect actions and integrate Infoblox Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id The Custom Redirect object identifier.
@@ -789,7 +789,7 @@ UpdateCustomRedirect Update Custom Redirect.
 
 Use this method to update a specified Custom Redirect object.
 
-You can configure BloxOne Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. BloxOne Cloud allows you to apply multiple redirect actions and integrate BloxOne Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
+You can configure Infoblox Cloud to redirect traffic to the Infoblox redirect page or a custom redirect destination. Infoblox Cloud allows you to apply multiple redirect actions and integrate Infoblox Cloud with third-party proxies, secure web gateways, blackholes, honeypots and sinkhole solutions.
 
 Required:
 - name

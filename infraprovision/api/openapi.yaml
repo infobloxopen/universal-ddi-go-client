@@ -192,8 +192,8 @@ paths:
       operationId: UI_CSRRevoke2
       parameters:
       - description: On-prem host ID which can be obtained either from on-prem or
-          BloxOne UI portal(Manage > Infrastructure > Hosts > Select the onprem >
-          click on 3 dots on top right side > General Information > Ophid) .
+          NIOS-X UI portal(Manage > Infrastructure > Hosts > Select the onprem > click
+          on 3 dots on top right side > General Information > Ophid) .
         in: path
         name: ophid
         required: true
@@ -513,7 +513,7 @@ components:
           type: string
         host_serial:
           title: "arbitrary string provided by the host for visual identification,\
-            \ usually a BloxOne appliance serial number"
+            \ usually a NIOS-X appliance serial number"
           type: string
         id:
           description: The resource identifier.
@@ -752,8 +752,8 @@ components:
           type: string
         ophid:
           description: On-prem host ID which can be obtained either from on-prem or
-            BloxOne UI portal(Manage > Infrastructure > Hosts > Select the onprem
-            > click on 3 dots on top right side > General Information > Ophid) .
+            NIOS-X UI portal(Manage > Infrastructure > Hosts > Select the onprem >
+            click on 3 dots on top right side > General Information > Ophid) .
           type: string
         revoke_reason:
           title: reason for certificate revocation

@@ -34,7 +34,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/inframgmt"
+	"github.com/infobloxopen/universal-ddi-go-client/inframgmt"
 )
 
 func main() {
@@ -100,7 +100,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/inframgmt"
+	"github.com/infobloxopen/universal-ddi-go-client/inframgmt"
 )
 
 func main() {
@@ -166,7 +166,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/inframgmt"
+	"github.com/infobloxopen/universal-ddi-go-client/inframgmt"
 )
 
 func main() {
@@ -233,7 +233,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/inframgmt"
+	"github.com/infobloxopen/universal-ddi-go-client/inframgmt"
 )
 
 func main() {
@@ -302,7 +302,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/inframgmt"
+	"github.com/infobloxopen/universal-ddi-go-client/inframgmt"
 )
 
 func main() {
@@ -374,7 +374,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/inframgmt"
+	"github.com/infobloxopen/universal-ddi-go-client/inframgmt"
 )
 
 func main() {
@@ -441,7 +441,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/inframgmt"
+	"github.com/infobloxopen/universal-ddi-go-client/inframgmt"
 )
 
 func main() {
@@ -514,7 +514,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/inframgmt"
+	"github.com/infobloxopen/universal-ddi-go-client/inframgmt"
 )
 
 func main() {
@@ -580,7 +580,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infobloxopen/bloxone-go-client/inframgmt"
+	"github.com/infobloxopen/universal-ddi-go-client/inframgmt"
 )
 
 func main() {

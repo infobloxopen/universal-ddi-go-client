@@ -41,4 +41,8 @@ model_update_kerberos_key_response.go
 model_update_tsig_key_response.go
 model_upload_content_type.go
 model_upload_request.go
+test/api_generate_tsig_test.go
+test/api_kerberos_test.go
+test/api_tsig_test.go
+test/api_upload_test.go
 utils.go

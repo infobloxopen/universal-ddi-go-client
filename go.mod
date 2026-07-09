@@ -1,4 +1,4 @@
-module github.com/infobloxopen/bloxone-go-client
+module github.com/infobloxopen/universal-ddi-go-client
 
 go 1.19
 

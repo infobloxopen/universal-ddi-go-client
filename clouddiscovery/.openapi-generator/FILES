@@ -55,4 +55,7 @@ model_sub_account_list_request_v2.go
 model_sub_account_list_response_v2.go
 model_sub_account_prov_cred_config.go
 model_sub_account_v2.go
+test/api_accounts_test.go
+test/api_providers_test.go
+test/api_sub_accounts_test.go
 utils.go

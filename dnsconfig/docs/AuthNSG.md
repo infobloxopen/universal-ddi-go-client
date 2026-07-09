@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Comment** | Pointer to **string** | Optional. Comment for the object. | [optional] 
-**ExternalPrimaries** | Pointer to [**[]ExternalPrimary**](ExternalPrimary.md) | Optional. DNS primaries external to BloxOne DDI. Order is not significant. | [optional] 
-**ExternalSecondaries** | Pointer to [**[]ExternalSecondary**](ExternalSecondary.md) | DNS secondaries external to BloxOne DDI. Order is not significant. | [optional] 
+**ExternalPrimaries** | Pointer to [**[]ExternalPrimary**](ExternalPrimary.md) | Optional. DNS primaries external to Universal DDI. Order is not significant. | [optional] 
+**ExternalSecondaries** | Pointer to [**[]ExternalSecondary**](ExternalSecondary.md) | DNS secondaries external to Universal DDI. Order is not significant. | [optional] 
 **Id** | Pointer to **string** | The resource identifier. | [optional] [readonly] 
-**InternalSecondaries** | Pointer to [**[]InternalSecondary**](InternalSecondary.md) | Optional. BloxOne DDI hosts acting as internal secondaries. Order is not significant. | [optional] 
+**InternalSecondaries** | Pointer to [**[]InternalSecondary**](InternalSecondary.md) | Optional. Universal DDI hosts acting as internal secondaries. Order is not significant. | [optional] 
 **Name** | **string** | Name of the object. | 
 **Nsgs** | Pointer to **[]string** | The resource identifier. | [optional] 
 **Tags** | Pointer to **map[string]interface{}** | Tagging specifics. | [optional] 

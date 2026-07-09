@@ -61,4 +61,7 @@ model_redirect_page_update_redirect_page_400_response.go
 model_redirect_page_update_redirect_page_400_response_error.go
 model_redirect_page_update_response.go
 model_update_redirect_page_payload.go
+test/api_certificate_test.go
+test/api_custom_redirects_test.go
+test/api_redirect_page_test.go
 utils.go

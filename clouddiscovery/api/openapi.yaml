@@ -1,8 +1,8 @@
 openapi: 3.0.1
 info:
-  description: "The Discovery configuration service is a BloxOne Service that provides\
-    \ configuration for accessing and syncing the Cloud assets \n\nBase Paths: \n\
-    1. provider: **/api/cloud_discovery/v2/** \n"
+  description: "The Discovery configuration service is a Universal DDI Service that\
+    \ provides configuration for accessing and syncing the Cloud assets \n\nBase Paths:\
+    \ \n1. provider: **/api/cloud_discovery/v2/** \n"
   title: Discovery Configuration API V2
   version: v2
 servers:

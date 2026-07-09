@@ -2305,6 +2305,19 @@ paths:
         name: _torder_by
         schema:
           type: string
+      - description: |-
+          This parameter is used for getting inheritance_sources.
+
+          Allowed values:
+          * _none_,
+          * _partial_,
+          * _full_.
+
+          Defaults to _none
+        in: query
+        name: _inherit
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -2318,6 +2331,20 @@ paths:
     post:
       description: Use this method to create a __LBDN__ object.
       operationId: lbdnCreate
+      parameters:
+      - description: |-
+          This parameter is used for getting inheritance_sources.
+
+          Allowed values:
+          * _none_,
+          * _partial_,
+          * _full_.
+
+          Defaults to _none
+        in: query
+        name: _inherit
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -2376,6 +2403,19 @@ paths:
         name: _fields
         schema:
           type: string
+      - description: |-
+          This parameter is used for getting inheritance_sources.
+
+          Allowed values:
+          * _none_,
+          * _partial_,
+          * _full_.
+
+          Defaults to _none
+        in: query
+        name: _inherit
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -2394,6 +2434,19 @@ paths:
         in: path
         name: id
         required: true
+        schema:
+          type: string
+      - description: |-
+          This parameter is used for getting inheritance_sources.
+
+          Allowed values:
+          * _none_,
+          * _partial_,
+          * _full_.
+
+          Defaults to _none
+        in: query
+        name: _inherit
         schema:
           type: string
       requestBody:
@@ -2626,13 +2679,13 @@ components:
           description: Optional. Comment for the object.
           type: string
         external_primaries:
-          description: Optional. DNS primaries external to BloxOne DDI. Order is not
-            significant.
+          description: Optional. DNS primaries external to Universal DDI. Order is
+            not significant.
           items:
             $ref: '#/components/schemas/configExternalPrimary'
           type: array
         external_secondaries:
-          description: DNS secondaries external to BloxOne DDI. Order is not significant.
+          description: DNS secondaries external to Universal DDI. Order is not significant.
           items:
             $ref: '#/components/schemas/configExternalSecondary'
           type: array
@@ -2641,7 +2694,7 @@ components:
           readOnly: true
           type: string
         internal_secondaries:
-          description: Optional. BloxOne DDI hosts acting as internal secondaries.
+          description: Optional. Universal DDI hosts acting as internal secondaries.
             Order is not significant.
           items:
             $ref: '#/components/schemas/configInternalSecondary'
@@ -3001,8 +3054,8 @@ components:
           format: boolean
           type: boolean
         external_primaries:
-          description: Optional. DNS primaries external to BloxOne DDI. Order is not
-            significant.
+          description: Optional. DNS primaries external to Universal DDI. Order is
+            not significant.
           items:
             $ref: '#/components/schemas/configExternalPrimary'
           type: array
@@ -3013,7 +3066,7 @@ components:
           readOnly: true
           type: array
         external_secondaries:
-          description: DNS secondaries external to BloxOne DDI. Order is not significant.
+          description: DNS secondaries external to Universal DDI. Order is not significant.
           items:
             $ref: '#/components/schemas/configExternalSecondary'
           type: array
@@ -3049,7 +3102,7 @@ components:
           format: int64
           type: integer
         internal_secondaries:
-          description: Optional. BloxOne DDI hosts acting as internal secondaries.
+          description: Optional. Universal DDI hosts acting as internal secondaries.
             Order is not significant.
           items:
             $ref: '#/components/schemas/configInternalSecondary'
@@ -3092,7 +3145,7 @@ components:
             Read only after creation.
             Allowed values:
              * _external_: zone data owned by an external nameserver,
-             * _cloud_: zone data is owned by a BloxOne DDI host.
+             * _cloud_: zone data is owned by a Universal DDI host.
           type: string
         protocol_fqdn:
           description: Zone FQDN in punycode.
@@ -3153,18 +3206,18 @@ components:
     configAuthZoneConfig:
       properties:
         external_primaries:
-          description: Optional. DNS primaries external to BloxOne DDI. Order is not
-            significant.
+          description: Optional. DNS primaries external to Universal DDI. Order is
+            not significant.
           items:
             $ref: '#/components/schemas/configExternalPrimary'
           type: array
         external_secondaries:
-          description: DNS secondaries external to BloxOne DDI. Order is not significant.
+          description: DNS secondaries external to Universal DDI. Order is not significant.
           items:
             $ref: '#/components/schemas/configExternalSecondary'
           type: array
         internal_secondaries:
-          description: Optional. BloxOne DDI hosts acting as internal secondaries.
+          description: Optional. Universal DDI hosts acting as internal secondaries.
             Order is not significant.
           items:
             $ref: '#/components/schemas/configInternalSecondary'
@@ -3490,12 +3543,12 @@ components:
           description: A comment of the (copied) _dns/auth_zone_ object.
           type: string
         external_primaries:
-          description: DNS primaries external to BloxOne DDI. Order is not significant.
+          description: DNS primaries external to Universal DDI. Order is not significant.
           items:
             $ref: '#/components/schemas/configExternalPrimary'
           type: array
         external_secondaries:
-          description: DNS secondaries external to BloxOne DDI. Order is not significant.
+          description: DNS secondaries external to Universal DDI. Order is not significant.
           items:
             $ref: '#/components/schemas/configExternalSecondary'
           type: array
@@ -3504,7 +3557,7 @@ components:
           readOnly: true
           type: string
         internal_secondaries:
-          description: BloxOne DDI hosts acting as internal secondaries. Order is
+          description: Universal DDI hosts acting as internal secondaries. Order is
             not significant.
           items:
             $ref: '#/components/schemas/configInternalSecondary'
@@ -6580,7 +6633,7 @@ components:
         use_root_forwarders_for_local_resolution_with_b1td:
           description: |-
             _use_root_forwarders_for_local_resolution_with_b1td_ allows DNS recursive queries sent to root forwarders
-            for local resolution when deployed alongside BloxOne Thread Defense.
+            for local resolution when deployed alongside Universal Thread Defense.
             Defaults to _false_.
           format: boolean
           type: boolean
@@ -6674,18 +6727,18 @@ components:
         dfp:
           description: |-
             Below _dfp_ field is deprecated and not supported anymore.
-            The indication whether or not BloxOne DDI DNS and BloxOne TD DFP are both active on the host will be migrated into the new _dfp_service_ field.
+            The indication whether or not Universal DDI DNS and Universal TD DFP are both active on the host will be migrated into the new _dfp_service_ field.
           format: boolean
           readOnly: true
           type: boolean
         dfp_service:
           description: |-
-            DFP service indicates whether or not BloxOne DDI DNS and BloxOne TD DFP are both active on the host.
-            If so, BloxOne DDI DNS will augment recursive queries and forward them to BloxOne TD DFP.
+            DFP service indicates whether or not Universal DDI DNS and Universal TD DFP are both active on the host.
+            If so, Universal DDI DNS will augment recursive queries and forward them to Universal TD DFP.
             Allowed values:
-             * _unavailable_: BloxOne TD DFP application is not available,
-             * _enabled_: BloxOne TD DFP application is available and enabled,
-             * _disabled_: BloxOne TD DFP application is available but disabled.
+             * _unavailable_: Universal TD DFP application is not available,
+             * _enabled_: Universal TD DFP application is available and enabled,
+             * _disabled_: Universal TD DFP application is available but disabled.
           readOnly: true
           type: string
         id:
@@ -7157,7 +7210,7 @@ components:
       title: InheritedAuthorityMNameBlock
       type: object
     configInternalSecondary:
-      description: BloxOne DDI host acting as DNS secondary.
+      description: Universal DDI host acting as DNS secondary.
       example:
         host: dns/host/23311109-fad4-448f-a7a7-55ad791ae7eb
       properties:
@@ -13742,7 +13795,7 @@ components:
         use_root_forwarders_for_local_resolution_with_b1td:
           description: |-
             _use_root_forwarders_for_local_resolution_with_b1td_ allows DNS recursive queries sent to root forwarders
-            for local resolution when deployed alongside BloxOne Thread Defense.
+            for local resolution when deployed alongside Universal Thread Defense.
             Defaults to _false_.
           format: boolean
           type: boolean
@@ -17260,7 +17313,7 @@ components:
         use_root_forwarders_for_local_resolution_with_b1td:
           description: |-
             _use_root_forwarders_for_local_resolution_with_b1td_ allows DNS recursive queries sent to root forwarders
-            for local resolution when deployed alongside BloxOne Thread Defense.
+            for local resolution when deployed alongside Universal Thread Defense.
             Defaults to _false_.
           format: boolean
           type: boolean
@@ -17789,8 +17842,8 @@ components:
       title: ZoneAuthorityMNameBlock
       type: object
     inheritance2AssignedHost:
-      description: _ddi/assigned_host_ represents a BloxOne DDI host assigned to an
-        object.
+      description: _ddi/assigned_host_ represents a Universal DDI host assigned to
+        an object.
       example:
         ophid: ophid
         host: host

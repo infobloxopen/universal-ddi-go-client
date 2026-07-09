@@ -18,7 +18,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/infobloxopen/bloxone-go-client/internal"
+	"github.com/infobloxopen/universal-ddi-go-client/internal"
 )
 
 type AsmAPI interface {

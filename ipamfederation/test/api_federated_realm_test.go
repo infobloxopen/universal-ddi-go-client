@@ -16,7 +16,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/infobloxopen/bloxone-go-client/ipamfederation"
+	"github.com/infobloxopen/universal-ddi-go-client/ipamfederation"
 )
 
 func TestFederatedRealmAPIService(t *testing.T) {

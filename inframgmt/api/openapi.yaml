@@ -14,7 +14,7 @@ info:
     \ deleting Hosts.\nManagement of Hosts is done from the Cloud Services Portal\
     \ (CSP) by navigating to the Manage -> Infrastructure -> Hosts tab.\n\n---\n\n\
     \n### Services API\n\nThe Services API is used to manage the Infrastructure Service\
-    \ resources (a.k.a. BloxOne applications).\nThese include various operations related\
+    \ resources (a.k.a. NIOS-X applications).\nThese include various operations related\
     \ to hosts such as viewing, creating, updating, starting/stopping, configuring,\
     \ and deleting Services.\nManagement of Services is done from the Cloud Services\
     \ Portal (CSP) by navigating to the Manage -> Infrastructure -> Services tab.\n\
@@ -493,7 +493,7 @@ paths:
               $ref: '#/components/schemas/infraHost'
         required: true
       responses:
-        "201":
+        "200":
           content:
             application/json:
               schema:
@@ -714,7 +714,7 @@ paths:
               $ref: '#/components/schemas/infraService'
         required: true
       responses:
-        "201":
+        "200":
           content:
             application/json:
               schema:
@@ -979,11 +979,11 @@ components:
           description: |-
             The sub-type of a specific Host type.
 
-            Example: For Host type BloxOne Appliance, sub-type could be "B105" or "VEP1425"
+            Example: For Host type NIOS-X Appliance, sub-type could be "B105" or "VEP1425"
           type: string
         host_type:
-          title: "The type of Host (1. NIOS , 2. NIOS HA, 3. BloxOne VM , 4. BloxOne\
-            \ Appliance, 5. BloxOne Container, 6. CNIOS)"
+          title: "The type of Host (1. NIOS , 2. NIOS HA, 3. NIOS-X VM , 4. NIOS-X\
+            \ Appliance, 5. NIOS-X Container, 6. CNIOS)"
           type: string
         host_version:
           description: The version of the Host platform services.
@@ -1480,14 +1480,14 @@ components:
           description: |-
             The sub-type of a specific Host type.
 
-            Example: For Host type BloxOne Appliance, sub-type could be "B105" or "VEP1425"
+            Example: For Host type NIOS-X Appliance, sub-type could be "B105" or "VEP1425"
           readOnly: true
           type: string
         host_type:
           description: |-
             The type of Host.
 
-            Should be one of: 1. NIOS , 2. NIOS HA, 3. BloxOne VM , 4. BloxOne Appliance, 5. BloxOne Container, 6. CNIOS
+            Should be one of: 1. NIOS , 2. NIOS HA, 3. NIOS-X VM , 4. NIOS-X Appliance, 5. NIOS-X Container, 6. CNIOS
           readOnly: true
           type: string
         host_version:

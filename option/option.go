@@ -3,14 +3,14 @@ package option
 import (
 	"net/http"
 
-	"github.com/infobloxopen/bloxone-go-client/internal"
+	"github.com/infobloxopen/universal-ddi-go-client/internal"
 )
 
 // ClientOption is a function that applies configuration options to the API Client.
 type ClientOption func(configuration *internal.Configuration)
 
-// WithCSPUrl returns a ClientOption that sets the URL for BloxOne Cloud Services Portal.
-// Can also be configured using the `BLOXONE_CSP_URL` environment variable.
+// WithCSPUrl returns a ClientOption that sets the URL for Universal DDI Cloud Services Portal.
+// Can also be configured using the `INFOBLOX_PORTAL_URL` environment variable.
 // Optional. Default is https://csp.infoblox.com
 func WithCSPUrl(cspURL string) ClientOption {
 	return func(configuration *internal.Configuration) {
@@ -20,13 +20,11 @@ func WithCSPUrl(cspURL string) ClientOption {
 	}
 }
 
-// WithAPIKey returns a ClientOption that sets the APIKey for accessing the BloxOne API.
-// Can also be configured by using the `BLOXONE_API_KEY` environment variable.
-//
-// You can configure an API key for your user account in the BloxOne Cloud Services Portal.
+// WithAPIKey returns a ClientOption that sets the API Key for accessing the Universal DDI API.
+// Can also be configured by using the `INFOBLOX_PORTAL_KEY` environment variable.
+// You can configure an API key for your user account in the Universal DDI Cloud Services Portal.
 // Please refer to the following link for more information: https://docs.infoblox.com/space/BloxOneCloud/35430405/Configuring+User+API+Keys
-//
-// Required.
+// Required
 func WithAPIKey(apiKey string) ClientOption {
 	return func(configuration *internal.Configuration) {
 		if apiKey != "" {
@@ -55,7 +53,7 @@ func WithDefaultTags(defaultTags map[string]string) ClientOption {
 
 // WithClientName returns a ClientOption that sets the name of the client using the SDK.
 // This can be used to identify the client in the audit logs.
-// Optional. If not provided, the client name will be set to "bloxone-go-client".
+// Optional. If not provided, the client name will be set to "universal-ddi-go-client".
 func WithClientName(clientName string) ClientOption {
 	return func(configuration *internal.Configuration) {
 		if clientName != "" {
