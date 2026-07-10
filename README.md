@@ -102,4 +102,4 @@ You can set default tags for all API requests using the `option.WithDefaultTags`
 ```go
 client := uddiclient.NewAPIClient(option.WithDefaultTags(map[string]string{"tag1": "value1", "tag2": "value2"}))
 ```
-This will add the tags `tag1=value1` and `tag2=value2` to all API requests that support tags in the request body. 
+This will add the tags `tag1=value1` and `tag2=value2` to all API requests that support tags in the request body.
