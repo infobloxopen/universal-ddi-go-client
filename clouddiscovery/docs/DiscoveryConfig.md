@@ -14,6 +14,8 @@ Name | Type | Description | Notes
 **DestinationTypesEnabled** | Pointer to **[]string** | Destinations types enabled: Ex.: DNS, IPAM and ACCOUNT. | [optional] 
 **Destinations** | Pointer to [**[]Destination**](Destination.md) | Destinations. | [optional] 
 **Id** | Pointer to **string** | Auto-generated unique discovery config ID. Format BloxID. | [optional] [readonly] 
+**IsDisabled** | Pointer to **bool** | is_disabled. Enables/Disables provider. Newer version of desired_state. | [optional] 
+**LabsProvider** | Pointer to **bool** | labs_provider. Indicates if a provider is enabled through Infoblox Labs. | [optional] 
 **LastSync** | Pointer to **time.Time** | Last sync timestamp. | [optional] [readonly] 
 **Name** | **string** | Name of the discovery config. | 
 **ProviderType** | **string** | Provider type. Ex.: Amazon Web Services, Google Cloud Platform, Microsoft Azure. | 
@@ -287,6 +289,56 @@ SetId sets Id field to given value.
 `func (o *DiscoveryConfig) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetIsDisabled
+
+`func (o *DiscoveryConfig) GetIsDisabled() bool`
+
+GetIsDisabled returns the IsDisabled field if non-nil, zero value otherwise.
+
+### GetIsDisabledOk
+
+`func (o *DiscoveryConfig) GetIsDisabledOk() (*bool, bool)`
+
+GetIsDisabledOk returns a tuple with the IsDisabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsDisabled
+
+`func (o *DiscoveryConfig) SetIsDisabled(v bool)`
+
+SetIsDisabled sets IsDisabled field to given value.
+
+### HasIsDisabled
+
+`func (o *DiscoveryConfig) HasIsDisabled() bool`
+
+HasIsDisabled returns a boolean if a field has been set.
+
+### GetLabsProvider
+
+`func (o *DiscoveryConfig) GetLabsProvider() bool`
+
+GetLabsProvider returns the LabsProvider field if non-nil, zero value otherwise.
+
+### GetLabsProviderOk
+
+`func (o *DiscoveryConfig) GetLabsProviderOk() (*bool, bool)`
+
+GetLabsProviderOk returns a tuple with the LabsProvider field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLabsProvider
+
+`func (o *DiscoveryConfig) SetLabsProvider(v bool)`
+
+SetLabsProvider sets LabsProvider field to given value.
+
+### HasLabsProvider
+
+`func (o *DiscoveryConfig) HasLabsProvider() bool`
+
+HasLabsProvider returns a boolean if a field has been set.
 
 ### GetLastSync
 
