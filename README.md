@@ -21,6 +21,37 @@ The following Universal DDI APIs are supported:
 - [DNS Data](dns_data/README.md)
 - [Keys](keys/README.md)
 
+# Migrating from bloxone-go-client
+
+`universal-ddi-go-client` is the official successor to [`bloxone-go-client`](https://github.com/infobloxopen/bloxone-go-client). The API surface, authentication model, and supported endpoints are identical — the only breaking change is the Go module path and package import prefix.
+
+### Migration steps
+
+1. Update your `go.mod` dependency:
+```bash
+go get github.com/infobloxopen/universal-ddi-go-client
+```
+
+2. Replace all import paths in your code:
+```bash
+find . -type f -name '*.go' | xargs sed -i 's|infobloxopen/bloxone-go-client|infobloxopen/universal-ddi-go-client|g'
+```
+
+3. Run `go mod tidy` to remove the old dependency.
+
+All existing configuration options (`option.WithAPIKey`, `option.WithCSPUrl`, `option.WithClientName`, `option.WithDefaultTags`) remain unchanged.
+
+### Environment Variable Changes
+
+The environment variables have been renamed as part of this migration:
+
+| Old (`bloxone-go-client`) | New (`universal-ddi-go-client`) |
+|---|---|
+| `BLOXONE_API_KEY` | `INFOBLOX_PORTAL_KEY` |
+| `BLOXONE_CSP_URL` | `INFOBLOX_PORTAL_URL` |
+
+> **Note:** The `BLOXONE_*` environment variables are deprecated and will be removed in a future release. Please update your environment to use the new `INFOBLOX_*` variable names.
+
 # Installation
 
 To install `universal-ddi-go-client` use `go get` command:
