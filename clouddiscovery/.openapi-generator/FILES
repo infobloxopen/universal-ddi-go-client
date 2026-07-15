@@ -31,6 +31,7 @@ docs/SubAccountListResponseV2.md
 docs/SubAccountProvCredConfig.md
 docs/SubAccountV2.md
 docs/SubAccountsAPI.md
+docs/ZoneFilter.md
 model_account.go
 model_account_list_response.go
 model_additional_config.go
@@ -55,6 +56,7 @@ model_sub_account_list_request_v2.go
 model_sub_account_list_response_v2.go
 model_sub_account_prov_cred_config.go
 model_sub_account_v2.go
+model_zone_filter.go
 test/api_accounts_test.go
 test/api_providers_test.go
 test/api_sub_accounts_test.go

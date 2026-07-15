@@ -589,9 +589,19 @@ components:
       type: object
     ddidnsrickettsDNSConfig:
       example:
+        resolver_endpoints_sync_enabled: true
         split_view_enabled: true
         sync_type: sync_type
         view_id: view_id
+        zone_filters:
+        - wildcards:
+          - wildcards
+          - wildcards
+          action: action
+        - wildcards:
+          - wildcards
+          - wildcards
+          action: action
         consolidated_zone_data_enabled: true
         view_name: view_name
       properties:
@@ -599,6 +609,11 @@ components:
           format: boolean
           title: consolidated_zone_data_enabled consolidates public & private zones
             into a single view
+          type: boolean
+        resolver_endpoints_sync_enabled:
+          description: resolver_endpoints_sync_enabled enables discovery of inbound
+            and outbound endpoints from third party providers.
+          format: boolean
           type: boolean
         split_view_enabled:
           description: "split_view_enabled consolidates private zones into a single\
@@ -612,6 +627,13 @@ components:
           type: string
         view_name:
           type: string
+        zone_filters:
+          items:
+            $ref: '#/components/schemas/ddidnsrickettsZoneFilter'
+          title: |-
+            zone_filters allows specifying multiple filters for DNS zones with different include/exclude patterns
+            Each filter can have comma-separated wildcard values
+          type: array
       type: object
     ddidnsrickettsDestination:
       description: Destination information
@@ -626,9 +648,19 @@ components:
             dhcp_server: dhcp_server
             disable_ipam_projection: true
           dns:
+            resolver_endpoints_sync_enabled: true
             split_view_enabled: true
             sync_type: sync_type
             view_id: view_id
+            zone_filters:
+            - wildcards:
+              - wildcards
+              - wildcards
+              action: action
+            - wildcards:
+              - wildcards
+              - wildcards
+              action: action
             consolidated_zone_data_enabled: true
             view_name: view_name
         deleted_at: 2000-01-23T04:56:07.000+00:00
@@ -668,9 +700,19 @@ components:
           dhcp_server: dhcp_server
           disable_ipam_projection: true
         dns:
+          resolver_endpoints_sync_enabled: true
           split_view_enabled: true
           sync_type: sync_type
           view_id: view_id
+          zone_filters:
+          - wildcards:
+            - wildcards
+            - wildcards
+            action: action
+          - wildcards:
+            - wildcards
+            - wildcards
+            action: action
           consolidated_zone_data_enabled: true
           view_name: view_name
       properties:
@@ -686,6 +728,7 @@ components:
       example:
         provider_type: provider_type
         status_message: status_message
+        labs_provider: true
         last_sync: 2000-01-23T04:56:07.000+00:00
         destinations:
         - destination_type: destination_type
@@ -698,9 +741,19 @@ components:
               dhcp_server: dhcp_server
               disable_ipam_projection: true
             dns:
+              resolver_endpoints_sync_enabled: true
               split_view_enabled: true
               sync_type: sync_type
               view_id: view_id
+              zone_filters:
+              - wildcards:
+                - wildcards
+                - wildcards
+                action: action
+              - wildcards:
+                - wildcards
+                - wildcards
+                action: action
               consolidated_zone_data_enabled: true
               view_name: view_name
           deleted_at: 2000-01-23T04:56:07.000+00:00
@@ -714,12 +767,23 @@ components:
               dhcp_server: dhcp_server
               disable_ipam_projection: true
             dns:
+              resolver_endpoints_sync_enabled: true
               split_view_enabled: true
               sync_type: sync_type
               view_id: view_id
+              zone_filters:
+              - wildcards:
+                - wildcards
+                - wildcards
+                action: action
+              - wildcards:
+                - wildcards
+                - wildcards
+                action: action
               consolidated_zone_data_enabled: true
               view_name: view_name
           deleted_at: 2000-01-23T04:56:07.000+00:00
+        is_disabled: true
         created_at: 2000-01-23T04:56:07.000+00:00
         description: description
         account_preference: account_preference
@@ -902,6 +966,15 @@ components:
           description: Auto-generated unique discovery config ID. Format BloxID.
           readOnly: true
           type: string
+        is_disabled:
+          description: is_disabled. Enables/Disables provider. Newer version of desired_state.
+          format: boolean
+          type: boolean
+        labs_provider:
+          description: labs_provider. Indicates if a provider is enabled through Infoblox
+            Labs.
+          format: boolean
+          type: boolean
         last_sync:
           description: Last sync timestamp.
           format: date-time
@@ -1022,6 +1095,7 @@ components:
         result:
           provider_type: provider_type
           status_message: status_message
+          labs_provider: true
           last_sync: 2000-01-23T04:56:07.000+00:00
           destinations:
           - destination_type: destination_type
@@ -1034,9 +1108,19 @@ components:
                 dhcp_server: dhcp_server
                 disable_ipam_projection: true
               dns:
+                resolver_endpoints_sync_enabled: true
                 split_view_enabled: true
                 sync_type: sync_type
                 view_id: view_id
+                zone_filters:
+                - wildcards:
+                  - wildcards
+                  - wildcards
+                  action: action
+                - wildcards:
+                  - wildcards
+                  - wildcards
+                  action: action
                 consolidated_zone_data_enabled: true
                 view_name: view_name
             deleted_at: 2000-01-23T04:56:07.000+00:00
@@ -1050,12 +1134,23 @@ components:
                 dhcp_server: dhcp_server
                 disable_ipam_projection: true
               dns:
+                resolver_endpoints_sync_enabled: true
                 split_view_enabled: true
                 sync_type: sync_type
                 view_id: view_id
+                zone_filters:
+                - wildcards:
+                  - wildcards
+                  - wildcards
+                  action: action
+                - wildcards:
+                  - wildcards
+                  - wildcards
+                  action: action
                 consolidated_zone_data_enabled: true
                 view_name: view_name
             deleted_at: 2000-01-23T04:56:07.000+00:00
+          is_disabled: true
           created_at: 2000-01-23T04:56:07.000+00:00
           description: description
           account_preference: account_preference
@@ -1215,6 +1310,7 @@ components:
         results:
         - provider_type: provider_type
           status_message: status_message
+          labs_provider: true
           last_sync: 2000-01-23T04:56:07.000+00:00
           destinations:
           - destination_type: destination_type
@@ -1227,9 +1323,19 @@ components:
                 dhcp_server: dhcp_server
                 disable_ipam_projection: true
               dns:
+                resolver_endpoints_sync_enabled: true
                 split_view_enabled: true
                 sync_type: sync_type
                 view_id: view_id
+                zone_filters:
+                - wildcards:
+                  - wildcards
+                  - wildcards
+                  action: action
+                - wildcards:
+                  - wildcards
+                  - wildcards
+                  action: action
                 consolidated_zone_data_enabled: true
                 view_name: view_name
             deleted_at: 2000-01-23T04:56:07.000+00:00
@@ -1243,12 +1349,23 @@ components:
                 dhcp_server: dhcp_server
                 disable_ipam_projection: true
               dns:
+                resolver_endpoints_sync_enabled: true
                 split_view_enabled: true
                 sync_type: sync_type
                 view_id: view_id
+                zone_filters:
+                - wildcards:
+                  - wildcards
+                  - wildcards
+                  action: action
+                - wildcards:
+                  - wildcards
+                  - wildcards
+                  action: action
                 consolidated_zone_data_enabled: true
                 view_name: view_name
             deleted_at: 2000-01-23T04:56:07.000+00:00
+          is_disabled: true
           created_at: 2000-01-23T04:56:07.000+00:00
           description: description
           account_preference: account_preference
@@ -1395,6 +1512,7 @@ components:
           status: status
         - provider_type: provider_type
           status_message: status_message
+          labs_provider: true
           last_sync: 2000-01-23T04:56:07.000+00:00
           destinations:
           - destination_type: destination_type
@@ -1407,9 +1525,19 @@ components:
                 dhcp_server: dhcp_server
                 disable_ipam_projection: true
               dns:
+                resolver_endpoints_sync_enabled: true
                 split_view_enabled: true
                 sync_type: sync_type
                 view_id: view_id
+                zone_filters:
+                - wildcards:
+                  - wildcards
+                  - wildcards
+                  action: action
+                - wildcards:
+                  - wildcards
+                  - wildcards
+                  action: action
                 consolidated_zone_data_enabled: true
                 view_name: view_name
             deleted_at: 2000-01-23T04:56:07.000+00:00
@@ -1423,12 +1551,23 @@ components:
                 dhcp_server: dhcp_server
                 disable_ipam_projection: true
               dns:
+                resolver_endpoints_sync_enabled: true
                 split_view_enabled: true
                 sync_type: sync_type
                 view_id: view_id
+                zone_filters:
+                - wildcards:
+                  - wildcards
+                  - wildcards
+                  action: action
+                - wildcards:
+                  - wildcards
+                  - wildcards
+                  action: action
                 consolidated_zone_data_enabled: true
                 view_name: view_name
             deleted_at: 2000-01-23T04:56:07.000+00:00
+          is_disabled: true
           created_at: 2000-01-23T04:56:07.000+00:00
           description: description
           account_preference: account_preference
@@ -1588,6 +1727,7 @@ components:
         result:
           provider_type: provider_type
           status_message: status_message
+          labs_provider: true
           last_sync: 2000-01-23T04:56:07.000+00:00
           destinations:
           - destination_type: destination_type
@@ -1600,9 +1740,19 @@ components:
                 dhcp_server: dhcp_server
                 disable_ipam_projection: true
               dns:
+                resolver_endpoints_sync_enabled: true
                 split_view_enabled: true
                 sync_type: sync_type
                 view_id: view_id
+                zone_filters:
+                - wildcards:
+                  - wildcards
+                  - wildcards
+                  action: action
+                - wildcards:
+                  - wildcards
+                  - wildcards
+                  action: action
                 consolidated_zone_data_enabled: true
                 view_name: view_name
             deleted_at: 2000-01-23T04:56:07.000+00:00
@@ -1616,12 +1766,23 @@ components:
                 dhcp_server: dhcp_server
                 disable_ipam_projection: true
               dns:
+                resolver_endpoints_sync_enabled: true
                 split_view_enabled: true
                 sync_type: sync_type
                 view_id: view_id
+                zone_filters:
+                - wildcards:
+                  - wildcards
+                  - wildcards
+                  action: action
+                - wildcards:
+                  - wildcards
+                  - wildcards
+                  action: action
                 consolidated_zone_data_enabled: true
                 view_name: view_name
             deleted_at: 2000-01-23T04:56:07.000+00:00
+          is_disabled: true
           created_at: 2000-01-23T04:56:07.000+00:00
           description: description
           account_preference: account_preference
@@ -1777,6 +1938,7 @@ components:
         result:
           provider_type: provider_type
           status_message: status_message
+          labs_provider: true
           last_sync: 2000-01-23T04:56:07.000+00:00
           destinations:
           - destination_type: destination_type
@@ -1789,9 +1951,19 @@ components:
                 dhcp_server: dhcp_server
                 disable_ipam_projection: true
               dns:
+                resolver_endpoints_sync_enabled: true
                 split_view_enabled: true
                 sync_type: sync_type
                 view_id: view_id
+                zone_filters:
+                - wildcards:
+                  - wildcards
+                  - wildcards
+                  action: action
+                - wildcards:
+                  - wildcards
+                  - wildcards
+                  action: action
                 consolidated_zone_data_enabled: true
                 view_name: view_name
             deleted_at: 2000-01-23T04:56:07.000+00:00
@@ -1805,12 +1977,23 @@ components:
                 dhcp_server: dhcp_server
                 disable_ipam_projection: true
               dns:
+                resolver_endpoints_sync_enabled: true
                 split_view_enabled: true
                 sync_type: sync_type
                 view_id: view_id
+                zone_filters:
+                - wildcards:
+                  - wildcards
+                  - wildcards
+                  action: action
+                - wildcards:
+                  - wildcards
+                  - wildcards
+                  action: action
                 consolidated_zone_data_enabled: true
                 view_name: view_name
             deleted_at: 2000-01-23T04:56:07.000+00:00
+          is_disabled: true
           created_at: 2000-01-23T04:56:07.000+00:00
           description: description
           account_preference: account_preference
@@ -2126,6 +2309,24 @@ components:
           type: string
       title: Sub Account contains information regarding the accounts which can be
         accessed with a given credentials
+      type: object
+    ddidnsrickettsZoneFilter:
+      example:
+        wildcards:
+        - wildcards
+        - wildcards
+        action: action
+      properties:
+        action:
+          title: action can be "include" or "exclude"
+          type: string
+        wildcards:
+          items:
+            type: string
+          title: "wildcards are patterns for zone names (e.g. [\"example.com\", \"\
+            test.com\"])"
+          type: array
+      title: ZoneFilter defines zone filtering configuration
       type: object
   securitySchemes:
     ApiKeyAuth:
