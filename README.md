@@ -32,10 +32,7 @@ The following Universal DDI APIs are supported:
 go get github.com/infobloxopen/universal-ddi-go-client
 ```
 
-2. Replace all import paths in your code:
-```bash
-find . -type f -name '*.go' | xargs sed -i 's|infobloxopen/bloxone-go-client|infobloxopen/universal-ddi-go-client|g'
-```
+2. Replace all occurrences of `github.com/infobloxopen/bloxone-go-client` with `github.com/infobloxopen/universal-ddi-go-client` in your Go source files.
 
 3. Run `go mod tidy` to remove the old dependency.
 
@@ -50,7 +47,7 @@ The environment variables have been renamed as part of this migration:
 | `BLOXONE_API_KEY` | `INFOBLOX_PORTAL_KEY` |
 | `BLOXONE_CSP_URL` | `INFOBLOX_PORTAL_URL` |
 
-> **Note:** The `BLOXONE_*` environment variables are deprecated and will be removed in a future release. Please update your environment to use the new `INFOBLOX_*` variable names.
+> **Note:** The `BLOXONE_*` environment variables are supported as fallbacks, but are deprecated and will be removed in a future release. Please update your environment to use the new `INFOBLOX_*` variable names.
 
 # Installation
 

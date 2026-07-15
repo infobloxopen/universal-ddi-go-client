@@ -9,7 +9,7 @@ All notable changes to `universal-ddi-go-client` are documented here.
 ### Breaking Changes
 
 - **All packages** — Renamed all SDK identifiers, package names, module paths, client constructors, API types, and documentation from **BloxOne** to **Universal DDI**. ([#1](https://github.com/infobloxopen/universal-ddi-go-client/pull/1))
-- **Environment variables** — `BLOXONE_API_KEY` and `BLOXONE_CSP_URL` have been renamed to `INFOBLOX_PORTAL_KEY` and `INFOBLOX_PORTAL_URL` respectively. The old names are deprecated and will be removed in a future release.
+- **Environment variables** — Introduced `INFOBLOX_PORTAL_KEY` and `INFOBLOX_PORTAL_URL`; `BLOXONE_API_KEY` and `BLOXONE_CSP_URL` are still supported as fallbacks but are deprecated and will be removed in a future release.
 
 ### New Features
 
