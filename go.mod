@@ -1,6 +1,6 @@
 module github.com/infobloxopen/universal-ddi-go-client
 
-go 1.19
+go 1.25
 
 require github.com/stretchr/testify v1.11.1
 
