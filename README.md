@@ -19,7 +19,8 @@ The following Universal DDI APIs are supported:
 - [IP Address Management](ipam/README.md)
 - [DNS Configuration](dns_config/README.md)
 - [DNS Data](dns_data/README.md)
-- [DNS Traffic Control](dtc/README.md- [Keys](keys/README.md)
+- [Keys](keys/README.md)
+- [DNS Traffic Control](dtc/README.md- [Keys](keys/README.md) 
 
 # Migrating from bloxone-go-client
 
@@ -131,6 +132,19 @@ You can set default tags for all API requests using the `option.WithDefaultTags`
 client := uddiclient.NewAPIClient(option.WithDefaultTags(map[string]string{"tag1": "value1", "tag2": "value2"}))
 ```
 This will add the tags `tag1=value1` and `tag2=value2` to all API requests that support tags in the request body.
+
+# Unified Nameservers
+
+## Deprecation Notice: DNS Server Group (NSG) Assignment
+
+As part of the Unified Nameservers initiative, the following DNS Server Group configurations are deprecated and will no longer be allowed. Requests that use them will be rejected:
+
+- **Nested DNS Server Groups** — A DNS Server Group cannot be nested inside an authoritative DNS Server Group (AuthNSG).
+- **Dual-role DNS Server Groups** — The same DNS Server Group cannot be assigned to both a primary zone and a secondary zone.
+- **Multiple DNS Server Groups on an authoritative zone** — Only one DNS Server Group may be assigned to an authoritative zone (AuthZone).
+- **DNS Server Groups combined with internal secondaries** — A DNS Server Group and internal secondaries cannot coexist on an authoritative zone.
+
+Review your configurations for any of the above patterns and update them before they are enforced.
 
 ### Rate Limiting
 

@@ -14,7 +14,9 @@ Name | Type | Description | Notes
 **DnssecEnableValidation** | Pointer to **bool** | Optional. _true_ to perform DNSSEC validation. Ignored if _dnssec_enabled_ is _false_.  Defaults to _true_. | [optional] 
 **DnssecEnabled** | Pointer to **bool** | Optional. Master toggle for all DNSSEC processing. Other _dnssec_*_ configuration is unused if this is disabled.  Defaults to _true_. | [optional] 
 **DnssecRootKeys** | Pointer to [**[]TrustAnchor**](TrustAnchor.md) | DNSSEC root keys. The root keys are not configurable.  A default list is provided by cloud management and included here for config generation. | [optional] [readonly] 
+**DnssecSigningPolicy** | Pointer to [**DNSSECSigningPolicy**](DNSSECSigningPolicy.md) | Optional. DNSSEC signing policy configuration. | [optional] 
 **DnssecTrustAnchors** | Pointer to [**[]TrustAnchor**](TrustAnchor.md) | Optional. DNSSEC trust anchors.  Error if there are list items with duplicate (_zone_, _sep_, _algorithm_) combinations.  Defaults to empty. | [optional] 
+**DnssecValidateExceptions** | Pointer to [**[]DNSSECValidateException**](DNSSECValidateException.md) | Optional. DNSSEC validate exceptions.  Error if there are duplicate exception domains (compared as a DNS name including case-insensitive comparison).  Defaults to empty. | [optional] 
 **DnssecValidateExpiry** | Pointer to **bool** | Optional. _true_ to reject expired DNSSEC keys. Ignored if either _dnssec_enabled_ or _dnssec_enable_validation_ is _false_.  Defaults to _true_. | [optional] 
 **DtcConfig** | Pointer to [**DTCConfig**](DTCConfig.md) | Optional. DTC configuration. | [optional] 
 **EcsEnabled** | Pointer to **bool** | Optional. _true_ to enable EDNS client subnet for recursive queries. Other _ecs_*_ fields are ignored if this field is not enabled.  Defaults to _false-. | [optional] 
@@ -23,6 +25,7 @@ Name | Type | Description | Notes
 **EcsPrefixV6** | Pointer to **int64** | Optional. Maximum scope length for v6 ECS.  Unsigned integer, min 1 max 56  Defaults to 56. | [optional] 
 **EcsZones** | Pointer to [**[]ECSZone**](ECSZone.md) | Optional. List of zones where ECS queries may be sent.  Error if empty while _ecs_enabled_ is _true_. Error if there are duplicate FQDNs in the list.  Defaults to empty. | [optional] 
 **EdnsUdpSize** | Pointer to **int64** | Optional. _edns_udp_size_ represents the edns UDP size. The size a querying DNS server advertises to the DNS server it’s sending a query to.  Defaults to 1232 bytes. | [optional] 
+**ExternalProvidersMetadata** | Pointer to **map[string]interface{}** | External DNS providers metadata. | [optional] 
 **FilterAaaaAcl** | Pointer to [**[]ACLItem**](ACLItem.md) | Optional. Specifies a list of client addresses for which AAAA filtering is to be applied.  Defaults to _empty_. | [optional] 
 **FilterAaaaOnV4** | Pointer to **string** | _filter_aaaa_on_v4_ allows named to omit some IPv6 addresses when responding to IPv4 clients.  Allowed values: * _yes_, * _no_, * _break_dnssec_.  Defaults to _no_ | [optional] 
 **Forwarders** | Pointer to [**[]Forwarder**](Forwarder.md) | Optional. List of forwarders.  Error if empty while _forwarders_only_ or _use_root_forwarders_for_local_resolution_with_b1td_ is _true_. Error if there are items in the list with duplicate addresses.  Defaults to empty. | [optional] 
@@ -40,10 +43,12 @@ Name | Type | Description | Notes
 **MaxUdpSize** | Pointer to **int64** | Optional. _max_udp_size_ represents maximum UDP payload size. The maximum number of bytes a responding DNS server will send to a UDP datagram.  Defaults to 1232 bytes. | [optional] 
 **MinimalResponses** | Pointer to **bool** | Optional. When enabled, the DNS server will only add records to the authority and additional data sections when they are required.  Defaults to _false_. | [optional] 
 **Name** | **string** | Name of view. | 
+**NiosMetadata** | Pointer to **map[string]interface{}** | NIOS Metadata holds NIOS grid&#39;s data. | [optional] 
 **Notify** | Pointer to **bool** | _notify_ all external secondary DNS servers.  Defaults to _false_. | [optional] 
 **QueryAcl** | Pointer to [**[]ACLItem**](ACLItem.md) | Optional. Clients must match this ACL to make authoritative queries. Also used for recursive queries if that ACL is unset.  Defaults to empty. | [optional] 
 **RecursionAcl** | Pointer to [**[]ACLItem**](ACLItem.md) | Optional. Clients must match this ACL to make recursive queries. If this ACL is empty, then the _query_acl_ will be used instead.  Defaults to empty. | [optional] 
 **RecursionEnabled** | Pointer to **bool** | Optional. _true_ to allow recursive DNS queries.  Defaults to _true_. | [optional] 
+**SecondaryZoneRecordsSync** | Pointer to **bool** | Optional. Defines if secondary zone records should be synchronized.  Defaults to _false_. | [optional] 
 **SortList** | Pointer to [**[]SortListItem**](SortListItem.md) | Optional. Specifies a sorted network list for A/AAAA records in DNS query response.  Defaults to _empty_. | [optional] 
 **SynthesizeAddressRecordsFromHttps** | Pointer to **bool** | _synthesize_address_records_from_https_ enables/disables creation of A/AAAA records from HTTPS RR Defaults to _false_. | [optional] 
 **Tags** | Pointer to **map[string]interface{}** | Tagging specifics. | [optional] 
@@ -323,6 +328,31 @@ SetDnssecRootKeys sets DnssecRootKeys field to given value.
 
 HasDnssecRootKeys returns a boolean if a field has been set.
 
+### GetDnssecSigningPolicy
+
+`func (o *View) GetDnssecSigningPolicy() DNSSECSigningPolicy`
+
+GetDnssecSigningPolicy returns the DnssecSigningPolicy field if non-nil, zero value otherwise.
+
+### GetDnssecSigningPolicyOk
+
+`func (o *View) GetDnssecSigningPolicyOk() (*DNSSECSigningPolicy, bool)`
+
+GetDnssecSigningPolicyOk returns a tuple with the DnssecSigningPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDnssecSigningPolicy
+
+`func (o *View) SetDnssecSigningPolicy(v DNSSECSigningPolicy)`
+
+SetDnssecSigningPolicy sets DnssecSigningPolicy field to given value.
+
+### HasDnssecSigningPolicy
+
+`func (o *View) HasDnssecSigningPolicy() bool`
+
+HasDnssecSigningPolicy returns a boolean if a field has been set.
+
 ### GetDnssecTrustAnchors
 
 `func (o *View) GetDnssecTrustAnchors() []TrustAnchor`
@@ -347,6 +377,31 @@ SetDnssecTrustAnchors sets DnssecTrustAnchors field to given value.
 `func (o *View) HasDnssecTrustAnchors() bool`
 
 HasDnssecTrustAnchors returns a boolean if a field has been set.
+
+### GetDnssecValidateExceptions
+
+`func (o *View) GetDnssecValidateExceptions() []DNSSECValidateException`
+
+GetDnssecValidateExceptions returns the DnssecValidateExceptions field if non-nil, zero value otherwise.
+
+### GetDnssecValidateExceptionsOk
+
+`func (o *View) GetDnssecValidateExceptionsOk() (*[]DNSSECValidateException, bool)`
+
+GetDnssecValidateExceptionsOk returns a tuple with the DnssecValidateExceptions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDnssecValidateExceptions
+
+`func (o *View) SetDnssecValidateExceptions(v []DNSSECValidateException)`
+
+SetDnssecValidateExceptions sets DnssecValidateExceptions field to given value.
+
+### HasDnssecValidateExceptions
+
+`func (o *View) HasDnssecValidateExceptions() bool`
+
+HasDnssecValidateExceptions returns a boolean if a field has been set.
 
 ### GetDnssecValidateExpiry
 
@@ -547,6 +602,31 @@ SetEdnsUdpSize sets EdnsUdpSize field to given value.
 `func (o *View) HasEdnsUdpSize() bool`
 
 HasEdnsUdpSize returns a boolean if a field has been set.
+
+### GetExternalProvidersMetadata
+
+`func (o *View) GetExternalProvidersMetadata() map[string]interface{}`
+
+GetExternalProvidersMetadata returns the ExternalProvidersMetadata field if non-nil, zero value otherwise.
+
+### GetExternalProvidersMetadataOk
+
+`func (o *View) GetExternalProvidersMetadataOk() (*map[string]interface{}, bool)`
+
+GetExternalProvidersMetadataOk returns a tuple with the ExternalProvidersMetadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternalProvidersMetadata
+
+`func (o *View) SetExternalProvidersMetadata(v map[string]interface{})`
+
+SetExternalProvidersMetadata sets ExternalProvidersMetadata field to given value.
+
+### HasExternalProvidersMetadata
+
+`func (o *View) HasExternalProvidersMetadata() bool`
+
+HasExternalProvidersMetadata returns a boolean if a field has been set.
 
 ### GetFilterAaaaAcl
 
@@ -968,6 +1048,31 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
+### GetNiosMetadata
+
+`func (o *View) GetNiosMetadata() map[string]interface{}`
+
+GetNiosMetadata returns the NiosMetadata field if non-nil, zero value otherwise.
+
+### GetNiosMetadataOk
+
+`func (o *View) GetNiosMetadataOk() (*map[string]interface{}, bool)`
+
+GetNiosMetadataOk returns a tuple with the NiosMetadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNiosMetadata
+
+`func (o *View) SetNiosMetadata(v map[string]interface{})`
+
+SetNiosMetadata sets NiosMetadata field to given value.
+
+### HasNiosMetadata
+
+`func (o *View) HasNiosMetadata() bool`
+
+HasNiosMetadata returns a boolean if a field has been set.
+
 ### GetNotify
 
 `func (o *View) GetNotify() bool`
@@ -1067,6 +1172,31 @@ SetRecursionEnabled sets RecursionEnabled field to given value.
 `func (o *View) HasRecursionEnabled() bool`
 
 HasRecursionEnabled returns a boolean if a field has been set.
+
+### GetSecondaryZoneRecordsSync
+
+`func (o *View) GetSecondaryZoneRecordsSync() bool`
+
+GetSecondaryZoneRecordsSync returns the SecondaryZoneRecordsSync field if non-nil, zero value otherwise.
+
+### GetSecondaryZoneRecordsSyncOk
+
+`func (o *View) GetSecondaryZoneRecordsSyncOk() (*bool, bool)`
+
+GetSecondaryZoneRecordsSyncOk returns a tuple with the SecondaryZoneRecordsSync field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSecondaryZoneRecordsSync
+
+`func (o *View) SetSecondaryZoneRecordsSync(v bool)`
+
+SetSecondaryZoneRecordsSync sets SecondaryZoneRecordsSync field to given value.
+
+### HasSecondaryZoneRecordsSync
+
+`func (o *View) HasSecondaryZoneRecordsSync() bool`
+
+HasSecondaryZoneRecordsSync returns a boolean if a field has been set.
 
 ### GetSortList
 

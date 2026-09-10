@@ -4,13 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**GssTsigEnabled** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Optional. Field config for _gss_tsig_enabled_ field from _AuthZone_ object. | [optional] 
-**Notify** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Field config for _notify_ field from _AuthZone_ object. | [optional] 
-**QueryAcl** | Pointer to [**InheritedACLItems**](InheritedACLItems.md) | Optional. Field config for _query_acl_ field from _AuthZone_ object. | [optional] 
-**TransferAcl** | Pointer to [**InheritedACLItems**](InheritedACLItems.md) | Optional. Field config for _transfer_acl_ field from _AuthZone_ object. | [optional] 
-**UpdateAcl** | Pointer to [**InheritedACLItems**](InheritedACLItems.md) | Optional. Field config for _update_acl_ field from _AuthZone_ object. | [optional] 
-**UseForwardersForSubzones** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Optional. Field config for _use_forwarders_for_subzones_ field from _AuthZone_ object. | [optional] 
-**ZoneAuthority** | Pointer to [**InheritedZoneAuthority**](InheritedZoneAuthority.md) | Optional. Field config for _zone_authority_ field from _AuthZone_ object. | [optional] 
+**DnssecSigningPolicy** | Pointer to [**InheritedDNSSECSigningPolicy**](InheritedDNSSECSigningPolicy.md) | Optional. Field configuration for _dnssec_signing_policy_ field from _AuthZone_ object. | [optional] 
+**GssTsigEnabled** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Optional. Field configuration for _gss_tsig_enabled_ field from _AuthZone_ object. | [optional] 
+**Notify** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Field configuration for _notify_ field from _AuthZone_ object. | [optional] 
+**QueryAcl** | Pointer to [**InheritedACLItems**](InheritedACLItems.md) | Optional. Field configuration for _query_acl_ field from _AuthZone_ object. | [optional] 
+**SecondaryZoneRecordsSync** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Optional. Field configuration for _secondary_zone_records_sync_ field from _AuthZone_ object. | [optional] 
+**TransferAcl** | Pointer to [**InheritedACLItems**](InheritedACLItems.md) | Optional. Field configuration for _transfer_acl_ field from _AuthZone_ object. | [optional] 
+**UpdateAcl** | Pointer to [**InheritedACLItems**](InheritedACLItems.md) | Optional. Field configuration for _update_acl_ field from _AuthZone_ object. | [optional] 
+**UseForwardersForSubzones** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Optional. Field configuration for _use_forwarders_for_subzones_ field from _AuthZone_ object. | [optional] 
+**ZoneAuthority** | Pointer to [**InheritedZoneAuthority**](InheritedZoneAuthority.md) | Optional. Field configuration for _zone_authority_ field from _AuthZone_ object. | [optional] 
 
 ## Methods
 
@@ -30,6 +32,31 @@ will change when the set of required properties is changed
 NewAuthZoneInheritanceWithDefaults instantiates a new AuthZoneInheritance object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetDnssecSigningPolicy
+
+`func (o *AuthZoneInheritance) GetDnssecSigningPolicy() InheritedDNSSECSigningPolicy`
+
+GetDnssecSigningPolicy returns the DnssecSigningPolicy field if non-nil, zero value otherwise.
+
+### GetDnssecSigningPolicyOk
+
+`func (o *AuthZoneInheritance) GetDnssecSigningPolicyOk() (*InheritedDNSSECSigningPolicy, bool)`
+
+GetDnssecSigningPolicyOk returns a tuple with the DnssecSigningPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDnssecSigningPolicy
+
+`func (o *AuthZoneInheritance) SetDnssecSigningPolicy(v InheritedDNSSECSigningPolicy)`
+
+SetDnssecSigningPolicy sets DnssecSigningPolicy field to given value.
+
+### HasDnssecSigningPolicy
+
+`func (o *AuthZoneInheritance) HasDnssecSigningPolicy() bool`
+
+HasDnssecSigningPolicy returns a boolean if a field has been set.
 
 ### GetGssTsigEnabled
 
@@ -105,6 +132,31 @@ SetQueryAcl sets QueryAcl field to given value.
 `func (o *AuthZoneInheritance) HasQueryAcl() bool`
 
 HasQueryAcl returns a boolean if a field has been set.
+
+### GetSecondaryZoneRecordsSync
+
+`func (o *AuthZoneInheritance) GetSecondaryZoneRecordsSync() Inheritance2InheritedBool`
+
+GetSecondaryZoneRecordsSync returns the SecondaryZoneRecordsSync field if non-nil, zero value otherwise.
+
+### GetSecondaryZoneRecordsSyncOk
+
+`func (o *AuthZoneInheritance) GetSecondaryZoneRecordsSyncOk() (*Inheritance2InheritedBool, bool)`
+
+GetSecondaryZoneRecordsSyncOk returns a tuple with the SecondaryZoneRecordsSync field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSecondaryZoneRecordsSync
+
+`func (o *AuthZoneInheritance) SetSecondaryZoneRecordsSync(v Inheritance2InheritedBool)`
+
+SetSecondaryZoneRecordsSync sets SecondaryZoneRecordsSync field to given value.
+
+### HasSecondaryZoneRecordsSync
+
+`func (o *AuthZoneInheritance) HasSecondaryZoneRecordsSync() bool`
+
+HasSecondaryZoneRecordsSync returns a boolean if a field has been set.
 
 ### GetTransferAcl
 
