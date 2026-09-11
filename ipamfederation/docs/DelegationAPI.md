@@ -35,7 +35,7 @@ import (
 )
 
 func main() {
-	body := *ipamfederation.NewDelegation("Address_example", "DelegatedTo_example") // Delegation | 
+	body := *ipamfederation.NewDelegation("DelegatedTo_example") // Delegation | 
 
 	apiClient := ipamfederation.NewAPIClient()
 	resp, r, err := apiClient.DelegationAPI.Create(context.Background()).Body(body).Execute()
@@ -370,7 +370,7 @@ import (
 
 func main() {
 	id := "a5183192-1e00-475f-b334-38e1f0bb1bc7" // string | An application specific resource identity of a resource
-	body := *ipamfederation.NewDelegation("Address_example", "DelegatedTo_example") // Delegation | 
+	body := *ipamfederation.NewDelegation("DelegatedTo_example") // Delegation | 
 
 	apiClient := ipamfederation.NewAPIClient()
 	resp, r, err := apiClient.DelegationAPI.Update(context.Background(), id).Body(body).Execute()

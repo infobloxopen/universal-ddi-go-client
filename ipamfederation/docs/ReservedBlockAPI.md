@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	body := *ipamfederation.NewReservedBlock("Address_example", "FederatedRealm_example") // ReservedBlock | 
+	body := *ipamfederation.NewReservedBlock("FederatedRealm_example") // ReservedBlock | 
 
 	apiClient := ipamfederation.NewAPIClient()
 	resp, r, err := apiClient.ReservedBlockAPI.Create(context.Background()).Body(body).Execute()
@@ -310,7 +310,7 @@ import (
 
 func main() {
 	id := "a5183192-1e00-475f-b334-38e1f0bb1bc7" // string | An application specific resource identity of a resource
-	body := *ipamfederation.NewReservedBlock("Address_example", "FederatedRealm_example") // ReservedBlock | 
+	body := *ipamfederation.NewReservedBlock("FederatedRealm_example") // ReservedBlock | 
 
 	apiClient := ipamfederation.NewAPIClient()
 	resp, r, err := apiClient.ReservedBlockAPI.Update(context.Background(), id).Body(body).Execute()

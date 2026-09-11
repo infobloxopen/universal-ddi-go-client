@@ -305,6 +305,9 @@ paths:
       summary: Create the delegation.
       tags:
       - delegation
+      x-tf-resource: delegation
+      x-tf-datasource: delegations
+      x-sdk-default-tags: true
       x-codegen-request-body-name: body
   /federation/delegation/{id}:
     delete:
@@ -388,6 +391,7 @@ paths:
       summary: Update the delegation.
       tags:
       - delegation
+      x-sdk-default-tags: true
       x-codegen-request-body-name: body
   /federation/federated_block:
     get:
@@ -1429,6 +1433,9 @@ paths:
       summary: Create the __ForwardLookingDelegation__ object.
       tags:
       - forward_looking_delegation
+      x-tf-resource: forward_looking_delegation
+      x-tf-datasource: forward_looking_delegations
+      x-sdk-default-tags: true
       x-codegen-request-body-name: body
   /federation/forward_looking_delegation/{id}:
     delete:
@@ -1512,6 +1519,7 @@ paths:
       summary: Update the __ForwardLookingDelegation__ object.
       tags:
       - forward_looking_delegation
+      x-sdk-default-tags: true
       x-codegen-request-body-name: body
   /federation/list_next_available_fld:
     get:
@@ -1733,6 +1741,8 @@ paths:
       summary: Create the overlapping block.
       tags:
       - overlapping_block
+      x-tf-resource: overlapping_block
+      x-tf-datasource: overlapping_blocks
       x-sdk-default-tags: true
       x-codegen-request-body-name: body
   /federation/overlapping_block/{id}:
@@ -1933,6 +1943,8 @@ paths:
       summary: Create the reserved block.
       tags:
       - reserved_block
+      x-tf-resource: reserved_block
+      x-tf-datasource: reserved_blocks
       x-sdk-default-tags: true
       x-codegen-request-body-name: body
   /federation/reserved_block/{id}:
@@ -2594,7 +2606,6 @@ components:
           readOnly: true
           type: integer
       required:
-      - address
       - delegated_to
       title: Delegation
       type: object
@@ -2992,7 +3003,6 @@ components:
           readOnly: true
           type: string
       required:
-      - address
       - federated_realms
       title: ForwardLookingDelegation
       type: object
@@ -3948,7 +3958,6 @@ components:
           readOnly: true
           type: string
       required:
-      - address
       - federated_realm
       title: OverlappingBlock
       type: object
@@ -4269,7 +4278,6 @@ components:
           readOnly: true
           type: string
       required:
-      - address
       - federated_realm
       title: ReservedBlock
       type: object

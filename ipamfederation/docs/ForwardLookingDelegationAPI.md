@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	body := *ipamfederation.NewForwardLookingDelegation("Address_example", []string{"FederatedRealms_example"}) // ForwardLookingDelegation | 
+	body := *ipamfederation.NewForwardLookingDelegation([]string{"FederatedRealms_example"}) // ForwardLookingDelegation | 
 
 	apiClient := ipamfederation.NewAPIClient()
 	resp, r, err := apiClient.ForwardLookingDelegationAPI.Create(context.Background()).Body(body).Execute()
@@ -310,7 +310,7 @@ import (
 
 func main() {
 	id := "a5183192-1e00-475f-b334-38e1f0bb1bc7" // string | An application specific resource identity of a resource
-	body := *ipamfederation.NewForwardLookingDelegation("Address_example", []string{"FederatedRealms_example"}) // ForwardLookingDelegation | 
+	body := *ipamfederation.NewForwardLookingDelegation([]string{"FederatedRealms_example"}) // ForwardLookingDelegation | 
 
 	apiClient := ipamfederation.NewAPIClient()
 	resp, r, err := apiClient.ForwardLookingDelegationAPI.Update(context.Background(), id).Body(body).Execute()
