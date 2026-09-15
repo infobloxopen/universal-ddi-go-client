@@ -4,9 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DeletedItemsDescribed** | Pointer to [**[]ItemStructs**](ItemStructs.md) | The List of ItemStructs structure which contains the item and its description | [optional] 
+**DeletedItemsDescribed** | Pointer to [**[]ItemStructs**](ItemStructs.md) | The list of ItemStructs structures that contains items and their descriptions. | [optional] 
 **Id** | Pointer to **int32** | The Named List object identifier. | [optional] [readonly] 
-**InsertedItemsDescribed** | Pointer to [**[]ItemStructs**](ItemStructs.md) | The List of ItemStructs structure which contains the item and its description | [optional] 
+**InsertedItemsDescribed** | Pointer to [**[]ItemStructs**](ItemStructs.md) | The list of ItemStructs structures that contains items and their descriptions. | [optional] 
+**UpdatedItemsDescribed** | Pointer to [**[]ItemStructs**](ItemStructs.md) | The list of ItemStructs structures that contains items, descriptions, statuses, status detail | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetInsertedItemsDescribed sets InsertedItemsDescribed field to given value.
 `func (o *NamedListItemsPartialUpdate) HasInsertedItemsDescribed() bool`
 
 HasInsertedItemsDescribed returns a boolean if a field has been set.
+
+### GetUpdatedItemsDescribed
+
+`func (o *NamedListItemsPartialUpdate) GetUpdatedItemsDescribed() []ItemStructs`
+
+GetUpdatedItemsDescribed returns the UpdatedItemsDescribed field if non-nil, zero value otherwise.
+
+### GetUpdatedItemsDescribedOk
+
+`func (o *NamedListItemsPartialUpdate) GetUpdatedItemsDescribedOk() (*[]ItemStructs, bool)`
+
+GetUpdatedItemsDescribedOk returns a tuple with the UpdatedItemsDescribed field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedItemsDescribed
+
+`func (o *NamedListItemsPartialUpdate) SetUpdatedItemsDescribed(v []ItemStructs)`
+
+SetUpdatedItemsDescribed sets UpdatedItemsDescribed field to given value.
+
+### HasUpdatedItemsDescribed
+
+`func (o *NamedListItemsPartialUpdate) HasUpdatedItemsDescribed() bool`
+
+HasUpdatedItemsDescribed returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

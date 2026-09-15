@@ -4,13 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedTime** | Pointer to **time.Time** | The time when this Network List object was created. | [optional] [readonly] 
+**AddrBlock** | Pointer to [**[]AddrBlock**](AddrBlock.md) | The list of address blocks in the network list with optional end-user descriptions. Preferred over the deprecated &#x60;items&#x60; field for new clients; mirrors the same CIDR set and additionally carries a description per entry. | [optional] 
+**CreatedTime** | Pointer to **time.Time** | The time this Network List object was created. | [optional] [readonly] 
 **Description** | Pointer to **string** | The brief description for the network list. | [optional] 
 **Id** | Pointer to **int32** | The Network List object identifier. | [optional] [readonly] 
-**Items** | Pointer to **[]string** | The list of networks&#39; CIDRs that are subject for malicious attacks protection. | [optional] 
+**ItemApprovals** | Pointer to [**[]AddrBlockApprovals**](AddrBlockApprovals.md) | The address blocks in the network list, along with their approval status. | [optional] [readonly] 
+**Items** | Pointer to **[]string** | The list of networks&#39; CIDRs that are subject to protection from malicious attacks.  Deprecated: use &#x60;addr_block&#x60; instead. &#x60;items&#x60; is retained for backwards compatibility with existing clients and carries only CIDR strings, with no per-entry description. New clients should populate &#x60;addr_block&#x60;, which mirrors these CIDRs and additionally supports an end-user description per address block. | [optional] 
 **Name** | Pointer to **string** | The name of the network list. | [optional] 
 **PolicyId** | Pointer to **int32** | The identifier of the security policy with which the network list is associated. | [optional] [readonly] 
-**UpdatedTime** | Pointer to **time.Time** | The time when this Network List object was last updated. | [optional] [readonly] 
+**UpdatedTime** | Pointer to **time.Time** | The time this Network List object was updated most recently. | [optional] [readonly] 
 
 ## Methods
 
@@ -30,6 +32,31 @@ will change when the set of required properties is changed
 NewNetworkListWithDefaults instantiates a new NetworkList object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAddrBlock
+
+`func (o *NetworkList) GetAddrBlock() []AddrBlock`
+
+GetAddrBlock returns the AddrBlock field if non-nil, zero value otherwise.
+
+### GetAddrBlockOk
+
+`func (o *NetworkList) GetAddrBlockOk() (*[]AddrBlock, bool)`
+
+GetAddrBlockOk returns a tuple with the AddrBlock field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAddrBlock
+
+`func (o *NetworkList) SetAddrBlock(v []AddrBlock)`
+
+SetAddrBlock sets AddrBlock field to given value.
+
+### HasAddrBlock
+
+`func (o *NetworkList) HasAddrBlock() bool`
+
+HasAddrBlock returns a boolean if a field has been set.
 
 ### GetCreatedTime
 
@@ -105,6 +132,31 @@ SetId sets Id field to given value.
 `func (o *NetworkList) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetItemApprovals
+
+`func (o *NetworkList) GetItemApprovals() []AddrBlockApprovals`
+
+GetItemApprovals returns the ItemApprovals field if non-nil, zero value otherwise.
+
+### GetItemApprovalsOk
+
+`func (o *NetworkList) GetItemApprovalsOk() (*[]AddrBlockApprovals, bool)`
+
+GetItemApprovalsOk returns a tuple with the ItemApprovals field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetItemApprovals
+
+`func (o *NetworkList) SetItemApprovals(v []AddrBlockApprovals)`
+
+SetItemApprovals sets ItemApprovals field to given value.
+
+### HasItemApprovals
+
+`func (o *NetworkList) HasItemApprovals() bool`
+
+HasItemApprovals returns a boolean if a field has been set.
 
 ### GetItems
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Results** | Pointer to **[]string** | Named Lists for csv file | [optional] 
+**Results** | Pointer to **[]string** | Named lists for a CSV file. | [optional] 
 
 ## Methods
 

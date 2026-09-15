@@ -36,6 +36,9 @@ docs/AccessCodesListAccessCodes500Response.md
 docs/AccessCodesListAccessCodes500ResponseError.md
 docs/AccessCodesReadAccessCode404Response.md
 docs/AccessCodesReadAccessCode404ResponseError.md
+docs/AddrBlock.md
+docs/AddrBlockApprovals.md
+docs/AddrBlockApprovalsApprovalStatus.md
 docs/AppApproval.md
 docs/AppApprovalMultiResponse.md
 docs/AppApprovalRemovalRequest.md
@@ -101,6 +104,7 @@ docs/InternalDomainsMultiResponse.md
 docs/InternalDomainsReadResponse.md
 docs/InternalDomainsUpdateResponse.md
 docs/ItemStructs.md
+docs/ItemStructsItemStatus.md
 docs/ListPoPRegionsResponse.md
 docs/ListSeverityLevels.md
 docs/MultiListUpdate.md
@@ -119,6 +123,7 @@ docs/NamedListItemsInsertOrUpdateResponseSuccess.md
 docs/NamedListItemsNamedListItemsPartialUpdate400Response.md
 docs/NamedListItemsNamedListItemsPartialUpdate400ResponseError.md
 docs/NamedListItemsPartialUpdate.md
+docs/NamedListItemsPartialUpdateResponse.md
 docs/NamedListRead.md
 docs/NamedListReadMultiResponse.md
 docs/NamedListReadResponse.md
@@ -203,6 +208,9 @@ model_access_codes_list_access_codes_500_response.go
 model_access_codes_list_access_codes_500_response_error.go
 model_access_codes_read_access_code_404_response.go
 model_access_codes_read_access_code_404_response_error.go
+model_addr_block.go
+model_addr_block_approvals.go
+model_addr_block_approvals_approval_status.go
 model_app_approval.go
 model_app_approval_multi_response.go
 model_app_approval_removal_request.go
@@ -263,6 +271,7 @@ model_internal_domains_multi_response.go
 model_internal_domains_read_response.go
 model_internal_domains_update_response.go
 model_item_structs.go
+model_item_structs_item_status.go
 model_list_po_p_regions_response.go
 model_list_severity_levels.go
 model_multi_list_update.go
@@ -280,6 +289,7 @@ model_named_list_items_insert_or_update_response_success.go
 model_named_list_items_named_list_items_partial_update_400_response.go
 model_named_list_items_named_list_items_partial_update_400_response_error.go
 model_named_list_items_partial_update.go
+model_named_list_items_partial_update_response.go
 model_named_list_read.go
 model_named_list_read_multi_response.go
 model_named_list_read_response.go

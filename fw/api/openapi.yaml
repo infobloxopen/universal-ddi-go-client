@@ -1651,9 +1651,7 @@ paths:
   /named_lists:
     delete:
       description: |
-        Use this method to delete Named List objects. Deletion of multiple lists is an all-or-nothing operation (if any of the specified lists can not be deleted then none of the specified lists will be deleted).
-
-        The Named List object represents several types of lists allowed for Infoblox Cloud such as predefined threat intelligence feeds that your subscription offers (Threat Insight, Fast Flux, DGA, DNSM). In addition to the predefined threat intelligence feeds that your subscription offers, you can create custom lists (containing domains and IP addresses) to define whitelists and blacklists for additional protection. You can use a custom list to complement existing feeds or override the Block, Allow, Log, or Redirect action that is currently defined for an existing feed. Note that lists representing predefined TI feeds cannot be created, updated and deleted.
+        Use this method to delete Named List objects. Deletion of multiple lists is an all-or-nothing operation; if any one of the specified lists cannot be deleted, then none of the specified lists will be deleted.
 
         Required:
         - ids
@@ -1679,7 +1677,7 @@ paths:
             - 'ids' value must contain unique elements
             - 'ids' value must contain values that are greater than or equal to zero
             - named lists assigned to a security policy cannot be deleted
-            - named lists of type 'dnsm', 'threat_insight', 'fast_flux', 'dga', 'threat_insight_nde', 'default_allow' and 'default_block' cannot be removed
+            - named lists of type 'dnsm', 'threat_insight', 'dga', 'threat_insight_nde', 'zero_day_dns', 'default_allow' and 'default_block' cannot be removed
             - named lists assigned to a bypass code cannot be deleted
         "404":
           content:
@@ -1705,9 +1703,6 @@ paths:
       description: |+
         Use this method to retrieve information on all Named List objects for the account. Note that list items are not returned for this operation.
 
-        The Named List object represents several types of lists allowed for Infoblox Cloud such as predefined threat intelligence feeds that your subscription offers (Threat Insight, Fast Flux, DGA, DNSM). In addition to the predefined threat intelligence feeds that your subscription offers, you can create custom lists (containing domains and IP addresses) to define whitelists and blacklists for additional protection. You can use a custom list to complement existing feeds or override the Block, Allow, Log, or Redirect action that is currently defined for an existing feed. Note that lists representing predefined TI feeds cannot be created, updated and deleted.
-
-
       operationId: named_listsListNamedLists
       parameters:
       - description: |
@@ -1720,10 +1715,9 @@ paths:
           | Name               | type   | Supported Ops    |
           | ------------------ | ------ | ---------------- |
           | type               | string | ==, !=           |
-          | items              | string | ~, !~            |
-          | items_described    | string | ==               |
 
           Grouping operators (and, or, not, ()) are not supported between different fields.
+          ```
         in: query
         name: _filter
         schema:
@@ -1791,9 +1785,9 @@ paths:
     patch:
       description: |-
         Multiple Named Lists in a single operation.
-        Use this method to insert items for multiple Named List objects. Note that duplicated items correspondig to named list are silently skipped and only new items are appended to the named list. Note that DNSM, TI, Fast Flux and DGA lists cannot be updated. Only named lists of Custom List type can be updated by this operation.
-        If one or more of the list ids is invalid, or the list is of invalid type then the entire operation will be failed.
-        The Custom List Items represent the list of the FQDN or IPv4 addresses to define whitelists and blacklists for additional protection.
+        Use this method to insert items for multiple Named List objects. Duplicated items correspondig to a named list are silently skipped, and only new items are appended to the named list. This operation cannot update DNSM, TI, and DGA lists and can update only named lists of theCustom List type.
+        If any one of the list ids is invalid, or if the list is of an invalid type, then the entire operation will be failed.
+        The Custom List Items represent the list of the FQDN or IPv4 addresses used to define allow-lists and deny-lists for additional protection.
       operationId: named_listsMultiListUpdate
       requestBody:
         content:
@@ -1840,8 +1834,7 @@ paths:
     post:
       description: |
         Use this method to create a Named List object.
-
-        The Named List object represents several types of lists allowed for Infoblox Cloud such as predefined threat intelligence feeds that your subscription offers (Threat Insight, Fast Flux, DGA, DNSM). In addition to the predefined threat intelligence feeds that your subscription offers, you can create custom lists (containing domains and IP addresses) to define whitelists and blacklists for additional protection. You can use a custom list to complement existing feeds or override the Block, Allow, Log, or Redirect action that is currently defined for an existing feed. Note that lists representing predefined TI feeds cannot be created, updated and deleted. Also use of the field 'items' is discouraged and instead use of new field 'item_described' is suggested as it is possible to add the description/comments to each item in the custom list using this field. In any case, note that use of both the fields 'items' and 'items_described' is not supported and when one of these field is used they must have some value i.e, it cannot be empty.
+        Note that lists representing predefined TI feeds cannot be created, updated, or deleted. In addition, the use of field `items` is discouraged and the use of the new field `item_described` is suggested because it allows adding the description or comments to each item in the custom list. In any case, the use of both fields is not supported, and when one of these fields is used, it must have some value: that is, it cannot be empty.
 
         Required:
         - name
@@ -1872,7 +1865,7 @@ paths:
             - 'name' length cannot exceed 256 characters limit
             - 'description' length cannot exceed 256 characters limit
             - 'items' value must contain valid IPv4 or IPv6 addresses or domain names
-            - named list of type "dnsm", "threat_insight", "fast_flux", "dga", "threat_insight_nde", "default_allow", "default_block", "threat_insight_nde" cannot be created
+            - named list of type "dnsm", "threat_insight", "dga", "threat_insight_nde", "zero_day_dns", "default_allow", "default_block" cannot be created
             - Either 'items' or 'items_described' field is required
             - 'item' cannot be empty in field items_described
         "409":
@@ -1899,9 +1892,7 @@ paths:
   /named_lists/{id}:
     delete:
       description: |
-        Use this method to delete Named List object by given Named List object identifier.
-
-        The Named List object represents several types of lists allowed for Infoblox Cloud such as predefined threat intelligence feeds that your subscription offers (Threat Insight, Fast Flux, DGA, DNSM). In addition to the predefined threat intelligence feeds that your subscription offers, you can create custom lists (containing domains and IP addresses) to define whitelists and blacklists for additional protection. You can use a custom list to complement existing feeds or override the Block, Allow, Log, or Redirect action that is currently defined for an existing feed. Note that lists representing predefined TI feeds cannot be created, updated and deleted.
+        Use this method to delete a Named List object by given Named List object identifier.
       operationId: named_listsDeleteSingleNamedLists
       parameters:
       - description: The Named List object identifiers.
@@ -1925,7 +1916,7 @@ paths:
             - 'id' value must contain values that are greater than or equal to zero
             - named lists assigned to a security policy cannot be deleted
             - named lists assigned to a bypass code cannot be deleted
-            - named lists of type 'dnsm', 'threat_insight', 'fast_flux', 'dga', 'threat_insight_nde', 'default_allow', and 'default_block' cannot be removed
+            - named lists of type 'dnsm', 'threat_insight', 'dga', 'threat_insight_nde', 'zero_day_dns', 'default_allow', and 'default_block' cannot be removed
         "404":
           content:
             application/json:
@@ -1933,7 +1924,7 @@ paths:
                 $ref: '#/components/schemas/named_listsDeleteSingleNamedLists_404_response'
           description: |2-
 
-            - 'id' value must contain existing named list identifiers
+            - 'id' value must be an identifier of an existing named list
         "500":
           content:
             application/json:
@@ -1947,12 +1938,10 @@ paths:
       - named_lists
     get:
       description: |
-        Use this method to retrieve information on the specified Named List object. Note that returned data includes list items.
-
-        The Named List object represents several types of lists allowed for Infoblox Cloud such as predefined threat intelligence feeds that your subscription offers (Threat Insight, Fast Flux, DGA, DNSM). In addition to the predefined threat intelligence feeds that your subscription offers, you can create custom lists (containing domains and IP addresses) to define whitelists and blacklists for additional protection. You can use a custom list to complement existing feeds or override the Block, Allow, Log, or Redirect action that is currently defined for an existing feed. Note that lists representing predefined TI feeds cannot be created, updated and deleted.
+        Use this method to retrieve information on the specified Named List object. Returned data includes list items.
       operationId: named_listsReadNamedList
       parameters:
-      - description: The Named List identifier.
+      - description: The identifier for a Named List object.
         in: path
         name: id
         required: true
@@ -1993,14 +1982,14 @@ paths:
           type: string
       - description: |-
           The name of the named list.
-          Can be used in pair with 'type' (both fields are mandatory) to request
-          the object by their name. This aproach available only if the field 'id'
+          Can be used in a pair with `type` (both fields are mandatory) to request
+          the object by its name. This aproach is available only if the field `id`
           is empty (==0).
         in: query
         name: name
         schema:
           type: string
-      - description: The type of the named list. See 'NamedList' for more details.
+      - description: The type of the named list. See `NamedList` for more details.
         in: query
         name: type
         schema:
@@ -2033,11 +2022,11 @@ paths:
       - named_lists
     patch:
       description: |
-        Use this method to update the Severity for a specified named list, which must be of TI list type.
+        Use this method to update the Severity for a specified named list, which must be of the TI list type.
 
         The severity levels (threat_level and confidence_level) can only be patched for a given id of a TI List.
-        This patch request only accepts threat_level and confidence level as the attributes. At least one of these two attributes must be present in the request. If only one of the two attributes is present, only that attribute is set to the specified value for the specified list and other attribute will be at the present value.
-        This operation is currently applicable only for the TI Lists.
+        This patch request only accepts threat_level and confidence level as the attributes. At least one of these two attributes must be present in the request. If only one of the two attributes is present, only that attribute is set to the specified value for the specified list; the other attribute will be at the present value.
+        Currently, this operation is applicable only to TI lists.
 
         Required:
         - id
@@ -2105,9 +2094,7 @@ paths:
       x-codegen-request-body-name: body
     put:
       description: |
-        Use this method to update the specified Named List object. Note that list type cannot be updated.
-
-        The Named List object represents several types of lists allowed for Infoblox Cloud such as predefined threat intelligence feeds that your subscription offers (Threat Insight, Fast Flux, DGA, DNSM). In addition to the predefined threat intelligence feeds that your subscription offers, you can create custom lists (containing domains and IP addresses) to define whitelists and blacklists for additional protection. You can use a custom list to complement existing feeds or override the Block, Allow, Log, or Redirect action that is currently defined for an existing feed. Note that lists representing predefined TI feeds cannot be created, updated and deleted. Also use of the field 'items' is discouraged and instead use of new field 'item_described' is suggested as it is possible to add the description/comments to each item in the custom list using this field. In any case, note that use of both the fields 'items' and 'items_described' is not supported and when one of these field is used they must have some value i.e, it cannot be empty.
+        Use this method to update the specified Named List object. The list type cannot be updated.
 
         Required:
         - name
@@ -2145,7 +2132,7 @@ paths:
             - 'name' length cannot exceed 256 characters limit
             - 'description' length cannot exceed 256 characters limit
             - 'items' value must contain valid IPv4 addresses or domain names
-            - named list of type "dnsm", "threat_insight", "fast_flux", "dga" and "threat_insight_nde" cannot be created
+            - named list of type "dnsm", "threat_insight", "dga", "threat_insight_nde" and "zero_day_dns" cannot be created
             - list type cannot be updated
             - Either 'items' or 'items_described' field is required
             - 'item' cannot be empty in field items_described
@@ -2181,11 +2168,12 @@ paths:
   /named_lists/{id}/items:
     delete:
       description: |
-        Use this method to remove items from a specified Named List object. Note that duplicated items are silently skipped and only new items are appended to the named list. Note that DNSM, TI, Fast Flux and DGA lists cannot be updated. Only Custom List items can be deleted.
+        Use this method to remove items from a specified Named List object. Duplicated items are silently skipped, and only new items are appended to the named list. DNSM, TI, and DGA lists cannot be updated; only Custom List items can be deleted.
 
-        The Custom List Items represent the list of the FQDN or IPv4 or IPv6 addresses to define whitelists and blacklists for additional protection.
+        The Custom List Items represent the list of the FQDN or IPv4 or IPv6 addresses used to define allow-lists and deny-lists for additional protection.
 
         Required:
+        - id
         - items
       operationId: named_list_itemsDeleteNamedListItems
       parameters:
@@ -2238,9 +2226,9 @@ paths:
       x-codegen-request-body-name: body
     patch:
       description: |
-        Use this method to insert ot delete items  for a specified Named List object. Note that duplicated items are silently skipped and only new items are appended to the named list. Note that DNSM, TI, Fast Flux and DGA lists cannot be updated. Only Custom List items can be updated.
+        Use this method to insert, update or delete items  for a specified Named List object. Duplicated items are silently skipped, and only new items are appended to the named list.
 
-        The Custom List Items represent the list of the FQDN or IPv4 addresses to define whitelists and blacklists for additional protection.
+        The Custom List Items represent the list of the FQDN or IPv4 addresses used to define allow-lists and deny-lists for additional protection.
       operationId: named_list_itemsNamedListItemsPartialUpdate
       parameters:
       - description: The Named List object identifier.
@@ -2255,7 +2243,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/atcfwNamedListItemsPartialUpdate'
-        description: NamedListItemsPartialUpdate object
+        description: NamedListItemsPartialUpdate object.
         required: true
       responses:
         "201":
@@ -2295,9 +2283,9 @@ paths:
       x-codegen-request-body-name: body
     post:
       description: |
-        Use this method to update existing items with new ones for a specified Named List object. Note that duplicated items are silently skipped and only new items are appended to the named list. Note that DNSM, TI, Fast Flux and DGA lists cannot be updated. Only Custom List items can be updated.
+        Use this method to update existing items with new ones for a specified Named List object. Duplicated items are silently skipped, and only new items are appended to the named list. DNSM, TI, and DGA lists cannot be updated; only Custom List items can be updated.
 
-        The Custom List Items represent the list of the FQDN or IPv4 addresses to define whitelists and blacklists for additional protection.
+        The Custom List Items represent the list of the FQDN or IPv4 addresses used to define allow-lists and deny-lists for additional protection.
       operationId: named_list_itemsInsertOrReplaceNamedListItems
       parameters:
       - description: The Named List object identifier.
@@ -2353,7 +2341,7 @@ paths:
   /named_lists_download:
     get:
       description: |+
-        Use this method to download the selected list of named lists in CSV (comma-separate values) format.
+        Use this method to download the selected list of named lists in the CSV format.
 
       operationId: named_listsListNamedListsCSV
       parameters:
@@ -2421,9 +2409,7 @@ paths:
   /network_lists:
     delete:
       description: |
-        Use this method to delete the Network List objects. Deletion of multiple lists is an all-or-nothing operation (if any of the specified lists can not be deleted then none of the specified lists will be deleted).
-
-        Before you can apply security policies, you must first define the networks that you want to protect from malicious attacks. The first step in configuring Infoblox Cloud is to set up DNS Firewall by defining your remote networks. You identify these external networks by their IP addresses. A network can contain a group of  or IPv6 addresses or blocks.
+        Use this method to delete the Network List objects. Deletion of multiple lists is an all-or-nothing operation; if any one of the specified lists cannot be deleted, then none of the specified lists will be deleted.
 
         Required:
         - ids
@@ -2456,7 +2442,7 @@ paths:
                 $ref: '#/components/schemas/network_listsDeleteNetworkLists_404_response'
           description: |2-
 
-            - 'ids' value must contain existing network list identifiers
+            - 'ids' value must contain a list of existing network list identifiers
         "500":
           content:
             application/json:
@@ -2472,8 +2458,6 @@ paths:
     get:
       description: |+
         Use this method to retrieve information on all Network List objects for the account.
-
-        Before you can apply security policies, you must first define the networks that you want to protect from malicious attacks. The first step in configuring Infoblox Cloud is to set up DNS Firewall by defining your remote networks. You identify these external networks by their IP addresses. A network can contain a group of IPv4 or IPv6 addresses or blocks.
 
       operationId: network_listsListNetworkLists
       parameters:
@@ -2493,7 +2477,7 @@ paths:
           | default_security_policy | bool   | !=, ==                      |
           | items                   | string | >=                           |
 
-          In addition grouping operators are supported:
+          In addition, grouping operators are supported:
 
           | Op  | Description          |
           | --- | -------------------- |
@@ -2567,13 +2551,14 @@ paths:
       - network_lists
     post:
       description: |
-        Use this method to create a Network List object.
-
-        Before you can apply security policies, you must first define the networks that you want to protect from malicious attacks. The first step in configuring Infoblox Cloud is to set up DNS Firewall by defining your remote networks. You identify these external networks by their IP addresses. A network can contain a group of IPv4 or IPv6 addresses or blocks.
+        Use this method to create a Network List object. The legacy `items` field
+        (CIDR strings only) is deprecated; new clients should use `addr_block`,
+        which mirrors the same CIDR set and additionally carries an end-user
+        description per entry. Exactly one of the two must be supplied.
 
         Required:
         - name
-        - items
+        - items or addr_block
       operationId: network_listsCreateNetworkList
       requestBody:
         content:
@@ -2599,9 +2584,11 @@ paths:
             - 'name' length cannot exceed 256 characters limit
             - 'name' value cannot be equal to 'All Infoblox Endpoints (Default)', 'All Networks (Default)', 'All DNS Forwarder Proxies (Default)'
             - 'description' length cannot exceed 256 characters limit
-            - 'items' value must not be empty
             - 'items' value must contain valid CIDRs from range [24, 32]
-            - CIDRs in 'items' cannot overlap with each other and with existing items for all accounts
+            - CIDRs cannot overlap with each other and with existing items for all accounts
+            - Either 'items' or 'addr_block' field is required
+            - 'address' cannot be empty in field addr_block
+            - 'description' length in addr_block entries cannot exceed 256 characters limit
         "409":
           content:
             application/json:
@@ -2624,11 +2611,8 @@ paths:
       x-codegen-request-body-name: body
   /network_lists/{id}:
     delete:
-      description: |+
+      description: |
         Use this method to delete the Network List object by the specified Network List object id.
-
-        Before you can apply security policies, you must first define the networks that you want to protect from malicious attacks. The first step in configuring Infoblox Cloud is to set up DNS Firewall by defining your remote networks. You identify these external networks by their IP addresses. A network can contain a group of  or IPv6 addresses or blocks.
-
       operationId: network_listsDeleteSingleNetworkLists
       parameters:
       - description: The Network List object identifier.
@@ -2658,7 +2642,7 @@ paths:
                 $ref: '#/components/schemas/network_listsDeleteNetworkLists_404_response'
           description: |2-
 
-            - 'id' value must contain existing network list identifiers
+            - 'id' value must contain an existing network list identifier
         "500":
           content:
             application/json:
@@ -2729,13 +2713,15 @@ paths:
       - network_lists
     put:
       description: |
-        Use this method to update a specified Network List object.
-
-        Before you can apply security policies, you must first define the networks that you want to protect from malicious attacks. The first step in configuring Infoblox Cloud is to set up DNS Firewall by defining your remote networks. You identify these external networks by their IP addresses. A network can contain a group of IPv4 or IPv6 addresses or blocks.
+        Use this method to update a specified Network List object. The legacy
+        `items` field (CIDR strings only) is deprecated; new clients should use
+        `addr_block`, which additionally carries an end-user description per
+        entry. Exactly one of the two must be supplied; supplying only `items`
+        will clear any existing per-entry descriptions.
 
         Required:
         - name
-        - items
+        - items or addr_block
       operationId: network_listsUpdateNetworkList
       parameters:
       - description: The Network List object identifier.
@@ -2769,9 +2755,11 @@ paths:
             - 'name' length cannot exceed 256 characters limit
             - 'name' value cannot be equal to 'All Infoblox Endpoints (Default)', 'All Networks (Default)', 'All DNS Forwarder Proxies (Default)'
             - 'description' length cannot exceed 256 characters limit
-            - 'items' value must not be empty
             - 'items' value must contain valid CIDRs from range [24, 32]
-            - CIDRs in 'items' cannot overlap with each other and with existing items for all accounts
+            - CIDRs cannot overlap with each other and with existing items for all accounts
+            - Either 'items' or 'addr_block' field is required
+            - 'address' cannot be empty in field addr_block
+            - 'description' length in addr_block entries cannot exceed 256 characters limit
         "404":
           content:
             application/json:
@@ -3498,6 +3486,21 @@ paths:
       - threat_feeds
 components:
   schemas:
+    AddrBlockApprovalsApprovalStatus:
+      default: VERIFIED
+      enum:
+      - VERIFIED
+      - PENDING
+      - DECLINED
+      - AUTO_VERIFIED
+      - TEMPORARILY_VERIFIED
+      type: string
+    ItemStructsItemStatus:
+      default: ACTIVE
+      enum:
+      - ACTIVE
+      - INACTIVE
+      type: string
     NetAddrDfpAssignmentScopeType:
       default: UNKNOWN
       enum:
@@ -3740,6 +3743,57 @@ components:
       properties:
         results:
           $ref: '#/components/schemas/atcfwAccessCode'
+      type: object
+    atcfwAddrBlock:
+      properties:
+        address:
+          description: The CIDR of the address block.
+          example: 156.2.3.0/24
+          type: string
+        description:
+          description: End-user description for the address block.
+          example: HQ network
+          type: string
+      type: object
+    atcfwAddrBlockApprovals:
+      example:
+        updated_time: 2000-01-23T04:56:07.000+00:00
+        account_id: 6
+        address: address
+        comments: comments
+        approval_status: null
+        company_name: company_name
+        requested_at: 2000-01-23T04:56:07.000+00:00
+        username: username
+      properties:
+        account_id:
+          description: The account id of the addr block.
+          format: int32
+          type: integer
+        address:
+          description: The address of the addr block.
+          type: string
+        approval_status:
+          $ref: '#/components/schemas/AddrBlockApprovalsApprovalStatus'
+        comments:
+          description: Any comments about the address block.
+          type: string
+        company_name:
+          description: The company name of the addr block.
+          type: string
+        requested_at:
+          description: "The time the approval request was created, which is based\
+            \ on the address block's creation time."
+          format: date-time
+          type: string
+        updated_time:
+          description: The time this Address Block object was updated.
+          format: date-time
+          readOnly: true
+          type: string
+        username:
+          description: The user who created the address block.
+          type: string
       type: object
     atcfwAppApproval:
       example:
@@ -4447,15 +4501,41 @@ components:
           $ref: '#/components/schemas/atcfwInternalDomains'
       type: object
     atcfwItemStructs:
-      description: The Items Structure which contains the item and its description
+      description: The Items structure that contains the item and its description.
+      example:
+        item: example1.somdomain.com
+        description: Item A description
+        expiry_time: 2000-01-23T04:56:07.000+00:00
+        status_details: Inactive;11/03/2023;user:bob@wellington.com
+        status: null
       properties:
         description:
-          description: The description of the item
+          description: The description of the item.
           example: Item A description
           type: string
+        expiry_time:
+          description: |-
+            The time at which this list item expires, as an RFC 3339 timestamp
+            string. May be specified in any timezone.
+            Unset (null) means no expiry.
+
+            Write semantics:
+            - Insert/replace (POST /named_lists/{id}/items): set when present;
+              NULL when absent in payload.
+            - Patch update (PATCH /named_lists/{id}/items, updated_items_described):
+              set when present; unchanged when absent in payload.
+            Clearing an existing expiry_time via request field mask is not supported.
+          format: date-time
+          type: string
         item:
-          description: The data of the Item
+          description: The data of the item.
           example: example1.somdomain.com
+          type: string
+        status:
+          $ref: '#/components/schemas/ItemStructsItemStatus'
+        status_details:
+          description: The status details of the item. Applicable to TI domains only
+          example: Inactive;11/03/2023;user:bob@wellington.com
           type: string
       type: object
     atcfwListPoPRegionsResponse:
@@ -4482,12 +4562,12 @@ components:
           type: integer
       type: object
     atcfwListSeverityLevels:
-      description: The Payload for Patch Operation to update Threat/Confidence Levels
-        and Tags in TI List
+      description: The payload for the patch operation used to update the threat or
+        confidence levels and tags in the TI list.
       properties:
         confidence_level:
           description: "The confidence level for a TI list. The possible values are\
-            \ [LOW\", \"MEDIUM\", \"HIGH\"]"
+            \ LOW\", \"MEDIUM\", and \"HIGH\"."
           example: LOW
           type: string
         id:
@@ -4497,12 +4577,12 @@ components:
           type: integer
         tags:
           additionalProperties: false
-          description: Enables tag support for resource where tags attribute contains
-            user-defined key value pairs
+          description: Enables tag support for a resource where the tags attribute
+            contains user-defined key-value pairs.
           type: object
         threat_level:
-          description: "The threat level for a TI list. The possible values are [\"\
-            INFO\", \"LOW\", \"MEDIUM\", \"HIGH\"]"
+          description: "The threat level for a TI list. The possible values are \"\
+            INFO\", \"LOW\", \"MEDIUM\", and \"HIGH\"."
           example: INFO
           type: string
       type: object
@@ -4518,8 +4598,7 @@ components:
             type: integer
           type: array
         inserted_items_described:
-          description: The List of ItemStructs structure which contains the item and
-            its description
+          description: The List of ItemStructs which contain an item and their description
           example:
           - description: Item 1 Description
             item: example1.somedomain.com
@@ -4539,9 +4618,9 @@ components:
       description: |-
         The Named List object.
 
-        The Named List object represents several types of lists allowed for Infoblox Cloud such as predefined threat intelligence feeds that your subscription offers (Threat Insight, Fast Flux, DGA, DNSM). In addition to the predefined threat intelligence feeds that your subscription offers, you can create custom lists (containing domains and IP addresses) to define whitelists and blacklists for additional protection. You can use a custom list to complement existing feeds or override the Block, Allow, Log, or Redirect action that is currently defined for an existing feed.
+        The Named List object represents Threat Insight, DGA, DNSM, and other predefined threat intelligence feeds supported by Infoblox Cloud and offered by your subscription. For more protection, create custom allow-lists and deny-lists of domains and IP addresses, and use these custom lists to complement existing feeds or override the Block, Allow, Log, or Redirect action currently defined for an existing feed.
 
-        Note that lists representing predefined TI feeds cannot be created, updated and deleted.
+        Note that lists representing predefined TI feeds cannot be created, updated, or deleted.
       example:
         item_count: 24567
         created_time: 2000-01-23T04:56:07.000+00:00
@@ -4555,6 +4634,8 @@ components:
         items_described:
         - description: Item 1 Description
           item: example1.somedomain.com
+          status: INACTIVE
+          status_details: INACTIVE;11/03/2023;user:bob@wellington.com
         - description: Item 2 Description
           item: 193.56.2.11/32
         - description: Item 3 Description
@@ -4570,11 +4651,11 @@ components:
       properties:
         confidence_level:
           description: "The confidence level for a custom list. The possible values\
-            \ are [\"LOW\", \"MEDIUM\", \"HIGH\"]"
+            \ are \"LOW\", \"MEDIUM\", and \"HIGH\"."
           example: LOW
           type: string
         created_time:
-          description: The time when this Named List object was created.
+          description: The time this Named List object was created.
           format: date-time
           readOnly: true
           type: string
@@ -4594,8 +4675,8 @@ components:
           readOnly: true
           type: integer
         items:
-          description: The list of the FQDN or IPv4/IPv6 CIDRs to define whitelists
-            and blacklists for additional protection.
+          description: The list of the FQDN or IPv4/IPv6 CIDRs used to define allow-lists
+            and deny-lists for additional protection.
           example:
           - example1.somedomain.com
           - 193.56.2.11/32
@@ -4604,11 +4685,13 @@ components:
             type: string
           type: array
         items_described:
-          description: The List of ItemStructs structure which contains the item and
-            its description
+          description: "The list of ItemStructs structures that contains items, descriptions,\
+            \ status and status details."
           example:
           - description: Item 1 Description
             item: example1.somedomain.com
+            status: INACTIVE
+            status_details: INACTIVE;11/03/2023;user:bob@wellington.com
           - description: Item 2 Description
             item: 193.56.2.11/32
           - description: Item 3 Description
@@ -4631,50 +4714,50 @@ components:
           type: array
         tags:
           additionalProperties: false
-          description: Enables tag support for resource where tags attribute contains
-            user-defined key value pairs
+          description: Enables tag support for a resource where the tags attribute
+            contains user-defined key-value pairs.
           type: object
         threat_level:
           description: "The threat level for a custom list. The possible values are\
-            \ [\"INFO\", \"LOW\", \"MEDIUM\", \"HIGH\"]"
+            \ \"INFO\", \"LOW\", \"MEDIUM\", and \"HIGH\"."
           example: INFO
           type: string
         type:
-          description: "The type of the named list, that can be \"custom_list\", \"\
-            threat_insight\", \"fast_flux\", \"dga\", \"dnsm\", \"threat_insight_nde\"\
-            , \"default_allow\", \"default_block\" or \"threat_insight_nde\"."
+          description: "The type of the named list: \"custom_list\", \"threat_insight\"\
+            , \"dga\", \"dnsm\", \"default_allow\", \"default_block\", \"threat_insight_nde\"\
+            , or \"zero_day_dns\"."
           enum:
           - custom_list
           - threat_insight
-          - fast_flux
           - dga
           - dnsm
           - threat_insight_nde
+          - zero_day_dns
           - default_allow
           - default_block
           example: custom_list
           type: string
         updated_time:
-          description: The time when this Named List object was last updated.
+          description: The time this Named List object was updated most recently.
           format: date-time
           readOnly: true
           type: string
       type: object
     atcfwNamedListCSVListResponse:
-      description: The Named List CSV list response
+      description: The Named List CSV list response.
       example:
         results:
         - results
         - results
       properties:
         results:
-          description: Named Lists for csv file
+          description: Named lists for a CSV file.
           items:
             type: string
           type: array
       type: object
     atcfwNamedListCreateResponse:
-      description: The Named List create response.
+      description: The Named List creation response.
       example:
         results:
           item_count: 24567
@@ -4689,6 +4772,8 @@ components:
           items_described:
           - description: Item 1 Description
             item: example1.somedomain.com
+            status: INACTIVE
+            status_details: INACTIVE;11/03/2023;user:bob@wellington.com
           - description: Item 2 Description
             item: 193.56.2.11/32
           - description: Item 3 Description
@@ -4706,7 +4791,7 @@ components:
           $ref: '#/components/schemas/atcfwNamedList'
       type: object
     atcfwNamedListItemsDeleteRequest:
-      description: The Named List Items delete request.
+      description: The Named List Items deletion request.
       properties:
         id:
           description: The Named List object identifier.
@@ -4714,8 +4799,8 @@ components:
           readOnly: true
           type: integer
         items:
-          description: The list of the FQDN or IPv4/IPv6 addresses or IPv4/IPv6 CIDRs
-            to define whitelists and blacklists for additional protection.
+          description: "The list of the FQDN or IPv4/IPv6 addresses or IPv4/IPv6 CIDRs,\
+            \ used to define allow-lists and deny-lists for additional protection."
           example:
           - example1.somedomain.com
           - 193.56.2.11
@@ -4726,8 +4811,8 @@ components:
             type: string
           type: array
         items_described:
-          description: The List of ItemStructs structure which contains the item and
-            its description
+          description: The list of ItemStructs structures that contains items and
+            their descriptions.
           example:
           - description: Item 1 Description
             item: example1.somedomain.com
@@ -4749,8 +4834,8 @@ components:
           readOnly: true
           type: integer
         items:
-          description: The list of the FQDN or IPv4/IPv6 addresses or IPv4/IPv6 CIDRs
-            to define whitelists and blacklists for additional protection.
+          description: "The list of the FQDN or IPv4/IPv6 addresses or IPv4/IPv6 CIDRs,\
+            \ used to define allow-lists and deny-lists for additional protection."
           example:
           - example1.somedomain.com
           - 193.56.2.11
@@ -4761,8 +4846,8 @@ components:
             type: string
           type: array
         items_described:
-          description: The List of ItemStructs structure which contains the item and
-            its description
+          description: The list of ItemStructs structures that contains items and
+            their descriptions.
           items:
             $ref: '#/components/schemas/atcfwItemStructs'
           type: array
@@ -4780,8 +4865,8 @@ components:
     atcfwNamedListItemsPartialUpdate:
       properties:
         deleted_items_described:
-          description: The List of ItemStructs structure which contains the item and
-            its description
+          description: The list of ItemStructs structures that contains items and
+            their descriptions.
           example:
           - description: Item 1 Description
             item: example2.somedomain.com
@@ -4800,8 +4885,8 @@ components:
           readOnly: true
           type: integer
         inserted_items_described:
-          description: The List of ItemStructs structure which contains the item and
-            its description
+          description: The list of ItemStructs structures that contains items and
+            their descriptions.
           example:
           - description: Item 1 Description
             item: example1.somedomain.com
@@ -4814,15 +4899,77 @@ components:
           items:
             $ref: '#/components/schemas/atcfwItemStructs'
           type: array
+        updated_items_described:
+          description: "The list of ItemStructs structures that contains items, descriptions,\
+            \ statuses, status detail"
+          example:
+          - description: Item 1 Description
+            item: example1.somedomain.com
+            status: INACTIVE
+            status_details: INACTIVE;11/03/2023;user:bob@wellington.com
+          items:
+            $ref: '#/components/schemas/atcfwItemStructs'
+          type: array
       type: object
     atcfwNamedListItemsPartialUpdateResponse:
-      description: The Named List Items patch response.
+      description: The Named List Items patch response returns inserted and deleted
+        items.
+      example:
+        deleted_items:
+        - item: example1.somdomain.com
+          description: Item A description
+          expiry_time: 2000-01-23T04:56:07.000+00:00
+          status_details: Inactive;11/03/2023;user:bob@wellington.com
+          status: null
+        - item: example1.somdomain.com
+          description: Item A description
+          expiry_time: 2000-01-23T04:56:07.000+00:00
+          status_details: Inactive;11/03/2023;user:bob@wellington.com
+          status: null
+        inserted_items:
+        - item: example1.somdomain.com
+          description: Item A description
+          expiry_time: 2000-01-23T04:56:07.000+00:00
+          status_details: Inactive;11/03/2023;user:bob@wellington.com
+          status: null
+        - item: example1.somdomain.com
+          description: Item A description
+          expiry_time: 2000-01-23T04:56:07.000+00:00
+          status_details: Inactive;11/03/2023;user:bob@wellington.com
+          status: null
+        updated_items:
+        - item: example1.somdomain.com
+          description: Item A description
+          expiry_time: 2000-01-23T04:56:07.000+00:00
+          status_details: Inactive;11/03/2023;user:bob@wellington.com
+          status: null
+        - item: example1.somdomain.com
+          description: Item A description
+          expiry_time: 2000-01-23T04:56:07.000+00:00
+          status_details: Inactive;11/03/2023;user:bob@wellington.com
+          status: null
+      properties:
+        deleted_items:
+          description: Deleted items list
+          items:
+            $ref: '#/components/schemas/atcfwItemStructs'
+          type: array
+        inserted_items:
+          description: Inserted items list
+          items:
+            $ref: '#/components/schemas/atcfwItemStructs'
+          type: array
+        updated_items:
+          description: Updated items list
+          items:
+            $ref: '#/components/schemas/atcfwItemStructs'
+          type: array
       type: object
     atcfwNamedListRead:
       description: |-
         The Named List object.
 
-        The Named List object represents several types of lists allowed for Infoblox Cloud such as predefined threat intelligence feeds that your subscription offers (Threat Insight, Fast Flux, DGA, DNSM). In addition to the predefined threat intelligence feeds that your subscription offers, you can create custom lists (containing domains and IP addresses) to define whitelists and blacklists for additional protection. You can use a custom list to complement existing feeds or override the Block, Allow, Log, or Redirect action that is currently defined for an existing feed. Note that lists representing predefined TI feeds cannot be created, updated and deleted.
+        The Named List object represents Threat Insight, DGA, DNSM, and other predefined threat intelligence feeds supported by Infoblox Cloud and offered by your subscription. For more protection, create custom allow-lists and deny-lists of domains and IP addresses, and use these custom lists to complement existing feeds or override the Block, Allow, Log, or Redirect action currently defined for existing feeds. Note that lists representing predefined TI feeds cannot be created, updated, or deleted.
       example:
         item_count: 24567
         created_time: 2000-01-23T04:56:07.000+00:00
@@ -4840,12 +4987,12 @@ components:
       properties:
         confidence_level:
           description: "The confidence level for a custom list. The possible values\
-            \ are [\"LOW\", \"MEDIUM\", \"HIGH\"]"
+            \ are \"LOW\", \"MEDIUM\", and \"HIGH\"."
           example: LOW
           readOnly: true
           type: string
         created_time:
-          description: The time when this Named List object was created.
+          description: The time this Named List object was created.
           format: date-time
           readOnly: true
           type: string
@@ -4882,32 +5029,32 @@ components:
           type: array
         tags:
           additionalProperties: false
-          description: Tags associated with this Named List
+          description: The tags associated with a named list.
           type: object
         threat_level:
           description: "The threat level for a custom list. The possible values are\
-            \ [\"INFO\", \"LOW\", \"MEDIUM\", \"HIGH\"]"
+            \ \"INFO\", \"LOW\", \"MEDIUM\", and \"HIGH\"."
           example: INFO
           readOnly: true
           type: string
         type:
-          description: "The type of the named list, that can be \"custom_list\", \"\
-            threat_insight\", \"fast_flux\", \"dga\", \"dnsm\", \"threat_insight_nde\"\
-            , \"default_allow\", \"default_block\"."
+          description: "The type of the named list: \"custom_list\", \"threat_insight\"\
+            , \"dga\", \"dnsm\", \"threat_insight_nde\", \"zero_day_dns\", \"default_allow\"\
+            , or \"default_block\"."
           enum:
           - custom_list
           - threat_insight
-          - fast_flux
           - dga
           - dnsm
           - threat_insight_nde
+          - zero_day_dns
           - default_allow
           - default_block
           example: custom_list
           readOnly: true
           type: string
         updated_time:
-          description: The time when this Named List object was last updated.
+          description: The time this Named List object was updated most recently.
           format: date-time
           readOnly: true
           type: string
@@ -4965,6 +5112,8 @@ components:
           items_described:
           - description: Item 1 Description
             item: example1.somedomain.com
+            status: INACTIVE
+            status_details: INACTIVE;11/03/2023;user:bob@wellington.com
           - description: Item 2 Description
             item: 193.56.2.11/32
           - description: Item 3 Description
@@ -4997,6 +5146,8 @@ components:
           items_described:
           - description: Item 1 Description
             item: example1.somedomain.com
+            status: INACTIVE
+            status_details: INACTIVE;11/03/2023;user:bob@wellington.com
           - description: Item 2 Description
             item: 193.56.2.11/32
           - description: Item 3 Description
@@ -5014,10 +5165,10 @@ components:
           $ref: '#/components/schemas/atcfwNamedList'
       type: object
     atcfwNamedListsDeleteRequest:
-      description: The Named List delete request.
+      description: The Named List deletion request.
       properties:
         ids:
-          description: The list of Named List object identifiers.
+          description: A list of identifiers of Named List objects.
           example:
           - 12345
           - 53215
@@ -5082,9 +5233,31 @@ components:
       description: |-
         The Network List object.
 
-        Before you can apply security policies, you must first define the networks that you want to protect from malicious attacks. The first step in configuring Infoblox Cloud is to set up DNS Firewall by defining your remote networks. You identify these external networks by their IP addresses. A network can contain a group of IPv4 or IPv6 addresses or blocks.
+        Before you can apply security policies, you must first define the networks that you want to protect from malicious attacks. The first step in configuring Infoblox Cloud is to set up a DNS firewall by defining your remote networks. You identify these external networks by their IP addresses. A network can contain a group of IPv4 or IPv6 addresses or blocks.
       example:
+        addr_block:
+        - address: 156.2.3.0/24
+          description: HQ network
+        - address: 98.36.1.4/31
+          description: Branch office
         created_time: 2000-01-23T04:56:07.000+00:00
+        item_approvals:
+        - updated_time: 2000-01-23T04:56:07.000+00:00
+          account_id: 6
+          address: address
+          comments: comments
+          approval_status: null
+          company_name: company_name
+          requested_at: 2000-01-23T04:56:07.000+00:00
+          username: username
+        - updated_time: 2000-01-23T04:56:07.000+00:00
+          account_id: 6
+          address: address
+          comments: comments
+          approval_status: null
+          company_name: company_name
+          requested_at: 2000-01-23T04:56:07.000+00:00
+          username: username
         updated_time: 2000-01-23T04:56:07.000+00:00
         policy_id: 56321
         name: network_list_a
@@ -5096,8 +5269,21 @@ components:
         - 2001:db8:1::/48
         - 2001:db8::2/128
       properties:
+        addr_block:
+          description: |-
+            The list of address blocks in the network list with optional end-user
+            descriptions. Preferred over the deprecated `items` field for new clients;
+            mirrors the same CIDR set and additionally carries a description per entry.
+          example:
+          - address: 156.2.3.0/24
+            description: HQ network
+          - address: 98.36.1.4/31
+            description: Branch office
+          items:
+            $ref: '#/components/schemas/atcfwAddrBlock'
+          type: array
         created_time:
-          description: The time when this Network List object was created.
+          description: The time this Network List object was created.
           format: date-time
           readOnly: true
           type: string
@@ -5110,9 +5296,22 @@ components:
           format: int32
           readOnly: true
           type: integer
+        item_approvals:
+          description: "The address blocks in the network list, along with their approval\
+            \ status."
+          items:
+            $ref: '#/components/schemas/atcfwAddrBlockApprovals'
+          readOnly: true
+          type: array
         items:
-          description: The list of networks' CIDRs that are subject for malicious
-            attacks protection.
+          description: |-
+            The list of networks' CIDRs that are subject to protection from malicious attacks.
+
+            Deprecated: use `addr_block` instead. `items` is retained for backwards
+            compatibility with existing clients and carries only CIDR strings, with no
+            per-entry description. New clients should populate `addr_block`, which
+            mirrors these CIDRs and additionally supports an end-user description per
+            address block.
           example:
           - 156.2.3.0/24
           - 98.36.1.4/31
@@ -5133,16 +5332,38 @@ components:
           readOnly: true
           type: integer
         updated_time:
-          description: The time when this Network List object was last updated.
+          description: The time this Network List object was updated most recently.
           format: date-time
           readOnly: true
           type: string
       type: object
     atcfwNetworkListCreateResponse:
-      description: The Network List create response.
+      description: The Network List creation response.
       example:
         results:
+          addr_block:
+          - address: 156.2.3.0/24
+            description: HQ network
+          - address: 98.36.1.4/31
+            description: Branch office
           created_time: 2000-01-23T04:56:07.000+00:00
+          item_approvals:
+          - updated_time: 2000-01-23T04:56:07.000+00:00
+            account_id: 6
+            address: address
+            comments: comments
+            approval_status: null
+            company_name: company_name
+            requested_at: 2000-01-23T04:56:07.000+00:00
+            username: username
+          - updated_time: 2000-01-23T04:56:07.000+00:00
+            account_id: 6
+            address: address
+            comments: comments
+            approval_status: null
+            company_name: company_name
+            requested_at: 2000-01-23T04:56:07.000+00:00
+            username: username
           updated_time: 2000-01-23T04:56:07.000+00:00
           policy_id: 56321
           name: network_list_a
@@ -5161,7 +5382,29 @@ components:
       description: The Network List list response.
       example:
         results:
-        - created_time: 2000-01-23T04:56:07.000+00:00
+        - addr_block:
+          - address: 156.2.3.0/24
+            description: HQ network
+          - address: 98.36.1.4/31
+            description: Branch office
+          created_time: 2000-01-23T04:56:07.000+00:00
+          item_approvals:
+          - updated_time: 2000-01-23T04:56:07.000+00:00
+            account_id: 6
+            address: address
+            comments: comments
+            approval_status: null
+            company_name: company_name
+            requested_at: 2000-01-23T04:56:07.000+00:00
+            username: username
+          - updated_time: 2000-01-23T04:56:07.000+00:00
+            account_id: 6
+            address: address
+            comments: comments
+            approval_status: null
+            company_name: company_name
+            requested_at: 2000-01-23T04:56:07.000+00:00
+            username: username
           updated_time: 2000-01-23T04:56:07.000+00:00
           policy_id: 56321
           name: network_list_a
@@ -5172,7 +5415,29 @@ components:
           - 98.36.1.4/31
           - 2001:db8:1::/48
           - 2001:db8::2/128
-        - created_time: 2000-01-23T04:56:07.000+00:00
+        - addr_block:
+          - address: 156.2.3.0/24
+            description: HQ network
+          - address: 98.36.1.4/31
+            description: Branch office
+          created_time: 2000-01-23T04:56:07.000+00:00
+          item_approvals:
+          - updated_time: 2000-01-23T04:56:07.000+00:00
+            account_id: 6
+            address: address
+            comments: comments
+            approval_status: null
+            company_name: company_name
+            requested_at: 2000-01-23T04:56:07.000+00:00
+            username: username
+          - updated_time: 2000-01-23T04:56:07.000+00:00
+            account_id: 6
+            address: address
+            comments: comments
+            approval_status: null
+            company_name: company_name
+            requested_at: 2000-01-23T04:56:07.000+00:00
+            username: username
           updated_time: 2000-01-23T04:56:07.000+00:00
           policy_id: 56321
           name: network_list_a
@@ -5194,7 +5459,29 @@ components:
       description: The Network List read response.
       example:
         results:
+          addr_block:
+          - address: 156.2.3.0/24
+            description: HQ network
+          - address: 98.36.1.4/31
+            description: Branch office
           created_time: 2000-01-23T04:56:07.000+00:00
+          item_approvals:
+          - updated_time: 2000-01-23T04:56:07.000+00:00
+            account_id: 6
+            address: address
+            comments: comments
+            approval_status: null
+            company_name: company_name
+            requested_at: 2000-01-23T04:56:07.000+00:00
+            username: username
+          - updated_time: 2000-01-23T04:56:07.000+00:00
+            account_id: 6
+            address: address
+            comments: comments
+            approval_status: null
+            company_name: company_name
+            requested_at: 2000-01-23T04:56:07.000+00:00
+            username: username
           updated_time: 2000-01-23T04:56:07.000+00:00
           policy_id: 56321
           name: network_list_a
@@ -5213,7 +5500,29 @@ components:
       description: The Network List update response.
       example:
         results:
+          addr_block:
+          - address: 156.2.3.0/24
+            description: HQ network
+          - address: 98.36.1.4/31
+            description: Branch office
           created_time: 2000-01-23T04:56:07.000+00:00
+          item_approvals:
+          - updated_time: 2000-01-23T04:56:07.000+00:00
+            account_id: 6
+            address: address
+            comments: comments
+            approval_status: null
+            company_name: company_name
+            requested_at: 2000-01-23T04:56:07.000+00:00
+            username: username
+          - updated_time: 2000-01-23T04:56:07.000+00:00
+            account_id: 6
+            address: address
+            comments: comments
+            approval_status: null
+            company_name: company_name
+            requested_at: 2000-01-23T04:56:07.000+00:00
+            username: username
           updated_time: 2000-01-23T04:56:07.000+00:00
           policy_id: 56321
           name: network_list_a
@@ -5229,7 +5538,7 @@ components:
           $ref: '#/components/schemas/atcfwNetworkList'
       type: object
     atcfwNetworkListsDeleteRequest:
-      description: The Network List delete request.
+      description: The Network List deletion request.
       properties:
         ids:
           description: The list of Network List object identifiers.

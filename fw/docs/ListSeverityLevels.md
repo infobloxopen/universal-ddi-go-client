@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ConfidenceLevel** | Pointer to **string** | The confidence level for a TI list. The possible values are [LOW\&quot;, \&quot;MEDIUM\&quot;, \&quot;HIGH\&quot;] | [optional] 
+**ConfidenceLevel** | Pointer to **string** | The confidence level for a TI list. The possible values are LOW\&quot;, \&quot;MEDIUM\&quot;, and \&quot;HIGH\&quot;. | [optional] 
 **Id** | Pointer to **int32** | The Named List object identifier. | [optional] [readonly] 
-**Tags** | Pointer to **map[string]interface{}** | Enables tag support for resource where tags attribute contains user-defined key value pairs | [optional] 
-**ThreatLevel** | Pointer to **string** | The threat level for a TI list. The possible values are [\&quot;INFO\&quot;, \&quot;LOW\&quot;, \&quot;MEDIUM\&quot;, \&quot;HIGH\&quot;] | [optional] 
+**Tags** | Pointer to **map[string]interface{}** | Enables tag support for a resource where the tags attribute contains user-defined key-value pairs. | [optional] 
+**ThreatLevel** | Pointer to **string** | The threat level for a TI list. The possible values are \&quot;INFO\&quot;, \&quot;LOW\&quot;, \&quot;MEDIUM\&quot;, and \&quot;HIGH\&quot;. | [optional] 
 
 ## Methods
 
