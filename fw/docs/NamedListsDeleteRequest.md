@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ids** | Pointer to **[]int32** | The list of Named List object identifiers. | [optional] 
+**Ids** | Pointer to **[]int32** | A list of identifiers of Named List objects. | [optional] 
 
 ## Methods
 

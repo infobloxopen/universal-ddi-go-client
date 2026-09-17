@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ConfidenceLevel** | Pointer to **string** | The confidence level for a custom list. The possible values are [\&quot;LOW\&quot;, \&quot;MEDIUM\&quot;, \&quot;HIGH\&quot;] | [optional] 
-**CreatedTime** | Pointer to **time.Time** | The time when this Named List object was created. | [optional] [readonly] 
+**ConfidenceLevel** | Pointer to **string** | The confidence level for a custom list. The possible values are \&quot;LOW\&quot;, \&quot;MEDIUM\&quot;, and \&quot;HIGH\&quot;. | [optional] 
+**CreatedTime** | Pointer to **time.Time** | The time this Named List object was created. | [optional] [readonly] 
 **Description** | Pointer to **string** | The brief description for the named list. | [optional] 
 **Id** | Pointer to **int32** | The Named List object identifier. | [optional] [readonly] 
 **ItemCount** | Pointer to **int32** | The number of items in this named list. | [optional] [readonly] 
-**Items** | Pointer to **[]string** | The list of the FQDN or IPv4/IPv6 CIDRs to define whitelists and blacklists for additional protection. | [optional] 
-**ItemsDescribed** | Pointer to [**[]ItemStructs**](ItemStructs.md) | The List of ItemStructs structure which contains the item and its description | [optional] 
+**Items** | Pointer to **[]string** | The list of the FQDN or IPv4/IPv6 CIDRs used to define allow-lists and deny-lists for additional protection. | [optional] 
+**ItemsDescribed** | Pointer to [**[]ItemStructs**](ItemStructs.md) | The list of ItemStructs structures that contains items, descriptions, status and status details. | [optional] 
 **Name** | Pointer to **string** | The name of the named list. | [optional] 
 **Policies** | Pointer to **[]string** | The list of the security policy names with which the named list is associated. | [optional] 
-**Tags** | Pointer to **map[string]interface{}** | Enables tag support for resource where tags attribute contains user-defined key value pairs | [optional] 
-**ThreatLevel** | Pointer to **string** | The threat level for a custom list. The possible values are [\&quot;INFO\&quot;, \&quot;LOW\&quot;, \&quot;MEDIUM\&quot;, \&quot;HIGH\&quot;] | [optional] 
-**Type** | Pointer to **string** | The type of the named list, that can be \&quot;custom_list\&quot;, \&quot;threat_insight\&quot;, \&quot;fast_flux\&quot;, \&quot;dga\&quot;, \&quot;dnsm\&quot;, \&quot;threat_insight_nde\&quot;, \&quot;default_allow\&quot;, \&quot;default_block\&quot; or \&quot;threat_insight_nde\&quot;. | [optional] 
-**UpdatedTime** | Pointer to **time.Time** | The time when this Named List object was last updated. | [optional] [readonly] 
+**Tags** | Pointer to **map[string]interface{}** | Enables tag support for a resource where the tags attribute contains user-defined key-value pairs. | [optional] 
+**ThreatLevel** | Pointer to **string** | The threat level for a custom list. The possible values are \&quot;INFO\&quot;, \&quot;LOW\&quot;, \&quot;MEDIUM\&quot;, and \&quot;HIGH\&quot;. | [optional] 
+**Type** | Pointer to **string** | The type of the named list: \&quot;custom_list\&quot;, \&quot;threat_insight\&quot;, \&quot;dga\&quot;, \&quot;dnsm\&quot;, \&quot;default_allow\&quot;, \&quot;default_block\&quot;, \&quot;threat_insight_nde\&quot;, or \&quot;zero_day_dns\&quot;. | [optional] 
+**UpdatedTime** | Pointer to **time.Time** | The time this Named List object was updated most recently. | [optional] [readonly] 
 
 ## Methods
 

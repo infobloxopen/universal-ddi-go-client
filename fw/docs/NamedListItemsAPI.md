@@ -152,7 +152,7 @@ No authorization required
 
 ## NamedListItemsPartialUpdate
 
-> map[string]interface{} NamedListItemsPartialUpdate(ctx, id).Body(body).Execute()
+> NamedListItemsPartialUpdateResponse NamedListItemsPartialUpdate(ctx, id).Body(body).Execute()
 
 Partial Update Named List Items.
 
@@ -173,7 +173,7 @@ import (
 
 func main() {
 	id := int32(56) // int32 | The Named List object identifier.
-	body := *fw.NewNamedListItemsPartialUpdate() // NamedListItemsPartialUpdate | NamedListItemsPartialUpdate object
+	body := *fw.NewNamedListItemsPartialUpdate() // NamedListItemsPartialUpdate | NamedListItemsPartialUpdate object.
 
 	apiClient := fw.NewAPIClient()
 	resp, r, err := apiClient.NamedListItemsAPI.NamedListItemsPartialUpdate(context.Background(), id).Body(body).Execute()
@@ -181,7 +181,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `NamedListItemsAPI.NamedListItemsPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `NamedListItemsPartialUpdate`: map[string]interface{}
+	// response from `NamedListItemsPartialUpdate`: NamedListItemsPartialUpdateResponse
 	fmt.Fprintf(os.Stdout, "Response from `NamedListItemsAPI.NamedListItemsPartialUpdate`: %v\n", resp)
 }
 ```
@@ -201,11 +201,11 @@ Other parameters are passed through a pointer to a `NamedListItemsAPINamedListIt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**body** | [**NamedListItemsPartialUpdate**](NamedListItemsPartialUpdate.md) | NamedListItemsPartialUpdate object | 
+**body** | [**NamedListItemsPartialUpdate**](NamedListItemsPartialUpdate.md) | NamedListItemsPartialUpdate object. | 
 
 ### Return type
 
-**map[string]interface{}**
+[**NamedListItemsPartialUpdateResponse**](NamedListItemsPartialUpdateResponse.md)
 
 ### Authorization
 

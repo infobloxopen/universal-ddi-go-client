@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Address** | **string** | The address field in form “a.b.c.d/n” where the “/n” may be omitted. In this case, the CIDR value must be defined in the _cidr_ field. When reading, the _address_ field is always in the form “a.b.c.d”. | 
+**Address** | Pointer to **string** | The address field in form “a.b.c.d/n” where the “/n” may be omitted. In this case, the CIDR value must be defined in the _cidr_ field. When reading, the _address_ field is always in the form “a.b.c.d”. | [optional] 
 **Cidr** | Pointer to **int64** | The CIDR of the reserved block. This is required field, if _address_ does not specify it in its input. | [optional] 
 **Comment** | Pointer to **string** | The description for the reserved block. May contain 0 to 1024 characters. Can include UTF-8. | [optional] 
 **CreatedAt** | Pointer to **time.Time** | Time when the object has been created. | [optional] [readonly] 
@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 
 ### NewReservedBlock
 
-`func NewReservedBlock(address string, federatedRealm string, ) *ReservedBlock`
+`func NewReservedBlock(federatedRealm string, ) *ReservedBlock`
 
 NewReservedBlock instantiates a new ReservedBlock object
 This constructor will assign default values to properties that have it defined,
@@ -58,6 +58,11 @@ and a boolean to check if the value has been set.
 
 SetAddress sets Address field to given value.
 
+### HasAddress
+
+`func (o *ReservedBlock) HasAddress() bool`
+
+HasAddress returns a boolean if a field has been set.
 
 ### GetCidr
 

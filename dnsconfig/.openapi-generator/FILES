@@ -50,6 +50,11 @@ docs/CreateLBDNResponse.md
 docs/CreateServerResponse.md
 docs/CreateViewResponse.md
 docs/CustomRootNSBlock.md
+docs/DNSSECKey.md
+docs/DNSSECKeyDisplayStatus.md
+docs/DNSSECSigningKeyPolicy.md
+docs/DNSSECSigningPolicy.md
+docs/DNSSECValidateException.md
 docs/DNSSECValidationBlock.md
 docs/DTCConfig.md
 docs/DTCPolicy.md
@@ -80,6 +85,7 @@ docs/Inheritance2InheritedString.md
 docs/Inheritance2InheritedUInt32.md
 docs/InheritedACLItems.md
 docs/InheritedCustomRootNSBlock.md
+docs/InheritedDNSSECSigningPolicy.md
 docs/InheritedDNSSECValidationBlock.md
 docs/InheritedDtcConfig.md
 docs/InheritedECSBlock.md
@@ -102,6 +108,8 @@ docs/ListHostResponse.md
 docs/ListLBDNResponse.md
 docs/ListServerResponse.md
 docs/ListViewResponse.md
+docs/MemberServer.md
+docs/Nameserver.md
 docs/ReadACLResponse.md
 docs/ReadAuthNSGResponse.md
 docs/ReadAuthZoneResponse.md
@@ -170,6 +178,11 @@ model_custom_root_ns_block.go
 model_delegation.go
 model_delegation_server.go
 model_display_view.go
+model_dnssec_key.go
+model_dnssec_key_display_status.go
+model_dnssec_signing_key_policy.go
+model_dnssec_signing_policy.go
+model_dnssec_validate_exception.go
 model_dnssec_validation_block.go
 model_dtc_config.go
 model_dtc_policy.go
@@ -192,6 +205,7 @@ model_inheritance2_inherited_string.go
 model_inheritance2_inherited_u_int32.go
 model_inherited_acl_items.go
 model_inherited_custom_root_ns_block.go
+model_inherited_dnssec_signing_policy.go
 model_inherited_dnssec_validation_block.go
 model_inherited_dtc_config.go
 model_inherited_ecs_block.go
@@ -213,6 +227,8 @@ model_list_host_response.go
 model_list_lbdn_response.go
 model_list_server_response.go
 model_list_view_response.go
+model_member_server.go
+model_nameserver.go
 model_read_acl_response.go
 model_read_auth_nsg_response.go
 model_read_auth_zone_response.go

@@ -2640,6 +2640,37 @@ components:
             protocol_name: protocol_name
           stealth: true
           tsig_enabled: true
+        nameservers:
+        - address: address
+          role: role
+          fqdn: fqdn
+          protocol_fqdn: protocol_fqdn
+          origin: origin
+          tsig_key:
+            name: name
+            comment: comment
+            secret: secret
+            key: key
+            algorithm: algorithm
+            protocol_name: protocol_name
+          host: host
+          stealth: true
+          tsig_enabled: true
+        - address: address
+          role: role
+          fqdn: fqdn
+          protocol_fqdn: protocol_fqdn
+          origin: origin
+          tsig_key:
+            name: name
+            comment: comment
+            secret: secret
+            key: key
+            algorithm: algorithm
+            protocol_name: protocol_name
+          host: host
+          stealth: true
+          tsig_enabled: true
         name: Example Authoritative DNS Server Group
         external_primaries:
         - address: address
@@ -2670,9 +2701,16 @@ components:
           tsig_enabled: true
         comment: comment
         id: id
+        grid_secondaries:
+        - host: host
+        - host: host
         internal_secondaries:
         - host: dns/host/23311109-fad4-448f-a7a7-55ad791ae7eb
         - host: dns/host/23311109-fad4-448f-a7a7-55ad791ae7eb
+        grid_primaries:
+        - host: host
+        - host: host
+        version: version
         tags: "{}"
       properties:
         comment:
@@ -2689,6 +2727,18 @@ components:
           items:
             $ref: '#/components/schemas/configExternalSecondary'
           type: array
+        grid_primaries:
+          description: "Optional. The list of the NIOS Grid Primaries assigned to\
+            \ an AuthNSG, only applicable for the NIOS."
+          items:
+            $ref: '#/components/schemas/configMemberServer'
+          type: array
+        grid_secondaries:
+          description: "Optional. The list of the NIOS Grid Secondaries assigned to\
+            \ an AuthNSG, only applicable for the NIOS."
+          items:
+            $ref: '#/components/schemas/configMemberServer'
+          type: array
         id:
           description: The resource identifier.
           readOnly: true
@@ -2703,6 +2753,11 @@ components:
           description: Name of the object.
           example: Example Authoritative DNS Server Group
           type: string
+        nameservers:
+          description: Optional. A list of DNS Nameservers of various roles.
+          items:
+            $ref: '#/components/schemas/configNameserver'
+          type: array
         nsgs:
           description: The resource identifier.
           items:
@@ -2712,6 +2767,17 @@ components:
           additionalProperties: false
           description: Tagging specifics.
           type: object
+        version:
+          description: |-
+            Read Only.
+
+            Version indicates the version of the Authoritative DNS Server Group in context of DNS NSGs and nameservers that are used.
+
+            Possible values:
+            - _v1_: The Authoritative DNS Server Group uses original NSG model
+            - _v2_: The Authoritative DNS Server Group uses new "Unified Nameservers" model
+          readOnly: true
+          type: string
       required:
       - name
       title: AuthNSG
@@ -2747,6 +2813,9 @@ components:
         nsgs:
         - nsgs
         - nsgs
+        nsg: nsg
+        dnssec_status: dnssec_status
+        secondary_zone_records_sync: true
         created_at: 2000-01-23T04:56:07.000+00:00
         external_primaries:
         - address: address
@@ -2786,12 +2855,33 @@ components:
           host: host
           display_name: display_name
         notify: true
+        max_records_per_type: 1
+        dnssec_signing_policy:
+          ksk_rollover_interval: 2
+          nsec3_iterations: 7
+          ksk_notification_event_trigger: ksk_notification_event_trigger
+          nsec_type: nsec_type
+          zsk_signature_validity: 2
+          keys:
+          - size: 5
+            type: type
+            algorithm: 5
+          - size: 5
+            type: type
+            algorithm: 5
+          nsec3_salt_length: 9
+          zsk_rollover_interval: 3
+          ksk_automatic_rollover_enabled: true
         view: view
         gss_tsig_enabled: true
         updated_at: 2000-01-23T04:56:07.000+00:00
         use_forwarders_for_subzones: true
         disabled: true
         id: id
+        grid_primaries:
+        - host: host
+        - host: host
+        nios_grids_metadata: "{}"
         mapping: mapping
         external_secondaries:
         - address: 192.0.2.0
@@ -2820,14 +2910,28 @@ components:
           tsig_enabled: true
         mapped_subnet: mapped_subnet
         fqdn: fqdn
-        initial_soa_serial: 6
+        initial_soa_serial: 7
         warnings:
         - name: name
           message: message
         - name: name
           message: message
         compartment_id: compartment_id
+        version: version
         tags: "{}"
+        dnssec_keys:
+        - public_key: public_key
+          size: 1
+          key_id: 6
+          next_rollover_event: 2000-01-23T04:56:07.000+00:00
+          type: type
+          algorithm: 0
+        - public_key: public_key
+          size: 1
+          key_id: 6
+          next_rollover_event: 2000-01-23T04:56:07.000+00:00
+          type: type
+          algorithm: 0
         inheritance_sources:
           query_acl:
             action: action
@@ -2856,6 +2960,26 @@ components:
                 protocol_name: protocol_name
               acl: acl
               element: ip
+          dnssec_signing_policy:
+            action: action
+            source: source
+            display_name: display_name
+            value:
+              ksk_rollover_interval: 2
+              nsec3_iterations: 7
+              ksk_notification_event_trigger: ksk_notification_event_trigger
+              nsec_type: nsec_type
+              zsk_signature_validity: 2
+              keys:
+              - size: 5
+                type: type
+                algorithm: 5
+              - size: 5
+                type: type
+                algorithm: 5
+              nsec3_salt_length: 9
+              zsk_rollover_interval: 3
+              ksk_automatic_rollover_enabled: true
           gss_tsig_enabled:
             action: action
             source: source
@@ -2906,12 +3030,12 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             expire:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             protocol_rname:
               action: action
               source: source
@@ -2921,17 +3045,17 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             negative_ttl:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             retry:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
           transfer_acl:
             action: action
             source: source
@@ -2959,6 +3083,11 @@ components:
                 protocol_name: protocol_name
               acl: acl
               element: ip
+          secondary_zone_records_sync:
+            action: action
+            source: source
+            display_name: display_name
+            value: true
           use_forwarders_for_subzones:
             action: action
             source: source
@@ -2969,6 +3098,37 @@ components:
             source: source
             display_name: display_name
             value: true
+        nameservers:
+        - address: address
+          role: role
+          fqdn: fqdn
+          protocol_fqdn: protocol_fqdn
+          origin: origin
+          tsig_key:
+            name: name
+            comment: comment
+            secret: secret
+            key: key
+            algorithm: algorithm
+            protocol_name: protocol_name
+          host: host
+          stealth: true
+          tsig_enabled: true
+        - address: address
+          role: role
+          fqdn: fqdn
+          protocol_fqdn: protocol_fqdn
+          origin: origin
+          tsig_key:
+            name: name
+            comment: comment
+            secret: secret
+            key: key
+            algorithm: algorithm
+            protocol_name: protocol_name
+          host: host
+          stealth: true
+          tsig_enabled: true
         protocol_fqdn: protocol_fqdn
         update_acl:
         - access: allow
@@ -2996,14 +3156,15 @@ components:
         zone_authority:
           rname: rname
           default_ttl: 1
-          expire: 5
+          expire: 6
           protocol_rname: protocol_rname
-          refresh: 2
-          negative_ttl: 5
+          refresh: 1
+          negative_ttl: 7
           protocol_mname: protocol_mname
           use_default_mname: true
           mname: mname
-          retry: 7
+          retry: 4
+        max_types_per_name: 1
         transfer_acl:
         - access: allow
           address: address
@@ -3028,6 +3189,10 @@ components:
           acl: acl
           element: ip
         comment: comment
+        external_providers_metadata: "{}"
+        grid_secondaries:
+        - host: host
+        - host: host
         external_providers:
         - name: name
           id: id
@@ -3053,6 +3218,28 @@ components:
             non-existent when generating configuration.
           format: boolean
           type: boolean
+        dnssec_keys:
+          description: The list of DNSSEC keys used by the _AuthZone_ for zone signing.
+          items:
+            $ref: '#/components/schemas/configDNSSECKey'
+          readOnly: true
+          type: array
+        dnssec_signing_policy:
+          $ref: '#/components/schemas/configDNSSECSigningPolicy'
+        dnssec_status:
+          description: |-
+            Read Only.
+
+            DNSSEC status indicates the current DNSSEC signing status of the zone.
+
+            Possible values:
+            - _UNSIGNED_: The zone is not signed with DNSSEC
+            - _SIGNED_: The zone is fully signed with DNSSEC
+            - _ROLLOVER_IN_PROGRESS_: DNSSEC key rollover is currently in progress
+            - _SIGN_IN_PROGRESS_: The zone is currently being signed with DNSSEC
+            - _UNSIGN_IN_PROGRESS_: The zone is currently being unsigned (DNSSEC removal in progress)
+          readOnly: true
+          type: string
         external_primaries:
           description: Optional. DNS primaries external to Universal DDI. Order is
             not significant.
@@ -3065,6 +3252,10 @@ components:
             $ref: '#/components/schemas/AuthZoneExternalProvider'
           readOnly: true
           type: array
+        external_providers_metadata:
+          additionalProperties: false
+          description: External DNS providers metadata.
+          type: object
         external_secondaries:
           description: DNS secondaries external to Universal DDI. Order is not significant.
           items:
@@ -3077,6 +3268,18 @@ components:
 
             Read-only after creation.
           type: string
+        grid_primaries:
+          description: "Optional. The list of the NIOS Grid Primaries assigned to\
+            \ an AuthZone, only applicable for the NIOS Zones."
+          items:
+            $ref: '#/components/schemas/configMemberServer'
+          type: array
+        grid_secondaries:
+          description: "Optional. The list of the NIOS Grid Secondaries assigned to\
+            \ an AuthZone, only applicable for the NIOS Zones."
+          items:
+            $ref: '#/components/schemas/configMemberServer'
+          type: array
         gss_tsig_enabled:
           description: |-
             _gss_tsig_enabled_ enables/disables GSS-TSIG signed dynamic updates.
@@ -3124,6 +3327,36 @@ components:
             Defaults to forward.
           readOnly: true
           type: string
+        max_records_per_type:
+          description: |-
+            The maximum number of records that can be stored in an RRset (records of same name and type),
+            to prevent a slowdown in query processing due to an excessive number of those RRsets.
+            The limit is enforced when serving the zone on-prem, not at the time of record creation or update.
+            Exceeding the limit will result in the zone failing to load or to be updated.
+            If 0, it means there is no limit.
+            Defaults to _2000_.
+          format: int64
+          type: integer
+        max_types_per_name:
+          description: |-
+            The maximum number of record types that can be stored for an owner name,
+            to prevent a slowdown in query processing due to an excessive number of those records.
+            The limit is enforced when serving the zone on-prem, not at the time of record creation or update.
+            Exceeding the limit will result in the zone failing to load or to be updated.
+            If 0, it means there is no limit.
+            Defaults to _100_.
+          format: int64
+          type: integer
+        nameservers:
+          description: Optional. A list of DNS Nameservers of various roles. Cannot
+            be configured if _nsg_ is configured.
+          items:
+            $ref: '#/components/schemas/configNameserver'
+          type: array
+        nios_grids_metadata:
+          additionalProperties: false
+          description: NIOS Grids Metadata holds multiple NIOS grids data.
+          type: object
         notify:
           description: |-
             Also notify all external secondary DNS servers if enabled.
@@ -3131,6 +3364,9 @@ components:
             Defaults to _false_.
           format: boolean
           type: boolean
+        nsg:
+          description: The resource identifier.
+          type: string
         nsgs:
           description: The resource identifier.
           items:
@@ -3160,6 +3396,14 @@ components:
           items:
             $ref: '#/components/schemas/configACLItem'
           type: array
+        secondary_zone_records_sync:
+          description: |-
+            Optional. Defines if secondary zone records should be synchronized.
+
+            Defaults to _false_.
+            Only allowed to update when primary_type is "external".
+          format: boolean
+          type: boolean
         tags:
           additionalProperties: false
           description: Tagging specifics.
@@ -3190,6 +3434,17 @@ components:
             Defaults to _true_.
           format: boolean
           type: boolean
+        version:
+          description: |-
+            Read Only.
+
+            Version indicates the version of the zone in context of assigned DNS NSGs and nameservers.
+
+            Possible values:
+            - _v1_: The zone uses original NSG model
+            - _v2_: The zone uses new "Unified Nameservers" model
+          readOnly: true
+          type: string
         view:
           description: The resource identifier.
           type: string
@@ -3257,6 +3512,26 @@ components:
               protocol_name: protocol_name
             acl: acl
             element: ip
+        dnssec_signing_policy:
+          action: action
+          source: source
+          display_name: display_name
+          value:
+            ksk_rollover_interval: 2
+            nsec3_iterations: 7
+            ksk_notification_event_trigger: ksk_notification_event_trigger
+            nsec_type: nsec_type
+            zsk_signature_validity: 2
+            keys:
+            - size: 5
+              type: type
+              algorithm: 5
+            - size: 5
+              type: type
+              algorithm: 5
+            nsec3_salt_length: 9
+            zsk_rollover_interval: 3
+            ksk_automatic_rollover_enabled: true
         gss_tsig_enabled:
           action: action
           source: source
@@ -3307,12 +3582,12 @@ components:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
           expire:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
           protocol_rname:
             action: action
             source: source
@@ -3322,17 +3597,17 @@ components:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
           negative_ttl:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
           retry:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
         transfer_acl:
           action: action
           source: source
@@ -3360,6 +3635,11 @@ components:
               protocol_name: protocol_name
             acl: acl
             element: ip
+        secondary_zone_records_sync:
+          action: action
+          source: source
+          display_name: display_name
+          value: true
         use_forwarders_for_subzones:
           action: action
           source: source
@@ -3371,12 +3651,16 @@ components:
           display_name: display_name
           value: true
       properties:
+        dnssec_signing_policy:
+          $ref: '#/components/schemas/configInheritedDNSSECSigningPolicy'
         gss_tsig_enabled:
           $ref: '#/components/schemas/inheritance2InheritedBool'
         notify:
           $ref: '#/components/schemas/inheritance2InheritedBool'
         query_acl:
           $ref: '#/components/schemas/configInheritedACLItems'
+        secondary_zone_records_sync:
+          $ref: '#/components/schemas/inheritance2InheritedBool'
         transfer_acl:
           $ref: '#/components/schemas/configInheritedACLItems'
         update_acl:
@@ -3749,6 +4033,37 @@ components:
               protocol_name: protocol_name
             stealth: true
             tsig_enabled: true
+          nameservers:
+          - address: address
+            role: role
+            fqdn: fqdn
+            protocol_fqdn: protocol_fqdn
+            origin: origin
+            tsig_key:
+              name: name
+              comment: comment
+              secret: secret
+              key: key
+              algorithm: algorithm
+              protocol_name: protocol_name
+            host: host
+            stealth: true
+            tsig_enabled: true
+          - address: address
+            role: role
+            fqdn: fqdn
+            protocol_fqdn: protocol_fqdn
+            origin: origin
+            tsig_key:
+              name: name
+              comment: comment
+              secret: secret
+              key: key
+              algorithm: algorithm
+              protocol_name: protocol_name
+            host: host
+            stealth: true
+            tsig_enabled: true
           name: Example Authoritative DNS Server Group
           external_primaries:
           - address: address
@@ -3779,9 +4094,16 @@ components:
             tsig_enabled: true
           comment: comment
           id: id
+          grid_secondaries:
+          - host: host
+          - host: host
           internal_secondaries:
           - host: dns/host/23311109-fad4-448f-a7a7-55ad791ae7eb
           - host: dns/host/23311109-fad4-448f-a7a7-55ad791ae7eb
+          grid_primaries:
+          - host: host
+          - host: host
+          version: version
           tags: "{}"
       properties:
         result:
@@ -3820,6 +4142,9 @@ components:
           nsgs:
           - nsgs
           - nsgs
+          nsg: nsg
+          dnssec_status: dnssec_status
+          secondary_zone_records_sync: true
           created_at: 2000-01-23T04:56:07.000+00:00
           external_primaries:
           - address: address
@@ -3859,12 +4184,33 @@ components:
             host: host
             display_name: display_name
           notify: true
+          max_records_per_type: 1
+          dnssec_signing_policy:
+            ksk_rollover_interval: 2
+            nsec3_iterations: 7
+            ksk_notification_event_trigger: ksk_notification_event_trigger
+            nsec_type: nsec_type
+            zsk_signature_validity: 2
+            keys:
+            - size: 5
+              type: type
+              algorithm: 5
+            - size: 5
+              type: type
+              algorithm: 5
+            nsec3_salt_length: 9
+            zsk_rollover_interval: 3
+            ksk_automatic_rollover_enabled: true
           view: view
           gss_tsig_enabled: true
           updated_at: 2000-01-23T04:56:07.000+00:00
           use_forwarders_for_subzones: true
           disabled: true
           id: id
+          grid_primaries:
+          - host: host
+          - host: host
+          nios_grids_metadata: "{}"
           mapping: mapping
           external_secondaries:
           - address: 192.0.2.0
@@ -3893,14 +4239,28 @@ components:
             tsig_enabled: true
           mapped_subnet: mapped_subnet
           fqdn: fqdn
-          initial_soa_serial: 6
+          initial_soa_serial: 7
           warnings:
           - name: name
             message: message
           - name: name
             message: message
           compartment_id: compartment_id
+          version: version
           tags: "{}"
+          dnssec_keys:
+          - public_key: public_key
+            size: 1
+            key_id: 6
+            next_rollover_event: 2000-01-23T04:56:07.000+00:00
+            type: type
+            algorithm: 0
+          - public_key: public_key
+            size: 1
+            key_id: 6
+            next_rollover_event: 2000-01-23T04:56:07.000+00:00
+            type: type
+            algorithm: 0
           inheritance_sources:
             query_acl:
               action: action
@@ -3929,6 +4289,26 @@ components:
                   protocol_name: protocol_name
                 acl: acl
                 element: ip
+            dnssec_signing_policy:
+              action: action
+              source: source
+              display_name: display_name
+              value:
+                ksk_rollover_interval: 2
+                nsec3_iterations: 7
+                ksk_notification_event_trigger: ksk_notification_event_trigger
+                nsec_type: nsec_type
+                zsk_signature_validity: 2
+                keys:
+                - size: 5
+                  type: type
+                  algorithm: 5
+                - size: 5
+                  type: type
+                  algorithm: 5
+                nsec3_salt_length: 9
+                zsk_rollover_interval: 3
+                ksk_automatic_rollover_enabled: true
             gss_tsig_enabled:
               action: action
               source: source
@@ -3979,12 +4359,12 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               expire:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               protocol_rname:
                 action: action
                 source: source
@@ -3994,17 +4374,17 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               negative_ttl:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               retry:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
             transfer_acl:
               action: action
               source: source
@@ -4032,6 +4412,11 @@ components:
                   protocol_name: protocol_name
                 acl: acl
                 element: ip
+            secondary_zone_records_sync:
+              action: action
+              source: source
+              display_name: display_name
+              value: true
             use_forwarders_for_subzones:
               action: action
               source: source
@@ -4042,6 +4427,37 @@ components:
               source: source
               display_name: display_name
               value: true
+          nameservers:
+          - address: address
+            role: role
+            fqdn: fqdn
+            protocol_fqdn: protocol_fqdn
+            origin: origin
+            tsig_key:
+              name: name
+              comment: comment
+              secret: secret
+              key: key
+              algorithm: algorithm
+              protocol_name: protocol_name
+            host: host
+            stealth: true
+            tsig_enabled: true
+          - address: address
+            role: role
+            fqdn: fqdn
+            protocol_fqdn: protocol_fqdn
+            origin: origin
+            tsig_key:
+              name: name
+              comment: comment
+              secret: secret
+              key: key
+              algorithm: algorithm
+              protocol_name: protocol_name
+            host: host
+            stealth: true
+            tsig_enabled: true
           protocol_fqdn: protocol_fqdn
           update_acl:
           - access: allow
@@ -4069,14 +4485,15 @@ components:
           zone_authority:
             rname: rname
             default_ttl: 1
-            expire: 5
+            expire: 6
             protocol_rname: protocol_rname
-            refresh: 2
-            negative_ttl: 5
+            refresh: 1
+            negative_ttl: 7
             protocol_mname: protocol_mname
             use_default_mname: true
             mname: mname
-            retry: 7
+            retry: 4
+          max_types_per_name: 1
           transfer_acl:
           - access: allow
             address: address
@@ -4101,6 +4518,10 @@ components:
             acl: acl
             element: ip
           comment: comment
+          external_providers_metadata: "{}"
+          grid_secondaries:
+          - host: host
+          - host: host
           external_providers:
           - name: name
             id: id
@@ -4221,7 +4642,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
           view: dns/view/23311109-fad4-448f-a7a7-55ad791ae7eb
           name: example.com
           comment: comment
@@ -4424,7 +4845,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             query_acl:
               action: action
               source: source
@@ -4518,7 +4939,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             notify:
               action: action
               source: source
@@ -4576,13 +4997,18 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             dnssec_validation_block:
               action: action
               source: source
               display_name: display_name
               value:
                 dnssec_enabled: true
+                dnssec_validate_exceptions:
+                - domain: domain
+                  protocol_domain: protocol_domain
+                - domain: domain
+                  protocol_domain: protocol_domain
                 dnssec_enable_validation: true
                 dnssec_validate_expiry: true
                 dnssec_trust_anchors:
@@ -4605,7 +5031,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             forwarders_block:
               action: action
               source: source
@@ -4656,7 +5082,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             add_edns_option_in_outgoing_query:
               action: action
               source: source
@@ -4666,7 +5092,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             update_acl:
               action: action
               source: source
@@ -4730,7 +5156,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             filter_aaaa_on_v4:
               action: action
               source: source
@@ -4740,7 +5166,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
           update_acl:
           - access: allow
             address: address
@@ -4802,6 +5228,7 @@ components:
           max_cache_ttl: 5
           dnssec_enabled: true
           match_recursive_only: true
+          secondary_zone_records_sync: true
           recursion_acl:
           - access: allow
             address: address
@@ -4827,6 +5254,22 @@ components:
             element: ip
           lame_ttl: 5
           forwarders_only: true
+          dnssec_signing_policy:
+            ksk_rollover_interval: 2
+            nsec3_iterations: 7
+            ksk_notification_event_trigger: ksk_notification_event_trigger
+            nsec_type: nsec_type
+            zsk_signature_validity: 2
+            keys:
+            - size: 5
+              type: type
+              algorithm: 5
+            - size: 5
+              type: type
+              algorithm: 5
+            nsec3_salt_length: 9
+            zsk_rollover_interval: 3
+            ksk_automatic_rollover_enabled: true
           gss_tsig_enabled: true
           ecs_zones:
           - access: allow
@@ -4856,17 +5299,22 @@ components:
             sep: true
           tags: "{}"
           max_negative_ttl: 2
+          dnssec_validate_exceptions:
+          - domain: domain
+            protocol_domain: protocol_domain
+          - domain: domain
+            protocol_domain: protocol_domain
           zone_authority:
             rname: rname
             default_ttl: 1
-            expire: 5
+            expire: 6
             protocol_rname: protocol_rname
-            refresh: 2
-            negative_ttl: 5
+            refresh: 1
+            negative_ttl: 7
             protocol_mname: protocol_mname
             use_default_mname: true
             mname: mname
-            retry: 7
+            retry: 4
           forwarders:
           - address: 10.0.0.0
             fqdn: ns1.example.com
@@ -4874,7 +5322,7 @@ components:
           - address: 10.0.0.0
             fqdn: ns1.example.com
             protocol_fqdn: protocol_fqdn
-          name: Example Config View
+          name: name
           dnssec_validate_expiry: true
           filter_aaaa_on_v4: filter_aaaa_on_v4
           max_udp_size: 7
@@ -4970,12 +5418,13 @@ components:
             zone: dns/auth_zone/16d9158d-d0d7-48e1-9a55-087e7aa419d4
             algorithm: 0
             sep: true
+          nios_metadata: "{}"
           inheritance_sources:
             max_cache_ttl:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             query_acl:
               action: action
               source: source
@@ -5021,6 +5470,11 @@ components:
               source: source
               display_name: display_name
               value: true
+            secondary_zone_records_sync:
+              action: action
+              source: source
+              display_name: display_name
+              value: true
             recursion_acl:
               action: action
               source: source
@@ -5052,12 +5506,32 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             notify:
               action: action
               source: source
               display_name: display_name
               value: true
+            dnssec_signing_policy:
+              action: action
+              source: source
+              display_name: display_name
+              value:
+                ksk_rollover_interval: 2
+                nsec3_iterations: 7
+                ksk_notification_event_trigger: ksk_notification_event_trigger
+                nsec_type: nsec_type
+                zsk_signature_validity: 2
+                keys:
+                - size: 5
+                  type: type
+                  algorithm: 5
+                - size: 5
+                  type: type
+                  algorithm: 5
+                nsec3_salt_length: 9
+                zsk_rollover_interval: 3
+                ksk_automatic_rollover_enabled: true
             gss_tsig_enabled:
               action: action
               source: source
@@ -5084,7 +5558,7 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
             use_forwarders_for_subzones:
               action: action
               source: source
@@ -5111,7 +5585,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             minimal_responses:
               action: action
               source: source
@@ -5123,6 +5597,11 @@ components:
               display_name: display_name
               value:
                 dnssec_enabled: true
+                dnssec_validate_exceptions:
+                - domain: domain
+                  protocol_domain: protocol_domain
+                - domain: domain
+                  protocol_domain: protocol_domain
                 dnssec_enable_validation: true
                 dnssec_validate_expiry: true
                 dnssec_trust_anchors:
@@ -5191,7 +5670,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             update_acl:
               action: action
               source: source
@@ -5242,12 +5721,12 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               expire:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               protocol_rname:
                 action: action
                 source: source
@@ -5257,17 +5736,17 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               negative_ttl:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               retry:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
             transfer_acl:
               action: action
               source: source
@@ -5304,7 +5783,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
           update_acl:
           - access: allow
             address: address
@@ -5353,6 +5832,7 @@ components:
             acl: acl
             element: ip
           comment: comment
+          external_providers_metadata: "{}"
           match_destinations_acl:
           - access: allow
             address: address
@@ -5427,11 +5907,320 @@ components:
           type: boolean
       title: CustomRootNSBlock
       type: object
+    configDNSSECKey:
+      example:
+        public_key: public_key
+        size: 1
+        key_id: 6
+        next_rollover_event: 2000-01-23T04:56:07.000+00:00
+        type: type
+        algorithm: 0
+      properties:
+        algorithm:
+          description: Algorithm used for the key.
+          format: int64
+          readOnly: true
+          type: integer
+        key_id:
+          description: Key ID (also known as Key Tag).
+          format: int64
+          readOnly: true
+          type: integer
+        next_rollover_event:
+          description: Next Rollover Event Time.
+          format: date-time
+          readOnly: true
+          type: string
+        public_key:
+          description: Public key in Base64 format.
+          readOnly: true
+          type: string
+        size:
+          description: Key size in bits.
+          format: int64
+          readOnly: true
+          type: integer
+        type:
+          description: |-
+            Key type.
+
+            Allowed values:
+            * _KSK_: Key-Signing Key, used to sign DNSKEY records.
+            * _ZSK_: Zone-Signing Key, used to sign all other records in the zone.
+          readOnly: true
+          type: string
+      type: object
+    configDNSSECKeyDisplayStatus:
+      description: DNSSEC Key Status.
+      properties:
+        active_since:
+          description: Time when a key became active.
+          format: date-time
+          readOnly: true
+          type: string
+        algorithm:
+          description: Algorithm used for a key.
+          format: int64
+          readOnly: true
+          type: integer
+        inactive_since:
+          description: Time when a key became inactive.
+          format: date-time
+          readOnly: true
+          type: string
+        key_id:
+          description: Key id (tag).
+          format: int64
+          readOnly: true
+          type: integer
+        published_since:
+          description: Time when a key was published.
+          format: date-time
+          readOnly: true
+          type: string
+        size:
+          description: Key size in bits.
+          format: int64
+          readOnly: true
+          type: integer
+        status:
+          description: "Key status. Can be _UNKNOWN_, _PUBLISHED_, _ACTIVE_, _INACTIVE_."
+          readOnly: true
+          type: string
+        type:
+          description: Key type (could be _KSK_ or _ZSK_).
+          readOnly: true
+          type: string
+        updated_at:
+          description: Time when a key status was last updated by a host.
+          format: date-time
+          readOnly: true
+          type: string
+      title: DNSSECKeyDisplayStatus
+      type: object
+    configDNSSECSigningKeyPolicy:
+      description: DNSSEC Signing Key Policy.
+      example:
+        size: 5
+        type: type
+        algorithm: 5
+      properties:
+        algorithm:
+          description: |-
+            Algorithm used for the key.
+
+            Allowed values:
+            * _5_ - RSASHA1
+            * _7_ - NSEC3RSASHA1 (RSASHA1-NSEC3-SHA1)
+            * _8_ - RSASHA256
+            * _10_ - RSASHA512
+            * _13_ - ECDSAP256SHA256
+            * _14_ - ECDSAP384SHA384
+            * _15_ - ED25519
+            * _16_ - ED448
+
+            Defaults to _8_ (RSASHA256).
+          format: int64
+          type: integer
+        size:
+          description: |-
+            Key size in bits.
+
+            Value should be within allowed range for _algorithm_:
+            * _RSASHA1_: 1024..4096
+            * _NSEC3RSASHA1_: 1024..4096
+            * _RSASHA256_: 1024..4096
+            * _RSASHA512_: 1024..4096
+            * _ECDSAP256SHA256_: 256
+            * _ECDSAP384SHA384_: 384
+            * _ED25519_: 256
+            * _ED448_: 456
+
+            Defaults are based on the _algorithm_ and _type_:
+            For KSK:
+
+            * _RSASHA1_: 2048
+            * _NSEC3RSASHA1_: 2048
+            * _RSASHA256_: 2048
+            * _RSASHA512_: 2048
+            * _ECDSAP256SHA256_: 256
+            * _ECDSAP384SHA384_: 384
+            * _ED25519_: 256
+            * _ED448_: 456
+
+            For ZSK:
+
+            * _RSASHA1_: 1024
+            * _NSEC3RSASHA1_: 1024
+            * _RSASHA256_: 1024
+            * _RSASHA512_: 1024
+            * _ECDSAP256SHA256_: 256
+            * _ECDSAP384SHA384_: 384
+            * _ED25519_: 256
+            * _ED448_: 456
+          format: int64
+          type: integer
+        type:
+          description: |-
+            Key type.
+
+            Allowed values:
+            * _KSK_: Key-Signing Key, used to sign DNSKEY records.
+            * _ZSK_: Zone-Signing Key, used to sign all other records in the zone.
+          type: string
+      required:
+      - type
+      title: DNSSECSigningKeyPolicy
+      type: object
+    configDNSSECSigningPolicy:
+      description: DNSSEC Signing Policy.
+      example:
+        ksk_rollover_interval: 2
+        nsec3_iterations: 7
+        ksk_notification_event_trigger: ksk_notification_event_trigger
+        nsec_type: nsec_type
+        zsk_signature_validity: 2
+        keys:
+        - size: 5
+          type: type
+          algorithm: 5
+        - size: 5
+          type: type
+          algorithm: 5
+        nsec3_salt_length: 9
+        zsk_rollover_interval: 3
+        ksk_automatic_rollover_enabled: true
+      properties:
+        keys:
+          description: |-
+            Key settings.
+            This defines configuration for DNSSEC keys.
+            combination of both Key-Signing Keys (KSK) and Zone-Signing Keys (ZSK).
+
+            Defaults to empty.
+          items:
+            $ref: '#/components/schemas/configDNSSECSigningKeyPolicy'
+          type: array
+        ksk_automatic_rollover_enabled:
+          description: |-
+            Flag indicating if KSK rollover should be automatic.
+
+            Defaults to _false_.
+          format: boolean
+          type: boolean
+        ksk_notification_event_trigger:
+          description: |-
+            Option controls when notifications are sent for KSK rollover events.
+
+            Valid values are:
+            * _NO_EVENTS_ - no notifications are sent
+            * _ALL_EVENTS_ - any time KSK is rolled over, a notification is sent
+            * _MANUAL_DS_UPDATE_EVENTS_ - a notification is sent only when DS record needs to be updated manually
+
+            Defaults to _NO_EVENTS_
+          type: string
+        ksk_rollover_interval:
+          description: |-
+            KSK rollover interval in seconds.
+
+            Used to determine how often the Key-Signing Keys should be rotated.
+            Examples: 31536000 (1 year), 7776000 (90 days), 2592000 (30 days)
+
+            Unsigned integer, min 0.
+
+            Defaults to 31536000 (1 year).
+          format: int64
+          type: integer
+        nsec3_iterations:
+          description: |-
+            Optional. Number of additional hash iterations to perform.
+            Increasing this value slows down both authoritative server when signing and recursive servers when verifying, but also slows down attacker's dictionary attacks.
+
+            IMPORTANT: Changing the settings for the NSEC3 number of iterations is not recommended.
+
+            Unsigned integer, min 0 max 65535.
+
+            Defaults to _0_.
+          format: int64
+          type: integer
+        nsec3_salt_length:
+          description: |-
+            Optional. Minimum length for NSEC3 salt in octets.
+            Used to add entropy to the hash function to defend against pre-calculated attacks.
+
+            Unsigned integer, min 0 max 65535.
+
+            Defaults to _0_.
+          format: int64
+          type: integer
+        nsec_type:
+          description: |-
+            DNSSEC resource record type for nonexistent proof.
+            This controls which type will be used to provide proof of nonexistence.
+
+            Allowed values:
+            * _NSEC_
+            * _NSEC3_
+
+            Defaults to _NSEC_
+          type: string
+        zsk_rollover_interval:
+          description: |-
+            ZSK rollover interval in seconds.
+
+            Used to determine how often the Zone-Signing Keys should be rotated.
+            Examples: 2592000 (30 days), 1209600 (14 days)
+
+            Unsigned integer, min 0.
+
+            Defaults to 2592000 (30 days).
+          format: int64
+          type: integer
+        zsk_signature_validity:
+          description: |-
+            ZSK signature validity period in seconds.
+
+            Determines how long DNSSEC signatures remain valid.
+            Examples: 1209600 (14 days), 604800 (7 days)
+
+            Unsigned integer, min 0.
+
+            Defaults to 1209600 (14 days).
+          format: int64
+          type: integer
+      title: DNSSECSigningPolicy
+      type: object
+    configDNSSECValidateException:
+      description: DNSSEC validation exception.
+      example:
+        domain: domain
+        protocol_domain: protocol_domain
+      properties:
+        domain:
+          description: |-
+            Domain name to exclude from DNSSEC validation. Treated as absolute (fully qualified) with or without a trailing dot.
+            Must not be empty. It can contain U-labels for IDNs and NR-LDH labels but is not supposed to contain A-labels.
+          type: string
+        protocol_domain:
+          description: |-
+            Standard DNS presentation of 'domain', only containing A-labels and NR-LDH labels.
+            Will always end with a trailing dot.
+          readOnly: true
+          type: string
+      required:
+      - domain
+      title: DNSSECValidateException
+      type: object
     configDNSSECValidationBlock:
       description: "Block for fields: _dnssec_enabled_, _dnssec_enable_validation_,\
         \ _dnssec_validate_expiry_, _dnssec_trust_anchors_."
       example:
         dnssec_enabled: true
+        dnssec_validate_exceptions:
+        - domain: domain
+          protocol_domain: protocol_domain
+        - domain: domain
+          protocol_domain: protocol_domain
         dnssec_enable_validation: true
         dnssec_validate_expiry: true
         dnssec_trust_anchors:
@@ -5458,6 +6247,12 @@ components:
           description: Optional. Field config for _dnssec_trust_anchors_ field.
           items:
             $ref: '#/components/schemas/configTrustAnchor'
+          type: array
+        dnssec_validate_exceptions:
+          description: Optional. Field configuration for _dnssec_validate_exceptions_
+            field.
+          items:
+            $ref: '#/components/schemas/configDNSSECValidateException'
           type: array
         dnssec_validate_expiry:
           description: Optional. Field config for _dnssec_validate_expiry_ field.
@@ -6242,14 +7037,14 @@ components:
         zone_authority:
           rname: rname
           default_ttl: 1
-          expire: 5
+          expire: 6
           protocol_rname: protocol_rname
-          refresh: 2
-          negative_ttl: 5
+          refresh: 1
+          negative_ttl: 7
           protocol_mname: protocol_mname
           use_default_mname: true
           mname: mname
-          retry: 7
+          retry: 4
         forwarders:
         - address: 10.0.0.0
           fqdn: ns1.example.com
@@ -6917,6 +7712,43 @@ components:
           $ref: '#/components/schemas/configCustomRootNSBlock'
       title: InheritedCustomRootNSBlock
       type: object
+    configInheritedDNSSECSigningPolicy:
+      description: Inheritance configuration for a field of type _DNSSECSigningPolicy_.
+      example:
+        action: action
+        source: source
+        display_name: display_name
+        value:
+          ksk_rollover_interval: 2
+          nsec3_iterations: 7
+          ksk_notification_event_trigger: ksk_notification_event_trigger
+          nsec_type: nsec_type
+          zsk_signature_validity: 2
+          keys:
+          - size: 5
+            type: type
+            algorithm: 5
+          - size: 5
+            type: type
+            algorithm: 5
+          nsec3_salt_length: 9
+          zsk_rollover_interval: 3
+          ksk_automatic_rollover_enabled: true
+      properties:
+        action:
+          description: Defaults to _inherit_.
+          type: string
+        display_name:
+          description: Human-readable display name for the object referred to by _source_.
+          readOnly: true
+          type: string
+        source:
+          description: The resource identifier.
+          type: string
+        value:
+          $ref: '#/components/schemas/configDNSSECSigningPolicy'
+      title: InheritedDNSSECSigningPolicy
+      type: object
     configInheritedDNSSECValidationBlock:
       description: "Inheritance block for fields: _dnssec_enabled_, _dnssec_enable_validation_,\
         \ _dnssec_validate_expiry_, _dnssec_trust_anchors_."
@@ -6926,6 +7758,11 @@ components:
         display_name: display_name
         value:
           dnssec_enabled: true
+          dnssec_validate_exceptions:
+          - domain: domain
+            protocol_domain: protocol_domain
+          - domain: domain
+            protocol_domain: protocol_domain
           dnssec_enable_validation: true
           dnssec_validate_expiry: true
           dnssec_trust_anchors:
@@ -6962,7 +7799,7 @@ components:
           action: action
           source: source
           display_name: display_name
-          value: 0
+          value: 4
       properties:
         default_ttl:
           $ref: '#/components/schemas/inheritance2InheritedUInt32'
@@ -7138,12 +7975,12 @@ components:
           action: action
           source: source
           display_name: display_name
-          value: 0
+          value: 4
         expire:
           action: action
           source: source
           display_name: display_name
-          value: 0
+          value: 4
         protocol_rname:
           action: action
           source: source
@@ -7153,17 +7990,17 @@ components:
           action: action
           source: source
           display_name: display_name
-          value: 0
+          value: 4
         negative_ttl:
           action: action
           source: source
           display_name: display_name
-          value: 0
+          value: 4
         retry:
           action: action
           source: source
           display_name: display_name
-          value: 0
+          value: 4
       properties:
         default_ttl:
           $ref: '#/components/schemas/inheritance2InheritedUInt32'
@@ -7270,7 +8107,7 @@ components:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
         view: dns/view/23311109-fad4-448f-a7a7-55ad791ae7eb
         name: example.com
         comment: comment
@@ -7426,6 +8263,37 @@ components:
               protocol_name: protocol_name
             stealth: true
             tsig_enabled: true
+          nameservers:
+          - address: address
+            role: role
+            fqdn: fqdn
+            protocol_fqdn: protocol_fqdn
+            origin: origin
+            tsig_key:
+              name: name
+              comment: comment
+              secret: secret
+              key: key
+              algorithm: algorithm
+              protocol_name: protocol_name
+            host: host
+            stealth: true
+            tsig_enabled: true
+          - address: address
+            role: role
+            fqdn: fqdn
+            protocol_fqdn: protocol_fqdn
+            origin: origin
+            tsig_key:
+              name: name
+              comment: comment
+              secret: secret
+              key: key
+              algorithm: algorithm
+              protocol_name: protocol_name
+            host: host
+            stealth: true
+            tsig_enabled: true
           name: Example Authoritative DNS Server Group
           external_primaries:
           - address: address
@@ -7456,9 +8324,16 @@ components:
             tsig_enabled: true
           comment: comment
           id: id
+          grid_secondaries:
+          - host: host
+          - host: host
           internal_secondaries:
           - host: dns/host/23311109-fad4-448f-a7a7-55ad791ae7eb
           - host: dns/host/23311109-fad4-448f-a7a7-55ad791ae7eb
+          grid_primaries:
+          - host: host
+          - host: host
+          version: version
           tags: "{}"
         - nsgs:
           - nsgs
@@ -7488,6 +8363,37 @@ components:
               protocol_name: protocol_name
             stealth: true
             tsig_enabled: true
+          nameservers:
+          - address: address
+            role: role
+            fqdn: fqdn
+            protocol_fqdn: protocol_fqdn
+            origin: origin
+            tsig_key:
+              name: name
+              comment: comment
+              secret: secret
+              key: key
+              algorithm: algorithm
+              protocol_name: protocol_name
+            host: host
+            stealth: true
+            tsig_enabled: true
+          - address: address
+            role: role
+            fqdn: fqdn
+            protocol_fqdn: protocol_fqdn
+            origin: origin
+            tsig_key:
+              name: name
+              comment: comment
+              secret: secret
+              key: key
+              algorithm: algorithm
+              protocol_name: protocol_name
+            host: host
+            stealth: true
+            tsig_enabled: true
           name: Example Authoritative DNS Server Group
           external_primaries:
           - address: address
@@ -7518,9 +8424,16 @@ components:
             tsig_enabled: true
           comment: comment
           id: id
+          grid_secondaries:
+          - host: host
+          - host: host
           internal_secondaries:
           - host: dns/host/23311109-fad4-448f-a7a7-55ad791ae7eb
           - host: dns/host/23311109-fad4-448f-a7a7-55ad791ae7eb
+          grid_primaries:
+          - host: host
+          - host: host
+          version: version
           tags: "{}"
       properties:
         results:
@@ -7562,6 +8475,9 @@ components:
           nsgs:
           - nsgs
           - nsgs
+          nsg: nsg
+          dnssec_status: dnssec_status
+          secondary_zone_records_sync: true
           created_at: 2000-01-23T04:56:07.000+00:00
           external_primaries:
           - address: address
@@ -7601,12 +8517,33 @@ components:
             host: host
             display_name: display_name
           notify: true
+          max_records_per_type: 1
+          dnssec_signing_policy:
+            ksk_rollover_interval: 2
+            nsec3_iterations: 7
+            ksk_notification_event_trigger: ksk_notification_event_trigger
+            nsec_type: nsec_type
+            zsk_signature_validity: 2
+            keys:
+            - size: 5
+              type: type
+              algorithm: 5
+            - size: 5
+              type: type
+              algorithm: 5
+            nsec3_salt_length: 9
+            zsk_rollover_interval: 3
+            ksk_automatic_rollover_enabled: true
           view: view
           gss_tsig_enabled: true
           updated_at: 2000-01-23T04:56:07.000+00:00
           use_forwarders_for_subzones: true
           disabled: true
           id: id
+          grid_primaries:
+          - host: host
+          - host: host
+          nios_grids_metadata: "{}"
           mapping: mapping
           external_secondaries:
           - address: 192.0.2.0
@@ -7635,14 +8572,28 @@ components:
             tsig_enabled: true
           mapped_subnet: mapped_subnet
           fqdn: fqdn
-          initial_soa_serial: 6
+          initial_soa_serial: 7
           warnings:
           - name: name
             message: message
           - name: name
             message: message
           compartment_id: compartment_id
+          version: version
           tags: "{}"
+          dnssec_keys:
+          - public_key: public_key
+            size: 1
+            key_id: 6
+            next_rollover_event: 2000-01-23T04:56:07.000+00:00
+            type: type
+            algorithm: 0
+          - public_key: public_key
+            size: 1
+            key_id: 6
+            next_rollover_event: 2000-01-23T04:56:07.000+00:00
+            type: type
+            algorithm: 0
           inheritance_sources:
             query_acl:
               action: action
@@ -7671,6 +8622,26 @@ components:
                   protocol_name: protocol_name
                 acl: acl
                 element: ip
+            dnssec_signing_policy:
+              action: action
+              source: source
+              display_name: display_name
+              value:
+                ksk_rollover_interval: 2
+                nsec3_iterations: 7
+                ksk_notification_event_trigger: ksk_notification_event_trigger
+                nsec_type: nsec_type
+                zsk_signature_validity: 2
+                keys:
+                - size: 5
+                  type: type
+                  algorithm: 5
+                - size: 5
+                  type: type
+                  algorithm: 5
+                nsec3_salt_length: 9
+                zsk_rollover_interval: 3
+                ksk_automatic_rollover_enabled: true
             gss_tsig_enabled:
               action: action
               source: source
@@ -7721,12 +8692,12 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               expire:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               protocol_rname:
                 action: action
                 source: source
@@ -7736,17 +8707,17 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               negative_ttl:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               retry:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
             transfer_acl:
               action: action
               source: source
@@ -7774,6 +8745,11 @@ components:
                   protocol_name: protocol_name
                 acl: acl
                 element: ip
+            secondary_zone_records_sync:
+              action: action
+              source: source
+              display_name: display_name
+              value: true
             use_forwarders_for_subzones:
               action: action
               source: source
@@ -7784,6 +8760,37 @@ components:
               source: source
               display_name: display_name
               value: true
+          nameservers:
+          - address: address
+            role: role
+            fqdn: fqdn
+            protocol_fqdn: protocol_fqdn
+            origin: origin
+            tsig_key:
+              name: name
+              comment: comment
+              secret: secret
+              key: key
+              algorithm: algorithm
+              protocol_name: protocol_name
+            host: host
+            stealth: true
+            tsig_enabled: true
+          - address: address
+            role: role
+            fqdn: fqdn
+            protocol_fqdn: protocol_fqdn
+            origin: origin
+            tsig_key:
+              name: name
+              comment: comment
+              secret: secret
+              key: key
+              algorithm: algorithm
+              protocol_name: protocol_name
+            host: host
+            stealth: true
+            tsig_enabled: true
           protocol_fqdn: protocol_fqdn
           update_acl:
           - access: allow
@@ -7811,14 +8818,15 @@ components:
           zone_authority:
             rname: rname
             default_ttl: 1
-            expire: 5
+            expire: 6
             protocol_rname: protocol_rname
-            refresh: 2
-            negative_ttl: 5
+            refresh: 1
+            negative_ttl: 7
             protocol_mname: protocol_mname
             use_default_mname: true
             mname: mname
-            retry: 7
+            retry: 4
+          max_types_per_name: 1
           transfer_acl:
           - access: allow
             address: address
@@ -7843,6 +8851,10 @@ components:
             acl: acl
             element: ip
           comment: comment
+          external_providers_metadata: "{}"
+          grid_secondaries:
+          - host: host
+          - host: host
           external_providers:
           - name: name
             id: id
@@ -7878,6 +8890,9 @@ components:
           nsgs:
           - nsgs
           - nsgs
+          nsg: nsg
+          dnssec_status: dnssec_status
+          secondary_zone_records_sync: true
           created_at: 2000-01-23T04:56:07.000+00:00
           external_primaries:
           - address: address
@@ -7917,12 +8932,33 @@ components:
             host: host
             display_name: display_name
           notify: true
+          max_records_per_type: 1
+          dnssec_signing_policy:
+            ksk_rollover_interval: 2
+            nsec3_iterations: 7
+            ksk_notification_event_trigger: ksk_notification_event_trigger
+            nsec_type: nsec_type
+            zsk_signature_validity: 2
+            keys:
+            - size: 5
+              type: type
+              algorithm: 5
+            - size: 5
+              type: type
+              algorithm: 5
+            nsec3_salt_length: 9
+            zsk_rollover_interval: 3
+            ksk_automatic_rollover_enabled: true
           view: view
           gss_tsig_enabled: true
           updated_at: 2000-01-23T04:56:07.000+00:00
           use_forwarders_for_subzones: true
           disabled: true
           id: id
+          grid_primaries:
+          - host: host
+          - host: host
+          nios_grids_metadata: "{}"
           mapping: mapping
           external_secondaries:
           - address: 192.0.2.0
@@ -7951,14 +8987,28 @@ components:
             tsig_enabled: true
           mapped_subnet: mapped_subnet
           fqdn: fqdn
-          initial_soa_serial: 6
+          initial_soa_serial: 7
           warnings:
           - name: name
             message: message
           - name: name
             message: message
           compartment_id: compartment_id
+          version: version
           tags: "{}"
+          dnssec_keys:
+          - public_key: public_key
+            size: 1
+            key_id: 6
+            next_rollover_event: 2000-01-23T04:56:07.000+00:00
+            type: type
+            algorithm: 0
+          - public_key: public_key
+            size: 1
+            key_id: 6
+            next_rollover_event: 2000-01-23T04:56:07.000+00:00
+            type: type
+            algorithm: 0
           inheritance_sources:
             query_acl:
               action: action
@@ -7987,6 +9037,26 @@ components:
                   protocol_name: protocol_name
                 acl: acl
                 element: ip
+            dnssec_signing_policy:
+              action: action
+              source: source
+              display_name: display_name
+              value:
+                ksk_rollover_interval: 2
+                nsec3_iterations: 7
+                ksk_notification_event_trigger: ksk_notification_event_trigger
+                nsec_type: nsec_type
+                zsk_signature_validity: 2
+                keys:
+                - size: 5
+                  type: type
+                  algorithm: 5
+                - size: 5
+                  type: type
+                  algorithm: 5
+                nsec3_salt_length: 9
+                zsk_rollover_interval: 3
+                ksk_automatic_rollover_enabled: true
             gss_tsig_enabled:
               action: action
               source: source
@@ -8037,12 +9107,12 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               expire:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               protocol_rname:
                 action: action
                 source: source
@@ -8052,17 +9122,17 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               negative_ttl:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               retry:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
             transfer_acl:
               action: action
               source: source
@@ -8090,6 +9160,11 @@ components:
                   protocol_name: protocol_name
                 acl: acl
                 element: ip
+            secondary_zone_records_sync:
+              action: action
+              source: source
+              display_name: display_name
+              value: true
             use_forwarders_for_subzones:
               action: action
               source: source
@@ -8100,6 +9175,37 @@ components:
               source: source
               display_name: display_name
               value: true
+          nameservers:
+          - address: address
+            role: role
+            fqdn: fqdn
+            protocol_fqdn: protocol_fqdn
+            origin: origin
+            tsig_key:
+              name: name
+              comment: comment
+              secret: secret
+              key: key
+              algorithm: algorithm
+              protocol_name: protocol_name
+            host: host
+            stealth: true
+            tsig_enabled: true
+          - address: address
+            role: role
+            fqdn: fqdn
+            protocol_fqdn: protocol_fqdn
+            origin: origin
+            tsig_key:
+              name: name
+              comment: comment
+              secret: secret
+              key: key
+              algorithm: algorithm
+              protocol_name: protocol_name
+            host: host
+            stealth: true
+            tsig_enabled: true
           protocol_fqdn: protocol_fqdn
           update_acl:
           - access: allow
@@ -8127,14 +9233,15 @@ components:
           zone_authority:
             rname: rname
             default_ttl: 1
-            expire: 5
+            expire: 6
             protocol_rname: protocol_rname
-            refresh: 2
-            negative_ttl: 5
+            refresh: 1
+            negative_ttl: 7
             protocol_mname: protocol_mname
             use_default_mname: true
             mname: mname
-            retry: 7
+            retry: 4
+          max_types_per_name: 1
           transfer_acl:
           - access: allow
             address: address
@@ -8159,6 +9266,10 @@ components:
             acl: acl
             element: ip
           comment: comment
+          external_providers_metadata: "{}"
+          grid_secondaries:
+          - host: host
+          - host: host
           external_providers:
           - name: name
             id: id
@@ -8479,7 +9590,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
           view: dns/view/23311109-fad4-448f-a7a7-55ad791ae7eb
           name: example.com
           comment: comment
@@ -8496,7 +9607,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
           view: dns/view/23311109-fad4-448f-a7a7-55ad791ae7eb
           name: example.com
           comment: comment
@@ -8702,7 +9813,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             query_acl:
               action: action
               source: source
@@ -8796,7 +9907,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             notify:
               action: action
               source: source
@@ -8854,13 +9965,18 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             dnssec_validation_block:
               action: action
               source: source
               display_name: display_name
               value:
                 dnssec_enabled: true
+                dnssec_validate_exceptions:
+                - domain: domain
+                  protocol_domain: protocol_domain
+                - domain: domain
+                  protocol_domain: protocol_domain
                 dnssec_enable_validation: true
                 dnssec_validate_expiry: true
                 dnssec_trust_anchors:
@@ -8883,7 +9999,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             forwarders_block:
               action: action
               source: source
@@ -8934,7 +10050,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             add_edns_option_in_outgoing_query:
               action: action
               source: source
@@ -8944,7 +10060,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             update_acl:
               action: action
               source: source
@@ -9008,7 +10124,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             filter_aaaa_on_v4:
               action: action
               source: source
@@ -9018,7 +10134,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
           update_acl:
           - access: allow
             address: address
@@ -9250,7 +10366,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             query_acl:
               action: action
               source: source
@@ -9344,7 +10460,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             notify:
               action: action
               source: source
@@ -9402,13 +10518,18 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             dnssec_validation_block:
               action: action
               source: source
               display_name: display_name
               value:
                 dnssec_enabled: true
+                dnssec_validate_exceptions:
+                - domain: domain
+                  protocol_domain: protocol_domain
+                - domain: domain
+                  protocol_domain: protocol_domain
                 dnssec_enable_validation: true
                 dnssec_validate_expiry: true
                 dnssec_trust_anchors:
@@ -9431,7 +10552,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             forwarders_block:
               action: action
               source: source
@@ -9482,7 +10603,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             add_edns_option_in_outgoing_query:
               action: action
               source: source
@@ -9492,7 +10613,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             update_acl:
               action: action
               source: source
@@ -9556,7 +10677,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             filter_aaaa_on_v4:
               action: action
               source: source
@@ -9566,7 +10687,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
           update_acl:
           - access: allow
             address: address
@@ -9631,6 +10752,7 @@ components:
         - max_cache_ttl: 5
           dnssec_enabled: true
           match_recursive_only: true
+          secondary_zone_records_sync: true
           recursion_acl:
           - access: allow
             address: address
@@ -9656,6 +10778,22 @@ components:
             element: ip
           lame_ttl: 5
           forwarders_only: true
+          dnssec_signing_policy:
+            ksk_rollover_interval: 2
+            nsec3_iterations: 7
+            ksk_notification_event_trigger: ksk_notification_event_trigger
+            nsec_type: nsec_type
+            zsk_signature_validity: 2
+            keys:
+            - size: 5
+              type: type
+              algorithm: 5
+            - size: 5
+              type: type
+              algorithm: 5
+            nsec3_salt_length: 9
+            zsk_rollover_interval: 3
+            ksk_automatic_rollover_enabled: true
           gss_tsig_enabled: true
           ecs_zones:
           - access: allow
@@ -9685,17 +10823,22 @@ components:
             sep: true
           tags: "{}"
           max_negative_ttl: 2
+          dnssec_validate_exceptions:
+          - domain: domain
+            protocol_domain: protocol_domain
+          - domain: domain
+            protocol_domain: protocol_domain
           zone_authority:
             rname: rname
             default_ttl: 1
-            expire: 5
+            expire: 6
             protocol_rname: protocol_rname
-            refresh: 2
-            negative_ttl: 5
+            refresh: 1
+            negative_ttl: 7
             protocol_mname: protocol_mname
             use_default_mname: true
             mname: mname
-            retry: 7
+            retry: 4
           forwarders:
           - address: 10.0.0.0
             fqdn: ns1.example.com
@@ -9703,7 +10846,7 @@ components:
           - address: 10.0.0.0
             fqdn: ns1.example.com
             protocol_fqdn: protocol_fqdn
-          name: Example Config View
+          name: name
           dnssec_validate_expiry: true
           filter_aaaa_on_v4: filter_aaaa_on_v4
           max_udp_size: 7
@@ -9799,12 +10942,13 @@ components:
             zone: dns/auth_zone/16d9158d-d0d7-48e1-9a55-087e7aa419d4
             algorithm: 0
             sep: true
+          nios_metadata: "{}"
           inheritance_sources:
             max_cache_ttl:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             query_acl:
               action: action
               source: source
@@ -9850,6 +10994,11 @@ components:
               source: source
               display_name: display_name
               value: true
+            secondary_zone_records_sync:
+              action: action
+              source: source
+              display_name: display_name
+              value: true
             recursion_acl:
               action: action
               source: source
@@ -9881,12 +11030,32 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             notify:
               action: action
               source: source
               display_name: display_name
               value: true
+            dnssec_signing_policy:
+              action: action
+              source: source
+              display_name: display_name
+              value:
+                ksk_rollover_interval: 2
+                nsec3_iterations: 7
+                ksk_notification_event_trigger: ksk_notification_event_trigger
+                nsec_type: nsec_type
+                zsk_signature_validity: 2
+                keys:
+                - size: 5
+                  type: type
+                  algorithm: 5
+                - size: 5
+                  type: type
+                  algorithm: 5
+                nsec3_salt_length: 9
+                zsk_rollover_interval: 3
+                ksk_automatic_rollover_enabled: true
             gss_tsig_enabled:
               action: action
               source: source
@@ -9913,7 +11082,7 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
             use_forwarders_for_subzones:
               action: action
               source: source
@@ -9940,7 +11109,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             minimal_responses:
               action: action
               source: source
@@ -9952,6 +11121,11 @@ components:
               display_name: display_name
               value:
                 dnssec_enabled: true
+                dnssec_validate_exceptions:
+                - domain: domain
+                  protocol_domain: protocol_domain
+                - domain: domain
+                  protocol_domain: protocol_domain
                 dnssec_enable_validation: true
                 dnssec_validate_expiry: true
                 dnssec_trust_anchors:
@@ -10020,7 +11194,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             update_acl:
               action: action
               source: source
@@ -10071,12 +11245,12 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               expire:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               protocol_rname:
                 action: action
                 source: source
@@ -10086,17 +11260,17 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               negative_ttl:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               retry:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
             transfer_acl:
               action: action
               source: source
@@ -10133,7 +11307,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
           update_acl:
           - access: allow
             address: address
@@ -10182,6 +11356,7 @@ components:
             acl: acl
             element: ip
           comment: comment
+          external_providers_metadata: "{}"
           match_destinations_acl:
           - access: allow
             address: address
@@ -10231,6 +11406,7 @@ components:
         - max_cache_ttl: 5
           dnssec_enabled: true
           match_recursive_only: true
+          secondary_zone_records_sync: true
           recursion_acl:
           - access: allow
             address: address
@@ -10256,6 +11432,22 @@ components:
             element: ip
           lame_ttl: 5
           forwarders_only: true
+          dnssec_signing_policy:
+            ksk_rollover_interval: 2
+            nsec3_iterations: 7
+            ksk_notification_event_trigger: ksk_notification_event_trigger
+            nsec_type: nsec_type
+            zsk_signature_validity: 2
+            keys:
+            - size: 5
+              type: type
+              algorithm: 5
+            - size: 5
+              type: type
+              algorithm: 5
+            nsec3_salt_length: 9
+            zsk_rollover_interval: 3
+            ksk_automatic_rollover_enabled: true
           gss_tsig_enabled: true
           ecs_zones:
           - access: allow
@@ -10285,17 +11477,22 @@ components:
             sep: true
           tags: "{}"
           max_negative_ttl: 2
+          dnssec_validate_exceptions:
+          - domain: domain
+            protocol_domain: protocol_domain
+          - domain: domain
+            protocol_domain: protocol_domain
           zone_authority:
             rname: rname
             default_ttl: 1
-            expire: 5
+            expire: 6
             protocol_rname: protocol_rname
-            refresh: 2
-            negative_ttl: 5
+            refresh: 1
+            negative_ttl: 7
             protocol_mname: protocol_mname
             use_default_mname: true
             mname: mname
-            retry: 7
+            retry: 4
           forwarders:
           - address: 10.0.0.0
             fqdn: ns1.example.com
@@ -10303,7 +11500,7 @@ components:
           - address: 10.0.0.0
             fqdn: ns1.example.com
             protocol_fqdn: protocol_fqdn
-          name: Example Config View
+          name: name
           dnssec_validate_expiry: true
           filter_aaaa_on_v4: filter_aaaa_on_v4
           max_udp_size: 7
@@ -10399,12 +11596,13 @@ components:
             zone: dns/auth_zone/16d9158d-d0d7-48e1-9a55-087e7aa419d4
             algorithm: 0
             sep: true
+          nios_metadata: "{}"
           inheritance_sources:
             max_cache_ttl:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             query_acl:
               action: action
               source: source
@@ -10450,6 +11648,11 @@ components:
               source: source
               display_name: display_name
               value: true
+            secondary_zone_records_sync:
+              action: action
+              source: source
+              display_name: display_name
+              value: true
             recursion_acl:
               action: action
               source: source
@@ -10481,12 +11684,32 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             notify:
               action: action
               source: source
               display_name: display_name
               value: true
+            dnssec_signing_policy:
+              action: action
+              source: source
+              display_name: display_name
+              value:
+                ksk_rollover_interval: 2
+                nsec3_iterations: 7
+                ksk_notification_event_trigger: ksk_notification_event_trigger
+                nsec_type: nsec_type
+                zsk_signature_validity: 2
+                keys:
+                - size: 5
+                  type: type
+                  algorithm: 5
+                - size: 5
+                  type: type
+                  algorithm: 5
+                nsec3_salt_length: 9
+                zsk_rollover_interval: 3
+                ksk_automatic_rollover_enabled: true
             gss_tsig_enabled:
               action: action
               source: source
@@ -10513,7 +11736,7 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
             use_forwarders_for_subzones:
               action: action
               source: source
@@ -10540,7 +11763,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             minimal_responses:
               action: action
               source: source
@@ -10552,6 +11775,11 @@ components:
               display_name: display_name
               value:
                 dnssec_enabled: true
+                dnssec_validate_exceptions:
+                - domain: domain
+                  protocol_domain: protocol_domain
+                - domain: domain
+                  protocol_domain: protocol_domain
                 dnssec_enable_validation: true
                 dnssec_validate_expiry: true
                 dnssec_trust_anchors:
@@ -10620,7 +11848,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             update_acl:
               action: action
               source: source
@@ -10671,12 +11899,12 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               expire:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               protocol_rname:
                 action: action
                 source: source
@@ -10686,17 +11914,17 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               negative_ttl:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               retry:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
             transfer_acl:
               action: action
               source: source
@@ -10733,7 +11961,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
           update_acl:
           - access: allow
             address: address
@@ -10782,6 +12010,7 @@ components:
             acl: acl
             element: ip
           comment: comment
+          external_providers_metadata: "{}"
           match_destinations_acl:
           - access: allow
             address: address
@@ -10835,6 +12064,85 @@ components:
             $ref: '#/components/schemas/configView'
           type: array
       title: ListViewResponse
+      type: object
+    configMemberServer:
+      description: "Universal DDI Host, which represents NIOS Grid Member can be assigned\
+        \ as Grid Primary or Grid Secondary. Only applicable for the NIOS Zones."
+      example:
+        host: host
+      properties:
+        host:
+          description: The resource identifier.
+          type: string
+      required:
+      - host
+      title: MemberServer
+      type: object
+    configNameserver:
+      description: Generic DNS nameserver with role and origin attributes.
+      example:
+        address: address
+        role: role
+        fqdn: fqdn
+        protocol_fqdn: protocol_fqdn
+        origin: origin
+        tsig_key:
+          name: name
+          comment: comment
+          secret: secret
+          key: key
+          algorithm: algorithm
+          protocol_name: protocol_name
+        host: host
+        stealth: true
+        tsig_enabled: true
+      properties:
+        address:
+          description: Optional. Required only if _origin_ is _external_. IP Address
+            of the nameserver.
+          type: string
+        fqdn:
+          description: Optional. Required only if _origin_ is _external_. FQDN of
+            the nameserver.
+          type: string
+        host:
+          description: The resource identifier.
+          type: string
+        origin:
+          description: |-
+            Allowed values:
+            * _external_,
+            * _nios-x_,
+            * _nios_
+          type: string
+        protocol_fqdn:
+          description: FQDN of the nameserver in punycode.
+          readOnly: true
+          type: string
+        role:
+          description: |-
+            Allowed values:
+            * _primary_,
+            * _secondary_
+          type: string
+        stealth:
+          description: |-
+            If enabled, the NS record and glue record will NOT be automatically generated
+            according to secondaries nameserver assignment.
+
+            Default: _false_
+          format: boolean
+          type: boolean
+        tsig_enabled:
+          description: "Optional. If enabled, secondaries will use the configured\
+            \ TSIG key when requesting a zone transfer from a primary."
+          format: boolean
+          type: boolean
+        tsig_key:
+          $ref: '#/components/schemas/configTSIGKey'
+      required:
+      - role
+      title: Nameserver
       type: object
     configReadACLResponse:
       description: The ACL object read response format.
@@ -10905,6 +12213,37 @@ components:
               protocol_name: protocol_name
             stealth: true
             tsig_enabled: true
+          nameservers:
+          - address: address
+            role: role
+            fqdn: fqdn
+            protocol_fqdn: protocol_fqdn
+            origin: origin
+            tsig_key:
+              name: name
+              comment: comment
+              secret: secret
+              key: key
+              algorithm: algorithm
+              protocol_name: protocol_name
+            host: host
+            stealth: true
+            tsig_enabled: true
+          - address: address
+            role: role
+            fqdn: fqdn
+            protocol_fqdn: protocol_fqdn
+            origin: origin
+            tsig_key:
+              name: name
+              comment: comment
+              secret: secret
+              key: key
+              algorithm: algorithm
+              protocol_name: protocol_name
+            host: host
+            stealth: true
+            tsig_enabled: true
           name: Example Authoritative DNS Server Group
           external_primaries:
           - address: address
@@ -10935,9 +12274,16 @@ components:
             tsig_enabled: true
           comment: comment
           id: id
+          grid_secondaries:
+          - host: host
+          - host: host
           internal_secondaries:
           - host: dns/host/23311109-fad4-448f-a7a7-55ad791ae7eb
           - host: dns/host/23311109-fad4-448f-a7a7-55ad791ae7eb
+          grid_primaries:
+          - host: host
+          - host: host
+          version: version
           tags: "{}"
       properties:
         result:
@@ -10976,6 +12322,9 @@ components:
           nsgs:
           - nsgs
           - nsgs
+          nsg: nsg
+          dnssec_status: dnssec_status
+          secondary_zone_records_sync: true
           created_at: 2000-01-23T04:56:07.000+00:00
           external_primaries:
           - address: address
@@ -11015,12 +12364,33 @@ components:
             host: host
             display_name: display_name
           notify: true
+          max_records_per_type: 1
+          dnssec_signing_policy:
+            ksk_rollover_interval: 2
+            nsec3_iterations: 7
+            ksk_notification_event_trigger: ksk_notification_event_trigger
+            nsec_type: nsec_type
+            zsk_signature_validity: 2
+            keys:
+            - size: 5
+              type: type
+              algorithm: 5
+            - size: 5
+              type: type
+              algorithm: 5
+            nsec3_salt_length: 9
+            zsk_rollover_interval: 3
+            ksk_automatic_rollover_enabled: true
           view: view
           gss_tsig_enabled: true
           updated_at: 2000-01-23T04:56:07.000+00:00
           use_forwarders_for_subzones: true
           disabled: true
           id: id
+          grid_primaries:
+          - host: host
+          - host: host
+          nios_grids_metadata: "{}"
           mapping: mapping
           external_secondaries:
           - address: 192.0.2.0
@@ -11049,14 +12419,28 @@ components:
             tsig_enabled: true
           mapped_subnet: mapped_subnet
           fqdn: fqdn
-          initial_soa_serial: 6
+          initial_soa_serial: 7
           warnings:
           - name: name
             message: message
           - name: name
             message: message
           compartment_id: compartment_id
+          version: version
           tags: "{}"
+          dnssec_keys:
+          - public_key: public_key
+            size: 1
+            key_id: 6
+            next_rollover_event: 2000-01-23T04:56:07.000+00:00
+            type: type
+            algorithm: 0
+          - public_key: public_key
+            size: 1
+            key_id: 6
+            next_rollover_event: 2000-01-23T04:56:07.000+00:00
+            type: type
+            algorithm: 0
           inheritance_sources:
             query_acl:
               action: action
@@ -11085,6 +12469,26 @@ components:
                   protocol_name: protocol_name
                 acl: acl
                 element: ip
+            dnssec_signing_policy:
+              action: action
+              source: source
+              display_name: display_name
+              value:
+                ksk_rollover_interval: 2
+                nsec3_iterations: 7
+                ksk_notification_event_trigger: ksk_notification_event_trigger
+                nsec_type: nsec_type
+                zsk_signature_validity: 2
+                keys:
+                - size: 5
+                  type: type
+                  algorithm: 5
+                - size: 5
+                  type: type
+                  algorithm: 5
+                nsec3_salt_length: 9
+                zsk_rollover_interval: 3
+                ksk_automatic_rollover_enabled: true
             gss_tsig_enabled:
               action: action
               source: source
@@ -11135,12 +12539,12 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               expire:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               protocol_rname:
                 action: action
                 source: source
@@ -11150,17 +12554,17 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               negative_ttl:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               retry:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
             transfer_acl:
               action: action
               source: source
@@ -11188,6 +12592,11 @@ components:
                   protocol_name: protocol_name
                 acl: acl
                 element: ip
+            secondary_zone_records_sync:
+              action: action
+              source: source
+              display_name: display_name
+              value: true
             use_forwarders_for_subzones:
               action: action
               source: source
@@ -11198,6 +12607,37 @@ components:
               source: source
               display_name: display_name
               value: true
+          nameservers:
+          - address: address
+            role: role
+            fqdn: fqdn
+            protocol_fqdn: protocol_fqdn
+            origin: origin
+            tsig_key:
+              name: name
+              comment: comment
+              secret: secret
+              key: key
+              algorithm: algorithm
+              protocol_name: protocol_name
+            host: host
+            stealth: true
+            tsig_enabled: true
+          - address: address
+            role: role
+            fqdn: fqdn
+            protocol_fqdn: protocol_fqdn
+            origin: origin
+            tsig_key:
+              name: name
+              comment: comment
+              secret: secret
+              key: key
+              algorithm: algorithm
+              protocol_name: protocol_name
+            host: host
+            stealth: true
+            tsig_enabled: true
           protocol_fqdn: protocol_fqdn
           update_acl:
           - access: allow
@@ -11225,14 +12665,15 @@ components:
           zone_authority:
             rname: rname
             default_ttl: 1
-            expire: 5
+            expire: 6
             protocol_rname: protocol_rname
-            refresh: 2
-            negative_ttl: 5
+            refresh: 1
+            negative_ttl: 7
             protocol_mname: protocol_mname
             use_default_mname: true
             mname: mname
-            retry: 7
+            retry: 4
+          max_types_per_name: 1
           transfer_acl:
           - access: allow
             address: address
@@ -11257,6 +12698,10 @@ components:
             acl: acl
             element: ip
           comment: comment
+          external_providers_metadata: "{}"
+          grid_secondaries:
+          - host: host
+          - host: host
           external_providers:
           - name: name
             id: id
@@ -11557,14 +13002,14 @@ components:
           zone_authority:
             rname: rname
             default_ttl: 1
-            expire: 5
+            expire: 6
             protocol_rname: protocol_rname
-            refresh: 2
-            negative_ttl: 5
+            refresh: 1
+            negative_ttl: 7
             protocol_mname: protocol_mname
             use_default_mname: true
             mname: mname
-            retry: 7
+            retry: 4
           forwarders:
           - address: 10.0.0.0
             fqdn: ns1.example.com
@@ -11675,7 +13120,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
           view: dns/view/23311109-fad4-448f-a7a7-55ad791ae7eb
           name: example.com
           comment: comment
@@ -11878,7 +13323,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             query_acl:
               action: action
               source: source
@@ -11972,7 +13417,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             notify:
               action: action
               source: source
@@ -12030,13 +13475,18 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             dnssec_validation_block:
               action: action
               source: source
               display_name: display_name
               value:
                 dnssec_enabled: true
+                dnssec_validate_exceptions:
+                - domain: domain
+                  protocol_domain: protocol_domain
+                - domain: domain
+                  protocol_domain: protocol_domain
                 dnssec_enable_validation: true
                 dnssec_validate_expiry: true
                 dnssec_trust_anchors:
@@ -12059,7 +13509,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             forwarders_block:
               action: action
               source: source
@@ -12110,7 +13560,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             add_edns_option_in_outgoing_query:
               action: action
               source: source
@@ -12120,7 +13570,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             update_acl:
               action: action
               source: source
@@ -12184,7 +13634,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             filter_aaaa_on_v4:
               action: action
               source: source
@@ -12194,7 +13644,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
           update_acl:
           - access: allow
             address: address
@@ -12256,6 +13706,7 @@ components:
           max_cache_ttl: 5
           dnssec_enabled: true
           match_recursive_only: true
+          secondary_zone_records_sync: true
           recursion_acl:
           - access: allow
             address: address
@@ -12281,6 +13732,22 @@ components:
             element: ip
           lame_ttl: 5
           forwarders_only: true
+          dnssec_signing_policy:
+            ksk_rollover_interval: 2
+            nsec3_iterations: 7
+            ksk_notification_event_trigger: ksk_notification_event_trigger
+            nsec_type: nsec_type
+            zsk_signature_validity: 2
+            keys:
+            - size: 5
+              type: type
+              algorithm: 5
+            - size: 5
+              type: type
+              algorithm: 5
+            nsec3_salt_length: 9
+            zsk_rollover_interval: 3
+            ksk_automatic_rollover_enabled: true
           gss_tsig_enabled: true
           ecs_zones:
           - access: allow
@@ -12310,17 +13777,22 @@ components:
             sep: true
           tags: "{}"
           max_negative_ttl: 2
+          dnssec_validate_exceptions:
+          - domain: domain
+            protocol_domain: protocol_domain
+          - domain: domain
+            protocol_domain: protocol_domain
           zone_authority:
             rname: rname
             default_ttl: 1
-            expire: 5
+            expire: 6
             protocol_rname: protocol_rname
-            refresh: 2
-            negative_ttl: 5
+            refresh: 1
+            negative_ttl: 7
             protocol_mname: protocol_mname
             use_default_mname: true
             mname: mname
-            retry: 7
+            retry: 4
           forwarders:
           - address: 10.0.0.0
             fqdn: ns1.example.com
@@ -12328,7 +13800,7 @@ components:
           - address: 10.0.0.0
             fqdn: ns1.example.com
             protocol_fqdn: protocol_fqdn
-          name: Example Config View
+          name: name
           dnssec_validate_expiry: true
           filter_aaaa_on_v4: filter_aaaa_on_v4
           max_udp_size: 7
@@ -12424,12 +13896,13 @@ components:
             zone: dns/auth_zone/16d9158d-d0d7-48e1-9a55-087e7aa419d4
             algorithm: 0
             sep: true
+          nios_metadata: "{}"
           inheritance_sources:
             max_cache_ttl:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             query_acl:
               action: action
               source: source
@@ -12475,6 +13948,11 @@ components:
               source: source
               display_name: display_name
               value: true
+            secondary_zone_records_sync:
+              action: action
+              source: source
+              display_name: display_name
+              value: true
             recursion_acl:
               action: action
               source: source
@@ -12506,12 +13984,32 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             notify:
               action: action
               source: source
               display_name: display_name
               value: true
+            dnssec_signing_policy:
+              action: action
+              source: source
+              display_name: display_name
+              value:
+                ksk_rollover_interval: 2
+                nsec3_iterations: 7
+                ksk_notification_event_trigger: ksk_notification_event_trigger
+                nsec_type: nsec_type
+                zsk_signature_validity: 2
+                keys:
+                - size: 5
+                  type: type
+                  algorithm: 5
+                - size: 5
+                  type: type
+                  algorithm: 5
+                nsec3_salt_length: 9
+                zsk_rollover_interval: 3
+                ksk_automatic_rollover_enabled: true
             gss_tsig_enabled:
               action: action
               source: source
@@ -12538,7 +14036,7 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
             use_forwarders_for_subzones:
               action: action
               source: source
@@ -12565,7 +14063,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             minimal_responses:
               action: action
               source: source
@@ -12577,6 +14075,11 @@ components:
               display_name: display_name
               value:
                 dnssec_enabled: true
+                dnssec_validate_exceptions:
+                - domain: domain
+                  protocol_domain: protocol_domain
+                - domain: domain
+                  protocol_domain: protocol_domain
                 dnssec_enable_validation: true
                 dnssec_validate_expiry: true
                 dnssec_trust_anchors:
@@ -12645,7 +14148,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             update_acl:
               action: action
               source: source
@@ -12696,12 +14199,12 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               expire:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               protocol_rname:
                 action: action
                 source: source
@@ -12711,17 +14214,17 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               negative_ttl:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               retry:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
             transfer_acl:
               action: action
               source: source
@@ -12758,7 +14261,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
           update_acl:
           - access: allow
             address: address
@@ -12807,6 +14310,7 @@ components:
             acl: acl
             element: ip
           comment: comment
+          external_providers_metadata: "{}"
           match_destinations_acl:
           - access: allow
             address: address
@@ -13069,7 +14573,7 @@ components:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
           query_acl:
             action: action
             source: source
@@ -13163,7 +14667,7 @@ components:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
           notify:
             action: action
             source: source
@@ -13221,13 +14725,18 @@ components:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
           dnssec_validation_block:
             action: action
             source: source
             display_name: display_name
             value:
               dnssec_enabled: true
+              dnssec_validate_exceptions:
+              - domain: domain
+                protocol_domain: protocol_domain
+              - domain: domain
+                protocol_domain: protocol_domain
               dnssec_enable_validation: true
               dnssec_validate_expiry: true
               dnssec_trust_anchors:
@@ -13250,7 +14759,7 @@ components:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
           forwarders_block:
             action: action
             source: source
@@ -13301,7 +14810,7 @@ components:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
           add_edns_option_in_outgoing_query:
             action: action
             source: source
@@ -13311,7 +14820,7 @@ components:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
           update_acl:
             action: action
             source: source
@@ -13375,7 +14884,7 @@ components:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
           filter_aaaa_on_v4:
             action: action
             source: source
@@ -13385,7 +14894,7 @@ components:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
         update_acl:
         - access: allow
           address: address
@@ -13818,7 +15327,7 @@ components:
           action: action
           source: source
           display_name: display_name
-          value: 0
+          value: 4
         query_acl:
           action: action
           source: source
@@ -13912,7 +15421,7 @@ components:
           action: action
           source: source
           display_name: display_name
-          value: 0
+          value: 4
         notify:
           action: action
           source: source
@@ -13970,13 +15479,18 @@ components:
           action: action
           source: source
           display_name: display_name
-          value: 0
+          value: 4
         dnssec_validation_block:
           action: action
           source: source
           display_name: display_name
           value:
             dnssec_enabled: true
+            dnssec_validate_exceptions:
+            - domain: domain
+              protocol_domain: protocol_domain
+            - domain: domain
+              protocol_domain: protocol_domain
             dnssec_enable_validation: true
             dnssec_validate_expiry: true
             dnssec_trust_anchors:
@@ -13999,7 +15513,7 @@ components:
           action: action
           source: source
           display_name: display_name
-          value: 0
+          value: 4
         forwarders_block:
           action: action
           source: source
@@ -14050,7 +15564,7 @@ components:
           action: action
           source: source
           display_name: display_name
-          value: 0
+          value: 4
         add_edns_option_in_outgoing_query:
           action: action
           source: source
@@ -14060,7 +15574,7 @@ components:
           action: action
           source: source
           display_name: display_name
-          value: 0
+          value: 4
         update_acl:
           action: action
           source: source
@@ -14124,7 +15638,7 @@ components:
           action: action
           source: source
           display_name: display_name
-          value: 0
+          value: 4
         filter_aaaa_on_v4:
           action: action
           source: source
@@ -14134,7 +15648,7 @@ components:
           action: action
           source: source
           display_name: display_name
-          value: 0
+          value: 4
       properties:
         add_edns_option_in_outgoing_query:
           $ref: '#/components/schemas/inheritance2InheritedBool'
@@ -14281,7 +15795,7 @@ components:
           action: action
           source: source
           display_name: display_name
-          value: 0
+          value: 4
       properties:
         ttl:
           $ref: '#/components/schemas/inheritance2InheritedUInt32'
@@ -14411,6 +15925,37 @@ components:
               protocol_name: protocol_name
             stealth: true
             tsig_enabled: true
+          nameservers:
+          - address: address
+            role: role
+            fqdn: fqdn
+            protocol_fqdn: protocol_fqdn
+            origin: origin
+            tsig_key:
+              name: name
+              comment: comment
+              secret: secret
+              key: key
+              algorithm: algorithm
+              protocol_name: protocol_name
+            host: host
+            stealth: true
+            tsig_enabled: true
+          - address: address
+            role: role
+            fqdn: fqdn
+            protocol_fqdn: protocol_fqdn
+            origin: origin
+            tsig_key:
+              name: name
+              comment: comment
+              secret: secret
+              key: key
+              algorithm: algorithm
+              protocol_name: protocol_name
+            host: host
+            stealth: true
+            tsig_enabled: true
           name: Example Authoritative DNS Server Group
           external_primaries:
           - address: address
@@ -14441,9 +15986,16 @@ components:
             tsig_enabled: true
           comment: comment
           id: id
+          grid_secondaries:
+          - host: host
+          - host: host
           internal_secondaries:
           - host: dns/host/23311109-fad4-448f-a7a7-55ad791ae7eb
           - host: dns/host/23311109-fad4-448f-a7a7-55ad791ae7eb
+          grid_primaries:
+          - host: host
+          - host: host
+          version: version
           tags: "{}"
       properties:
         result:
@@ -14482,6 +16034,9 @@ components:
           nsgs:
           - nsgs
           - nsgs
+          nsg: nsg
+          dnssec_status: dnssec_status
+          secondary_zone_records_sync: true
           created_at: 2000-01-23T04:56:07.000+00:00
           external_primaries:
           - address: address
@@ -14521,12 +16076,33 @@ components:
             host: host
             display_name: display_name
           notify: true
+          max_records_per_type: 1
+          dnssec_signing_policy:
+            ksk_rollover_interval: 2
+            nsec3_iterations: 7
+            ksk_notification_event_trigger: ksk_notification_event_trigger
+            nsec_type: nsec_type
+            zsk_signature_validity: 2
+            keys:
+            - size: 5
+              type: type
+              algorithm: 5
+            - size: 5
+              type: type
+              algorithm: 5
+            nsec3_salt_length: 9
+            zsk_rollover_interval: 3
+            ksk_automatic_rollover_enabled: true
           view: view
           gss_tsig_enabled: true
           updated_at: 2000-01-23T04:56:07.000+00:00
           use_forwarders_for_subzones: true
           disabled: true
           id: id
+          grid_primaries:
+          - host: host
+          - host: host
+          nios_grids_metadata: "{}"
           mapping: mapping
           external_secondaries:
           - address: 192.0.2.0
@@ -14555,14 +16131,28 @@ components:
             tsig_enabled: true
           mapped_subnet: mapped_subnet
           fqdn: fqdn
-          initial_soa_serial: 6
+          initial_soa_serial: 7
           warnings:
           - name: name
             message: message
           - name: name
             message: message
           compartment_id: compartment_id
+          version: version
           tags: "{}"
+          dnssec_keys:
+          - public_key: public_key
+            size: 1
+            key_id: 6
+            next_rollover_event: 2000-01-23T04:56:07.000+00:00
+            type: type
+            algorithm: 0
+          - public_key: public_key
+            size: 1
+            key_id: 6
+            next_rollover_event: 2000-01-23T04:56:07.000+00:00
+            type: type
+            algorithm: 0
           inheritance_sources:
             query_acl:
               action: action
@@ -14591,6 +16181,26 @@ components:
                   protocol_name: protocol_name
                 acl: acl
                 element: ip
+            dnssec_signing_policy:
+              action: action
+              source: source
+              display_name: display_name
+              value:
+                ksk_rollover_interval: 2
+                nsec3_iterations: 7
+                ksk_notification_event_trigger: ksk_notification_event_trigger
+                nsec_type: nsec_type
+                zsk_signature_validity: 2
+                keys:
+                - size: 5
+                  type: type
+                  algorithm: 5
+                - size: 5
+                  type: type
+                  algorithm: 5
+                nsec3_salt_length: 9
+                zsk_rollover_interval: 3
+                ksk_automatic_rollover_enabled: true
             gss_tsig_enabled:
               action: action
               source: source
@@ -14641,12 +16251,12 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               expire:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               protocol_rname:
                 action: action
                 source: source
@@ -14656,17 +16266,17 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               negative_ttl:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               retry:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
             transfer_acl:
               action: action
               source: source
@@ -14694,6 +16304,11 @@ components:
                   protocol_name: protocol_name
                 acl: acl
                 element: ip
+            secondary_zone_records_sync:
+              action: action
+              source: source
+              display_name: display_name
+              value: true
             use_forwarders_for_subzones:
               action: action
               source: source
@@ -14704,6 +16319,37 @@ components:
               source: source
               display_name: display_name
               value: true
+          nameservers:
+          - address: address
+            role: role
+            fqdn: fqdn
+            protocol_fqdn: protocol_fqdn
+            origin: origin
+            tsig_key:
+              name: name
+              comment: comment
+              secret: secret
+              key: key
+              algorithm: algorithm
+              protocol_name: protocol_name
+            host: host
+            stealth: true
+            tsig_enabled: true
+          - address: address
+            role: role
+            fqdn: fqdn
+            protocol_fqdn: protocol_fqdn
+            origin: origin
+            tsig_key:
+              name: name
+              comment: comment
+              secret: secret
+              key: key
+              algorithm: algorithm
+              protocol_name: protocol_name
+            host: host
+            stealth: true
+            tsig_enabled: true
           protocol_fqdn: protocol_fqdn
           update_acl:
           - access: allow
@@ -14731,14 +16377,15 @@ components:
           zone_authority:
             rname: rname
             default_ttl: 1
-            expire: 5
+            expire: 6
             protocol_rname: protocol_rname
-            refresh: 2
-            negative_ttl: 5
+            refresh: 1
+            negative_ttl: 7
             protocol_mname: protocol_mname
             use_default_mname: true
             mname: mname
-            retry: 7
+            retry: 4
+          max_types_per_name: 1
           transfer_acl:
           - access: allow
             address: address
@@ -14763,6 +16410,10 @@ components:
             acl: acl
             element: ip
           comment: comment
+          external_providers_metadata: "{}"
+          grid_secondaries:
+          - host: host
+          - host: host
           external_providers:
           - name: name
             id: id
@@ -15063,14 +16714,14 @@ components:
           zone_authority:
             rname: rname
             default_ttl: 1
-            expire: 5
+            expire: 6
             protocol_rname: protocol_rname
-            refresh: 2
-            negative_ttl: 5
+            refresh: 1
+            negative_ttl: 7
             protocol_mname: protocol_mname
             use_default_mname: true
             mname: mname
-            retry: 7
+            retry: 4
           forwarders:
           - address: 10.0.0.0
             fqdn: ns1.example.com
@@ -15181,7 +16832,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
           view: dns/view/23311109-fad4-448f-a7a7-55ad791ae7eb
           name: example.com
           comment: comment
@@ -15384,7 +17035,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             query_acl:
               action: action
               source: source
@@ -15478,7 +17129,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             notify:
               action: action
               source: source
@@ -15536,13 +17187,18 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             dnssec_validation_block:
               action: action
               source: source
               display_name: display_name
               value:
                 dnssec_enabled: true
+                dnssec_validate_exceptions:
+                - domain: domain
+                  protocol_domain: protocol_domain
+                - domain: domain
+                  protocol_domain: protocol_domain
                 dnssec_enable_validation: true
                 dnssec_validate_expiry: true
                 dnssec_trust_anchors:
@@ -15565,7 +17221,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             forwarders_block:
               action: action
               source: source
@@ -15616,7 +17272,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             add_edns_option_in_outgoing_query:
               action: action
               source: source
@@ -15626,7 +17282,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             update_acl:
               action: action
               source: source
@@ -15690,7 +17346,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             filter_aaaa_on_v4:
               action: action
               source: source
@@ -15700,7 +17356,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
           update_acl:
           - access: allow
             address: address
@@ -15762,6 +17418,7 @@ components:
           max_cache_ttl: 5
           dnssec_enabled: true
           match_recursive_only: true
+          secondary_zone_records_sync: true
           recursion_acl:
           - access: allow
             address: address
@@ -15787,6 +17444,22 @@ components:
             element: ip
           lame_ttl: 5
           forwarders_only: true
+          dnssec_signing_policy:
+            ksk_rollover_interval: 2
+            nsec3_iterations: 7
+            ksk_notification_event_trigger: ksk_notification_event_trigger
+            nsec_type: nsec_type
+            zsk_signature_validity: 2
+            keys:
+            - size: 5
+              type: type
+              algorithm: 5
+            - size: 5
+              type: type
+              algorithm: 5
+            nsec3_salt_length: 9
+            zsk_rollover_interval: 3
+            ksk_automatic_rollover_enabled: true
           gss_tsig_enabled: true
           ecs_zones:
           - access: allow
@@ -15816,17 +17489,22 @@ components:
             sep: true
           tags: "{}"
           max_negative_ttl: 2
+          dnssec_validate_exceptions:
+          - domain: domain
+            protocol_domain: protocol_domain
+          - domain: domain
+            protocol_domain: protocol_domain
           zone_authority:
             rname: rname
             default_ttl: 1
-            expire: 5
+            expire: 6
             protocol_rname: protocol_rname
-            refresh: 2
-            negative_ttl: 5
+            refresh: 1
+            negative_ttl: 7
             protocol_mname: protocol_mname
             use_default_mname: true
             mname: mname
-            retry: 7
+            retry: 4
           forwarders:
           - address: 10.0.0.0
             fqdn: ns1.example.com
@@ -15834,7 +17512,7 @@ components:
           - address: 10.0.0.0
             fqdn: ns1.example.com
             protocol_fqdn: protocol_fqdn
-          name: Example Config View
+          name: name
           dnssec_validate_expiry: true
           filter_aaaa_on_v4: filter_aaaa_on_v4
           max_udp_size: 7
@@ -15930,12 +17608,13 @@ components:
             zone: dns/auth_zone/16d9158d-d0d7-48e1-9a55-087e7aa419d4
             algorithm: 0
             sep: true
+          nios_metadata: "{}"
           inheritance_sources:
             max_cache_ttl:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             query_acl:
               action: action
               source: source
@@ -15981,6 +17660,11 @@ components:
               source: source
               display_name: display_name
               value: true
+            secondary_zone_records_sync:
+              action: action
+              source: source
+              display_name: display_name
+              value: true
             recursion_acl:
               action: action
               source: source
@@ -16012,12 +17696,32 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             notify:
               action: action
               source: source
               display_name: display_name
               value: true
+            dnssec_signing_policy:
+              action: action
+              source: source
+              display_name: display_name
+              value:
+                ksk_rollover_interval: 2
+                nsec3_iterations: 7
+                ksk_notification_event_trigger: ksk_notification_event_trigger
+                nsec_type: nsec_type
+                zsk_signature_validity: 2
+                keys:
+                - size: 5
+                  type: type
+                  algorithm: 5
+                - size: 5
+                  type: type
+                  algorithm: 5
+                nsec3_salt_length: 9
+                zsk_rollover_interval: 3
+                ksk_automatic_rollover_enabled: true
             gss_tsig_enabled:
               action: action
               source: source
@@ -16044,7 +17748,7 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
             use_forwarders_for_subzones:
               action: action
               source: source
@@ -16071,7 +17775,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             minimal_responses:
               action: action
               source: source
@@ -16083,6 +17787,11 @@ components:
               display_name: display_name
               value:
                 dnssec_enabled: true
+                dnssec_validate_exceptions:
+                - domain: domain
+                  protocol_domain: protocol_domain
+                - domain: domain
+                  protocol_domain: protocol_domain
                 dnssec_enable_validation: true
                 dnssec_validate_expiry: true
                 dnssec_trust_anchors:
@@ -16151,7 +17860,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             update_acl:
               action: action
               source: source
@@ -16202,12 +17911,12 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               expire:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               protocol_rname:
                 action: action
                 source: source
@@ -16217,17 +17926,17 @@ components:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               negative_ttl:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
               retry:
                 action: action
                 source: source
                 display_name: display_name
-                value: 0
+                value: 4
             transfer_acl:
               action: action
               source: source
@@ -16264,7 +17973,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
           update_acl:
           - access: allow
             address: address
@@ -16313,6 +18022,7 @@ components:
             acl: acl
             element: ip
           comment: comment
+          external_providers_metadata: "{}"
           match_destinations_acl:
           - access: allow
             address: address
@@ -16370,6 +18080,7 @@ components:
         max_cache_ttl: 5
         dnssec_enabled: true
         match_recursive_only: true
+        secondary_zone_records_sync: true
         recursion_acl:
         - access: allow
           address: address
@@ -16395,6 +18106,22 @@ components:
           element: ip
         lame_ttl: 5
         forwarders_only: true
+        dnssec_signing_policy:
+          ksk_rollover_interval: 2
+          nsec3_iterations: 7
+          ksk_notification_event_trigger: ksk_notification_event_trigger
+          nsec_type: nsec_type
+          zsk_signature_validity: 2
+          keys:
+          - size: 5
+            type: type
+            algorithm: 5
+          - size: 5
+            type: type
+            algorithm: 5
+          nsec3_salt_length: 9
+          zsk_rollover_interval: 3
+          ksk_automatic_rollover_enabled: true
         gss_tsig_enabled: true
         ecs_zones:
         - access: allow
@@ -16424,17 +18151,22 @@ components:
           sep: true
         tags: "{}"
         max_negative_ttl: 2
+        dnssec_validate_exceptions:
+        - domain: domain
+          protocol_domain: protocol_domain
+        - domain: domain
+          protocol_domain: protocol_domain
         zone_authority:
           rname: rname
           default_ttl: 1
-          expire: 5
+          expire: 6
           protocol_rname: protocol_rname
-          refresh: 2
-          negative_ttl: 5
+          refresh: 1
+          negative_ttl: 7
           protocol_mname: protocol_mname
           use_default_mname: true
           mname: mname
-          retry: 7
+          retry: 4
         forwarders:
         - address: 10.0.0.0
           fqdn: ns1.example.com
@@ -16442,7 +18174,7 @@ components:
         - address: 10.0.0.0
           fqdn: ns1.example.com
           protocol_fqdn: protocol_fqdn
-        name: Example Config View
+        name: name
         dnssec_validate_expiry: true
         filter_aaaa_on_v4: filter_aaaa_on_v4
         max_udp_size: 7
@@ -16538,12 +18270,13 @@ components:
           zone: dns/auth_zone/16d9158d-d0d7-48e1-9a55-087e7aa419d4
           algorithm: 0
           sep: true
+        nios_metadata: "{}"
         inheritance_sources:
           max_cache_ttl:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
           query_acl:
             action: action
             source: source
@@ -16589,6 +18322,11 @@ components:
             source: source
             display_name: display_name
             value: true
+          secondary_zone_records_sync:
+            action: action
+            source: source
+            display_name: display_name
+            value: true
           recursion_acl:
             action: action
             source: source
@@ -16620,12 +18358,32 @@ components:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
           notify:
             action: action
             source: source
             display_name: display_name
             value: true
+          dnssec_signing_policy:
+            action: action
+            source: source
+            display_name: display_name
+            value:
+              ksk_rollover_interval: 2
+              nsec3_iterations: 7
+              ksk_notification_event_trigger: ksk_notification_event_trigger
+              nsec_type: nsec_type
+              zsk_signature_validity: 2
+              keys:
+              - size: 5
+                type: type
+                algorithm: 5
+              - size: 5
+                type: type
+                algorithm: 5
+              nsec3_salt_length: 9
+              zsk_rollover_interval: 3
+              ksk_automatic_rollover_enabled: true
           gss_tsig_enabled:
             action: action
             source: source
@@ -16652,7 +18410,7 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
           use_forwarders_for_subzones:
             action: action
             source: source
@@ -16679,7 +18437,7 @@ components:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
           minimal_responses:
             action: action
             source: source
@@ -16691,6 +18449,11 @@ components:
             display_name: display_name
             value:
               dnssec_enabled: true
+              dnssec_validate_exceptions:
+              - domain: domain
+                protocol_domain: protocol_domain
+              - domain: domain
+                protocol_domain: protocol_domain
               dnssec_enable_validation: true
               dnssec_validate_expiry: true
               dnssec_trust_anchors:
@@ -16759,7 +18522,7 @@ components:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
           update_acl:
             action: action
             source: source
@@ -16810,12 +18573,12 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             expire:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             protocol_rname:
               action: action
               source: source
@@ -16825,17 +18588,17 @@ components:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             negative_ttl:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
             retry:
               action: action
               source: source
               display_name: display_name
-              value: 0
+              value: 4
           transfer_acl:
             action: action
             source: source
@@ -16872,7 +18635,7 @@ components:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
         update_acl:
         - access: allow
           address: address
@@ -16921,6 +18684,7 @@ components:
           acl: acl
           element: ip
         comment: comment
+        external_providers_metadata: "{}"
         match_destinations_acl:
         - access: allow
           address: address
@@ -17036,6 +18800,8 @@ components:
             $ref: '#/components/schemas/configTrustAnchor'
           readOnly: true
           type: array
+        dnssec_signing_policy:
+          $ref: '#/components/schemas/configDNSSECSigningPolicy'
         dnssec_trust_anchors:
           description: |-
             Optional. DNSSEC trust anchors.
@@ -17045,6 +18811,16 @@ components:
             Defaults to empty.
           items:
             $ref: '#/components/schemas/configTrustAnchor'
+          type: array
+        dnssec_validate_exceptions:
+          description: |-
+            Optional. DNSSEC validate exceptions.
+
+            Error if there are duplicate exception domains (compared as a DNS name including case-insensitive comparison).
+
+            Defaults to empty.
+          items:
+            $ref: '#/components/schemas/configDNSSECValidateException'
           type: array
         dnssec_validate_expiry:
           description: |-
@@ -17108,6 +18884,10 @@ components:
             Defaults to 1232 bytes.
           format: int64
           type: integer
+        external_providers_metadata:
+          additionalProperties: false
+          description: External DNS providers metadata.
+          type: object
         filter_aaaa_acl:
           description: |-
             Optional. Specifies a list of client addresses for which AAAA filtering is to be applied.
@@ -17230,8 +19010,11 @@ components:
           type: boolean
         name:
           description: Name of view.
-          example: Example Config View
           type: string
+        nios_metadata:
+          additionalProperties: false
+          description: NIOS Metadata holds NIOS grid's data.
+          type: object
         notify:
           description: |-
             _notify_ all external secondary DNS servers.
@@ -17261,6 +19044,13 @@ components:
             Optional. _true_ to allow recursive DNS queries.
 
             Defaults to _true_.
+          format: boolean
+          type: boolean
+        secondary_zone_records_sync:
+          description: |-
+            Optional. Defines if secondary zone records should be synchronized.
+
+            Defaults to _false_.
           format: boolean
           type: boolean
         sort_list:
@@ -17331,7 +19121,7 @@ components:
           action: action
           source: source
           display_name: display_name
-          value: 0
+          value: 4
         query_acl:
           action: action
           source: source
@@ -17377,6 +19167,11 @@ components:
           source: source
           display_name: display_name
           value: true
+        secondary_zone_records_sync:
+          action: action
+          source: source
+          display_name: display_name
+          value: true
         recursion_acl:
           action: action
           source: source
@@ -17408,12 +19203,32 @@ components:
           action: action
           source: source
           display_name: display_name
-          value: 0
+          value: 4
         notify:
           action: action
           source: source
           display_name: display_name
           value: true
+        dnssec_signing_policy:
+          action: action
+          source: source
+          display_name: display_name
+          value:
+            ksk_rollover_interval: 2
+            nsec3_iterations: 7
+            ksk_notification_event_trigger: ksk_notification_event_trigger
+            nsec_type: nsec_type
+            zsk_signature_validity: 2
+            keys:
+            - size: 5
+              type: type
+              algorithm: 5
+            - size: 5
+              type: type
+              algorithm: 5
+            nsec3_salt_length: 9
+            zsk_rollover_interval: 3
+            ksk_automatic_rollover_enabled: true
         gss_tsig_enabled:
           action: action
           source: source
@@ -17440,7 +19255,7 @@ components:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
         use_forwarders_for_subzones:
           action: action
           source: source
@@ -17467,7 +19282,7 @@ components:
           action: action
           source: source
           display_name: display_name
-          value: 0
+          value: 4
         minimal_responses:
           action: action
           source: source
@@ -17479,6 +19294,11 @@ components:
           display_name: display_name
           value:
             dnssec_enabled: true
+            dnssec_validate_exceptions:
+            - domain: domain
+              protocol_domain: protocol_domain
+            - domain: domain
+              protocol_domain: protocol_domain
             dnssec_enable_validation: true
             dnssec_validate_expiry: true
             dnssec_trust_anchors:
@@ -17547,7 +19367,7 @@ components:
           action: action
           source: source
           display_name: display_name
-          value: 0
+          value: 4
         update_acl:
           action: action
           source: source
@@ -17598,12 +19418,12 @@ components:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
           expire:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
           protocol_rname:
             action: action
             source: source
@@ -17613,17 +19433,17 @@ components:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
           negative_ttl:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
           retry:
             action: action
             source: source
             display_name: display_name
-            value: 0
+            value: 4
         transfer_acl:
           action: action
           source: source
@@ -17660,12 +19480,14 @@ components:
           action: action
           source: source
           display_name: display_name
-          value: 0
+          value: 4
       properties:
         add_edns_option_in_outgoing_query:
           $ref: '#/components/schemas/inheritance2InheritedBool'
         custom_root_ns_block:
           $ref: '#/components/schemas/configInheritedCustomRootNSBlock'
+        dnssec_signing_policy:
+          $ref: '#/components/schemas/configInheritedDNSSECSigningPolicy'
         dnssec_validation_block:
           $ref: '#/components/schemas/configInheritedDNSSECValidationBlock'
         dtc_config:
@@ -17702,6 +19524,8 @@ components:
           $ref: '#/components/schemas/configInheritedACLItems'
         recursion_enabled:
           $ref: '#/components/schemas/inheritance2InheritedBool'
+        secondary_zone_records_sync:
+          $ref: '#/components/schemas/inheritance2InheritedBool'
         sort_list:
           $ref: '#/components/schemas/configInheritedSortListItems'
         synthesize_address_records_from_https:
@@ -17736,14 +19560,14 @@ components:
       example:
         rname: rname
         default_ttl: 1
-        expire: 5
+        expire: 6
         protocol_rname: protocol_rname
-        refresh: 2
-        negative_ttl: 5
+        refresh: 1
+        negative_ttl: 7
         protocol_mname: protocol_mname
         use_default_mname: true
         mname: mname
-        retry: 7
+        retry: 4
       properties:
         default_ttl:
           description: |-
@@ -17936,7 +19760,7 @@ components:
         action: action
         source: source
         display_name: display_name
-        value: 0
+        value: 4
       properties:
         action:
           description: |-

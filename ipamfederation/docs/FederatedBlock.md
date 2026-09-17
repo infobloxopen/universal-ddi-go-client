@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Address** | **string** | The address field in form “a.b.c.d/n” where the “/n” may be omitted. In this case, the CIDR value must be defined in the _cidr_ field. When reading, the _address_ field is always in the form “a.b.c.d”. | 
+**Address** | Pointer to **string** | The address field in form “a.b.c.d/n” where the “/n” may be omitted. In this case, the CIDR value must be defined in the _cidr_ field. When reading, the _address_ field is always in the form “a.b.c.d”. | [optional] 
 **AllocationV4** | Pointer to [**Allocation**](Allocation.md) | The percentage of the Federated Block’s total address space that is consumed by Leaf Terminals. | [optional] 
 **Cidr** | Pointer to **int64** | The CIDR of the federated block. This is required, if _address_ does not specify it in its input. | [optional] 
 **Comment** | Pointer to **string** | The description for the federated block. May contain 0 to 1024 characters. Can include UTF-8. | [optional] 
@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 
 ### NewFederatedBlock
 
-`func NewFederatedBlock(address string, federatedRealm string, ) *FederatedBlock`
+`func NewFederatedBlock(federatedRealm string, ) *FederatedBlock`
 
 NewFederatedBlock instantiates a new FederatedBlock object
 This constructor will assign default values to properties that have it defined,
@@ -63,6 +63,11 @@ and a boolean to check if the value has been set.
 
 SetAddress sets Address field to given value.
 
+### HasAddress
+
+`func (o *FederatedBlock) HasAddress() bool`
+
+HasAddress returns a boolean if a field has been set.
 
 ### GetAllocationV4
 

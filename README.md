@@ -19,7 +19,8 @@ The following Universal DDI APIs are supported:
 - [IP Address Management](ipam/README.md)
 - [DNS Configuration](dns_config/README.md)
 - [DNS Data](dns_data/README.md)
-- [DNS Traffic Control](dtc/README.md- [Keys](keys/README.md)
+- [Keys](keys/README.md)
+- [DNS Traffic Control](dtc/README.md- [Keys](keys/README.md) 
 
 # Migrating from bloxone-go-client
 
@@ -131,3 +132,113 @@ You can set default tags for all API requests using the `option.WithDefaultTags`
 client := uddiclient.NewAPIClient(option.WithDefaultTags(map[string]string{"tag1": "value1", "tag2": "value2"}))
 ```
 This will add the tags `tag1=value1` and `tag2=value2` to all API requests that support tags in the request body.
+
+# Unified Nameservers
+
+## Deprecation Notice: DNS Server Group (NSG) Assignment
+
+As part of the Unified Nameservers initiative, the following DNS Server Group configurations are deprecated and will no longer be allowed. Requests that use them will be rejected:
+
+- **Nested DNS Server Groups** — A DNS Server Group cannot be nested inside an authoritative DNS Server Group (AuthNSG).
+- **Dual-role DNS Server Groups** — The same DNS Server Group cannot be assigned to both a primary zone and a secondary zone.
+- **Multiple DNS Server Groups on an authoritative zone** — Only one DNS Server Group may be assigned to an authoritative zone (AuthZone).
+- **DNS Server Groups combined with internal secondaries** — A DNS Server Group and internal secondaries cannot coexist on an authoritative zone.
+
+Review your configurations for any of the above patterns and update them before they are enforced.
+
+### Rate Limiting
+
+The SDK includes a built-in token-bucket rate limiter that throttles outbound API requests. This prevents overwhelming the API server with too many concurrent requests, which can result in `429 Too Many Requests` or `500 Internal Server Error` responses — particularly when used with tools like Terraform that make parallel API calls.
+
+**The rate limiter is enabled by default at 25 requests per second with a burst size of 25.** No configuration is needed for most use cases.
+
+> **Note:** Read-only operations (`GET` requests) are excluded from rate limiting. Only mutating operations (`POST`, `PUT`, `PATCH`, `DELETE`) are throttled.
+
+#### Environment Variables
+
+You can tune or disable the rate limiter using environment variables:
+
+| Variable | Type | Default | Description |
+|---|---|---|---|
+| `INFOBLOX_RATE_LIMIT` | float | `25` | Requests per second. Set to `0` to disable rate limiting. |
+| `INFOBLOX_RATE_LIMIT_BURST` | int | Same as rate limit | Maximum number of requests that can be made instantly before throttling kicks in. |
+
+```bash
+# Override the default rate limit
+export INFOBLOX_RATE_LIMIT=10
+export INFOBLOX_RATE_LIMIT_BURST=5
+
+# Disable rate limiting entirely
+export INFOBLOX_RATE_LIMIT=0
+```
+
+#### Programmatic Configuration
+
+You can configure the rate limiter using functional options:
+
+```go
+// Set a rate limit of 10 requests/second with a burst of 5
+client := uddiclient.NewAPIClient(option.WithRateLimit(10, 5))
+
+// Disable rate limiting entirely
+client := uddiclient.NewAPIClient(option.WithRateLimitDisabled())
+```
+
+When using the aggregated client (`client.NewAPIClient`), the rate limiter is shared across all services, so the configured rate applies to the total request throughput across all API endpoints.
+
+You can also provide a custom rate limiter implementation using `option.WithRateLimiter`:
+
+```go
+client := uddiclient.NewAPIClient(option.WithRateLimiter(myCustomLimiter))
+```
+
+The custom limiter must implement the `option.RateLimiter` interface:
+
+```go
+type RateLimiter interface {
+    Wait(ctx context.Context) error
+}
+```
+
+### Retry
+
+The SDK automatically retries requests that fail with transient HTTP errors. This handles temporary server-side issues without requiring callers to implement their own retry logic.
+
+**Retry is enabled by default with 3 retries, exponential backoff (1s–30s), and full jitter.** The following HTTP status codes are retried:
+- `429 Too Many Requests`
+- `500 Internal Server Error`
+- `502 Bad Gateway`
+- `503 Service Unavailable`
+- `504 Gateway Timeout`
+
+When the server returns a `Retry-After` header with a `429` response, the SDK respects the indicated wait duration (capped to the configured maximum wait).
+
+Permanent transport errors — such as DNS `NXDOMAIN` (host not found) and invalid TLS certificates — are not retried.
+
+#### Environment Variables
+
+| Variable | Type | Default | Description |
+|---|---|---|---|
+| `INFOBLOX_MAX_RETRIES` | int | `3` | Maximum number of retry attempts. Set to `0` to disable retry. |
+| `INFOBLOX_RETRY_MIN_WAIT` | duration | `1s` | Minimum backoff between retries. |
+| `INFOBLOX_RETRY_MAX_WAIT` | duration | `30s` | Maximum backoff between retries. |
+
+```bash
+# Override retry settings
+export INFOBLOX_MAX_RETRIES=5
+export INFOBLOX_RETRY_MIN_WAIT=2s
+export INFOBLOX_RETRY_MAX_WAIT=1m
+
+# Disable retry entirely
+export INFOBLOX_MAX_RETRIES=0
+```
+
+#### Programmatic Configuration
+
+```go
+// Custom retry settings
+client := uddiclient.NewAPIClient(option.WithRetry(5, 2*time.Second, 1*time.Minute))
+
+// Disable retry entirely
+client := uddiclient.NewAPIClient(option.WithRetryDisabled())
+```

@@ -4,32 +4,34 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AddEdnsOptionInOutgoingQuery** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Field config for _add_edns_option_in_outgoing_query_ field from _View_ object. | [optional] 
-**CustomRootNsBlock** | Pointer to [**InheritedCustomRootNSBlock**](InheritedCustomRootNSBlock.md) | Optional. Field config for _custom_root_ns_block_ field from _View_ object. | [optional] 
-**DnssecValidationBlock** | Pointer to [**InheritedDNSSECValidationBlock**](InheritedDNSSECValidationBlock.md) | Optional. Field config for _dnssec_validation_block_ field from _View_ object. | [optional] 
-**DtcConfig** | Pointer to [**InheritedDtcConfig**](InheritedDtcConfig.md) | Optional. Field config for _dtc_config_ field from _View_ object. | [optional] 
-**EcsBlock** | Pointer to [**InheritedECSBlock**](InheritedECSBlock.md) | Optional. Field config for _ecs_block_ field from _View_ object. | [optional] 
-**EdnsUdpSize** | Pointer to [**Inheritance2InheritedUInt32**](Inheritance2InheritedUInt32.md) | Optional. Field config for _edns_udp_size_ field from [View] object. | [optional] 
-**FilterAaaaAcl** | Pointer to [**InheritedACLItems**](InheritedACLItems.md) | Optional. Field config for _filter_aaaa_acl_ field from _View_ object. | [optional] 
-**FilterAaaaOnV4** | Pointer to [**Inheritance2InheritedString**](Inheritance2InheritedString.md) | Optional. Field config for _filter_aaaa_on_v4_ field from _View_ object. | [optional] 
-**ForwardersBlock** | Pointer to [**InheritedForwardersBlock**](InheritedForwardersBlock.md) | Optional. Field config for _forwarders_block_ field from _View_ object. | [optional] 
-**GssTsigEnabled** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Optional. Field config for _gss_tsig_enabled_ field from _View_ object. | [optional] 
-**LameTtl** | Pointer to [**Inheritance2InheritedUInt32**](Inheritance2InheritedUInt32.md) | Optional. Field config for _lame_ttl_ field from _View_ object. | [optional] 
-**MatchRecursiveOnly** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Optional. Field config for _match_recursive_only_ field from _View_ object. | [optional] 
-**MaxCacheTtl** | Pointer to [**Inheritance2InheritedUInt32**](Inheritance2InheritedUInt32.md) | Optional. Field config for _max_cache_ttl_ field from _View_ object. | [optional] 
-**MaxNegativeTtl** | Pointer to [**Inheritance2InheritedUInt32**](Inheritance2InheritedUInt32.md) | Optional. Field config for _max_negative_ttl_ field from _View_ object. | [optional] 
-**MaxUdpSize** | Pointer to [**Inheritance2InheritedUInt32**](Inheritance2InheritedUInt32.md) | Optional. Field config for _max_udp_size_ field from [View] object. | [optional] 
-**MinimalResponses** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Optional. Field config for _minimal_responses_ field from _View_ object. | [optional] 
-**Notify** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Field config for _notify_ field from _View_ object. | [optional] 
-**QueryAcl** | Pointer to [**InheritedACLItems**](InheritedACLItems.md) | Optional. Field config for _query_acl_ field from _View_ object. | [optional] 
-**RecursionAcl** | Pointer to [**InheritedACLItems**](InheritedACLItems.md) | Optional. Field config for _recursion_acl_ field from _View_ object. | [optional] 
-**RecursionEnabled** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Optional. Field config for _recursion_enabled_ field from _View_ object. | [optional] 
-**SortList** | Pointer to [**InheritedSortListItems**](InheritedSortListItems.md) | Optional. Field config for _sort_list_ field from _View_ object. | [optional] 
-**SynthesizeAddressRecordsFromHttps** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Field config for _synthesize_address_records_from_https_ field from _View_ object. | [optional] 
-**TransferAcl** | Pointer to [**InheritedACLItems**](InheritedACLItems.md) | Optional. Field config for _transfer_acl_ field from _View_ object. | [optional] 
-**UpdateAcl** | Pointer to [**InheritedACLItems**](InheritedACLItems.md) | Optional. Field config for _update_acl_ field from _View_ object. | [optional] 
-**UseForwardersForSubzones** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Optional. Field config for _use_forwarders_for_subzones_ field from _View_ object. | [optional] 
-**ZoneAuthority** | Pointer to [**InheritedZoneAuthority**](InheritedZoneAuthority.md) | Optional. Field config for _zone_authority_ field from _View_ object. | [optional] 
+**AddEdnsOptionInOutgoingQuery** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Field configuration for _add_edns_option_in_outgoing_query_ field from _View_ object. | [optional] 
+**CustomRootNsBlock** | Pointer to [**InheritedCustomRootNSBlock**](InheritedCustomRootNSBlock.md) | Optional. Field configuration for _custom_root_ns_block_ field from _View_ object. | [optional] 
+**DnssecSigningPolicy** | Pointer to [**InheritedDNSSECSigningPolicy**](InheritedDNSSECSigningPolicy.md) | Optional. Field configuration for _dnssec_signing_policy_ field from _View_ object. | [optional] 
+**DnssecValidationBlock** | Pointer to [**InheritedDNSSECValidationBlock**](InheritedDNSSECValidationBlock.md) | Optional. Field configuration for _dnssec_validation_block_ field from _View_ object. | [optional] 
+**DtcConfig** | Pointer to [**InheritedDtcConfig**](InheritedDtcConfig.md) | Optional. Field configuration for _dtc_config_ field from _View_ object. | [optional] 
+**EcsBlock** | Pointer to [**InheritedECSBlock**](InheritedECSBlock.md) | Optional. Field configuration for _ecs_block_ field from _View_ object. | [optional] 
+**EdnsUdpSize** | Pointer to [**Inheritance2InheritedUInt32**](Inheritance2InheritedUInt32.md) | Optional. Field configuration for _edns_udp_size_ field from _View_ object. | [optional] 
+**FilterAaaaAcl** | Pointer to [**InheritedACLItems**](InheritedACLItems.md) | Optional. Field configuration for _filter_aaaa_acl_ field from _View_ object. | [optional] 
+**FilterAaaaOnV4** | Pointer to [**Inheritance2InheritedString**](Inheritance2InheritedString.md) | Optional. Field configuration for _filter_aaaa_on_v4_ field from _View_ object. | [optional] 
+**ForwardersBlock** | Pointer to [**InheritedForwardersBlock**](InheritedForwardersBlock.md) | Optional. Field configuration for _forwarders_block_ field from _View_ object. | [optional] 
+**GssTsigEnabled** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Optional. Field configuration for _gss_tsig_enabled_ field from _View_ object. | [optional] 
+**LameTtl** | Pointer to [**Inheritance2InheritedUInt32**](Inheritance2InheritedUInt32.md) | Optional. Field configuration for _lame_ttl_ field from _View_ object. | [optional] 
+**MatchRecursiveOnly** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Optional. Field configuration for _match_recursive_only_ field from _View_ object. | [optional] 
+**MaxCacheTtl** | Pointer to [**Inheritance2InheritedUInt32**](Inheritance2InheritedUInt32.md) | Optional. Field configuration for _max_cache_ttl_ field from _View_ object. | [optional] 
+**MaxNegativeTtl** | Pointer to [**Inheritance2InheritedUInt32**](Inheritance2InheritedUInt32.md) | Optional. Field configuration for _max_negative_ttl_ field from _View_ object. | [optional] 
+**MaxUdpSize** | Pointer to [**Inheritance2InheritedUInt32**](Inheritance2InheritedUInt32.md) | Optional. Field configuration for _max_udp_size_ field from _View_ object. | [optional] 
+**MinimalResponses** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Optional. Field configuration for _minimal_responses_ field from _View_ object. | [optional] 
+**Notify** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Field configuration for _notify_ field from _View_ object. | [optional] 
+**QueryAcl** | Pointer to [**InheritedACLItems**](InheritedACLItems.md) | Optional. Field configuration for _query_acl_ field from _View_ object. | [optional] 
+**RecursionAcl** | Pointer to [**InheritedACLItems**](InheritedACLItems.md) | Optional. Field configuration for _recursion_acl_ field from _View_ object. | [optional] 
+**RecursionEnabled** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Optional. Field configuration for _recursion_enabled_ field from _View_ object. | [optional] 
+**SecondaryZoneRecordsSync** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Optional. Field configuration for _secondary_zone_records_sync_ field from _View_ object. | [optional] 
+**SortList** | Pointer to [**InheritedSortListItems**](InheritedSortListItems.md) | Optional. Field configuration for _sort_list_ field from _View_ object. | [optional] 
+**SynthesizeAddressRecordsFromHttps** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Field configuration for _synthesize_address_records_from_https_ field from _View_ object. | [optional] 
+**TransferAcl** | Pointer to [**InheritedACLItems**](InheritedACLItems.md) | Optional. Field configuration for _transfer_acl_ field from _View_ object. | [optional] 
+**UpdateAcl** | Pointer to [**InheritedACLItems**](InheritedACLItems.md) | Optional. Field configuration for _update_acl_ field from _View_ object. | [optional] 
+**UseForwardersForSubzones** | Pointer to [**Inheritance2InheritedBool**](Inheritance2InheritedBool.md) | Optional. Field configuration for _use_forwarders_for_subzones_ field from _View_ object. | [optional] 
+**ZoneAuthority** | Pointer to [**InheritedZoneAuthority**](InheritedZoneAuthority.md) | Optional. Field configuration for _zone_authority_ field from _View_ object. | [optional] 
 
 ## Methods
 
@@ -99,6 +101,31 @@ SetCustomRootNsBlock sets CustomRootNsBlock field to given value.
 `func (o *ViewInheritance) HasCustomRootNsBlock() bool`
 
 HasCustomRootNsBlock returns a boolean if a field has been set.
+
+### GetDnssecSigningPolicy
+
+`func (o *ViewInheritance) GetDnssecSigningPolicy() InheritedDNSSECSigningPolicy`
+
+GetDnssecSigningPolicy returns the DnssecSigningPolicy field if non-nil, zero value otherwise.
+
+### GetDnssecSigningPolicyOk
+
+`func (o *ViewInheritance) GetDnssecSigningPolicyOk() (*InheritedDNSSECSigningPolicy, bool)`
+
+GetDnssecSigningPolicyOk returns a tuple with the DnssecSigningPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDnssecSigningPolicy
+
+`func (o *ViewInheritance) SetDnssecSigningPolicy(v InheritedDNSSECSigningPolicy)`
+
+SetDnssecSigningPolicy sets DnssecSigningPolicy field to given value.
+
+### HasDnssecSigningPolicy
+
+`func (o *ViewInheritance) HasDnssecSigningPolicy() bool`
+
+HasDnssecSigningPolicy returns a boolean if a field has been set.
 
 ### GetDnssecValidationBlock
 
@@ -549,6 +576,31 @@ SetRecursionEnabled sets RecursionEnabled field to given value.
 `func (o *ViewInheritance) HasRecursionEnabled() bool`
 
 HasRecursionEnabled returns a boolean if a field has been set.
+
+### GetSecondaryZoneRecordsSync
+
+`func (o *ViewInheritance) GetSecondaryZoneRecordsSync() Inheritance2InheritedBool`
+
+GetSecondaryZoneRecordsSync returns the SecondaryZoneRecordsSync field if non-nil, zero value otherwise.
+
+### GetSecondaryZoneRecordsSyncOk
+
+`func (o *ViewInheritance) GetSecondaryZoneRecordsSyncOk() (*Inheritance2InheritedBool, bool)`
+
+GetSecondaryZoneRecordsSyncOk returns a tuple with the SecondaryZoneRecordsSync field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSecondaryZoneRecordsSync
+
+`func (o *ViewInheritance) SetSecondaryZoneRecordsSync(v Inheritance2InheritedBool)`
+
+SetSecondaryZoneRecordsSync sets SecondaryZoneRecordsSync field to given value.
+
+### HasSecondaryZoneRecordsSync
+
+`func (o *ViewInheritance) HasSecondaryZoneRecordsSync() bool`
+
+HasSecondaryZoneRecordsSync returns a boolean if a field has been set.
 
 ### GetSortList
 

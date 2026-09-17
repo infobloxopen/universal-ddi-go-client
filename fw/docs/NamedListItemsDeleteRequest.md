@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** | The Named List object identifier. | [optional] [readonly] 
-**Items** | Pointer to **[]string** | The list of the FQDN or IPv4/IPv6 addresses or IPv4/IPv6 CIDRs to define whitelists and blacklists for additional protection. | [optional] 
-**ItemsDescribed** | Pointer to [**[]ItemStructs**](ItemStructs.md) | The List of ItemStructs structure which contains the item and its description | [optional] 
+**Items** | Pointer to **[]string** | The list of the FQDN or IPv4/IPv6 addresses or IPv4/IPv6 CIDRs, used to define allow-lists and deny-lists for additional protection. | [optional] 
+**ItemsDescribed** | Pointer to [**[]ItemStructs**](ItemStructs.md) | The list of ItemStructs structures that contains items and their descriptions. | [optional] 
 
 ## Methods
 

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **DnssecEnableValidation** | Pointer to **bool** | Optional. Field config for _dnssec_enable_validation_ field. | [optional] 
 **DnssecEnabled** | Pointer to **bool** | Optional. Field config for _dnssec_enabled_ field. | [optional] 
 **DnssecTrustAnchors** | Pointer to [**[]TrustAnchor**](TrustAnchor.md) | Optional. Field config for _dnssec_trust_anchors_ field. | [optional] 
+**DnssecValidateExceptions** | Pointer to [**[]DNSSECValidateException**](DNSSECValidateException.md) | Optional. Field configuration for _dnssec_validate_exceptions_ field. | [optional] 
 **DnssecValidateExpiry** | Pointer to **bool** | Optional. Field config for _dnssec_validate_expiry_ field. | [optional] 
 
 ## Methods
@@ -102,6 +103,31 @@ SetDnssecTrustAnchors sets DnssecTrustAnchors field to given value.
 `func (o *DNSSECValidationBlock) HasDnssecTrustAnchors() bool`
 
 HasDnssecTrustAnchors returns a boolean if a field has been set.
+
+### GetDnssecValidateExceptions
+
+`func (o *DNSSECValidationBlock) GetDnssecValidateExceptions() []DNSSECValidateException`
+
+GetDnssecValidateExceptions returns the DnssecValidateExceptions field if non-nil, zero value otherwise.
+
+### GetDnssecValidateExceptionsOk
+
+`func (o *DNSSECValidationBlock) GetDnssecValidateExceptionsOk() (*[]DNSSECValidateException, bool)`
+
+GetDnssecValidateExceptionsOk returns a tuple with the DnssecValidateExceptions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDnssecValidateExceptions
+
+`func (o *DNSSECValidationBlock) SetDnssecValidateExceptions(v []DNSSECValidateException)`
+
+SetDnssecValidateExceptions sets DnssecValidateExceptions field to given value.
+
+### HasDnssecValidateExceptions
+
+`func (o *DNSSECValidationBlock) HasDnssecValidateExceptions() bool`
+
+HasDnssecValidateExceptions returns a boolean if a field has been set.
 
 ### GetDnssecValidateExpiry
 

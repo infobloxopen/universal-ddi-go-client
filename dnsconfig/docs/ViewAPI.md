@@ -101,7 +101,7 @@ import (
 )
 
 func main() {
-	body := *dnsconfig.NewView("Example Config View") // View | 
+	body := *dnsconfig.NewView("Name_example") // View | 
 
 	apiClient := dnsconfig.NewAPIClient()
 	resp, r, err := apiClient.ViewAPI.Create(context.Background()).Body(body).Execute()
@@ -380,7 +380,7 @@ import (
 
 func main() {
 	id := "a5183192-1e00-475f-b334-38e1f0bb1bc7" // string | An application specific resource identity of a resource
-	body := *dnsconfig.NewView("Example Config View") // View | 
+	body := *dnsconfig.NewView("Name_example") // View | 
 
 	apiClient := dnsconfig.NewAPIClient()
 	resp, r, err := apiClient.ViewAPI.Update(context.Background(), id).Body(body).Execute()

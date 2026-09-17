@@ -258,7 +258,7 @@ Other parameters are passed through a pointer to a `NamedListsAPIListNamedListsR
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**filter** | **string** | A collection of response resources can be filtered by a logical expression string that includes JSON tag references to values in each resource, literal values, and logical operators. If a resource does not have the specified tag, its value is assumed to be null.  Literal values include numbers (integer and floating-point), and quoted (both single- or double-quoted) literal strings, and &#39;null&#39;.  You can filter by following fields:  | Name               | type   | Supported Ops    | | ------------------ | ------ | ---------------- | | type               | string | &#x3D;&#x3D;, !&#x3D;           | | items              | string | ~, !~            | | items_described    | string | &#x3D;&#x3D;               |  Grouping operators (and, or, not, ()) are not supported between different fields.  | 
+**filter** | **string** | A collection of response resources can be filtered by a logical expression string that includes JSON tag references to values in each resource, literal values, and logical operators. If a resource does not have the specified tag, its value is assumed to be null.  Literal values include numbers (integer and floating-point), and quoted (both single- or double-quoted) literal strings, and &#39;null&#39;.  You can filter by following fields:  | Name               | type   | Supported Ops    | | ------------------ | ------ | ---------------- | | type               | string | &#x3D;&#x3D;, !&#x3D;           |  Grouping operators (and, or, not, ()) are not supported between different fields. &#x60;&#x60;&#x60;  | 
 **fields** | **string** |   A collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.  Specify this parameter as a comma-separated list of JSON tag names.         | 
 **offset** | **int32** |   The integer index (zero-origin) of the offset into a collection of resources. If omitted or null the value is assumed to be &#39;0&#39;.          | 
 **limit** | **int32** |   The integer number of resources to be returned in the response. The service may impose maximum value. If omitted the service may impose a default value.          | 
@@ -440,7 +440,7 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The Named List identifier.
+	id := int32(56) // int32 | The identifier for a Named List object.
 
 	apiClient := fw.NewAPIClient()
 	resp, r, err := apiClient.NamedListsAPI.ReadNamedList(context.Background(), id).Execute()
@@ -459,7 +459,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The Named List identifier. | 
+**id** | **int32** | The identifier for a Named List object. | 
 
 ### Other Parameters
 
@@ -472,8 +472,8 @@ Name | Type | Description  | Notes
 **offset** | **int32** |   The integer index (zero-origin) of the offset into a collection of resources. If omitted or null the value is assumed to be &#39;0&#39;.          | 
 **limit** | **int32** |   The integer number of resources to be returned in the response. The service may impose maximum value. If omitted the service may impose a default value.          | 
 **pageToken** | **string** |   The service-defined string used to identify a page of resources. A null value indicates the first page.          | 
-**name** | **string** | The name of the named list. Can be used in pair with &#39;type&#39; (both fields are mandatory) to request the object by their name. This aproach available only if the field &#39;id&#39; is empty (&#x3D;&#x3D;0). | 
-**type_** | **string** | The type of the named list. See &#39;NamedList&#39; for more details. | 
+**name** | **string** | The name of the named list. Can be used in a pair with &#x60;type&#x60; (both fields are mandatory) to request the object by its name. This aproach is available only if the field &#x60;id&#x60; is empty (&#x3D;&#x3D;0). | 
+**type_** | **string** | The type of the named list. See &#x60;NamedList&#x60; for more details. | 
 
 ### Return type
 
