@@ -12,6 +12,7 @@ package ipam
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the DNSUsage type satisfies the MappedNullable interface at compile time
@@ -23,6 +24,8 @@ type DNSUsage struct {
 	AbsoluteName *string `json:"absolute_name,omitempty"`
 	// The address of the referenced record.
 	Address *string `json:"address,omitempty"`
+	// Time when the object has been created.
+	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// The DNS rdata of the referenced record.
 	DnsRdata *string `json:"dns_rdata,omitempty"`
 	// The resource identifier.
@@ -35,6 +38,8 @@ type DNSUsage struct {
 	Space *string `json:"space,omitempty"`
 	// The type of the referenced record.
 	Type *string `json:"type,omitempty"`
+	// Time when the object has been updated. Equals to _created_at_ if not updated after creation.
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// The resource identifier.
 	View *string `json:"view,omitempty"`
 	// The resource identifier.
@@ -123,6 +128,38 @@ func (o *DNSUsage) HasAddress() bool {
 // SetAddress gets a reference to the given string and assigns it to the Address field.
 func (o *DNSUsage) SetAddress(v string) {
 	o.Address = &v
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *DNSUsage) GetCreatedAt() time.Time {
+	if o == nil || IsNil(o.CreatedAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DNSUsage) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *DNSUsage) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *DNSUsage) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
 }
 
 // GetDnsRdata returns the DnsRdata field value if set, zero value otherwise.
@@ -317,6 +354,38 @@ func (o *DNSUsage) SetType(v string) {
 	o.Type = &v
 }
 
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *DNSUsage) GetUpdatedAt() time.Time {
+	if o == nil || IsNil(o.UpdatedAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DNSUsage) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.UpdatedAt) {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *DNSUsage) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *DNSUsage) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
+}
+
 // GetView returns the View field value if set, zero value otherwise.
 func (o *DNSUsage) GetView() string {
 	if o == nil || IsNil(o.View) {
@@ -397,6 +466,9 @@ func (o DNSUsage) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Address) {
 		toSerialize["address"] = o.Address
 	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
 	if !IsNil(o.DnsRdata) {
 		toSerialize["dns_rdata"] = o.DnsRdata
 	}
@@ -414,6 +486,9 @@ func (o DNSUsage) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
 	}
 	if !IsNil(o.View) {
 		toSerialize["view"] = o.View
@@ -445,12 +520,14 @@ func (o *DNSUsage) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "absolute_name")
 		delete(additionalProperties, "address")
+		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "dns_rdata")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "record")
 		delete(additionalProperties, "space")
 		delete(additionalProperties, "type")
+		delete(additionalProperties, "updated_at")
 		delete(additionalProperties, "view")
 		delete(additionalProperties, "zone")
 		o.AdditionalProperties = additionalProperties

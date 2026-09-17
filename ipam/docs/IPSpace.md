@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **AsmConfig** | Pointer to [**ASMConfig**](ASMConfig.md) | The Automated Scope Management configuration for the IP space. | [optional] 
 **AsmScopeFlag** | Pointer to **int64** | The number of times the automated scope management usage limits have been exceeded for any of the subnets in this IP space. | [optional] [readonly] 
 **Comment** | Pointer to **string** | The description for the IP space. May contain 0 to 1024 characters. Can include UTF-8. | [optional] 
-**CompartmentId** | Pointer to **string** | The compartment associated with the object. If no compartment is associated with the object, the value defaults to empty. | [optional] 
+**CompartmentId** | Pointer to **string** | The access view associated with the object. If no access view is associated with the object, the value defaults to empty. | [optional] 
 **CreatedAt** | Pointer to **time.Time** | Time when the object has been created. | [optional] [readonly] 
 **DdnsClientUpdate** | Pointer to **string** | Controls who does the DDNS updates.  Valid values are: * _client_: DHCP server updates DNS if requested by client. * _server_: DHCP server always updates DNS, overriding an update request from the client, unless the client requests no updates. * _ignore_: DHCP server always updates DNS, even if the client says not to. * _over_client_update_: Same as _server_. DHCP server always updates DNS, overriding an update request from the client, unless the client requests no updates. * _over_no_update_: DHCP server updates DNS even if the client requests that no updates be done. If the client requests to do the update, DHCP server allows it.  Defaults to _client_. | [optional] [default to "client"]
 **DdnsConflictResolutionMode** | Pointer to **string** | The mode used for resolving conflicts while performing DDNS updates.  Valid values are: * _check_with_dhcid_: It includes adding a DHCID record and checking that record via conflict detection as per RFC 4703. * _no_check_with_dhcid_: This will ignore conflict detection but add a DHCID record when creating/updating an entry. * _check_exists_with_dhcid_: This will check if there is an existing DHCID record but does not verify the value of the record matches the update. This will also update the DHCID record for the entry. * _no_check_without_dhcid_: This ignores conflict detection and will not add a DHCID record when creating/updating a DDNS entry.  Defaults to _check_with_dhcid_. | [optional] [default to "check_with_dhcid"]
@@ -31,6 +31,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** | The resource identifier. | [optional] [readonly] 
 **InheritanceSources** | Pointer to [**IPSpaceInheritance**](IPSpaceInheritance.md) | The inheritance configuration. | [optional] 
 **Name** | **string** | The name of the IP space. Must contain 1 to 256 characters. Can include UTF-8. | 
+**ProviderType** | Pointer to **string** | Defines the type of provider. Listed below are supported providers:  * _nios_x_: provider type is NIOS-X.  * _azure_: provider type is Microsoft Azure.  * _aws_: provider type is Amazon Web Services.  * _msad_: provider type is Microsoft Active Directory,  * _nios_: provider type is NIOS.  * _gcp_: provider type is Google Cloud Platform.  * _meraki_: provider type is Cisco Meraki. | [optional] [readonly] 
 **Tags** | Pointer to **map[string]interface{}** | The tags for the IP space in JSON format. | [optional] 
 **Threshold** | Pointer to [**UtilizationThreshold**](UtilizationThreshold.md) | The utilization threshold settings for the IP space. | [optional] [readonly] 
 **UpdatedAt** | Pointer to **time.Time** | Time when the object has been updated. Equals to _created_at_ if not updated after creation. | [optional] [readonly] 
@@ -726,6 +727,31 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+
+### GetProviderType
+
+`func (o *IPSpace) GetProviderType() string`
+
+GetProviderType returns the ProviderType field if non-nil, zero value otherwise.
+
+### GetProviderTypeOk
+
+`func (o *IPSpace) GetProviderTypeOk() (*string, bool)`
+
+GetProviderTypeOk returns a tuple with the ProviderType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProviderType
+
+`func (o *IPSpace) SetProviderType(v string)`
+
+SetProviderType sets ProviderType field to given value.
+
+### HasProviderType
+
+`func (o *IPSpace) HasProviderType() bool`
+
+HasProviderType returns a boolean if a field has been set.
 
 ### GetTags
 

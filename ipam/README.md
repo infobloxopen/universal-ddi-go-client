@@ -116,8 +116,11 @@ Class | Method | HTTP request | Description
 *DhcpHostAPI* | [**ListAssociations**](docs/DhcpHostAPI.md#listassociations) | **Get** /dhcp/host/{id}/associations | Retrieve DHCP host associations.
 *DhcpHostAPI* | [**Read**](docs/DhcpHostAPI.md#read) | **Get** /dhcp/host/{id} | Retrieve the DHCP host.
 *DhcpHostAPI* | [**Update**](docs/DhcpHostAPI.md#update) | **Patch** /dhcp/host/{id} | Update the DHCP hosts.
+*DhcpUniversalServiceAPI* | [**GetCapabilityAssociationsCount**](docs/DhcpUniversalServiceAPI.md#getcapabilityassociationscount) | **Get** /dhcp/universal_service/{id}/associations/count | Retrieve DHCP capability associations count. Use this method to retrieve count of associated subnets/ranges for a given universal service id.
+*DhcpUniversalServiceAPI* | [**ListCapabilityAssociations**](docs/DhcpUniversalServiceAPI.md#listcapabilityassociations) | **Get** /dhcp/universal_service/{id}/associations | Retrieve DHCP capability associations. Use this method to retrieve associated subnets/ranges with an ancestors chain for a given universal service id.
 *DnsUsageAPI* | [**List**](docs/DnsUsageAPI.md#list) | **Get** /ipam/dns_usage | Retrieve DNS usage for multiple objects.
 *DnsUsageAPI* | [**Read**](docs/DnsUsageAPI.md#read) | **Get** /ipam/dns_usage/{id} | Retrieve the DNS usage.
+*ExportTableAPI* | [**ExportTable**](docs/ExportTableAPI.md#exporttable) | **Post** /ipam/export/table | Initiate an asynchronous table export.
 *FilterAPI* | [**List**](docs/FilterAPI.md#list) | **Get** /dhcp/filter | Retrieve DHCP filters.
 *FixedAddressAPI* | [**Create**](docs/FixedAddressAPI.md#create) | **Post** /dhcp/fixed_address | Create the fixed address.
 *FixedAddressAPI* | [**Delete**](docs/FixedAddressAPI.md#delete) | **Delete** /dhcp/fixed_address/{id} | Move the fixed address to the recycle bin.
@@ -131,6 +134,7 @@ Class | Method | HTTP request | Description
 *HaGroupAPI* | [**Create**](docs/HaGroupAPI.md#create) | **Post** /dhcp/ha_group | Create the HA group.
 *HaGroupAPI* | [**Delete**](docs/HaGroupAPI.md#delete) | **Delete** /dhcp/ha_group/{id} | Delete the HA group.
 *HaGroupAPI* | [**List**](docs/HaGroupAPI.md#list) | **Get** /dhcp/ha_group | Retrieve HA groups.
+*HaGroupAPI* | [**ListLinkedHAGroups**](docs/HaGroupAPI.md#listlinkedhagroups) | **Post** /dhcp/ha_group/linked_ha_groups | Retrieve the list of linked HA groups.
 *HaGroupAPI* | [**Read**](docs/HaGroupAPI.md#read) | **Get** /dhcp/ha_group/{id} | Retrieve the HA group.
 *HaGroupAPI* | [**Update**](docs/HaGroupAPI.md#update) | **Patch** /dhcp/ha_group/{id} | Update the HA group.
 *HardwareFilterAPI* | [**Create**](docs/HardwareFilterAPI.md#create) | **Post** /dhcp/hardware_filter | Create the hardware filter.
@@ -193,6 +197,13 @@ Class | Method | HTTP request | Description
 *ServerAPI* | [**Update**](docs/ServerAPI.md#update) | **Patch** /dhcp/server/{id} | Update the DHCP configuration profile.
 *ServiceAPI* | [**List**](docs/ServiceAPI.md#list) | **Get** /dhcp/service | List DHCP service instance objects.
 *ServiceAPI* | [**Read**](docs/ServiceAPI.md#read) | **Get** /dhcp/service/{id} | Read the DHCP service instance object.
+*SharedNetworkAPI* | [**Create**](docs/SharedNetworkAPI.md#create) | **Post** /ipam/shared_network | Create the shared network.
+*SharedNetworkAPI* | [**Delete**](docs/SharedNetworkAPI.md#delete) | **Delete** /ipam/shared_network/{id} | Move the shared network to the recycle bin.
+*SharedNetworkAPI* | [**GetSharedNetworkSubnets**](docs/SharedNetworkAPI.md#getsharednetworksubnets) | **Get** /ipam/shared_network/{id}/subnets | Retrieve subnet members of a shared network.
+*SharedNetworkAPI* | [**List**](docs/SharedNetworkAPI.md#list) | **Get** /ipam/shared_network | Retrieve shared networks.
+*SharedNetworkAPI* | [**Read**](docs/SharedNetworkAPI.md#read) | **Get** /ipam/shared_network/{id} | Retrieve the shared network.
+*SharedNetworkAPI* | [**SetHostOrHaGroupInSharedNetwork**](docs/SharedNetworkAPI.md#sethostorhagroupinsharednetwork) | **Post** /ipam/shared_network/{id}/set_host_or_ha_group | Set host or HA group reference for the shared network.
+*SharedNetworkAPI* | [**Update**](docs/SharedNetworkAPI.md#update) | **Patch** /ipam/shared_network/{id} | Update the shared network.
 *SubnetAPI* | [**Copy**](docs/SubnetAPI.md#copy) | **Post** /ipam/subnet/{id}/copy | Copy the subnet.
 *SubnetAPI* | [**Create**](docs/SubnetAPI.md#create) | **Post** /ipam/subnet | Create the subnet.
 *SubnetAPI* | [**CreateNextAvailableIP**](docs/SubnetAPI.md#createnextavailableip) | **Post** /ipam/subnet/{id}/nextavailableip | Allocate the next available IP address.
@@ -249,11 +260,14 @@ Class | Method | HTTP request | Description
  - [CreateOptionSpaceResponse](docs/CreateOptionSpaceResponse.md)
  - [CreateRangeResponse](docs/CreateRangeResponse.md)
  - [CreateServerResponse](docs/CreateServerResponse.md)
+ - [CreateSharedNetworkResponse](docs/CreateSharedNetworkResponse.md)
  - [CreateSubnetResponse](docs/CreateSubnetResponse.md)
  - [DDNSBlock](docs/DDNSBlock.md)
  - [DDNSHostnameBlock](docs/DDNSHostnameBlock.md)
  - [DDNSUpdateBlock](docs/DDNSUpdateBlock.md)
  - [DDNSZone](docs/DDNSZone.md)
+ - [DHCPCapabilityAssociationsCountResponse](docs/DHCPCapabilityAssociationsCountResponse.md)
+ - [DHCPCapabilityAssociationsResponse](docs/DHCPCapabilityAssociationsResponse.md)
  - [DHCPConfig](docs/DHCPConfig.md)
  - [DHCPInfo](docs/DHCPInfo.md)
  - [DHCPInheritance](docs/DHCPInheritance.md)
@@ -263,12 +277,18 @@ Class | Method | HTTP request | Description
  - [DHCPUtilization](docs/DHCPUtilization.md)
  - [DHCPUtilizationThreshold](docs/DHCPUtilizationThreshold.md)
  - [DNSUsage](docs/DNSUsage.md)
+ - [DhcpHostInterface](docs/DhcpHostInterface.md)
  - [DisassociateConfigProfileFromObjectsRequest](docs/DisassociateConfigProfileFromObjectsRequest.md)
  - [DisassociateObjectFromConfigProfilesRequest](docs/DisassociateObjectFromConfigProfilesRequest.md)
  - [ExclusionRange](docs/ExclusionRange.md)
+ - [ExportQueryParams](docs/ExportQueryParams.md)
+ - [ExportTableRequest](docs/ExportTableRequest.md)
+ - [ExportTableResponse](docs/ExportTableResponse.md)
+ - [ExportTableResult](docs/ExportTableResult.md)
  - [Filter](docs/Filter.md)
  - [FixedAddress](docs/FixedAddress.md)
  - [FixedAddressInheritance](docs/FixedAddressInheritance.md)
+ - [GetSharedNetworkSubnetsResponse](docs/GetSharedNetworkSubnetsResponse.md)
  - [Global](docs/Global.md)
  - [HAGroup](docs/HAGroup.md)
  - [HAGroupHeartbeats](docs/HAGroupHeartbeats.md)
@@ -278,6 +298,7 @@ Class | Method | HTTP request | Description
  - [HostAddress](docs/HostAddress.md)
  - [HostAssociatedServer](docs/HostAssociatedServer.md)
  - [HostAssociationsResponse](docs/HostAssociationsResponse.md)
+ - [HostHAGroupCount](docs/HostHAGroupCount.md)
  - [HostName](docs/HostName.md)
  - [HostnameRewriteBlock](docs/HostnameRewriteBlock.md)
  - [IPSpace](docs/IPSpace.md)
@@ -302,12 +323,18 @@ Class | Method | HTTP request | Description
  - [InheritedDHCPOptionItem](docs/InheritedDHCPOptionItem.md)
  - [InheritedDHCPOptionList](docs/InheritedDHCPOptionList.md)
  - [InheritedHostnameRewriteBlock](docs/InheritedHostnameRewriteBlock.md)
+ - [InheritedLoggingConfig](docs/InheritedLoggingConfig.md)
  - [IpamHost](docs/IpamHost.md)
+ - [IpamHostInheritance](docs/IpamHostInheritance.md)
  - [KerberosKey](docs/KerberosKey.md)
  - [LeaseAddress](docs/LeaseAddress.md)
  - [LeaseRange](docs/LeaseRange.md)
  - [LeaseSubnet](docs/LeaseSubnet.md)
  - [LeasesCommand](docs/LeasesCommand.md)
+ - [LinkedHAGroup](docs/LinkedHAGroup.md)
+ - [LinkedHAGroupHost](docs/LinkedHAGroupHost.md)
+ - [LinkedHAGroupsRequest](docs/LinkedHAGroupsRequest.md)
+ - [LinkedHAGroupsResponse](docs/LinkedHAGroupsResponse.md)
  - [ListASMResponse](docs/ListASMResponse.md)
  - [ListAddressBlockResponse](docs/ListAddressBlockResponse.md)
  - [ListAddressResponse](docs/ListAddressResponse.md)
@@ -330,12 +357,15 @@ Class | Method | HTTP request | Description
  - [ListOptionSpaceResponse](docs/ListOptionSpaceResponse.md)
  - [ListRangeResponse](docs/ListRangeResponse.md)
  - [ListServerResponse](docs/ListServerResponse.md)
+ - [ListSharedNetworkResponse](docs/ListSharedNetworkResponse.md)
  - [ListSubnetResponse](docs/ListSubnetResponse.md)
+ - [LoggingConfig](docs/LoggingConfig.md)
  - [MacAddressItem](docs/MacAddressItem.md)
  - [MacAddressItemUpload](docs/MacAddressItemUpload.md)
  - [MacAddressItemUploadResponse](docs/MacAddressItemUploadResponse.md)
  - [Name](docs/Name.md)
  - [Nameserver](docs/Nameserver.md)
+ - [NetworkCompliance](docs/NetworkCompliance.md)
  - [NextAvailableABResponse](docs/NextAvailableABResponse.md)
  - [NextAvailableIPResponse](docs/NextAvailableIPResponse.md)
  - [NextAvailableSubnetResponse](docs/NextAvailableSubnetResponse.md)
@@ -346,6 +376,7 @@ Class | Method | HTTP request | Description
  - [OptionGroup](docs/OptionGroup.md)
  - [OptionItem](docs/OptionItem.md)
  - [OptionSpace](docs/OptionSpace.md)
+ - [PingConfig](docs/PingConfig.md)
  - [ProtobufFieldMask](docs/ProtobufFieldMask.md)
  - [Range](docs/Range.md)
  - [ReadASMResponse](docs/ReadASMResponse.md)
@@ -367,12 +398,17 @@ Class | Method | HTTP request | Description
  - [ReadOptionSpaceResponse](docs/ReadOptionSpaceResponse.md)
  - [ReadRangeResponse](docs/ReadRangeResponse.md)
  - [ReadServerResponse](docs/ReadServerResponse.md)
+ - [ReadSharedNetworkResponse](docs/ReadSharedNetworkResponse.md)
  - [ReadSubnetResponse](docs/ReadSubnetResponse.md)
  - [RealmsConflict](docs/RealmsConflict.md)
  - [RealmsConflictResponse](docs/RealmsConflictResponse.md)
  - [Server](docs/Server.md)
  - [ServerInheritance](docs/ServerInheritance.md)
+ - [SetHostOrHaGroupInSharedNetwork](docs/SetHostOrHaGroupInSharedNetwork.md)
+ - [SharedNetwork](docs/SharedNetwork.md)
+ - [SharedNetworkSubnet](docs/SharedNetworkSubnet.md)
  - [Subnet](docs/Subnet.md)
+ - [SyslogServer](docs/SyslogServer.md)
  - [TSIGKey](docs/TSIGKey.md)
  - [UpdateAddressBlockResponse](docs/UpdateAddressBlockResponse.md)
  - [UpdateAddressResponse](docs/UpdateAddressResponse.md)
@@ -390,6 +426,7 @@ Class | Method | HTTP request | Description
  - [UpdateOptionSpaceResponse](docs/UpdateOptionSpaceResponse.md)
  - [UpdateRangeResponse](docs/UpdateRangeResponse.md)
  - [UpdateServerResponse](docs/UpdateServerResponse.md)
+ - [UpdateSharedNetworkResponse](docs/UpdateSharedNetworkResponse.md)
  - [UpdateSubnetResponse](docs/UpdateSubnetResponse.md)
  - [Utilization](docs/Utilization.md)
  - [UtilizationThreshold](docs/UtilizationThreshold.md)

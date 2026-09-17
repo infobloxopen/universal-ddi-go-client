@@ -25,7 +25,7 @@ type Address struct {
 	Address string `json:"address"`
 	// The description for the address object. May contain 0 to 1024 characters. Can include UTF-8.
 	Comment *string `json:"comment,omitempty"`
-	// The compartment associated with the object. If no compartment is associated with the object, the value defaults to empty.
+	// The access view associated with the object. If no access view is associated with the object, the value defaults to empty.
 	CompartmentId *string `json:"compartment_id,omitempty"`
 	// Time when the object has been created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`

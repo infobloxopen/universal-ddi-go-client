@@ -33,10 +33,14 @@ type IpamHost struct {
 	HostNames []HostName `json:"host_names,omitempty"`
 	// The resource identifier.
 	Id *string `json:"id,omitempty"`
+	// The inheritance configuration for _ttl_ field.
+	InheritanceSources *IpamHostInheritance `json:"inheritance_sources,omitempty"`
 	// The name of the IPAM host. Must contain 1 to 256 characters. Can include UTF-8.
 	Name string `json:"name"`
 	// The tags for the IPAM host in JSON format.
 	Tags map[string]interface{} `json:"tags,omitempty"`
+	// The DNS TTL value in seconds for the host.
+	Ttl *int64 `json:"ttl,omitempty"`
 	// Time when the object has been updated. Equals to _created_at_ if not updated after creation.
 	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -254,6 +258,38 @@ func (o *IpamHost) SetId(v string) {
 	o.Id = &v
 }
 
+// GetInheritanceSources returns the InheritanceSources field value if set, zero value otherwise.
+func (o *IpamHost) GetInheritanceSources() IpamHostInheritance {
+	if o == nil || IsNil(o.InheritanceSources) {
+		var ret IpamHostInheritance
+		return ret
+	}
+	return *o.InheritanceSources
+}
+
+// GetInheritanceSourcesOk returns a tuple with the InheritanceSources field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IpamHost) GetInheritanceSourcesOk() (*IpamHostInheritance, bool) {
+	if o == nil || IsNil(o.InheritanceSources) {
+		return nil, false
+	}
+	return o.InheritanceSources, true
+}
+
+// HasInheritanceSources returns a boolean if a field has been set.
+func (o *IpamHost) HasInheritanceSources() bool {
+	if o != nil && !IsNil(o.InheritanceSources) {
+		return true
+	}
+
+	return false
+}
+
+// SetInheritanceSources gets a reference to the given IpamHostInheritance and assigns it to the InheritanceSources field.
+func (o *IpamHost) SetInheritanceSources(v IpamHostInheritance) {
+	o.InheritanceSources = &v
+}
+
 // GetName returns the Name field value
 func (o *IpamHost) GetName() string {
 	if o == nil {
@@ -308,6 +344,38 @@ func (o *IpamHost) HasTags() bool {
 // SetTags gets a reference to the given map[string]interface{} and assigns it to the Tags field.
 func (o *IpamHost) SetTags(v map[string]interface{}) {
 	o.Tags = v
+}
+
+// GetTtl returns the Ttl field value if set, zero value otherwise.
+func (o *IpamHost) GetTtl() int64 {
+	if o == nil || IsNil(o.Ttl) {
+		var ret int64
+		return ret
+	}
+	return *o.Ttl
+}
+
+// GetTtlOk returns a tuple with the Ttl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IpamHost) GetTtlOk() (*int64, bool) {
+	if o == nil || IsNil(o.Ttl) {
+		return nil, false
+	}
+	return o.Ttl, true
+}
+
+// HasTtl returns a boolean if a field has been set.
+func (o *IpamHost) HasTtl() bool {
+	if o != nil && !IsNil(o.Ttl) {
+		return true
+	}
+
+	return false
+}
+
+// SetTtl gets a reference to the given int64 and assigns it to the Ttl field.
+func (o *IpamHost) SetTtl(v int64) {
+	o.Ttl = &v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
@@ -370,9 +438,15 @@ func (o IpamHost) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
+	if !IsNil(o.InheritanceSources) {
+		toSerialize["inheritance_sources"] = o.InheritanceSources
+	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.Ttl) {
+		toSerialize["ttl"] = o.Ttl
 	}
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
@@ -426,8 +500,10 @@ func (o *IpamHost) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "host_names")
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "inheritance_sources")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "tags")
+		delete(additionalProperties, "ttl")
 		delete(additionalProperties, "updated_at")
 		o.AdditionalProperties = additionalProperties
 	}

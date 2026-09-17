@@ -29,6 +29,8 @@ type DHCPServiceInstance struct {
 	IpSpace *string `json:"ip_space,omitempty"`
 	// The display name of the service.
 	Name *string `json:"name,omitempty"`
+	// Defines the type of external provider. Allowed values:  * _bloxone_ddi_: provider type is BloxOne DDI,  * _microsoft_azure_: provider type is Microsoft Azure,  * _amazon_web_service_: provider type is Amazon Web Services,  * _microsoft_active_directory_: provider type is Microsoft Active Directory,  * _nios_ddi_: provider type is NIOS.
+	ProviderType *string `json:"provider_type,omitempty"`
 	// The tags of the service host in JSON format.
 	Tags                 map[string]interface{} `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -245,6 +247,38 @@ func (o *DHCPServiceInstance) SetName(v string) {
 	o.Name = &v
 }
 
+// GetProviderType returns the ProviderType field value if set, zero value otherwise.
+func (o *DHCPServiceInstance) GetProviderType() string {
+	if o == nil || IsNil(o.ProviderType) {
+		var ret string
+		return ret
+	}
+	return *o.ProviderType
+}
+
+// GetProviderTypeOk returns a tuple with the ProviderType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DHCPServiceInstance) GetProviderTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.ProviderType) {
+		return nil, false
+	}
+	return o.ProviderType, true
+}
+
+// HasProviderType returns a boolean if a field has been set.
+func (o *DHCPServiceInstance) HasProviderType() bool {
+	if o != nil && !IsNil(o.ProviderType) {
+		return true
+	}
+
+	return false
+}
+
+// SetProviderType gets a reference to the given string and assigns it to the ProviderType field.
+func (o *DHCPServiceInstance) SetProviderType(v string) {
+	o.ProviderType = &v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *DHCPServiceInstance) GetTags() map[string]interface{} {
 	if o == nil || IsNil(o.Tags) {
@@ -305,6 +339,9 @@ func (o DHCPServiceInstance) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+	if !IsNil(o.ProviderType) {
+		toSerialize["provider_type"] = o.ProviderType
+	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
@@ -336,6 +373,7 @@ func (o *DHCPServiceInstance) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "ip_space")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "provider_type")
 		delete(additionalProperties, "tags")
 		o.AdditionalProperties = additionalProperties
 	}

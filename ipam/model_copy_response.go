@@ -23,7 +23,7 @@ type CopyResponse struct {
 	Description *string `json:"description,omitempty"`
 	// The resource identifier.
 	Id *string `json:"id,omitempty"`
-	// An Unique Id to identify copy operation.
+	// A unique ID to identify copy operation.
 	JobId                *string `json:"job_id,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
