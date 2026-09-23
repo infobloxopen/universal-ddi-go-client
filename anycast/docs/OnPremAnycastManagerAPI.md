@@ -437,7 +437,7 @@ Name | Type | Description  | Notes
 
 ## GetAnycastConfigList
 
-> GetAnycastConfigListResponse GetAnycastConfigList(ctx).AccountId(accountId).Service(service).HostId(hostId).Ophid(ophid).IsConfigured(isConfigured).Tfilter(tfilter).TorderBy(torderBy).Execute()
+> GetAnycastConfigListResponse GetAnycastConfigList(ctx).AccountId(accountId).Service(service).HostId(hostId).Ophid(ophid).IsConfigured(isConfigured).Tfilter(tfilter).TorderBy(torderBy).Filter(filter).Execute()
 
 Retrieve Multiple Anycast Configurations
 
@@ -487,6 +487,7 @@ Name | Type | Description  | Notes
 **isConfigured** | **bool** |  | 
 **tfilter** | **string** |  | 
 **torderBy** | **string** |  | 
+**filter** | **string** |   A collection of response resources can be filtered by a logical expression string that includes JSON tag references to values in each resource, literal values, and logical operators. If a resource does not have the specified tag, its value is assumed to be null.  Literal values include numbers (integer and floating-point), and quoted (both single- or double-quoted) literal strings, and &#39;null&#39;. The following operators are commonly used in filter expressions:  |  Op   |  Description               |  |  --   |  -----------               |  |  &#x3D;&#x3D;   |  Equal                     |  |  !&#x3D;   |  Not Equal                 |  |  &gt;    |  Greater Than              |  |   &gt;&#x3D;  |  Greater Than or Equal To  |  |  &lt;    |  Less Than                 |  |  &lt;&#x3D;   |  Less Than or Equal To     |  |  and  |  Logical AND               |  |  ~    |  Matches Regex             |  |  !~   |  Does Not Match Regex      |  |  or   |  Logical OR                |  |  not  |  Logical NOT               |  |  ()   |  Groupping Operators       |         | 
 
 ### Return type
 
