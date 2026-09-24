@@ -67,7 +67,7 @@ paths:
           \ or Equal To     | \n|  and  |  Logical AND               | \n|  ~    |\
           \  Matches Regex             | \n|  !~   |  Does Not Match Regex      |\
           \ \n|  or   |  Logical OR                | \n|  not  |  Logical NOT    \
-          \           | \n|  ()   |  Groupping Operators       |\n\n\t\t\t\t\t\t"
+          \           | \n|  ()   |  Grouping Operators       |\n\n\t\t\t\t\t\t"
         in: query
         name: _filter
         schema:
