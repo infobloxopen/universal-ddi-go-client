@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	body := *ipamfederation.NewFederatedPool("FederatedRealm_example", "Protocol_example", ipamfederation.federationProviderType("NIOS_X"), "Region_example") // FederatedPool | 
+	body := *ipamfederation.NewFederatedPool() // FederatedPool | 
 
 	apiClient := ipamfederation.NewAPIClient()
 	resp, r, err := apiClient.FederatedPoolAPI.Create(context.Background()).Body(body).Execute()
@@ -310,7 +310,7 @@ import (
 
 func main() {
 	id := "a5183192-1e00-475f-b334-38e1f0bb1bc7" // string | An application specific resource identity of a resource
-	body := *ipamfederation.NewFederatedPool("FederatedRealm_example", "Protocol_example", ipamfederation.federationProviderType("NIOS_X"), "Region_example") // FederatedPool | 
+	body := *ipamfederation.NewFederatedPool() // FederatedPool | 
 
 	apiClient := ipamfederation.NewAPIClient()
 	resp, r, err := apiClient.FederatedPoolAPI.Update(context.Background(), id).Body(body).Execute()

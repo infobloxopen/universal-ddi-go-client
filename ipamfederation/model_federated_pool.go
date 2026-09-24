@@ -12,7 +12,6 @@ package ipamfederation
 
 import (
 	"encoding/json"
-	"fmt"
 	"time"
 )
 
@@ -44,7 +43,7 @@ type FederatedPool struct {
 	// The address family of the pool ('ip4', 'ip6', or 'ip4/ip6' for dual mode support on NIOS_X pools only).
 	Protocol *string `json:"protocol,omitempty"`
 	// The cloud provider type this pool is associated with.
-	Provider ProviderType `json:"provider"`
+	Provider *ProviderType `json:"provider,omitempty"`
 	// The region/locale this pool is associated with (e.g., 'us-west-1', 'eu-central-1').
 	Region *string `json:"region,omitempty"`
 	// The current state of the federated pool (e.g., 'create-complete', 'create-in-progress', 'delete-in-progress').
@@ -66,12 +65,10 @@ type _FederatedPool FederatedPool
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFederatedPool(federatedRealm string, protocol string, provider ProviderType, region string) *FederatedPool {
+func NewFederatedPool() *FederatedPool {
 	this := FederatedPool{}
-	this.FederatedRealm = &federatedRealm
-	this.Protocol = &protocol
-	this.Provider = provider
-	this.Region = &region
+	var provider ProviderType = PROVIDERTYPE_NIOS_X
+	this.Provider = &provider
 	return &this
 }
 
@@ -81,7 +78,7 @@ func NewFederatedPool(federatedRealm string, protocol string, provider ProviderT
 func NewFederatedPoolWithDefaults() *FederatedPool {
 	this := FederatedPool{}
 	var provider ProviderType = PROVIDERTYPE_NIOS_X
-	this.Provider = provider
+	this.Provider = &provider
 	return &this
 }
 
@@ -437,28 +434,36 @@ func (o *FederatedPool) SetProtocol(v string) {
 	o.Protocol = &v
 }
 
-// GetProvider returns the Provider field value
+// GetProvider returns the Provider field value if set, zero value otherwise.
 func (o *FederatedPool) GetProvider() ProviderType {
-	if o == nil {
+	if o == nil || IsNil(o.Provider) {
 		var ret ProviderType
 		return ret
 	}
-
-	return o.Provider
+	return *o.Provider
 }
 
-// GetProviderOk returns a tuple with the Provider field value
+// GetProviderOk returns a tuple with the Provider field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FederatedPool) GetProviderOk() (*ProviderType, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Provider) {
 		return nil, false
 	}
-	return &o.Provider, true
+	return o.Provider, true
 }
 
-// SetProvider sets field value
+// HasProvider returns a boolean if a field has been set.
+func (o *FederatedPool) HasProvider() bool {
+	if o != nil && !IsNil(o.Provider) {
+		return true
+	}
+
+	return false
+}
+
+// SetProvider gets a reference to the given ProviderType and assigns it to the Provider field.
 func (o *FederatedPool) SetProvider(v ProviderType) {
-	o.Provider = v
+	o.Provider = &v
 }
 
 // GetRegion returns the Region field value if set, zero value otherwise.
@@ -696,7 +701,9 @@ func (o FederatedPool) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Protocol) {
 		toSerialize["protocol"] = o.Protocol
 	}
-	toSerialize["provider"] = o.Provider
+	if !IsNil(o.Provider) {
+		toSerialize["provider"] = o.Provider
+	}
 	if !IsNil(o.Region) {
 		toSerialize["region"] = o.Region
 	}
@@ -724,30 +731,6 @@ func (o FederatedPool) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *FederatedPool) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"federated_realm",
-		"protocol",
-		"provider",
-		"region",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varFederatedPool := _FederatedPool{}
 
 	err = json.Unmarshal(data, &varFederatedPool)

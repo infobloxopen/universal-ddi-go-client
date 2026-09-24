@@ -7,16 +7,16 @@ Name | Type | Description | Notes
 **Allocation** | Pointer to [**Allocation**](Allocation.md) | The allocation details for the __FederatedPool__. | [optional] [readonly] 
 **CreatedAt** | Pointer to **time.Time** | Time when the object has been created. | [optional] [readonly] 
 **Description** | Pointer to **string** | The description for the federated pool. May contain 0 to 1024 characters. Can include UTF-8. | [optional] 
-**FederatedRealm** | **string** | The resource identifier. | 
+**FederatedRealm** | Pointer to **string** | The resource identifier. | [optional] 
 **Id** | Pointer to **string** | The resource identifier. | [optional] [readonly] 
 **Metadata** | Pointer to **map[string]interface{}** | The metadata for the federated pool in JSON format. | [optional] 
 **Name** | Pointer to **string** | The name of the federated pool. May contain 1 to 256 characters. Can include UTF-8. | [optional] 
 **NetworkCompliance** | Pointer to [**NetworkCompliance**](NetworkCompliance.md) | The network compliance of the __FederatedPool__. | [optional] 
 **NetworkCompliant** | Pointer to **bool** | Indicates if this pool is compliant with its parent&#39;s network compliance policy. When false, a trouble dot should be displayed in the UI to indicate non-compliance. | [optional] [readonly] 
 **Parent** | Pointer to **string** | The resource identifier. | [optional] 
-**Protocol** | **string** | The address family of the pool (&#39;ip4&#39;, &#39;ip6&#39;, or &#39;ip4/ip6&#39; for dual mode support on NIOS_X pools only). | 
-**Provider** | [**ProviderType**](ProviderType.md) | The cloud provider type this pool is associated with. | [default to PROVIDERTYPE_NIOS_X]
-**Region** | **string** | The region/locale this pool is associated with (e.g., &#39;us-west-1&#39;, &#39;eu-central-1&#39;). | 
+**Protocol** | Pointer to **string** | The address family of the pool (&#39;ip4&#39;, &#39;ip6&#39;, or &#39;ip4/ip6&#39; for dual mode support on NIOS_X pools only). | [optional] 
+**Provider** | Pointer to [**ProviderType**](ProviderType.md) | The cloud provider type this pool is associated with. | [optional] [default to PROVIDERTYPE_NIOS_X]
+**Region** | Pointer to **string** | The region/locale this pool is associated with (e.g., &#39;us-west-1&#39;, &#39;eu-central-1&#39;). | [optional] 
 **State** | Pointer to **string** | The current state of the federated pool (e.g., &#39;create-complete&#39;, &#39;create-in-progress&#39;, &#39;delete-in-progress&#39;). | [optional] [readonly] 
 **Tags** | Pointer to **map[string]interface{}** | The tags for the federated pool in JSON format. | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Time when the object has been updated. Equals to _created_at_ if not updated after creation. | [optional] [readonly] 
@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewFederatedPool
 
-`func NewFederatedPool(federatedRealm string, protocol string, provider ProviderType, region string, ) *FederatedPool`
+`func NewFederatedPool() *FederatedPool`
 
 NewFederatedPool instantiates a new FederatedPool object
 This constructor will assign default values to properties that have it defined,
@@ -136,6 +136,11 @@ and a boolean to check if the value has been set.
 
 SetFederatedRealm sets FederatedRealm field to given value.
 
+### HasFederatedRealm
+
+`func (o *FederatedPool) HasFederatedRealm() bool`
+
+HasFederatedRealm returns a boolean if a field has been set.
 
 ### GetId
 
@@ -306,6 +311,11 @@ and a boolean to check if the value has been set.
 
 SetProtocol sets Protocol field to given value.
 
+### HasProtocol
+
+`func (o *FederatedPool) HasProtocol() bool`
+
+HasProtocol returns a boolean if a field has been set.
 
 ### GetProvider
 
@@ -326,6 +336,11 @@ and a boolean to check if the value has been set.
 
 SetProvider sets Provider field to given value.
 
+### HasProvider
+
+`func (o *FederatedPool) HasProvider() bool`
+
+HasProvider returns a boolean if a field has been set.
 
 ### GetRegion
 
@@ -346,6 +361,11 @@ and a boolean to check if the value has been set.
 
 SetRegion sets Region field to given value.
 
+### HasRegion
+
+`func (o *FederatedPool) HasRegion() bool`
+
+HasRegion returns a boolean if a field has been set.
 
 ### GetState
 
