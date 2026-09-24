@@ -972,6 +972,9 @@ paths:
       summary: Create the federated pool.
       tags:
       - federated_pool
+      x-tf-resource: federation_federated_pool
+      x-tf-datasource: federation_federated_pools
+      x-sdk-default-tags: true
       x-codegen-request-body-name: body
   /federation/federated_pool/{id}:
     delete:
@@ -2842,11 +2845,6 @@ components:
           type: integer
         utilization_v6:
           $ref: '#/components/schemas/federationUtilizationV6'
-      required:
-      - federated_realm
-      - protocol
-      - provider
-      - region
       title: FederatedPool
       type: object
     federationFederatedRealm:
