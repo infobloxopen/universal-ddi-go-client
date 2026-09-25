@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **History** | Pointer to **int64** | The minimum amount of history needed before ASM can run on this subnet. | [optional] [default to 30]
 **MinTotal** | Pointer to **int64** | The minimum size of range needed for ASM to run on this subnet. | [optional] [default to 10]
 **MinUnused** | Pointer to **int64** | The minimum percentage of addresses that must be available outside of the DHCP ranges and fixed addresses when making a suggested change.. | [optional] [default to 10]
-**ReenableDate** | Pointer to **time.Time** |  | [optional] 
+**ReenableDate** | Pointer to **time.Time** | The date at which notifications will be re-enabled automatically. | [optional] 
 
 ## Methods
 

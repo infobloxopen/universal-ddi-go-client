@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **CopyDhcpOptions** | Pointer to **bool** | Indicates whether dhcp options for IPv4 should be copied or not when objects (_ipam/address_block_ and _ipam/subnet_ only) are copied.  Defaults to _false_. | [optional] 
 **CopyObjects** | **[]string** | The resource identifier. | 
 **Recursive** | Pointer to **bool** | Indicates whether child objects should be copied or not.  Defaults to _false_. | [optional] 
-**RetainChildCompartment** | Pointer to **bool** | Indicates whether the child objects are going to retain their compartment_id, or inherit from the object to copy into.  Defaults to false | [optional] 
+**RetainChildCompartment** | Pointer to **bool** | Indicates whether the child objects are going to retain their access view, or inherit from the object to copy into.  Defaults to false | [optional] 
 **SkipOnError** | Pointer to **bool** | Indicates whether copying should skip object in case of error and continue with next, or abort copying in case of error.  Defaults to _false_. | [optional] 
 **Target** | **string** | The resource identifier. | 
 

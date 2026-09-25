@@ -19,6 +19,8 @@ var _ MappedNullable = &UpdateIPSpaceResponse{}
 
 // UpdateIPSpaceResponse The response format to update the __IPSpace__ object.
 type UpdateIPSpaceResponse struct {
+	// A unique ID to identify access view reassignment operation.
+	JobId *string `json:"job_id,omitempty"`
 	// The IPSpace object.
 	Result               *IPSpace `json:"result,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -41,6 +43,38 @@ func NewUpdateIPSpaceResponse() *UpdateIPSpaceResponse {
 func NewUpdateIPSpaceResponseWithDefaults() *UpdateIPSpaceResponse {
 	this := UpdateIPSpaceResponse{}
 	return &this
+}
+
+// GetJobId returns the JobId field value if set, zero value otherwise.
+func (o *UpdateIPSpaceResponse) GetJobId() string {
+	if o == nil || IsNil(o.JobId) {
+		var ret string
+		return ret
+	}
+	return *o.JobId
+}
+
+// GetJobIdOk returns a tuple with the JobId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateIPSpaceResponse) GetJobIdOk() (*string, bool) {
+	if o == nil || IsNil(o.JobId) {
+		return nil, false
+	}
+	return o.JobId, true
+}
+
+// HasJobId returns a boolean if a field has been set.
+func (o *UpdateIPSpaceResponse) HasJobId() bool {
+	if o != nil && !IsNil(o.JobId) {
+		return true
+	}
+
+	return false
+}
+
+// SetJobId gets a reference to the given string and assigns it to the JobId field.
+func (o *UpdateIPSpaceResponse) SetJobId(v string) {
+	o.JobId = &v
 }
 
 // GetResult returns the Result field value if set, zero value otherwise.
@@ -85,6 +119,9 @@ func (o UpdateIPSpaceResponse) MarshalJSON() ([]byte, error) {
 
 func (o UpdateIPSpaceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.JobId) {
+		toSerialize["job_id"] = o.JobId
+	}
 	if !IsNil(o.Result) {
 		toSerialize["result"] = o.Result
 	}
@@ -110,6 +147,7 @@ func (o *UpdateIPSpaceResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "job_id")
 		delete(additionalProperties, "result")
 		o.AdditionalProperties = additionalProperties
 	}

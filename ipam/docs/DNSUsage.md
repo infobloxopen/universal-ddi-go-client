@@ -6,12 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AbsoluteName** | Pointer to **string** | The absolute name of the resource record in associated zone. | [optional] [readonly] 
 **Address** | Pointer to **string** | The address of the referenced record. | [optional] [readonly] 
+**CreatedAt** | Pointer to **time.Time** | Time when the object has been created. | [optional] [readonly] 
 **DnsRdata** | Pointer to **string** | The DNS rdata of the referenced record. | [optional] [readonly] 
 **Id** | Pointer to **string** | The resource identifier. | [optional] [readonly] 
 **Name** | Pointer to **string** | The name in zone of the referenced record. | [optional] [readonly] 
 **Record** | Pointer to **string** | The resource identifier. | [optional] 
 **Space** | Pointer to **string** | The resource identifier. | [optional] 
 **Type** | Pointer to **string** | The type of the referenced record. | [optional] [readonly] 
+**UpdatedAt** | Pointer to **time.Time** | Time when the object has been updated. Equals to _created_at_ if not updated after creation. | [optional] [readonly] 
 **View** | Pointer to **string** | The resource identifier. | [optional] 
 **Zone** | Pointer to **string** | The resource identifier. | [optional] 
 
@@ -83,6 +85,31 @@ SetAddress sets Address field to given value.
 `func (o *DNSUsage) HasAddress() bool`
 
 HasAddress returns a boolean if a field has been set.
+
+### GetCreatedAt
+
+`func (o *DNSUsage) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *DNSUsage) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *DNSUsage) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+### HasCreatedAt
+
+`func (o *DNSUsage) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 ### GetDnsRdata
 
@@ -233,6 +260,31 @@ SetType sets Type field to given value.
 `func (o *DNSUsage) HasType() bool`
 
 HasType returns a boolean if a field has been set.
+
+### GetUpdatedAt
+
+`func (o *DNSUsage) GetUpdatedAt() time.Time`
+
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+
+### GetUpdatedAtOk
+
+`func (o *DNSUsage) GetUpdatedAtOk() (*time.Time, bool)`
+
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAt
+
+`func (o *DNSUsage) SetUpdatedAt(v time.Time)`
+
+SetUpdatedAt sets UpdatedAt field to given value.
+
+### HasUpdatedAt
+
+`func (o *DNSUsage) HasUpdatedAt() bool`
+
+HasUpdatedAt returns a boolean if a field has been set.
 
 ### GetView
 

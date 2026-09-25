@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Description** | Pointer to **string** | The description of the resource that was requested to be copied. | [optional] 
 **Id** | Pointer to **string** | The resource identifier. | [optional] [readonly] 
-**JobId** | Pointer to **string** | An Unique Id to identify copy operation. | [optional] 
+**JobId** | Pointer to **string** | A unique ID to identify copy operation. | [optional] 
 
 ## Methods
 
