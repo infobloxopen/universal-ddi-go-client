@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Address** | **string** | The address in form \&quot;a.b.c.d\&quot;. | 
 **Comment** | Pointer to **string** | The description for the address object. May contain 0 to 1024 characters. Can include UTF-8. | [optional] 
-**CompartmentId** | Pointer to **string** | The compartment associated with the object. If no compartment is associated with the object, the value defaults to empty. | [optional] [readonly] 
+**CompartmentId** | Pointer to **string** | The access view associated with the object. If no access view is associated with the object, the value defaults to empty. | [optional] [readonly] 
 **CreatedAt** | Pointer to **time.Time** | Time when the object has been created. | [optional] [readonly] 
 **DhcpInfo** | Pointer to [**DHCPInfo**](DHCPInfo.md) | The DHCP information associated with this object. | [optional] [readonly] 
 **DisableDhcp** | Pointer to **bool** | Read only. Represent the value of the same field in the associated _dhcp/fixed_address_ object. | [optional] [readonly] 

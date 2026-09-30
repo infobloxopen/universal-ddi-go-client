@@ -23,7 +23,7 @@ type CidrBlock struct {
 	Address *string `json:"address,omitempty"`
 	// The CIDR part of the CidrBlock.
 	Cidr *int64 `json:"cidr,omitempty"`
-	// Reserved for future use.
+	// The IDs of the federated realms in which the CIDR block participates.
 	FederatedRealms []string `json:"federated_realms,omitempty"`
 	// The resource identifier.
 	Id *string `json:"id,omitempty"`

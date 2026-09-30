@@ -85,6 +85,8 @@ type Server struct {
 	KerberosTkeyLifetime *int64 `json:"kerberos_tkey_lifetime,omitempty"`
 	// Determines which protocol is used to establish the security context with the external DNS servers, TCP or UDP.  Defaults to _tcp_.
 	KerberosTkeyProtocol *string `json:"kerberos_tkey_protocol,omitempty"`
+	// Optional. Configuration for external logging servers.
+	LoggingConfiguration *LoggingConfig `json:"logging_configuration,omitempty"`
 	// The name of the DHCP Config Profile. Must contain 1 to 256 characters. Can include UTF-8.
 	Name string `json:"name"`
 	// The type of server object.  Defaults to _server_.  Valid values are: * _server_: The server profile type. * _subnet_: The subnet profile type.
@@ -1144,6 +1146,38 @@ func (o *Server) SetKerberosTkeyProtocol(v string) {
 	o.KerberosTkeyProtocol = &v
 }
 
+// GetLoggingConfiguration returns the LoggingConfiguration field value if set, zero value otherwise.
+func (o *Server) GetLoggingConfiguration() LoggingConfig {
+	if o == nil || IsNil(o.LoggingConfiguration) {
+		var ret LoggingConfig
+		return ret
+	}
+	return *o.LoggingConfiguration
+}
+
+// GetLoggingConfigurationOk returns a tuple with the LoggingConfiguration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Server) GetLoggingConfigurationOk() (*LoggingConfig, bool) {
+	if o == nil || IsNil(o.LoggingConfiguration) {
+		return nil, false
+	}
+	return o.LoggingConfiguration, true
+}
+
+// HasLoggingConfiguration returns a boolean if a field has been set.
+func (o *Server) HasLoggingConfiguration() bool {
+	if o != nil && !IsNil(o.LoggingConfiguration) {
+		return true
+	}
+
+	return false
+}
+
+// SetLoggingConfiguration gets a reference to the given LoggingConfig and assigns it to the LoggingConfiguration field.
+func (o *Server) SetLoggingConfiguration(v LoggingConfig) {
+	o.LoggingConfiguration = &v
+}
+
 // GetName returns the Name field value
 func (o *Server) GetName() string {
 	if o == nil {
@@ -1434,6 +1468,9 @@ func (o Server) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.KerberosTkeyProtocol) {
 		toSerialize["kerberos_tkey_protocol"] = o.KerberosTkeyProtocol
 	}
+	if !IsNil(o.LoggingConfiguration) {
+		toSerialize["logging_configuration"] = o.LoggingConfiguration
+	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.ProfileType) {
 		toSerialize["profile_type"] = o.ProfileType
@@ -1525,6 +1562,7 @@ func (o *Server) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "kerberos_retry_interval")
 		delete(additionalProperties, "kerberos_tkey_lifetime")
 		delete(additionalProperties, "kerberos_tkey_protocol")
+		delete(additionalProperties, "logging_configuration")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "profile_type")
 		delete(additionalProperties, "server_principal")

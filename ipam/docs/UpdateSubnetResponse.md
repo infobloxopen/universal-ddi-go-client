@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**JobId** | Pointer to **string** | A unique ID to identify compartment reassignment operation. | [optional] 
 **Result** | Pointer to [**Subnet**](Subnet.md) | The Subnet object. | [optional] 
 
 ## Methods
@@ -24,6 +25,31 @@ will change when the set of required properties is changed
 NewUpdateSubnetResponseWithDefaults instantiates a new UpdateSubnetResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetJobId
+
+`func (o *UpdateSubnetResponse) GetJobId() string`
+
+GetJobId returns the JobId field if non-nil, zero value otherwise.
+
+### GetJobIdOk
+
+`func (o *UpdateSubnetResponse) GetJobIdOk() (*string, bool)`
+
+GetJobIdOk returns a tuple with the JobId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetJobId
+
+`func (o *UpdateSubnetResponse) SetJobId(v string)`
+
+SetJobId sets JobId field to given value.
+
+### HasJobId
+
+`func (o *UpdateSubnetResponse) HasJobId() bool`
+
+HasJobId returns a boolean if a field has been set.
 
 ### GetResult
 

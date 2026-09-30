@@ -19,6 +19,8 @@ var _ MappedNullable = &Global{}
 
 // Global The global DHCP configuration (_dhcp/global_). Used by default unless more specific configuration exists. There is only one instance of this object.
 type Global struct {
+	// Determines if \"30 Day Active Search\" feature is enabled or not.
+	ActiveSearchEnable *bool `json:"active_search_enable,omitempty"`
 	// The global Automated Scope Management configuration.
 	AsmConfig *ASMConfig `json:"asm_config,omitempty"`
 	// The Kerberos principal name. It uses the typical Kerberos notation: <SERVICE-NAME>/<server-domain-name>@<REALM>.  Defaults to empty.
@@ -69,6 +71,8 @@ type Global struct {
 	HostnameRewriteRegex *string `json:"hostname_rewrite_regex,omitempty"`
 	// The resource identifier.
 	Id *string `json:"id,omitempty"`
+	// When enabled, DHCP Server includes the domain name suffix in the option 12 returned to the client.  Defaults to _true_.
+	IncludeDomainOption12 *bool `json:"include_domain_option12,omitempty"`
 	// Address of Kerberos Key Distribution Center.  Defaults to empty.
 	KerberosKdc *string `json:"kerberos_kdc,omitempty"`
 	// _kerberos_keys_ contains a list of keys for GSS-TSIG signed dynamic updates.  Defaults to empty.
@@ -81,6 +85,10 @@ type Global struct {
 	KerberosTkeyLifetime *int64 `json:"kerberos_tkey_lifetime,omitempty"`
 	// Determines which protocol is used to establish the security context with the external DNS servers, TCP or UDP.  Defaults to _tcp_.
 	KerberosTkeyProtocol *string `json:"kerberos_tkey_protocol,omitempty"`
+	// Optional. Configuration for external logging servers.
+	LoggingConfiguration *LoggingConfig `json:"logging_configuration,omitempty"`
+	// The Ping before Offer configuration.
+	PingConfig *PingConfig `json:"ping_config,omitempty"`
 	// When enabled, DHCP Server will prefer option 12 over option 81 in the incoming client request.  Defaults to _false_.
 	PreferOption12 *bool `json:"prefer_option_12,omitempty"`
 	// When enabled, DHCP Server will remove the suffix from the option 81 in the incoming client request.  Defaults to _false_.
@@ -109,6 +117,38 @@ func NewGlobal() *Global {
 func NewGlobalWithDefaults() *Global {
 	this := Global{}
 	return &this
+}
+
+// GetActiveSearchEnable returns the ActiveSearchEnable field value if set, zero value otherwise.
+func (o *Global) GetActiveSearchEnable() bool {
+	if o == nil || IsNil(o.ActiveSearchEnable) {
+		var ret bool
+		return ret
+	}
+	return *o.ActiveSearchEnable
+}
+
+// GetActiveSearchEnableOk returns a tuple with the ActiveSearchEnable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Global) GetActiveSearchEnableOk() (*bool, bool) {
+	if o == nil || IsNil(o.ActiveSearchEnable) {
+		return nil, false
+	}
+	return o.ActiveSearchEnable, true
+}
+
+// HasActiveSearchEnable returns a boolean if a field has been set.
+func (o *Global) HasActiveSearchEnable() bool {
+	if o != nil && !IsNil(o.ActiveSearchEnable) {
+		return true
+	}
+
+	return false
+}
+
+// SetActiveSearchEnable gets a reference to the given bool and assigns it to the ActiveSearchEnable field.
+func (o *Global) SetActiveSearchEnable(v bool) {
+	o.ActiveSearchEnable = &v
 }
 
 // GetAsmConfig returns the AsmConfig field value if set, zero value otherwise.
@@ -911,6 +951,38 @@ func (o *Global) SetId(v string) {
 	o.Id = &v
 }
 
+// GetIncludeDomainOption12 returns the IncludeDomainOption12 field value if set, zero value otherwise.
+func (o *Global) GetIncludeDomainOption12() bool {
+	if o == nil || IsNil(o.IncludeDomainOption12) {
+		var ret bool
+		return ret
+	}
+	return *o.IncludeDomainOption12
+}
+
+// GetIncludeDomainOption12Ok returns a tuple with the IncludeDomainOption12 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Global) GetIncludeDomainOption12Ok() (*bool, bool) {
+	if o == nil || IsNil(o.IncludeDomainOption12) {
+		return nil, false
+	}
+	return o.IncludeDomainOption12, true
+}
+
+// HasIncludeDomainOption12 returns a boolean if a field has been set.
+func (o *Global) HasIncludeDomainOption12() bool {
+	if o != nil && !IsNil(o.IncludeDomainOption12) {
+		return true
+	}
+
+	return false
+}
+
+// SetIncludeDomainOption12 gets a reference to the given bool and assigns it to the IncludeDomainOption12 field.
+func (o *Global) SetIncludeDomainOption12(v bool) {
+	o.IncludeDomainOption12 = &v
+}
+
 // GetKerberosKdc returns the KerberosKdc field value if set, zero value otherwise.
 func (o *Global) GetKerberosKdc() string {
 	if o == nil || IsNil(o.KerberosKdc) {
@@ -1103,6 +1175,70 @@ func (o *Global) SetKerberosTkeyProtocol(v string) {
 	o.KerberosTkeyProtocol = &v
 }
 
+// GetLoggingConfiguration returns the LoggingConfiguration field value if set, zero value otherwise.
+func (o *Global) GetLoggingConfiguration() LoggingConfig {
+	if o == nil || IsNil(o.LoggingConfiguration) {
+		var ret LoggingConfig
+		return ret
+	}
+	return *o.LoggingConfiguration
+}
+
+// GetLoggingConfigurationOk returns a tuple with the LoggingConfiguration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Global) GetLoggingConfigurationOk() (*LoggingConfig, bool) {
+	if o == nil || IsNil(o.LoggingConfiguration) {
+		return nil, false
+	}
+	return o.LoggingConfiguration, true
+}
+
+// HasLoggingConfiguration returns a boolean if a field has been set.
+func (o *Global) HasLoggingConfiguration() bool {
+	if o != nil && !IsNil(o.LoggingConfiguration) {
+		return true
+	}
+
+	return false
+}
+
+// SetLoggingConfiguration gets a reference to the given LoggingConfig and assigns it to the LoggingConfiguration field.
+func (o *Global) SetLoggingConfiguration(v LoggingConfig) {
+	o.LoggingConfiguration = &v
+}
+
+// GetPingConfig returns the PingConfig field value if set, zero value otherwise.
+func (o *Global) GetPingConfig() PingConfig {
+	if o == nil || IsNil(o.PingConfig) {
+		var ret PingConfig
+		return ret
+	}
+	return *o.PingConfig
+}
+
+// GetPingConfigOk returns a tuple with the PingConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Global) GetPingConfigOk() (*PingConfig, bool) {
+	if o == nil || IsNil(o.PingConfig) {
+		return nil, false
+	}
+	return o.PingConfig, true
+}
+
+// HasPingConfig returns a boolean if a field has been set.
+func (o *Global) HasPingConfig() bool {
+	if o != nil && !IsNil(o.PingConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetPingConfig gets a reference to the given PingConfig and assigns it to the PingConfig field.
+func (o *Global) SetPingConfig(v PingConfig) {
+	o.PingConfig = &v
+}
+
 // GetPreferOption12 returns the PreferOption12 field value if set, zero value otherwise.
 func (o *Global) GetPreferOption12() bool {
 	if o == nil || IsNil(o.PreferOption12) {
@@ -1241,6 +1377,9 @@ func (o Global) MarshalJSON() ([]byte, error) {
 
 func (o Global) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ActiveSearchEnable) {
+		toSerialize["active_search_enable"] = o.ActiveSearchEnable
+	}
 	if !IsNil(o.AsmConfig) {
 		toSerialize["asm_config"] = o.AsmConfig
 	}
@@ -1316,6 +1455,9 @@ func (o Global) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
+	if !IsNil(o.IncludeDomainOption12) {
+		toSerialize["include_domain_option12"] = o.IncludeDomainOption12
+	}
 	if !IsNil(o.KerberosKdc) {
 		toSerialize["kerberos_kdc"] = o.KerberosKdc
 	}
@@ -1333,6 +1475,12 @@ func (o Global) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.KerberosTkeyProtocol) {
 		toSerialize["kerberos_tkey_protocol"] = o.KerberosTkeyProtocol
+	}
+	if !IsNil(o.LoggingConfiguration) {
+		toSerialize["logging_configuration"] = o.LoggingConfiguration
+	}
+	if !IsNil(o.PingConfig) {
+		toSerialize["ping_config"] = o.PingConfig
 	}
 	if !IsNil(o.PreferOption12) {
 		toSerialize["prefer_option_12"] = o.PreferOption12
@@ -1368,6 +1516,7 @@ func (o *Global) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "active_search_enable")
 		delete(additionalProperties, "asm_config")
 		delete(additionalProperties, "client_principal")
 		delete(additionalProperties, "ddns_client_update")
@@ -1393,12 +1542,15 @@ func (o *Global) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "hostname_rewrite_enabled")
 		delete(additionalProperties, "hostname_rewrite_regex")
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "include_domain_option12")
 		delete(additionalProperties, "kerberos_kdc")
 		delete(additionalProperties, "kerberos_keys")
 		delete(additionalProperties, "kerberos_rekey_interval")
 		delete(additionalProperties, "kerberos_retry_interval")
 		delete(additionalProperties, "kerberos_tkey_lifetime")
 		delete(additionalProperties, "kerberos_tkey_protocol")
+		delete(additionalProperties, "logging_configuration")
+		delete(additionalProperties, "ping_config")
 		delete(additionalProperties, "prefer_option_12")
 		delete(additionalProperties, "remove_suffix_option_81")
 		delete(additionalProperties, "server_principal")

@@ -36,6 +36,7 @@ Name | Type | Description | Notes
 **KerberosRetryInterval** | Pointer to **int64** | Time interval (in seconds) to retry to create a key if any error occurred previously for any configured external DNS server.  Defaults to 30 seconds. | [optional] 
 **KerberosTkeyLifetime** | Pointer to **int64** | Lifetime (in seconds) of GSS-TSIG keys in the TKEY protocol.  Defaults to 160 seconds. | [optional] 
 **KerberosTkeyProtocol** | Pointer to **string** | Determines which protocol is used to establish the security context with the external DNS servers, TCP or UDP.  Defaults to _tcp_. | [optional] 
+**LoggingConfiguration** | Pointer to [**LoggingConfig**](LoggingConfig.md) | Optional. Configuration for external logging servers. | [optional] 
 **Name** | **string** | The name of the DHCP Config Profile. Must contain 1 to 256 characters. Can include UTF-8. | 
 **ProfileType** | Pointer to **string** | The type of server object.  Defaults to _server_.  Valid values are: * _server_: The server profile type. * _subnet_: The subnet profile type. | [optional] 
 **ServerPrincipal** | Pointer to **string** | The Kerberos principal name of the external DNS server that will receive updates.  Defaults to empty. | [optional] 
@@ -861,6 +862,31 @@ SetKerberosTkeyProtocol sets KerberosTkeyProtocol field to given value.
 `func (o *Server) HasKerberosTkeyProtocol() bool`
 
 HasKerberosTkeyProtocol returns a boolean if a field has been set.
+
+### GetLoggingConfiguration
+
+`func (o *Server) GetLoggingConfiguration() LoggingConfig`
+
+GetLoggingConfiguration returns the LoggingConfiguration field if non-nil, zero value otherwise.
+
+### GetLoggingConfigurationOk
+
+`func (o *Server) GetLoggingConfigurationOk() (*LoggingConfig, bool)`
+
+GetLoggingConfigurationOk returns a tuple with the LoggingConfiguration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLoggingConfiguration
+
+`func (o *Server) SetLoggingConfiguration(v LoggingConfig)`
+
+SetLoggingConfiguration sets LoggingConfiguration field to given value.
+
+### HasLoggingConfiguration
+
+`func (o *Server) HasLoggingConfiguration() bool`
+
+HasLoggingConfiguration returns a boolean if a field has been set.
 
 ### GetName
 

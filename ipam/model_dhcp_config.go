@@ -37,9 +37,9 @@ type DHCPConfig struct {
 	FiltersLargeSelection []string `json:"filters_large_selection,omitempty"`
 	// The resource identifier.
 	FiltersV6 []string `json:"filters_v6,omitempty"`
-	// The hold reclaimed time in seconds for IPv4 clients.
+	// The hold reclaimed time in seconds for IPV4 clients.
 	HoldReclaimedTime *int64 `json:"hold_reclaimed_time,omitempty"`
-	// The hold reclaimed time in seconds for IPv6 clients.
+	// The hold reclaimed time in seconds for IPV6 clients.
 	HoldReclaimedTimeV6 *int64 `json:"hold_reclaimed_time_v6,omitempty"`
 	// Enable to ignore the client UID when issuing a DHCP lease. Use this option to prevent assigning two IP addresses for a client which does not have a UID during one phase of PXE boot but acquires one for the other phase.
 	IgnoreClientUid *bool `json:"ignore_client_uid,omitempty"`

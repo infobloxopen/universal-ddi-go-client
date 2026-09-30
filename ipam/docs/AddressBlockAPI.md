@@ -447,7 +447,7 @@ Name | Type | Description  | Notes
 
 ## List
 
-> ListAddressBlockResponse List(ctx).Fields(fields).Filter(filter).Offset(offset).Limit(limit).PageToken(pageToken).OrderBy(orderBy).TorderBy(torderBy).Tfilter(tfilter).Inherit(inherit).Execute()
+> ListAddressBlockResponse List(ctx).Fields(fields).Filter(filter).Offset(offset).Limit(limit).PageToken(pageToken).OrderBy(orderBy).TorderBy(torderBy).Tfilter(tfilter).FederatedRealm(federatedRealm).CidrBlock(cidrBlock).Inherit(inherit).Execute()
 
 Retrieve the address blocks.
 
@@ -498,6 +498,8 @@ Name | Type | Description  | Notes
 **orderBy** | **string** |   A collection of response resources can be sorted by their JSON tags. For a &#39;flat&#39; resource, the tag name is straightforward. If sorting is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, its value is assumed to be null.)  Specify this parameter as a comma-separated list of JSON tag names. The sort direction can be specified by a suffix separated by whitespace before the tag name. The suffix &#39;asc&#39; sorts the data in ascending order. The suffix &#39;desc&#39; sorts the data in descending order. If no suffix is specified the data is sorted in ascending order.         | 
 **torderBy** | **string** | This parameter is used for sorting by tags. | 
 **tfilter** | **string** | This parameter is used for filtering by tags. | 
+**federatedRealm** | **string** | This parameter is used for filtering by realm. | 
+**cidrBlock** | **string** | This parameter is used for filter by CIDR block. | 
 **inherit** | **string** | This parameter is used for getting inheritance_sources.  Allowed values: * _none_, * _partial_, * _full_.  Defaults to _none | 
 
 ### Return type
@@ -641,8 +643,8 @@ Name | Type | Description  | Notes
 **count** | **int32** | Number of address blocks to generate. Default 1 if not set. | 
 **name** | **string** | Name of next available address blocks. | 
 **comment** | **string** | Comment of next available address blocks. | 
-**federatedRealms** | **[]string** | Reserved for future use. | 
-**compartmentId** | **string** | The compartment id of the address blocks to be created. | 
+**federatedRealms** | **[]string** | federated realms for searching next available address blocks. | 
+**compartmentId** | **string** | The access view id of the address blocks to be created. | 
 
 ### Return type
 
@@ -735,7 +737,7 @@ Name | Type | Description  | Notes
 
 ## ListNextAvailableSubnet
 
-> NextAvailableSubnetResponse ListNextAvailableSubnet(ctx, id).Cidr(cidr).Count(count).Name(name).Comment(comment).DhcpHost(dhcpHost).FederatedRealms(federatedRealms).Execute()
+> NextAvailableSubnetResponse ListNextAvailableSubnet(ctx, id).Cidr(cidr).Count(count).Name(name).Comment(comment).DhcpHost(dhcpHost).FederatedRealms(federatedRealms).DisableDhcp(disableDhcp).Execute()
 
 List Next Available Subnet objects.
 
@@ -788,7 +790,8 @@ Name | Type | Description  | Notes
 **name** | **string** | Name of next available subnets. | 
 **comment** | **string** | Comment of next available subnets. | 
 **dhcpHost** | **string** | Reference of OnPrem Host associated with the next available subnets to be created. | 
-**federatedRealms** | **[]string** | Reserved for future use. | 
+**federatedRealms** | **[]string** | federated realms for searching next available subnets. | 
+**disableDhcp** | **bool** | Option to disable the DHCP protocol on the next available subnets to be created. | 
 
 ### Return type
 

@@ -10,8 +10,10 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** | Time when the object has been created. | [optional] [readonly] 
 **HostNames** | Pointer to [**[]HostName**](HostName.md) | The name records to be generated for the host.  This field is required if _auto_generate_records_ is true. | [optional] 
 **Id** | Pointer to **string** | The resource identifier. | [optional] [readonly] 
+**InheritanceSources** | Pointer to [**IpamHostInheritance**](IpamHostInheritance.md) | The inheritance configuration for _ttl_ field. | [optional] 
 **Name** | **string** | The name of the IPAM host. Must contain 1 to 256 characters. Can include UTF-8. | 
 **Tags** | Pointer to **map[string]interface{}** | The tags for the IPAM host in JSON format. | [optional] 
+**Ttl** | Pointer to **int64** | The DNS TTL value in seconds for the host. | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Time when the object has been updated. Equals to _created_at_ if not updated after creation. | [optional] [readonly] 
 
 ## Methods
@@ -183,6 +185,31 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
+### GetInheritanceSources
+
+`func (o *IpamHost) GetInheritanceSources() IpamHostInheritance`
+
+GetInheritanceSources returns the InheritanceSources field if non-nil, zero value otherwise.
+
+### GetInheritanceSourcesOk
+
+`func (o *IpamHost) GetInheritanceSourcesOk() (*IpamHostInheritance, bool)`
+
+GetInheritanceSourcesOk returns a tuple with the InheritanceSources field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInheritanceSources
+
+`func (o *IpamHost) SetInheritanceSources(v IpamHostInheritance)`
+
+SetInheritanceSources sets InheritanceSources field to given value.
+
+### HasInheritanceSources
+
+`func (o *IpamHost) HasInheritanceSources() bool`
+
+HasInheritanceSources returns a boolean if a field has been set.
+
 ### GetName
 
 `func (o *IpamHost) GetName() string`
@@ -227,6 +254,31 @@ SetTags sets Tags field to given value.
 `func (o *IpamHost) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
+
+### GetTtl
+
+`func (o *IpamHost) GetTtl() int64`
+
+GetTtl returns the Ttl field if non-nil, zero value otherwise.
+
+### GetTtlOk
+
+`func (o *IpamHost) GetTtlOk() (*int64, bool)`
+
+GetTtlOk returns a tuple with the Ttl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTtl
+
+`func (o *IpamHost) SetTtl(v int64)`
+
+SetTtl sets Ttl field to given value.
+
+### HasTtl
+
+`func (o *IpamHost) HasTtl() bool`
+
+HasTtl returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 

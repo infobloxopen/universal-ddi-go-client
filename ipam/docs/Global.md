@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ActiveSearchEnable** | Pointer to **bool** | Determines if \&quot;30 Day Active Search\&quot; feature is enabled or not. | [optional] 
 **AsmConfig** | Pointer to [**ASMConfig**](ASMConfig.md) | The global Automated Scope Management configuration. | [optional] 
 **ClientPrincipal** | Pointer to **string** | The Kerberos principal name. It uses the typical Kerberos notation: &lt;SERVICE-NAME&gt;/&lt;server-domain-name&gt;@&lt;REALM&gt;.  Defaults to empty. | [optional] 
 **DdnsClientUpdate** | Pointer to **string** | The global configuration to control who does the DDNS updates.  Valid values are: * _client_: DHCP server updates DNS if requested by client. * _server_: DHCP server always updates DNS, overriding an update request from the client, unless the client requests no updates. * _ignore_: DHCP server always updates DNS, even if the client says not to. * _over_client_update_: Same as _server_. DHCP server always updates DNS, overriding an update request from the client, unless the client requests no updates. * _over_no_update_: DHCP server updates DNS even if the client requests that no updates be done. If the client requests to do the update, DHCP server allows it.  Defaults to _client_. | [optional] 
@@ -29,12 +30,15 @@ Name | Type | Description | Notes
 **HostnameRewriteEnabled** | Pointer to **bool** | The global configuration to indicate if the hostnames supplied by the client will be rewritten prior to DDNS update by replacing every character that does not match _hostname_rewrite_regex_ by _hostname_rewrite_char_.  Defaults to _false_. | [optional] 
 **HostnameRewriteRegex** | Pointer to **string** | The regex bracket expression to match valid characters when hostname rewrite is enabled in global configuration.  Must begin with \&quot;[\&quot; and end with \&quot;]\&quot; and be a compilable POSIX regex.  Defaults to \&quot;[^a-zA-Z0-9_.]\&quot;. | [optional] 
 **Id** | Pointer to **string** | The resource identifier. | [optional] [readonly] 
+**IncludeDomainOption12** | Pointer to **bool** | When enabled, DHCP Server includes the domain name suffix in the option 12 returned to the client.  Defaults to _true_. | [optional] 
 **KerberosKdc** | Pointer to **string** | Address of Kerberos Key Distribution Center.  Defaults to empty. | [optional] 
 **KerberosKeys** | Pointer to [**[]KerberosKey**](KerberosKey.md) | _kerberos_keys_ contains a list of keys for GSS-TSIG signed dynamic updates.  Defaults to empty. | [optional] 
 **KerberosRekeyInterval** | Pointer to **int64** | Time interval (in seconds) the keys for each configured external DNS server are checked for rekeying, i.e. a new key is created to replace the current usable one when its age is greater than the _kerberos_rekey_interval_ value.  Defaults to 120 seconds. | [optional] 
 **KerberosRetryInterval** | Pointer to **int64** | Time interval (in seconds) to retry to create a key if any error occurred previously for any configured external DNS server.  Defaults to 30 seconds. | [optional] 
 **KerberosTkeyLifetime** | Pointer to **int64** | Lifetime (in seconds) of GSS-TSIG keys in the TKEY protocol.  Defaults to 160 seconds. | [optional] 
 **KerberosTkeyProtocol** | Pointer to **string** | Determines which protocol is used to establish the security context with the external DNS servers, TCP or UDP.  Defaults to _tcp_. | [optional] 
+**LoggingConfiguration** | Pointer to [**LoggingConfig**](LoggingConfig.md) | Optional. Configuration for external logging servers. | [optional] 
+**PingConfig** | Pointer to [**PingConfig**](PingConfig.md) | The Ping before Offer configuration. | [optional] 
 **PreferOption12** | Pointer to **bool** | When enabled, DHCP Server will prefer option 12 over option 81 in the incoming client request.  Defaults to _false_. | [optional] 
 **RemoveSuffixOption81** | Pointer to **bool** | When enabled, DHCP Server will remove the suffix from the option 81 in the incoming client request.  Defaults to _false_. | [optional] 
 **ServerPrincipal** | Pointer to **string** | The Kerberos principal name of the external DNS server that will receive updates.  Defaults to empty. | [optional] 
@@ -58,6 +62,31 @@ will change when the set of required properties is changed
 NewGlobalWithDefaults instantiates a new Global object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetActiveSearchEnable
+
+`func (o *Global) GetActiveSearchEnable() bool`
+
+GetActiveSearchEnable returns the ActiveSearchEnable field if non-nil, zero value otherwise.
+
+### GetActiveSearchEnableOk
+
+`func (o *Global) GetActiveSearchEnableOk() (*bool, bool)`
+
+GetActiveSearchEnableOk returns a tuple with the ActiveSearchEnable field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetActiveSearchEnable
+
+`func (o *Global) SetActiveSearchEnable(v bool)`
+
+SetActiveSearchEnable sets ActiveSearchEnable field to given value.
+
+### HasActiveSearchEnable
+
+`func (o *Global) HasActiveSearchEnable() bool`
+
+HasActiveSearchEnable returns a boolean if a field has been set.
 
 ### GetAsmConfig
 
@@ -684,6 +713,31 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
+### GetIncludeDomainOption12
+
+`func (o *Global) GetIncludeDomainOption12() bool`
+
+GetIncludeDomainOption12 returns the IncludeDomainOption12 field if non-nil, zero value otherwise.
+
+### GetIncludeDomainOption12Ok
+
+`func (o *Global) GetIncludeDomainOption12Ok() (*bool, bool)`
+
+GetIncludeDomainOption12Ok returns a tuple with the IncludeDomainOption12 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIncludeDomainOption12
+
+`func (o *Global) SetIncludeDomainOption12(v bool)`
+
+SetIncludeDomainOption12 sets IncludeDomainOption12 field to given value.
+
+### HasIncludeDomainOption12
+
+`func (o *Global) HasIncludeDomainOption12() bool`
+
+HasIncludeDomainOption12 returns a boolean if a field has been set.
+
 ### GetKerberosKdc
 
 `func (o *Global) GetKerberosKdc() string`
@@ -833,6 +887,56 @@ SetKerberosTkeyProtocol sets KerberosTkeyProtocol field to given value.
 `func (o *Global) HasKerberosTkeyProtocol() bool`
 
 HasKerberosTkeyProtocol returns a boolean if a field has been set.
+
+### GetLoggingConfiguration
+
+`func (o *Global) GetLoggingConfiguration() LoggingConfig`
+
+GetLoggingConfiguration returns the LoggingConfiguration field if non-nil, zero value otherwise.
+
+### GetLoggingConfigurationOk
+
+`func (o *Global) GetLoggingConfigurationOk() (*LoggingConfig, bool)`
+
+GetLoggingConfigurationOk returns a tuple with the LoggingConfiguration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLoggingConfiguration
+
+`func (o *Global) SetLoggingConfiguration(v LoggingConfig)`
+
+SetLoggingConfiguration sets LoggingConfiguration field to given value.
+
+### HasLoggingConfiguration
+
+`func (o *Global) HasLoggingConfiguration() bool`
+
+HasLoggingConfiguration returns a boolean if a field has been set.
+
+### GetPingConfig
+
+`func (o *Global) GetPingConfig() PingConfig`
+
+GetPingConfig returns the PingConfig field if non-nil, zero value otherwise.
+
+### GetPingConfigOk
+
+`func (o *Global) GetPingConfigOk() (*PingConfig, bool)`
+
+GetPingConfigOk returns a tuple with the PingConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPingConfig
+
+`func (o *Global) SetPingConfig(v PingConfig)`
+
+SetPingConfig sets PingConfig field to given value.
+
+### HasPingConfig
+
+`func (o *Global) HasPingConfig() bool`
+
+HasPingConfig returns a boolean if a field has been set.
 
 ### GetPreferOption12
 

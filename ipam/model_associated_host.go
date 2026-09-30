@@ -21,8 +21,14 @@ var _ MappedNullable = &AssociatedHost{}
 type AssociatedHost struct {
 	// The primary IP address of the on-prem host.
 	Address *string `json:"address,omitempty"`
+	// Status of the DHCPv4 service.
+	Dhcpv4ServiceStatus *string `json:"dhcpv4_service_status,omitempty"`
+	// Status of the DHCPv6 service.
+	Dhcpv6ServiceStatus *string `json:"dhcpv6_service_status,omitempty"`
 	// The resource identifier.
 	Id *string `json:"id,omitempty"`
+	// Dhcp Host Interfaces. The host interfaces associated with the host.
+	Interfaces []DhcpHostInterface `json:"interfaces,omitempty"`
 	// The DHCP host name.
 	Name *string `json:"name,omitempty"`
 	// The on-prem host ID.
@@ -81,6 +87,70 @@ func (o *AssociatedHost) SetAddress(v string) {
 	o.Address = &v
 }
 
+// GetDhcpv4ServiceStatus returns the Dhcpv4ServiceStatus field value if set, zero value otherwise.
+func (o *AssociatedHost) GetDhcpv4ServiceStatus() string {
+	if o == nil || IsNil(o.Dhcpv4ServiceStatus) {
+		var ret string
+		return ret
+	}
+	return *o.Dhcpv4ServiceStatus
+}
+
+// GetDhcpv4ServiceStatusOk returns a tuple with the Dhcpv4ServiceStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AssociatedHost) GetDhcpv4ServiceStatusOk() (*string, bool) {
+	if o == nil || IsNil(o.Dhcpv4ServiceStatus) {
+		return nil, false
+	}
+	return o.Dhcpv4ServiceStatus, true
+}
+
+// HasDhcpv4ServiceStatus returns a boolean if a field has been set.
+func (o *AssociatedHost) HasDhcpv4ServiceStatus() bool {
+	if o != nil && !IsNil(o.Dhcpv4ServiceStatus) {
+		return true
+	}
+
+	return false
+}
+
+// SetDhcpv4ServiceStatus gets a reference to the given string and assigns it to the Dhcpv4ServiceStatus field.
+func (o *AssociatedHost) SetDhcpv4ServiceStatus(v string) {
+	o.Dhcpv4ServiceStatus = &v
+}
+
+// GetDhcpv6ServiceStatus returns the Dhcpv6ServiceStatus field value if set, zero value otherwise.
+func (o *AssociatedHost) GetDhcpv6ServiceStatus() string {
+	if o == nil || IsNil(o.Dhcpv6ServiceStatus) {
+		var ret string
+		return ret
+	}
+	return *o.Dhcpv6ServiceStatus
+}
+
+// GetDhcpv6ServiceStatusOk returns a tuple with the Dhcpv6ServiceStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AssociatedHost) GetDhcpv6ServiceStatusOk() (*string, bool) {
+	if o == nil || IsNil(o.Dhcpv6ServiceStatus) {
+		return nil, false
+	}
+	return o.Dhcpv6ServiceStatus, true
+}
+
+// HasDhcpv6ServiceStatus returns a boolean if a field has been set.
+func (o *AssociatedHost) HasDhcpv6ServiceStatus() bool {
+	if o != nil && !IsNil(o.Dhcpv6ServiceStatus) {
+		return true
+	}
+
+	return false
+}
+
+// SetDhcpv6ServiceStatus gets a reference to the given string and assigns it to the Dhcpv6ServiceStatus field.
+func (o *AssociatedHost) SetDhcpv6ServiceStatus(v string) {
+	o.Dhcpv6ServiceStatus = &v
+}
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *AssociatedHost) GetId() string {
 	if o == nil || IsNil(o.Id) {
@@ -111,6 +181,38 @@ func (o *AssociatedHost) HasId() bool {
 // SetId gets a reference to the given string and assigns it to the Id field.
 func (o *AssociatedHost) SetId(v string) {
 	o.Id = &v
+}
+
+// GetInterfaces returns the Interfaces field value if set, zero value otherwise.
+func (o *AssociatedHost) GetInterfaces() []DhcpHostInterface {
+	if o == nil || IsNil(o.Interfaces) {
+		var ret []DhcpHostInterface
+		return ret
+	}
+	return o.Interfaces
+}
+
+// GetInterfacesOk returns a tuple with the Interfaces field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AssociatedHost) GetInterfacesOk() ([]DhcpHostInterface, bool) {
+	if o == nil || IsNil(o.Interfaces) {
+		return nil, false
+	}
+	return o.Interfaces, true
+}
+
+// HasInterfaces returns a boolean if a field has been set.
+func (o *AssociatedHost) HasInterfaces() bool {
+	if o != nil && !IsNil(o.Interfaces) {
+		return true
+	}
+
+	return false
+}
+
+// SetInterfaces gets a reference to the given []DhcpHostInterface and assigns it to the Interfaces field.
+func (o *AssociatedHost) SetInterfaces(v []DhcpHostInterface) {
+	o.Interfaces = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -190,8 +292,17 @@ func (o AssociatedHost) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Address) {
 		toSerialize["address"] = o.Address
 	}
+	if !IsNil(o.Dhcpv4ServiceStatus) {
+		toSerialize["dhcpv4_service_status"] = o.Dhcpv4ServiceStatus
+	}
+	if !IsNil(o.Dhcpv6ServiceStatus) {
+		toSerialize["dhcpv6_service_status"] = o.Dhcpv6ServiceStatus
+	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Interfaces) {
+		toSerialize["interfaces"] = o.Interfaces
 	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
@@ -222,7 +333,10 @@ func (o *AssociatedHost) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "address")
+		delete(additionalProperties, "dhcpv4_service_status")
+		delete(additionalProperties, "dhcpv6_service_status")
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "interfaces")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "ophid")
 		o.AdditionalProperties = additionalProperties

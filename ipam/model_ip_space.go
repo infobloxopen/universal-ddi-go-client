@@ -27,7 +27,7 @@ type IPSpace struct {
 	AsmScopeFlag *int64 `json:"asm_scope_flag,omitempty"`
 	// The description for the IP space. May contain 0 to 1024 characters. Can include UTF-8.
 	Comment *string `json:"comment,omitempty"`
-	// The compartment associated with the object. If no compartment is associated with the object, the value defaults to empty.
+	// The access view associated with the object. If no access view is associated with the object, the value defaults to empty.
 	CompartmentId *string `json:"compartment_id,omitempty"`
 	// Time when the object has been created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
@@ -75,6 +75,8 @@ type IPSpace struct {
 	InheritanceSources *IPSpaceInheritance `json:"inheritance_sources,omitempty"`
 	// The name of the IP space. Must contain 1 to 256 characters. Can include UTF-8.
 	Name string `json:"name"`
+	// Defines the type of provider. Listed below are supported providers:  * _nios_x_: provider type is NIOS-X.  * _azure_: provider type is Microsoft Azure.  * _aws_: provider type is Amazon Web Services.  * _msad_: provider type is Microsoft Active Directory,  * _nios_: provider type is NIOS.  * _gcp_: provider type is Google Cloud Platform.  * _meraki_: provider type is Cisco Meraki.
+	ProviderType *string `json:"provider_type,omitempty"`
 	// The tags for the IP space in JSON format.
 	Tags map[string]interface{} `json:"tags,omitempty"`
 	// The utilization threshold settings for the IP space.
@@ -1006,6 +1008,38 @@ func (o *IPSpace) SetName(v string) {
 	o.Name = v
 }
 
+// GetProviderType returns the ProviderType field value if set, zero value otherwise.
+func (o *IPSpace) GetProviderType() string {
+	if o == nil || IsNil(o.ProviderType) {
+		var ret string
+		return ret
+	}
+	return *o.ProviderType
+}
+
+// GetProviderTypeOk returns a tuple with the ProviderType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPSpace) GetProviderTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.ProviderType) {
+		return nil, false
+	}
+	return o.ProviderType, true
+}
+
+// HasProviderType returns a boolean if a field has been set.
+func (o *IPSpace) HasProviderType() bool {
+	if o != nil && !IsNil(o.ProviderType) {
+		return true
+	}
+
+	return false
+}
+
+// SetProviderType gets a reference to the given string and assigns it to the ProviderType field.
+func (o *IPSpace) SetProviderType(v string) {
+	o.ProviderType = &v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *IPSpace) GetTags() map[string]interface{} {
 	if o == nil || IsNil(o.Tags) {
@@ -1287,6 +1321,9 @@ func (o IPSpace) ToMap() (map[string]interface{}, error) {
 		toSerialize["inheritance_sources"] = o.InheritanceSources
 	}
 	toSerialize["name"] = o.Name
+	if !IsNil(o.ProviderType) {
+		toSerialize["provider_type"] = o.ProviderType
+	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
@@ -1375,6 +1412,7 @@ func (o *IPSpace) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "inheritance_sources")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "provider_type")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "threshold")
 		delete(additionalProperties, "updated_at")

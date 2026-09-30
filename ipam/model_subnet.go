@@ -30,7 +30,7 @@ type Subnet struct {
 	Cidr *int64 `json:"cidr,omitempty"`
 	// The description for the subnet. May contain 0 to 1024 characters. Can include UTF-8.
 	Comment *string `json:"comment,omitempty"`
-	// The compartment associated with the object. If no compartment is associated with the object, the value defaults to empty.
+	// The access view associated with the object. If no access view is associated with the object, the value defaults to empty.
 	CompartmentId *string `json:"compartment_id,omitempty"`
 	// The resource identifier.
 	ConfigProfiles []string `json:"config_profiles,omitempty"`
@@ -72,7 +72,7 @@ type Subnet struct {
 	DiscoveryMetadata map[string]interface{} `json:"discovery_metadata,omitempty"`
 	// The external keys (source key) for this subnet in JSON format.
 	ExternalKeys map[string]interface{} `json:"external_keys,omitempty"`
-	// Reserved for future use.
+	// The IDs of the federated realms in which the subnet participates.
 	FederatedRealms []string `json:"federated_realms,omitempty"`
 	// The configuration for header option filename field.
 	HeaderOptionFilename *string `json:"header_option_filename,omitempty"`
@@ -97,22 +97,32 @@ type Subnet struct {
 	// The name of the subnet. May contain 1 to 256 characters. Can include UTF-8.
 	Name *string `json:"name,omitempty"`
 	// The resource identifier.
+	NiosDhcpHosts []string `json:"nios_dhcp_hosts,omitempty"`
+	// The resource identifier.
 	Parent *string `json:"parent,omitempty"`
 	// The type of protocol of the subnet (_ip4_ or _ip6_).
 	Protocol *string `json:"protocol,omitempty"`
+	// Defines the type of provider. Listed below are supported providers:  * _nios_x_: provider type is NIOS-X.  * _azure_: provider type is Microsoft Azure.  * _aws_: provider type is Amazon Web Services.  * _msad_: provider type is Microsoft Active Directory.  * _nios_: provider type is NIOS.  * _gcp_: provider type is Google Cloud Platform.  * _meraki_: provider type is Cisco Meraki.
+	ProviderType *string `json:"provider_type,omitempty"`
 	// The lease rebind time (T2) in seconds.
 	RebindTime *int64 `json:"rebind_time,omitempty"`
+	// When true, the DHCP server will fully remove subnet, when subnet is assigned to a different HA group or host (applies only to update operation). Typical use-case is when leases are moved between servers. Full removal includes lease removal and DDNS entries removal. Note that on delete operation, full removal is executed by default. Defaults to _false_.
+	RemoveSubnetOnHaGroupOrHostUpdate *bool `json:"remove_subnet_on_ha_group_or_host_update,omitempty"`
 	// The lease renew time (T1) in seconds.
 	RenewTime *int64 `json:"renew_time,omitempty"`
 	// The resource identifier.
+	SharedNetwork *string `json:"shared_network,omitempty"`
+	// The resource identifier.
 	Space *string `json:"space,omitempty"`
+	// The Subnet ID value used in Kea configuration. 0 if no ID is assigned.
+	SubnetId *int64 `json:"subnet_id,omitempty"`
 	// The tags for the subnet in JSON format.
 	Tags map[string]interface{} `json:"tags,omitempty"`
 	// The IP address utilization threshold settings for the subnet.
 	Threshold *UtilizationThreshold `json:"threshold,omitempty"`
 	// Time when the object has been updated. Equals to _created_at_ if not updated after creation.
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	// The usage is a combination of indicators, each tracking a specific associated use. Listed below are usage indicators with their meaning:  usage indicator        | description  ---------------------- | --------------------------------  _IPAM_                 |  Subnet is managed in Universal DDI.  _DISCOVERED_           |  Subnet is discovered by some network discovery probe like Network Insight or NetMRI in NIOS.
+	// The usage is a combination of indicators, each tracking a specific associated use. Listed below are usage indicators with their meaning:  usage indicator        | description  ---------------------- | --------------------------------  _IPAM_                 |  Subnet is managed in Universal DDI.  _DHCP_                 |  Subnet is served by a DHCP Host.  _DISCOVERED_           |  Subnet is discovered by some network discovery probe like Network Insight or NetMRI in NIOS.
 	Usage []string `json:"usage,omitempty"`
 	// The IPV4 address utilization statistics of the subnet.
 	Utilization *Utilization `json:"utilization,omitempty"`
@@ -1356,6 +1366,38 @@ func (o *Subnet) SetName(v string) {
 	o.Name = &v
 }
 
+// GetNiosDhcpHosts returns the NiosDhcpHosts field value if set, zero value otherwise.
+func (o *Subnet) GetNiosDhcpHosts() []string {
+	if o == nil || IsNil(o.NiosDhcpHosts) {
+		var ret []string
+		return ret
+	}
+	return o.NiosDhcpHosts
+}
+
+// GetNiosDhcpHostsOk returns a tuple with the NiosDhcpHosts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Subnet) GetNiosDhcpHostsOk() ([]string, bool) {
+	if o == nil || IsNil(o.NiosDhcpHosts) {
+		return nil, false
+	}
+	return o.NiosDhcpHosts, true
+}
+
+// HasNiosDhcpHosts returns a boolean if a field has been set.
+func (o *Subnet) HasNiosDhcpHosts() bool {
+	if o != nil && !IsNil(o.NiosDhcpHosts) {
+		return true
+	}
+
+	return false
+}
+
+// SetNiosDhcpHosts gets a reference to the given []string and assigns it to the NiosDhcpHosts field.
+func (o *Subnet) SetNiosDhcpHosts(v []string) {
+	o.NiosDhcpHosts = v
+}
+
 // GetParent returns the Parent field value if set, zero value otherwise.
 func (o *Subnet) GetParent() string {
 	if o == nil || IsNil(o.Parent) {
@@ -1420,6 +1462,38 @@ func (o *Subnet) SetProtocol(v string) {
 	o.Protocol = &v
 }
 
+// GetProviderType returns the ProviderType field value if set, zero value otherwise.
+func (o *Subnet) GetProviderType() string {
+	if o == nil || IsNil(o.ProviderType) {
+		var ret string
+		return ret
+	}
+	return *o.ProviderType
+}
+
+// GetProviderTypeOk returns a tuple with the ProviderType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Subnet) GetProviderTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.ProviderType) {
+		return nil, false
+	}
+	return o.ProviderType, true
+}
+
+// HasProviderType returns a boolean if a field has been set.
+func (o *Subnet) HasProviderType() bool {
+	if o != nil && !IsNil(o.ProviderType) {
+		return true
+	}
+
+	return false
+}
+
+// SetProviderType gets a reference to the given string and assigns it to the ProviderType field.
+func (o *Subnet) SetProviderType(v string) {
+	o.ProviderType = &v
+}
+
 // GetRebindTime returns the RebindTime field value if set, zero value otherwise.
 func (o *Subnet) GetRebindTime() int64 {
 	if o == nil || IsNil(o.RebindTime) {
@@ -1450,6 +1524,38 @@ func (o *Subnet) HasRebindTime() bool {
 // SetRebindTime gets a reference to the given int64 and assigns it to the RebindTime field.
 func (o *Subnet) SetRebindTime(v int64) {
 	o.RebindTime = &v
+}
+
+// GetRemoveSubnetOnHaGroupOrHostUpdate returns the RemoveSubnetOnHaGroupOrHostUpdate field value if set, zero value otherwise.
+func (o *Subnet) GetRemoveSubnetOnHaGroupOrHostUpdate() bool {
+	if o == nil || IsNil(o.RemoveSubnetOnHaGroupOrHostUpdate) {
+		var ret bool
+		return ret
+	}
+	return *o.RemoveSubnetOnHaGroupOrHostUpdate
+}
+
+// GetRemoveSubnetOnHaGroupOrHostUpdateOk returns a tuple with the RemoveSubnetOnHaGroupOrHostUpdate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Subnet) GetRemoveSubnetOnHaGroupOrHostUpdateOk() (*bool, bool) {
+	if o == nil || IsNil(o.RemoveSubnetOnHaGroupOrHostUpdate) {
+		return nil, false
+	}
+	return o.RemoveSubnetOnHaGroupOrHostUpdate, true
+}
+
+// HasRemoveSubnetOnHaGroupOrHostUpdate returns a boolean if a field has been set.
+func (o *Subnet) HasRemoveSubnetOnHaGroupOrHostUpdate() bool {
+	if o != nil && !IsNil(o.RemoveSubnetOnHaGroupOrHostUpdate) {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoveSubnetOnHaGroupOrHostUpdate gets a reference to the given bool and assigns it to the RemoveSubnetOnHaGroupOrHostUpdate field.
+func (o *Subnet) SetRemoveSubnetOnHaGroupOrHostUpdate(v bool) {
+	o.RemoveSubnetOnHaGroupOrHostUpdate = &v
 }
 
 // GetRenewTime returns the RenewTime field value if set, zero value otherwise.
@@ -1484,6 +1590,38 @@ func (o *Subnet) SetRenewTime(v int64) {
 	o.RenewTime = &v
 }
 
+// GetSharedNetwork returns the SharedNetwork field value if set, zero value otherwise.
+func (o *Subnet) GetSharedNetwork() string {
+	if o == nil || IsNil(o.SharedNetwork) {
+		var ret string
+		return ret
+	}
+	return *o.SharedNetwork
+}
+
+// GetSharedNetworkOk returns a tuple with the SharedNetwork field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Subnet) GetSharedNetworkOk() (*string, bool) {
+	if o == nil || IsNil(o.SharedNetwork) {
+		return nil, false
+	}
+	return o.SharedNetwork, true
+}
+
+// HasSharedNetwork returns a boolean if a field has been set.
+func (o *Subnet) HasSharedNetwork() bool {
+	if o != nil && !IsNil(o.SharedNetwork) {
+		return true
+	}
+
+	return false
+}
+
+// SetSharedNetwork gets a reference to the given string and assigns it to the SharedNetwork field.
+func (o *Subnet) SetSharedNetwork(v string) {
+	o.SharedNetwork = &v
+}
+
 // GetSpace returns the Space field value if set, zero value otherwise.
 func (o *Subnet) GetSpace() string {
 	if o == nil || IsNil(o.Space) {
@@ -1514,6 +1652,38 @@ func (o *Subnet) HasSpace() bool {
 // SetSpace gets a reference to the given string and assigns it to the Space field.
 func (o *Subnet) SetSpace(v string) {
 	o.Space = &v
+}
+
+// GetSubnetId returns the SubnetId field value if set, zero value otherwise.
+func (o *Subnet) GetSubnetId() int64 {
+	if o == nil || IsNil(o.SubnetId) {
+		var ret int64
+		return ret
+	}
+	return *o.SubnetId
+}
+
+// GetSubnetIdOk returns a tuple with the SubnetId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Subnet) GetSubnetIdOk() (*int64, bool) {
+	if o == nil || IsNil(o.SubnetId) {
+		return nil, false
+	}
+	return o.SubnetId, true
+}
+
+// HasSubnetId returns a boolean if a field has been set.
+func (o *Subnet) HasSubnetId() bool {
+	if o != nil && !IsNil(o.SubnetId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubnetId gets a reference to the given int64 and assigns it to the SubnetId field.
+func (o *Subnet) SetSubnetId(v int64) {
+	o.SubnetId = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
@@ -1832,20 +2002,35 @@ func (o Subnet) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+	if !IsNil(o.NiosDhcpHosts) {
+		toSerialize["nios_dhcp_hosts"] = o.NiosDhcpHosts
+	}
 	if !IsNil(o.Parent) {
 		toSerialize["parent"] = o.Parent
 	}
 	if !IsNil(o.Protocol) {
 		toSerialize["protocol"] = o.Protocol
 	}
+	if !IsNil(o.ProviderType) {
+		toSerialize["provider_type"] = o.ProviderType
+	}
 	if !IsNil(o.RebindTime) {
 		toSerialize["rebind_time"] = o.RebindTime
+	}
+	if !IsNil(o.RemoveSubnetOnHaGroupOrHostUpdate) {
+		toSerialize["remove_subnet_on_ha_group_or_host_update"] = o.RemoveSubnetOnHaGroupOrHostUpdate
 	}
 	if !IsNil(o.RenewTime) {
 		toSerialize["renew_time"] = o.RenewTime
 	}
+	if !IsNil(o.SharedNetwork) {
+		toSerialize["shared_network"] = o.SharedNetwork
+	}
 	if !IsNil(o.Space) {
 		toSerialize["space"] = o.Space
+	}
+	if !IsNil(o.SubnetId) {
+		toSerialize["subnet_id"] = o.SubnetId
 	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
@@ -1925,11 +2110,16 @@ func (o *Subnet) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "inheritance_parent")
 		delete(additionalProperties, "inheritance_sources")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "nios_dhcp_hosts")
 		delete(additionalProperties, "parent")
 		delete(additionalProperties, "protocol")
+		delete(additionalProperties, "provider_type")
 		delete(additionalProperties, "rebind_time")
+		delete(additionalProperties, "remove_subnet_on_ha_group_or_host_update")
 		delete(additionalProperties, "renew_time")
+		delete(additionalProperties, "shared_network")
 		delete(additionalProperties, "space")
+		delete(additionalProperties, "subnet_id")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "threshold")
 		delete(additionalProperties, "updated_at")

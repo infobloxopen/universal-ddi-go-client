@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **AsmScopeFlag** | Pointer to **int64** | Set to 1 to indicate that the subnet may run out of addresses. | [optional] [readonly] 
 **Cidr** | Pointer to **int64** | The CIDR of the subnet. This is required if _address_ does not include CIDR. | [optional] 
 **Comment** | Pointer to **string** | The description for the subnet. May contain 0 to 1024 characters. Can include UTF-8. | [optional] 
-**CompartmentId** | Pointer to **string** | The compartment associated with the object. If no compartment is associated with the object, the value defaults to empty. | [optional] [readonly] 
+**CompartmentId** | Pointer to **string** | The access view associated with the object. If no access view is associated with the object, the value defaults to empty. | [optional] [readonly] 
 **ConfigProfiles** | Pointer to **[]string** | The resource identifier. | [optional] 
 **CreatedAt** | Pointer to **time.Time** | Time when the object has been created. | [optional] [readonly] 
 **DdnsClientUpdate** | Pointer to **string** | Controls who does the DDNS updates.  Valid values are: * _client_: DHCP server updates DNS if requested by client. * _server_: DHCP server always updates DNS, overriding an update request from the client, unless the client requests no updates. * _ignore_: DHCP server always updates DNS, even if the client says not to. * _over_client_update_: Same as _server_. DHCP server always updates DNS, overriding an update request from the client, unless the client requests no updates. * _over_no_update_: DHCP server updates DNS even if the client requests that no updates be done. If the client requests to do the update, DHCP server allows it.  Defaults to _client_. | [optional] 
@@ -30,7 +30,7 @@ Name | Type | Description | Notes
 **DiscoveryAttrs** | Pointer to **map[string]interface{}** | The discovery attributes for this subnet in JSON format. | [optional] [readonly] 
 **DiscoveryMetadata** | Pointer to **map[string]interface{}** | The discovery metadata for this subnet in JSON format. | [optional] [readonly] 
 **ExternalKeys** | Pointer to **map[string]interface{}** | The external keys (source key) for this subnet in JSON format. | [optional] 
-**FederatedRealms** | Pointer to **[]string** | Reserved for future use. | [optional] 
+**FederatedRealms** | Pointer to **[]string** | The IDs of the federated realms in which the subnet participates. | [optional] 
 **HeaderOptionFilename** | Pointer to **string** | The configuration for header option filename field. | [optional] 
 **HeaderOptionServerAddress** | Pointer to **string** | The configuration for header option server address field. | [optional] 
 **HeaderOptionServerName** | Pointer to **string** | The configuration for header option server name field. | [optional] 
@@ -42,15 +42,20 @@ Name | Type | Description | Notes
 **InheritanceParent** | Pointer to **string** | The resource identifier. | [optional] 
 **InheritanceSources** | Pointer to [**DHCPInheritance**](DHCPInheritance.md) | The DHCP inheritance configuration for the subnet. | [optional] 
 **Name** | Pointer to **string** | The name of the subnet. May contain 1 to 256 characters. Can include UTF-8. | [optional] 
+**NiosDhcpHosts** | Pointer to **[]string** | The resource identifier. | [optional] 
 **Parent** | Pointer to **string** | The resource identifier. | [optional] 
 **Protocol** | Pointer to **string** | The type of protocol of the subnet (_ip4_ or _ip6_). | [optional] [readonly] 
+**ProviderType** | Pointer to **string** | Defines the type of provider. Listed below are supported providers:  * _nios_x_: provider type is NIOS-X.  * _azure_: provider type is Microsoft Azure.  * _aws_: provider type is Amazon Web Services.  * _msad_: provider type is Microsoft Active Directory.  * _nios_: provider type is NIOS.  * _gcp_: provider type is Google Cloud Platform.  * _meraki_: provider type is Cisco Meraki. | [optional] [readonly] 
 **RebindTime** | Pointer to **int64** | The lease rebind time (T2) in seconds. | [optional] 
+**RemoveSubnetOnHaGroupOrHostUpdate** | Pointer to **bool** | When true, the DHCP server will fully remove subnet, when subnet is assigned to a different HA group or host (applies only to update operation). Typical use-case is when leases are moved between servers. Full removal includes lease removal and DDNS entries removal. Note that on delete operation, full removal is executed by default. Defaults to _false_. | [optional] 
 **RenewTime** | Pointer to **int64** | The lease renew time (T1) in seconds. | [optional] 
+**SharedNetwork** | Pointer to **string** | The resource identifier. | [optional] 
 **Space** | Pointer to **string** | The resource identifier. | [optional] 
+**SubnetId** | Pointer to **int64** | The Subnet ID value used in Kea configuration. 0 if no ID is assigned. | [optional] [readonly] 
 **Tags** | Pointer to **map[string]interface{}** | The tags for the subnet in JSON format. | [optional] 
 **Threshold** | Pointer to [**UtilizationThreshold**](UtilizationThreshold.md) | The IP address utilization threshold settings for the subnet. | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Time when the object has been updated. Equals to _created_at_ if not updated after creation. | [optional] [readonly] 
-**Usage** | Pointer to **[]string** | The usage is a combination of indicators, each tracking a specific associated use. Listed below are usage indicators with their meaning:  usage indicator        | description  ---------------------- | --------------------------------  _IPAM_                 |  Subnet is managed in Universal DDI.  _DISCOVERED_           |  Subnet is discovered by some network discovery probe like Network Insight or NetMRI in NIOS. | [optional] [readonly] 
+**Usage** | Pointer to **[]string** | The usage is a combination of indicators, each tracking a specific associated use. Listed below are usage indicators with their meaning:  usage indicator        | description  ---------------------- | --------------------------------  _IPAM_                 |  Subnet is managed in Universal DDI.  _DHCP_                 |  Subnet is served by a DHCP Host.  _DISCOVERED_           |  Subnet is discovered by some network discovery probe like Network Insight or NetMRI in NIOS. | [optional] [readonly] 
 **Utilization** | Pointer to [**Utilization**](Utilization.md) | The IPV4 address utilization statistics of the subnet. | [optional] [readonly] 
 **UtilizationV6** | Pointer to [**UtilizationV6**](UtilizationV6.md) | The utilization of IPV6 addresses in the subnet. | [optional] [readonly] 
 
@@ -1023,6 +1028,31 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### GetNiosDhcpHosts
+
+`func (o *Subnet) GetNiosDhcpHosts() []string`
+
+GetNiosDhcpHosts returns the NiosDhcpHosts field if non-nil, zero value otherwise.
+
+### GetNiosDhcpHostsOk
+
+`func (o *Subnet) GetNiosDhcpHostsOk() (*[]string, bool)`
+
+GetNiosDhcpHostsOk returns a tuple with the NiosDhcpHosts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNiosDhcpHosts
+
+`func (o *Subnet) SetNiosDhcpHosts(v []string)`
+
+SetNiosDhcpHosts sets NiosDhcpHosts field to given value.
+
+### HasNiosDhcpHosts
+
+`func (o *Subnet) HasNiosDhcpHosts() bool`
+
+HasNiosDhcpHosts returns a boolean if a field has been set.
+
 ### GetParent
 
 `func (o *Subnet) GetParent() string`
@@ -1073,6 +1103,31 @@ SetProtocol sets Protocol field to given value.
 
 HasProtocol returns a boolean if a field has been set.
 
+### GetProviderType
+
+`func (o *Subnet) GetProviderType() string`
+
+GetProviderType returns the ProviderType field if non-nil, zero value otherwise.
+
+### GetProviderTypeOk
+
+`func (o *Subnet) GetProviderTypeOk() (*string, bool)`
+
+GetProviderTypeOk returns a tuple with the ProviderType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProviderType
+
+`func (o *Subnet) SetProviderType(v string)`
+
+SetProviderType sets ProviderType field to given value.
+
+### HasProviderType
+
+`func (o *Subnet) HasProviderType() bool`
+
+HasProviderType returns a boolean if a field has been set.
+
 ### GetRebindTime
 
 `func (o *Subnet) GetRebindTime() int64`
@@ -1097,6 +1152,31 @@ SetRebindTime sets RebindTime field to given value.
 `func (o *Subnet) HasRebindTime() bool`
 
 HasRebindTime returns a boolean if a field has been set.
+
+### GetRemoveSubnetOnHaGroupOrHostUpdate
+
+`func (o *Subnet) GetRemoveSubnetOnHaGroupOrHostUpdate() bool`
+
+GetRemoveSubnetOnHaGroupOrHostUpdate returns the RemoveSubnetOnHaGroupOrHostUpdate field if non-nil, zero value otherwise.
+
+### GetRemoveSubnetOnHaGroupOrHostUpdateOk
+
+`func (o *Subnet) GetRemoveSubnetOnHaGroupOrHostUpdateOk() (*bool, bool)`
+
+GetRemoveSubnetOnHaGroupOrHostUpdateOk returns a tuple with the RemoveSubnetOnHaGroupOrHostUpdate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemoveSubnetOnHaGroupOrHostUpdate
+
+`func (o *Subnet) SetRemoveSubnetOnHaGroupOrHostUpdate(v bool)`
+
+SetRemoveSubnetOnHaGroupOrHostUpdate sets RemoveSubnetOnHaGroupOrHostUpdate field to given value.
+
+### HasRemoveSubnetOnHaGroupOrHostUpdate
+
+`func (o *Subnet) HasRemoveSubnetOnHaGroupOrHostUpdate() bool`
+
+HasRemoveSubnetOnHaGroupOrHostUpdate returns a boolean if a field has been set.
 
 ### GetRenewTime
 
@@ -1123,6 +1203,31 @@ SetRenewTime sets RenewTime field to given value.
 
 HasRenewTime returns a boolean if a field has been set.
 
+### GetSharedNetwork
+
+`func (o *Subnet) GetSharedNetwork() string`
+
+GetSharedNetwork returns the SharedNetwork field if non-nil, zero value otherwise.
+
+### GetSharedNetworkOk
+
+`func (o *Subnet) GetSharedNetworkOk() (*string, bool)`
+
+GetSharedNetworkOk returns a tuple with the SharedNetwork field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSharedNetwork
+
+`func (o *Subnet) SetSharedNetwork(v string)`
+
+SetSharedNetwork sets SharedNetwork field to given value.
+
+### HasSharedNetwork
+
+`func (o *Subnet) HasSharedNetwork() bool`
+
+HasSharedNetwork returns a boolean if a field has been set.
+
 ### GetSpace
 
 `func (o *Subnet) GetSpace() string`
@@ -1147,6 +1252,31 @@ SetSpace sets Space field to given value.
 `func (o *Subnet) HasSpace() bool`
 
 HasSpace returns a boolean if a field has been set.
+
+### GetSubnetId
+
+`func (o *Subnet) GetSubnetId() int64`
+
+GetSubnetId returns the SubnetId field if non-nil, zero value otherwise.
+
+### GetSubnetIdOk
+
+`func (o *Subnet) GetSubnetIdOk() (*int64, bool)`
+
+GetSubnetIdOk returns a tuple with the SubnetId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubnetId
+
+`func (o *Subnet) SetSubnetId(v int64)`
+
+SetSubnetId sets SubnetId field to given value.
+
+### HasSubnetId
+
+`func (o *Subnet) HasSubnetId() bool`
+
+HasSubnetId returns a boolean if a field has been set.
 
 ### GetTags
 

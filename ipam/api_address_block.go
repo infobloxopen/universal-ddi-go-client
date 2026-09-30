@@ -962,17 +962,19 @@ func (a *AddressBlockAPIService) DeleteExecute(r AddressBlockAPIDeleteRequest) (
 }
 
 type AddressBlockAPIListRequest struct {
-	ctx        context.Context
-	ApiService AddressBlockAPI
-	fields     *string
-	filter     *string
-	offset     *int32
-	limit      *int32
-	pageToken  *string
-	orderBy    *string
-	torderBy   *string
-	tfilter    *string
-	inherit    *string
+	ctx            context.Context
+	ApiService     AddressBlockAPI
+	fields         *string
+	filter         *string
+	offset         *int32
+	limit          *int32
+	pageToken      *string
+	orderBy        *string
+	torderBy       *string
+	tfilter        *string
+	federatedRealm *string
+	cidrBlock      *string
+	inherit        *string
 }
 
 // A collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.  Specify this parameter as a comma-separated list of JSON tag names.
@@ -1020,6 +1022,18 @@ func (r AddressBlockAPIListRequest) TorderBy(torderBy string) AddressBlockAPILis
 // This parameter is used for filtering by tags.
 func (r AddressBlockAPIListRequest) Tfilter(tfilter string) AddressBlockAPIListRequest {
 	r.tfilter = &tfilter
+	return r
+}
+
+// This parameter is used for filtering by realm.
+func (r AddressBlockAPIListRequest) FederatedRealm(federatedRealm string) AddressBlockAPIListRequest {
+	r.federatedRealm = &federatedRealm
+	return r
+}
+
+// This parameter is used for filter by CIDR block.
+func (r AddressBlockAPIListRequest) CidrBlock(cidrBlock string) AddressBlockAPIListRequest {
+	r.cidrBlock = &cidrBlock
 	return r
 }
 
@@ -1094,6 +1108,12 @@ func (a *AddressBlockAPIService) ListExecute(r AddressBlockAPIListRequest) (*Lis
 	}
 	if r.tfilter != nil {
 		internal.ParameterAddToHeaderOrQuery(localVarQueryParams, "_tfilter", r.tfilter, "")
+	}
+	if r.federatedRealm != nil {
+		internal.ParameterAddToHeaderOrQuery(localVarQueryParams, "federated_realm", r.federatedRealm, "")
+	}
+	if r.cidrBlock != nil {
+		internal.ParameterAddToHeaderOrQuery(localVarQueryParams, "cidr_block", r.cidrBlock, "")
 	}
 	if r.inherit != nil {
 		internal.ParameterAddToHeaderOrQuery(localVarQueryParams, "_inherit", r.inherit, "")
@@ -1279,13 +1299,13 @@ func (r AddressBlockAPIListNextAvailableABRequest) Comment(comment string) Addre
 	return r
 }
 
-// Reserved for future use.
+// federated realms for searching next available address blocks.
 func (r AddressBlockAPIListNextAvailableABRequest) FederatedRealms(federatedRealms []string) AddressBlockAPIListNextAvailableABRequest {
 	r.federatedRealms = &federatedRealms
 	return r
 }
 
-// The compartment id of the address blocks to be created.
+// The access view id of the address blocks to be created.
 func (r AddressBlockAPIListNextAvailableABRequest) CompartmentId(compartmentId string) AddressBlockAPIListNextAvailableABRequest {
 	r.compartmentId = &compartmentId
 	return r
@@ -1529,6 +1549,7 @@ type AddressBlockAPIListNextAvailableSubnetRequest struct {
 	comment         *string
 	dhcpHost        *string
 	federatedRealms *[]string
+	disableDhcp     *bool
 }
 
 // The cidr value of subnets to be created.
@@ -1561,9 +1582,15 @@ func (r AddressBlockAPIListNextAvailableSubnetRequest) DhcpHost(dhcpHost string)
 	return r
 }
 
-// Reserved for future use.
+// federated realms for searching next available subnets.
 func (r AddressBlockAPIListNextAvailableSubnetRequest) FederatedRealms(federatedRealms []string) AddressBlockAPIListNextAvailableSubnetRequest {
 	r.federatedRealms = &federatedRealms
+	return r
+}
+
+// Option to disable the DHCP protocol on the next available subnets to be created.
+func (r AddressBlockAPIListNextAvailableSubnetRequest) DisableDhcp(disableDhcp bool) AddressBlockAPIListNextAvailableSubnetRequest {
+	r.disableDhcp = &disableDhcp
 	return r
 }
 
@@ -1629,6 +1656,9 @@ func (a *AddressBlockAPIService) ListNextAvailableSubnetExecute(r AddressBlockAP
 	}
 	if r.federatedRealms != nil {
 		internal.ParameterAddToHeaderOrQuery(localVarQueryParams, "federated_realms", r.federatedRealms, "csv")
+	}
+	if r.disableDhcp != nil {
+		internal.ParameterAddToHeaderOrQuery(localVarQueryParams, "disable_dhcp", r.disableDhcp, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
