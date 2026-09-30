@@ -2785,6 +2785,7 @@ components:
         federated_realm:
           description: The resource identifier.
           type: string
+          x-omitempty: true
         id:
           description: The resource identifier.
           readOnly: true
@@ -2813,12 +2814,14 @@ components:
           description: "The address family of the pool ('ip4', 'ip6', or 'ip4/ip6'\
             \ for dual mode support on NIOS_X pools only)."
           type: string
+          x-omitempty: true
         provider:
           $ref: '#/components/schemas/federationProviderType'
         region:
           description: "The region/locale this pool is associated with (e.g., 'us-west-1',\
             \ 'eu-central-1')."
           type: string
+          x-omitempty: true
         state:
           description: "The current state of the federated pool (e.g., 'create-complete',\
             \ 'create-in-progress', 'delete-in-progress')."
