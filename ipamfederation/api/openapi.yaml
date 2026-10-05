@@ -2848,6 +2848,11 @@ components:
           type: integer
         utilization_v6:
           $ref: '#/components/schemas/federationUtilizationV6'
+      required:
+      - federated_realm
+      - protocol
+      - provider
+      - region
       title: FederatedPool
       type: object
     federationFederatedRealm:
@@ -3980,6 +3985,7 @@ components:
       - MSAD
       title: ProviderType defines the supported provider types for federated resources
       type: string
+      x-omitempty: true
     federationReadDelegationResponse:
       description: The response format to retrieve the __Delegation__ object.
       example:

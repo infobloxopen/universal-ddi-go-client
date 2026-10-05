@@ -12,6 +12,7 @@ package ipamfederation
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -65,10 +66,12 @@ type _FederatedPool FederatedPool
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFederatedPool() *FederatedPool {
+func NewFederatedPool(federatedRealm string, protocol string, provider ProviderType, region string) *FederatedPool {
 	this := FederatedPool{}
-	var provider ProviderType = PROVIDERTYPE_NIOS_X
+	this.FederatedRealm = &federatedRealm
+	this.Protocol = &protocol
 	this.Provider = &provider
+	this.Region = &region
 	return &this
 }
 
@@ -731,6 +734,30 @@ func (o FederatedPool) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *FederatedPool) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"federated_realm",
+		"protocol",
+		"provider",
+		"region",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varFederatedPool := _FederatedPool{}
 
 	err = json.Unmarshal(data, &varFederatedPool)
