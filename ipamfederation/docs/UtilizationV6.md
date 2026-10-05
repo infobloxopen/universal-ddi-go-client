@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Total** | Pointer to [**Integer128**](Integer128.md) | Total IPv6 addresses. | [optional] [readonly] 
-**Used** | Pointer to [**Integer128**](Integer128.md) | Used IPv6 addresses. | [optional] [readonly] 
+**Total** | Pointer to **string** |  | [optional] 
+**Used** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetTotal
 
-`func (o *UtilizationV6) GetTotal() Integer128`
+`func (o *UtilizationV6) GetTotal() string`
 
 GetTotal returns the Total field if non-nil, zero value otherwise.
 
 ### GetTotalOk
 
-`func (o *UtilizationV6) GetTotalOk() (*Integer128, bool)`
+`func (o *UtilizationV6) GetTotalOk() (*string, bool)`
 
 GetTotalOk returns a tuple with the Total field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotal
 
-`func (o *UtilizationV6) SetTotal(v Integer128)`
+`func (o *UtilizationV6) SetTotal(v string)`
 
 SetTotal sets Total field to given value.
 
@@ -53,20 +53,20 @@ HasTotal returns a boolean if a field has been set.
 
 ### GetUsed
 
-`func (o *UtilizationV6) GetUsed() Integer128`
+`func (o *UtilizationV6) GetUsed() string`
 
 GetUsed returns the Used field if non-nil, zero value otherwise.
 
 ### GetUsedOk
 
-`func (o *UtilizationV6) GetUsedOk() (*Integer128, bool)`
+`func (o *UtilizationV6) GetUsedOk() (*string, bool)`
 
 GetUsedOk returns a tuple with the Used field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsed
 
-`func (o *UtilizationV6) SetUsed(v Integer128)`
+`func (o *UtilizationV6) SetUsed(v string)`
 
 SetUsed sets Used field to given value.
 
