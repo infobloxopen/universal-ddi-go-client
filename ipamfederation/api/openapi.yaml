@@ -1058,6 +1058,7 @@ paths:
       summary: Update the federated pool.
       tags:
       - federated_pool
+      x-sdk-default-tags: true
       x-codegen-request-body-name: body
   /federation/federated_pool/{id}/create_next_available_fld:
     post:
