@@ -47,6 +47,8 @@ type ServerInheritance struct {
 	HeaderOptionServerName *InheritanceInheritedString `json:"header_option_server_name,omitempty"`
 	// The inheritance configuration for _hostname_rewrite_enabled_, _hostname_rewrite_regex_, _hostname_rewrite_char_ fields from _Server_ object.
 	HostnameRewriteBlock *InheritedHostnameRewriteBlock `json:"hostname_rewrite_block,omitempty"`
+	// Optional. Field configuration for _logging_configuration_ from _Server object.
+	LoggingConfiguration *InheritedLoggingConfig `json:"logging_configuration,omitempty"`
 	// The inheritance configuration for _vendor_specific_option_option_space_ field from _Server_ object.
 	VendorSpecificOptionOptionSpace *InheritanceInheritedIdentifier `json:"vendor_specific_option_option_space,omitempty"`
 	AdditionalProperties            map[string]interface{}
@@ -519,6 +521,38 @@ func (o *ServerInheritance) SetHostnameRewriteBlock(v InheritedHostnameRewriteBl
 	o.HostnameRewriteBlock = &v
 }
 
+// GetLoggingConfiguration returns the LoggingConfiguration field value if set, zero value otherwise.
+func (o *ServerInheritance) GetLoggingConfiguration() InheritedLoggingConfig {
+	if o == nil || IsNil(o.LoggingConfiguration) {
+		var ret InheritedLoggingConfig
+		return ret
+	}
+	return *o.LoggingConfiguration
+}
+
+// GetLoggingConfigurationOk returns a tuple with the LoggingConfiguration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInheritance) GetLoggingConfigurationOk() (*InheritedLoggingConfig, bool) {
+	if o == nil || IsNil(o.LoggingConfiguration) {
+		return nil, false
+	}
+	return o.LoggingConfiguration, true
+}
+
+// HasLoggingConfiguration returns a boolean if a field has been set.
+func (o *ServerInheritance) HasLoggingConfiguration() bool {
+	if o != nil && !IsNil(o.LoggingConfiguration) {
+		return true
+	}
+
+	return false
+}
+
+// SetLoggingConfiguration gets a reference to the given InheritedLoggingConfig and assigns it to the LoggingConfiguration field.
+func (o *ServerInheritance) SetLoggingConfiguration(v InheritedLoggingConfig) {
+	o.LoggingConfiguration = &v
+}
+
 // GetVendorSpecificOptionOptionSpace returns the VendorSpecificOptionOptionSpace field value if set, zero value otherwise.
 func (o *ServerInheritance) GetVendorSpecificOptionOptionSpace() InheritanceInheritedIdentifier {
 	if o == nil || IsNil(o.VendorSpecificOptionOptionSpace) {
@@ -603,6 +637,9 @@ func (o ServerInheritance) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.HostnameRewriteBlock) {
 		toSerialize["hostname_rewrite_block"] = o.HostnameRewriteBlock
 	}
+	if !IsNil(o.LoggingConfiguration) {
+		toSerialize["logging_configuration"] = o.LoggingConfiguration
+	}
 	if !IsNil(o.VendorSpecificOptionOptionSpace) {
 		toSerialize["vendor_specific_option_option_space"] = o.VendorSpecificOptionOptionSpace
 	}
@@ -642,6 +679,7 @@ func (o *ServerInheritance) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "header_option_server_address")
 		delete(additionalProperties, "header_option_server_name")
 		delete(additionalProperties, "hostname_rewrite_block")
+		delete(additionalProperties, "logging_configuration")
 		delete(additionalProperties, "vendor_specific_option_option_space")
 		o.AdditionalProperties = additionalProperties
 	}

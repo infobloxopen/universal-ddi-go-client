@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Address** | Pointer to **string** | The address part of the CidrBlock. | [optional] [readonly] 
 **Cidr** | Pointer to **int64** | The CIDR part of the CidrBlock. | [optional] [readonly] 
-**FederatedRealms** | Pointer to **[]string** | Reserved for future use. | [optional] [readonly] 
+**FederatedRealms** | Pointer to **[]string** | The IDs of the federated realms in which the CIDR block participates. | [optional] [readonly] 
 **Id** | Pointer to **string** | The resource identifier. | [optional] [readonly] 
 **Parent** | Pointer to **string** | The resource identifier. | [optional] 
 **Space** | Pointer to **string** | The resource identifier. | [optional] 

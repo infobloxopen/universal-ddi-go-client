@@ -608,17 +608,19 @@ func (a *SubnetAPIService) DeleteExecute(r SubnetAPIDeleteRequest) (*http.Respon
 }
 
 type SubnetAPIListRequest struct {
-	ctx        context.Context
-	ApiService SubnetAPI
-	fields     *string
-	filter     *string
-	offset     *int32
-	limit      *int32
-	pageToken  *string
-	orderBy    *string
-	torderBy   *string
-	tfilter    *string
-	inherit    *string
+	ctx            context.Context
+	ApiService     SubnetAPI
+	fields         *string
+	filter         *string
+	offset         *int32
+	limit          *int32
+	pageToken      *string
+	orderBy        *string
+	torderBy       *string
+	tfilter        *string
+	federatedRealm *string
+	cidrBlock      *string
+	inherit        *string
 }
 
 // A collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.  Specify this parameter as a comma-separated list of JSON tag names.
@@ -666,6 +668,18 @@ func (r SubnetAPIListRequest) TorderBy(torderBy string) SubnetAPIListRequest {
 // This parameter is used for filtering by tags.
 func (r SubnetAPIListRequest) Tfilter(tfilter string) SubnetAPIListRequest {
 	r.tfilter = &tfilter
+	return r
+}
+
+// This parameter is used for filter by realm.
+func (r SubnetAPIListRequest) FederatedRealm(federatedRealm string) SubnetAPIListRequest {
+	r.federatedRealm = &federatedRealm
+	return r
+}
+
+// This parameter is used for filter by CIDR block.
+func (r SubnetAPIListRequest) CidrBlock(cidrBlock string) SubnetAPIListRequest {
+	r.cidrBlock = &cidrBlock
 	return r
 }
 
@@ -740,6 +754,12 @@ func (a *SubnetAPIService) ListExecute(r SubnetAPIListRequest) (*ListSubnetRespo
 	}
 	if r.tfilter != nil {
 		internal.ParameterAddToHeaderOrQuery(localVarQueryParams, "_tfilter", r.tfilter, "")
+	}
+	if r.federatedRealm != nil {
+		internal.ParameterAddToHeaderOrQuery(localVarQueryParams, "federated_realm", r.federatedRealm, "")
+	}
+	if r.cidrBlock != nil {
+		internal.ParameterAddToHeaderOrQuery(localVarQueryParams, "cidr_block", r.cidrBlock, "")
 	}
 	if r.inherit != nil {
 		internal.ParameterAddToHeaderOrQuery(localVarQueryParams, "_inherit", r.inherit, "")

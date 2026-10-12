@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**Create**](HaGroupAPI.md#Create) | **Post** /dhcp/ha_group | Create the HA group.
 [**Delete**](HaGroupAPI.md#Delete) | **Delete** /dhcp/ha_group/{id} | Delete the HA group.
 [**List**](HaGroupAPI.md#List) | **Get** /dhcp/ha_group | Retrieve HA groups.
+[**ListLinkedHAGroups**](HaGroupAPI.md#ListLinkedHAGroups) | **Post** /dhcp/ha_group/linked_ha_groups | Retrieve the list of linked HA groups.
 [**Read**](HaGroupAPI.md#Read) | **Get** /dhcp/ha_group/{id} | Retrieve the HA group.
 [**Update**](HaGroupAPI.md#Update) | **Patch** /dhcp/ha_group/{id} | Update the HA group.
 
@@ -211,6 +212,72 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListLinkedHAGroups
+
+> LinkedHAGroupsResponse ListLinkedHAGroups(ctx).Body(body).Execute()
+
+Retrieve the list of linked HA groups.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+
+	"github.com/infobloxopen/universal-ddi-go-client/ipam"
+)
+
+func main() {
+	body := *ipam.NewLinkedHAGroupsRequest() // LinkedHAGroupsRequest | 
+
+	apiClient := ipam.NewAPIClient()
+	resp, r, err := apiClient.HaGroupAPI.ListLinkedHAGroups(context.Background()).Body(body).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `HaGroupAPI.ListLinkedHAGroups``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListLinkedHAGroups`: LinkedHAGroupsResponse
+	fmt.Fprintf(os.Stdout, "Response from `HaGroupAPI.ListLinkedHAGroups`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a `HaGroupAPIListLinkedHAGroupsRequest` struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**body** | [**LinkedHAGroupsRequest**](LinkedHAGroupsRequest.md) |  | 
+
+### Return type
+
+[**LinkedHAGroupsResponse**](LinkedHAGroupsResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

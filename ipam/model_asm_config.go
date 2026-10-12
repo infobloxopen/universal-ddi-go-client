@@ -37,7 +37,8 @@ type ASMConfig struct {
 	// The minimum size of range needed for ASM to run on this subnet.
 	MinTotal *int64 `json:"min_total,omitempty"`
 	// The minimum percentage of addresses that must be available outside of the DHCP ranges and fixed addresses when making a suggested change..
-	MinUnused            *int64     `json:"min_unused,omitempty"`
+	MinUnused *int64 `json:"min_unused,omitempty"`
+	// The date at which notifications will be re-enabled automatically.
 	ReenableDate         *time.Time `json:"reenable_date,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **HeaderOptionServerAddress** | Pointer to [**InheritanceInheritedString**](InheritanceInheritedString.md) | The inheritance configuration for _header_option_server_address_ field. | [optional] 
 **HeaderOptionServerName** | Pointer to [**InheritanceInheritedString**](InheritanceInheritedString.md) | The inheritance configuration for _header_option_server_name_ field. | [optional] 
 **HostnameRewriteBlock** | Pointer to [**InheritedHostnameRewriteBlock**](InheritedHostnameRewriteBlock.md) | The inheritance configuration for _hostname_rewrite_enabled_, _hostname_rewrite_regex_, _hostname_rewrite_char_ fields from _Server_ object. | [optional] 
+**LoggingConfiguration** | Pointer to [**InheritedLoggingConfig**](InheritedLoggingConfig.md) | Optional. Field configuration for _logging_configuration_ from _Server object. | [optional] 
 **VendorSpecificOptionOptionSpace** | Pointer to [**InheritanceInheritedIdentifier**](InheritanceInheritedIdentifier.md) | The inheritance configuration for _vendor_specific_option_option_space_ field from _Server_ object. | [optional] 
 
 ## Methods
@@ -388,6 +389,31 @@ SetHostnameRewriteBlock sets HostnameRewriteBlock field to given value.
 `func (o *ServerInheritance) HasHostnameRewriteBlock() bool`
 
 HasHostnameRewriteBlock returns a boolean if a field has been set.
+
+### GetLoggingConfiguration
+
+`func (o *ServerInheritance) GetLoggingConfiguration() InheritedLoggingConfig`
+
+GetLoggingConfiguration returns the LoggingConfiguration field if non-nil, zero value otherwise.
+
+### GetLoggingConfigurationOk
+
+`func (o *ServerInheritance) GetLoggingConfigurationOk() (*InheritedLoggingConfig, bool)`
+
+GetLoggingConfigurationOk returns a tuple with the LoggingConfiguration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLoggingConfiguration
+
+`func (o *ServerInheritance) SetLoggingConfiguration(v InheritedLoggingConfig)`
+
+SetLoggingConfiguration sets LoggingConfiguration field to given value.
+
+### HasLoggingConfiguration
+
+`func (o *ServerInheritance) HasLoggingConfiguration() bool`
+
+HasLoggingConfiguration returns a boolean if a field has been set.
 
 ### GetVendorSpecificOptionOptionSpace
 

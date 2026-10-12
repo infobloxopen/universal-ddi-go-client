@@ -31,6 +31,8 @@ type Host struct {
 	CurrentVersion *string `json:"current_version,omitempty"`
 	// The resource identifier.
 	Id *string `json:"id,omitempty"`
+	// The interfaces of the host.
+	Interfaces []DhcpHostInterface `json:"interfaces,omitempty"`
 	// The resource identifier.
 	IpSpace *string `json:"ip_space,omitempty"`
 	// The display name of the on-prem host.
@@ -257,6 +259,38 @@ func (o *Host) HasId() bool {
 // SetId gets a reference to the given string and assigns it to the Id field.
 func (o *Host) SetId(v string) {
 	o.Id = &v
+}
+
+// GetInterfaces returns the Interfaces field value if set, zero value otherwise.
+func (o *Host) GetInterfaces() []DhcpHostInterface {
+	if o == nil || IsNil(o.Interfaces) {
+		var ret []DhcpHostInterface
+		return ret
+	}
+	return o.Interfaces
+}
+
+// GetInterfacesOk returns a tuple with the Interfaces field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Host) GetInterfacesOk() ([]DhcpHostInterface, bool) {
+	if o == nil || IsNil(o.Interfaces) {
+		return nil, false
+	}
+	return o.Interfaces, true
+}
+
+// HasInterfaces returns a boolean if a field has been set.
+func (o *Host) HasInterfaces() bool {
+	if o != nil && !IsNil(o.Interfaces) {
+		return true
+	}
+
+	return false
+}
+
+// SetInterfaces gets a reference to the given []DhcpHostInterface and assigns it to the Interfaces field.
+func (o *Host) SetInterfaces(v []DhcpHostInterface) {
+	o.Interfaces = v
 }
 
 // GetIpSpace returns the IpSpace field value if set, zero value otherwise.
@@ -511,6 +545,9 @@ func (o Host) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
+	if !IsNil(o.Interfaces) {
+		toSerialize["interfaces"] = o.Interfaces
+	}
 	if !IsNil(o.IpSpace) {
 		toSerialize["ip_space"] = o.IpSpace
 	}
@@ -560,6 +597,7 @@ func (o *Host) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "comment")
 		delete(additionalProperties, "current_version")
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "interfaces")
 		delete(additionalProperties, "ip_space")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "ophid")
