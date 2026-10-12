@@ -19,6 +19,7 @@
 - [ ] `fw`
 - [ ] `inframgmt`
 - [ ] `infraprovision`
+- [ ] `identity`
 - [ ] `ipam`
 - [ ] `ipamfederation`
 - [ ] `keys`
