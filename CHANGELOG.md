@@ -20,7 +20,7 @@ All notable changes to `universal-ddi-go-client` are documented here.
 
 ### Maintenance
 
-- Bumped the Go version in `go.mod` from 1.23 to 1.26. ([#28](https://github.com/infobloxopen/universal-ddi-go-client/pull/28))
+- Bumped the Go version in `go.mod` from 1.23 to 1.26. The minimum required Go version is now **1.26**. ([#28](https://github.com/infobloxopen/universal-ddi-go-client/pull/28))
 
 ---
 
