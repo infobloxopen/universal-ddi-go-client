@@ -4,6 +4,26 @@ All notable changes to `universal-ddi-go-client` are documented here.
 
 ---
 
+## [v0.5.0] - 2026-10-12
+
+### New Features
+
+- **`dtc`** — Added full CRUD support for DNS Traffic Control objects: Server, Pool, Policy, Topology, and Health Checks (HTTP, ICMP, TCP, SIP, PDP, SNMP), plus SNMP User Security; schema since refreshed to match the latest upstream spec. ([#9](https://github.com/infobloxopen/universal-ddi-go-client/pull/9), [#16](https://github.com/infobloxopen/universal-ddi-go-client/pull/16))
+- **`internal`, `option`, `client`** — Added a token-bucket rate limiter, enabled by default (25 requests/sec, burst 25); configure via `WithRateLimit(rps, burst)`, disable via `WithRateLimitDisabled()`, or override via `INFOBLOX_RATE_LIMIT` / `INFOBLOX_RATE_LIMIT_BURST` environment variables. ([#15](https://github.com/infobloxopen/universal-ddi-go-client/pull/15))
+- **`dnsconfig`** — Added Unified Nameservers support: new `Nameserver` and `AuthNSG` models, DNSSEC signing policy/key models, and DNSSEC/external-provider metadata on `View`, while retaining backward compatibility for the old model. ([#18](https://github.com/infobloxopen/universal-ddi-go-client/pull/18))
+- **`fw`** — Added `AddrBlock`/`AddrBlockApprovals` for address-block-level Network List approvals, and per-item `expiry_time`/`status` tracking on Named List items. ([#21](https://github.com/infobloxopen/universal-ddi-go-client/pull/21))
+- **`anycast`** — Added a `Filter` query parameter to `GetAnycastConfigList` for filtering results by logical expression. ([#24](https://github.com/infobloxopen/universal-ddi-go-client/pull/24))
+
+### Bug Fixes
+
+- **`internal`** — Redacted `Authorization`, `Cookie`, and `Set-Cookie` headers in debug request/response logs. ([#17](https://github.com/infobloxopen/universal-ddi-go-client/pull/17))
+
+### Maintenance
+
+- Bumped the Go version in `go.mod` from 1.23 to 1.26. ([#28](https://github.com/infobloxopen/universal-ddi-go-client/pull/28))
+
+---
+
 ## [v0.4.0] - 2026-07-15
 
 ### Breaking Changes
