@@ -2199,7 +2199,7 @@ components:
           tags: "{}"
           protocol: protocol
           updated_at: 2000-01-23T04:56:07.000+00:00
-          provider: null
+          provider: "{}"
           network_compliance:
             minimum_netmask_length: 3
             default_netmask_length: 7
@@ -2764,7 +2764,7 @@ components:
         tags: "{}"
         protocol: protocol
         updated_at: 2000-01-23T04:56:07.000+00:00
-        provider: null
+        provider: "{}"
         network_compliance:
           minimum_netmask_length: 3
           default_netmask_length: 7
@@ -2820,7 +2820,11 @@ components:
           type: string
           x-omitempty: true
         provider:
-          $ref: '#/components/schemas/federationProviderType'
+          allOf:
+          - $ref: '#/components/schemas/federationProviderType'
+          description: The cloud provider type this pool is associated with.
+          type: object
+          x-omitempty: true
         region:
           description: "The region/locale this pool is associated with (e.g., 'us-west-1',\
             \ 'eu-central-1')."
@@ -3178,7 +3182,7 @@ components:
           tags: "{}"
           protocol: protocol
           updated_at: 2000-01-23T04:56:07.000+00:00
-          provider: null
+          provider: "{}"
           network_compliance:
             minimum_netmask_length: 3
             default_netmask_length: 7
@@ -3208,7 +3212,7 @@ components:
           tags: "{}"
           protocol: protocol
           updated_at: 2000-01-23T04:56:07.000+00:00
-          provider: null
+          provider: "{}"
           network_compliance:
             minimum_netmask_length: 3
             default_netmask_length: 7
@@ -3986,7 +3990,6 @@ components:
       - MSAD
       title: ProviderType defines the supported provider types for federated resources
       type: string
-      x-omitempty: true
     federationReadDelegationResponse:
       description: The response format to retrieve the __Delegation__ object.
       example:
@@ -4081,7 +4084,7 @@ components:
           tags: "{}"
           protocol: protocol
           updated_at: 2000-01-23T04:56:07.000+00:00
-          provider: null
+          provider: "{}"
           network_compliance:
             minimum_netmask_length: 3
             default_netmask_length: 7
@@ -4412,7 +4415,7 @@ components:
           tags: "{}"
           protocol: protocol
           updated_at: 2000-01-23T04:56:07.000+00:00
-          provider: null
+          provider: "{}"
           network_compliance:
             minimum_netmask_length: 3
             default_netmask_length: 7

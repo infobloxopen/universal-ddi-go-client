@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **NetworkCompliant** | Pointer to **bool** | Indicates if this pool is compliant with its parent&#39;s network compliance policy. When false, a trouble dot should be displayed in the UI to indicate non-compliance. | [optional] [readonly] 
 **Parent** | Pointer to **string** | The resource identifier. | [optional] 
 **Protocol** | **string** | The address family of the pool (&#39;ip4&#39;, &#39;ip6&#39;, or &#39;ip4/ip6&#39; for dual mode support on NIOS_X pools only). | 
-**Provider** | [**ProviderType**](ProviderType.md) | The cloud provider type this pool is associated with. | [default to PROVIDERTYPE_NIOS_X]
+**Provider** | [**ProviderType**](ProviderType.md) | The cloud provider type this pool is associated with. | 
 **Region** | **string** | The region/locale this pool is associated with (e.g., &#39;us-west-1&#39;, &#39;eu-central-1&#39;). | 
 **State** | Pointer to **string** | The current state of the federated pool (e.g., &#39;create-complete&#39;, &#39;create-in-progress&#39;, &#39;delete-in-progress&#39;). | [optional] [readonly] 
 **Tags** | Pointer to **map[string]interface{}** | The tags for the federated pool in JSON format. | [optional] 

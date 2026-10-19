@@ -80,8 +80,6 @@ func NewFederatedPool(federatedRealm string, protocol string, provider ProviderT
 // but it doesn't guarantee that properties required by API are set
 func NewFederatedPoolWithDefaults() *FederatedPool {
 	this := FederatedPool{}
-	var provider ProviderType = PROVIDERTYPE_NIOS_X
-	this.Provider = &provider
 	return &this
 }
 
