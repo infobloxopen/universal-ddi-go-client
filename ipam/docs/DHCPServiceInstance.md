@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** | The resource identifier. | [optional] [readonly] 
 **IpSpace** | Pointer to **string** | The resource identifier. | [optional] 
 **Name** | Pointer to **string** | The display name of the service. | [optional] [readonly] 
+**ProviderType** | Pointer to **string** | Defines the type of external provider. Allowed values:  * _bloxone_ddi_: provider type is BloxOne DDI,  * _microsoft_azure_: provider type is Microsoft Azure,  * _amazon_web_service_: provider type is Amazon Web Services,  * _microsoft_active_directory_: provider type is Microsoft Active Directory,  * _nios_ddi_: provider type is NIOS. | [optional] [readonly] 
 **Tags** | Pointer to **map[string]interface{}** | The tags of the service host in JSON format. | [optional] 
 
 ## Methods
@@ -180,6 +181,31 @@ SetName sets Name field to given value.
 `func (o *DHCPServiceInstance) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetProviderType
+
+`func (o *DHCPServiceInstance) GetProviderType() string`
+
+GetProviderType returns the ProviderType field if non-nil, zero value otherwise.
+
+### GetProviderTypeOk
+
+`func (o *DHCPServiceInstance) GetProviderTypeOk() (*string, bool)`
+
+GetProviderTypeOk returns a tuple with the ProviderType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProviderType
+
+`func (o *DHCPServiceInstance) SetProviderType(v string)`
+
+SetProviderType sets ProviderType field to given value.
+
+### HasProviderType
+
+`func (o *DHCPServiceInstance) HasProviderType() bool`
+
+HasProviderType returns a boolean if a field has been set.
 
 ### GetTags
 

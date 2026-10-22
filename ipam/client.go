@@ -23,29 +23,32 @@ type APIClient struct {
 	*internal.APIClient
 
 	// API Services
-	AddressAPI        AddressAPI
-	AddressBlockAPI   AddressBlockAPI
-	AsmAPI            AsmAPI
-	ConfigProfileAPI  ConfigProfileAPI
-	DhcpHostAPI       DhcpHostAPI
-	DnsUsageAPI       DnsUsageAPI
-	FilterAPI         FilterAPI
-	FixedAddressAPI   FixedAddressAPI
-	GlobalAPI         GlobalAPI
-	HaGroupAPI        HaGroupAPI
-	HardwareFilterAPI HardwareFilterAPI
-	IpSpaceAPI        IpSpaceAPI
-	IpamHostAPI       IpamHostAPI
-	LeasesCommandAPI  LeasesCommandAPI
-	MacAddressItemAPI MacAddressItemAPI
-	OptionCodeAPI     OptionCodeAPI
-	OptionFilterAPI   OptionFilterAPI
-	OptionGroupAPI    OptionGroupAPI
-	OptionSpaceAPI    OptionSpaceAPI
-	RangeAPI          RangeAPI
-	ServerAPI         ServerAPI
-	ServiceAPI        ServiceAPI
-	SubnetAPI         SubnetAPI
+	AddressAPI              AddressAPI
+	AddressBlockAPI         AddressBlockAPI
+	AsmAPI                  AsmAPI
+	ConfigProfileAPI        ConfigProfileAPI
+	DhcpHostAPI             DhcpHostAPI
+	DhcpUniversalServiceAPI DhcpUniversalServiceAPI
+	DnsUsageAPI             DnsUsageAPI
+	ExportTableAPI          ExportTableAPI
+	FilterAPI               FilterAPI
+	FixedAddressAPI         FixedAddressAPI
+	GlobalAPI               GlobalAPI
+	HaGroupAPI              HaGroupAPI
+	HardwareFilterAPI       HardwareFilterAPI
+	IpSpaceAPI              IpSpaceAPI
+	IpamHostAPI             IpamHostAPI
+	LeasesCommandAPI        LeasesCommandAPI
+	MacAddressItemAPI       MacAddressItemAPI
+	OptionCodeAPI           OptionCodeAPI
+	OptionFilterAPI         OptionFilterAPI
+	OptionGroupAPI          OptionGroupAPI
+	OptionSpaceAPI          OptionSpaceAPI
+	RangeAPI                RangeAPI
+	ServerAPI               ServerAPI
+	ServiceAPI              ServiceAPI
+	SharedNetworkAPI        SharedNetworkAPI
+	SubnetAPI               SubnetAPI
 }
 
 // NewAPIClient creates a new API client.
@@ -71,7 +74,9 @@ func NewAPIClient(options ...option.ClientOption) *APIClient {
 	c.AsmAPI = (*AsmAPIService)(&c.Common)
 	c.ConfigProfileAPI = (*ConfigProfileAPIService)(&c.Common)
 	c.DhcpHostAPI = (*DhcpHostAPIService)(&c.Common)
+	c.DhcpUniversalServiceAPI = (*DhcpUniversalServiceAPIService)(&c.Common)
 	c.DnsUsageAPI = (*DnsUsageAPIService)(&c.Common)
+	c.ExportTableAPI = (*ExportTableAPIService)(&c.Common)
 	c.FilterAPI = (*FilterAPIService)(&c.Common)
 	c.FixedAddressAPI = (*FixedAddressAPIService)(&c.Common)
 	c.GlobalAPI = (*GlobalAPIService)(&c.Common)
@@ -88,6 +93,7 @@ func NewAPIClient(options ...option.ClientOption) *APIClient {
 	c.RangeAPI = (*RangeAPIService)(&c.Common)
 	c.ServerAPI = (*ServerAPIService)(&c.Common)
 	c.ServiceAPI = (*ServiceAPIService)(&c.Common)
+	c.SharedNetworkAPI = (*SharedNetworkAPIService)(&c.Common)
 	c.SubnetAPI = (*SubnetAPIService)(&c.Common)
 
 	return c

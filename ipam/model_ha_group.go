@@ -33,7 +33,7 @@ type HAGroup struct {
 	Id *string `json:"id,omitempty"`
 	// The resource identifier.
 	IpSpace *string `json:"ip_space,omitempty"`
-	// The mode of the HA group.  Valid values are: * _active-active_: Both on-prem hosts remain active. * _active-passive_: One on-prem host remains active and one remains passive. When the active on-prem host is down, the passive on-prem host takes over. * _advanced-active-passive_: One on-prem host may be part of multiple HA groups. When the active on-prem host is down, the passive on-prem host takes over.
+	// The mode of the HA group.  Valid values are: * _active-active_: Both on-prem hosts remain active. * _active-passive_: One on-prem host remains active and one remains passive. When the active on-prem host is down, the passive on-prem host takes over. * _advanced-active-passive_: One on-prem host may be part of multiple HA groups. When the active on-prem host is down, the passive on-prem host takes over. * _hub-and-spoke_: One on-prem host may be part of multiple HA groups. When the active on-prem host is down, the passive on-prem host takes over. The intention is to replace advanced-active-passive with hub-and-spoke. * _split-ranges_: Both on-prem hosts remain active and serve different IP address ranges within the same subnet.
 	Mode *string `json:"mode,omitempty"`
 	// The name of the HA group. Must contain 1 to 256 characters. Can include UTF-8.
 	Name string `json:"name"`

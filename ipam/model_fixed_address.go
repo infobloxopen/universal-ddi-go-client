@@ -25,7 +25,7 @@ type FixedAddress struct {
 	Address string `json:"address"`
 	// The description for the fixed address. May contain 0 to 1024 characters. Can include UTF-8.
 	Comment *string `json:"comment,omitempty"`
-	// The compartment associated with the object. If no compartment is associated with the object, the value defaults to empty.
+	// The access view associated with the object. If no access view is associated with the object, the value defaults to empty.
 	CompartmentId *string `json:"compartment_id,omitempty"`
 	// Time when the object has been created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
@@ -33,6 +33,12 @@ type FixedAddress struct {
 	DhcpOptions []OptionItem `json:"dhcp_options,omitempty"`
 	// Optional. _true_ to disable object. The fixed address is converted to an exclusion when generating configuration.  Defaults to _false_.
 	DisableDhcp *bool `json:"disable_dhcp,omitempty"`
+	// The discovery attributes for this fixed address in JSON format.
+	DiscoveryAttrs map[string]interface{} `json:"discovery_attrs,omitempty"`
+	// The discovery metadata for this fixed address in JSON format.
+	DiscoveryMetadata map[string]interface{} `json:"discovery_metadata,omitempty"`
+	// The external keys (source key) for this fixed address in JSON format.
+	ExternalKeys map[string]interface{} `json:"external_keys,omitempty"`
 	// The configuration for header option filename field.
 	HeaderOptionFilename *string `json:"header_option_filename,omitempty"`
 	// The configuration for header option server address field.
@@ -270,6 +276,102 @@ func (o *FixedAddress) HasDisableDhcp() bool {
 // SetDisableDhcp gets a reference to the given bool and assigns it to the DisableDhcp field.
 func (o *FixedAddress) SetDisableDhcp(v bool) {
 	o.DisableDhcp = &v
+}
+
+// GetDiscoveryAttrs returns the DiscoveryAttrs field value if set, zero value otherwise.
+func (o *FixedAddress) GetDiscoveryAttrs() map[string]interface{} {
+	if o == nil || IsNil(o.DiscoveryAttrs) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.DiscoveryAttrs
+}
+
+// GetDiscoveryAttrsOk returns a tuple with the DiscoveryAttrs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FixedAddress) GetDiscoveryAttrsOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.DiscoveryAttrs) {
+		return map[string]interface{}{}, false
+	}
+	return o.DiscoveryAttrs, true
+}
+
+// HasDiscoveryAttrs returns a boolean if a field has been set.
+func (o *FixedAddress) HasDiscoveryAttrs() bool {
+	if o != nil && !IsNil(o.DiscoveryAttrs) {
+		return true
+	}
+
+	return false
+}
+
+// SetDiscoveryAttrs gets a reference to the given map[string]interface{} and assigns it to the DiscoveryAttrs field.
+func (o *FixedAddress) SetDiscoveryAttrs(v map[string]interface{}) {
+	o.DiscoveryAttrs = v
+}
+
+// GetDiscoveryMetadata returns the DiscoveryMetadata field value if set, zero value otherwise.
+func (o *FixedAddress) GetDiscoveryMetadata() map[string]interface{} {
+	if o == nil || IsNil(o.DiscoveryMetadata) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.DiscoveryMetadata
+}
+
+// GetDiscoveryMetadataOk returns a tuple with the DiscoveryMetadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FixedAddress) GetDiscoveryMetadataOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.DiscoveryMetadata) {
+		return map[string]interface{}{}, false
+	}
+	return o.DiscoveryMetadata, true
+}
+
+// HasDiscoveryMetadata returns a boolean if a field has been set.
+func (o *FixedAddress) HasDiscoveryMetadata() bool {
+	if o != nil && !IsNil(o.DiscoveryMetadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetDiscoveryMetadata gets a reference to the given map[string]interface{} and assigns it to the DiscoveryMetadata field.
+func (o *FixedAddress) SetDiscoveryMetadata(v map[string]interface{}) {
+	o.DiscoveryMetadata = v
+}
+
+// GetExternalKeys returns the ExternalKeys field value if set, zero value otherwise.
+func (o *FixedAddress) GetExternalKeys() map[string]interface{} {
+	if o == nil || IsNil(o.ExternalKeys) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.ExternalKeys
+}
+
+// GetExternalKeysOk returns a tuple with the ExternalKeys field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FixedAddress) GetExternalKeysOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.ExternalKeys) {
+		return map[string]interface{}{}, false
+	}
+	return o.ExternalKeys, true
+}
+
+// HasExternalKeys returns a boolean if a field has been set.
+func (o *FixedAddress) HasExternalKeys() bool {
+	if o != nil && !IsNil(o.ExternalKeys) {
+		return true
+	}
+
+	return false
+}
+
+// SetExternalKeys gets a reference to the given map[string]interface{} and assigns it to the ExternalKeys field.
+func (o *FixedAddress) SetExternalKeys(v map[string]interface{}) {
+	o.ExternalKeys = v
 }
 
 // GetHeaderOptionFilename returns the HeaderOptionFilename field value if set, zero value otherwise.
@@ -762,6 +864,15 @@ func (o FixedAddress) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DisableDhcp) {
 		toSerialize["disable_dhcp"] = o.DisableDhcp
 	}
+	if !IsNil(o.DiscoveryAttrs) {
+		toSerialize["discovery_attrs"] = o.DiscoveryAttrs
+	}
+	if !IsNil(o.DiscoveryMetadata) {
+		toSerialize["discovery_metadata"] = o.DiscoveryMetadata
+	}
+	if !IsNil(o.ExternalKeys) {
+		toSerialize["external_keys"] = o.ExternalKeys
+	}
 	if !IsNil(o.HeaderOptionFilename) {
 		toSerialize["header_option_filename"] = o.HeaderOptionFilename
 	}
@@ -854,6 +965,9 @@ func (o *FixedAddress) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "dhcp_options")
 		delete(additionalProperties, "disable_dhcp")
+		delete(additionalProperties, "discovery_attrs")
+		delete(additionalProperties, "discovery_metadata")
+		delete(additionalProperties, "external_keys")
 		delete(additionalProperties, "header_option_filename")
 		delete(additionalProperties, "header_option_server_address")
 		delete(additionalProperties, "header_option_server_name")
