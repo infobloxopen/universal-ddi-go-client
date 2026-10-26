@@ -2529,6 +2529,7 @@ components:
             \ field. When reading, the _address_ field is always in the form “a.b.c.d”\
             ."
           type: string
+          x-omitempty: true
         cidr:
           description: "The CIDR of the delegation. This is required, if _address_\
             \ does not specify it in its input."
@@ -2600,6 +2601,7 @@ components:
           readOnly: true
           type: integer
       required:
+      - address
       - delegated_to
       title: Delegation
       type: object
@@ -2647,6 +2649,7 @@ components:
             \ field. When reading, the _address_ field is always in the form “a.b.c.d”\
             ."
           type: string
+          x-omitempty: true
         allocation_v4:
           $ref: '#/components/schemas/federationAllocation'
         cidr:
@@ -2723,6 +2726,7 @@ components:
         utilization_v6:
           $ref: '#/components/schemas/federationUtilizationV6'
       required:
+      - address
       - federated_realm
       title: FederatedBlock
       type: object
@@ -2945,6 +2949,7 @@ components:
             \ field. When reading, the _address_ field is always in the form “a.b.c.d”\
             ."
           type: string
+          x-omitempty: true
         cidr:
           description: "The CIDR of the delegation. This is required, if _address_\
             \ does not specify it in its input."
@@ -2998,6 +3003,7 @@ components:
           readOnly: true
           type: string
       required:
+      - address
       - federated_realms
       title: ForwardLookingDelegation
       type: object
@@ -3877,6 +3883,7 @@ components:
             \ field. When reading, the _address_ field is always in the form “a.b.c.d”\
             ."
           type: string
+          x-omitempty: true
         cidr:
           description: "The CIDR of the overlapping block. This is required, if _address_\
             \ does not specify it in its input."
@@ -3931,6 +3938,7 @@ components:
           readOnly: true
           type: string
       required:
+      - address
       - federated_realm
       title: OverlappingBlock
       type: object
@@ -4184,6 +4192,7 @@ components:
             \ field. When reading, the _address_ field is always in the form “a.b.c.d”\
             ."
           type: string
+          x-omitempty: true
         cidr:
           description: "The CIDR of the reserved block. This is required field, if\
             \ _address_ does not specify it in its input."
@@ -4245,6 +4254,7 @@ components:
           readOnly: true
           type: string
       required:
+      - address
       - federated_realm
       title: ReservedBlock
       type: object
