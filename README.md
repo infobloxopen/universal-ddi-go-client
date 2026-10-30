@@ -9,6 +9,7 @@ The following Universal DDI APIs are supported:
 - [Infrastructure Provision (HostActivation API)](infra_provision/README.md)
 - [Anycast Configuration Manager](anycast/README.md)
 - [Upgrade Policy](upgradePolicy/README.md)
+- [Data Connector (CDC)](cdc/README.md)
 
 ## Infoblox Threat Defense
 - [Threat Defense Cloud (FW API)](fw/README.md)
@@ -20,7 +21,8 @@ The following Universal DDI APIs are supported:
 - [DNS Configuration](dns_config/README.md)
 - [DNS Data](dns_data/README.md)
 - [Keys](keys/README.md)
-- [DNS Traffic Control](dtc/README.md- [Keys](keys/README.md) 
+- [DNS Traffic Control](dtc/README.md)
+- [Discovery Controller](discoverycontroller/README.md)
 
 # Migrating from bloxone-go-client
 
