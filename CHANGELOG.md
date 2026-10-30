@@ -4,6 +4,21 @@ All notable changes to `universal-ddi-go-client` are documented here.
 
 ---
 
+## [v0.6.0] - 2026-10-30
+
+### Breaking Changes
+
+- **`ipamfederation`** — Changed `UtilizationV6.Total` and `UtilizationV6.Used` from `*Integer128` to `*string` to match the API's plain-string response, and removed the `Integer128` model. ([#27](https://github.com/infobloxopen/universal-ddi-go-client/pull/27))
+
+### New Features
+
+- **`identity`** — Added the Identity API client (users, groups, accounts, compartments, API keys, sessions, managed accounts), exposed as `IdentityAPI` on `client.APIClient`. ([#20](https://github.com/infobloxopen/universal-ddi-go-client/pull/20))
+- **`cdc`** — Added the Data Connector (CDC) API client, exposed as `CDCAPI` on `client.APIClient`. ([#30](https://github.com/infobloxopen/universal-ddi-go-client/pull/30))
+- **`discoverycontroller`** — Added the Discovery Controller (Universal Asset Insights) API client, exposed as `DiscoveryControllerAPI` on `client.APIClient`. ([#31](https://github.com/infobloxopen/universal-ddi-go-client/pull/31))
+- **`ipamfederation`** — Added default tags support for Federated Pool Create and Update. ([#25](https://github.com/infobloxopen/universal-ddi-go-client/pull/25))
+
+---
+
 ## [v0.5.0] - 2026-10-12
 
 ### New Features
