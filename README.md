@@ -5,10 +5,10 @@ This library enables you to interact with the Infoblox Universal DDI APIs using 
 The following Universal DDI APIs are supported:
 
 ## Infoblox Cloud
-- [Infrastructure Management](infra_mgmt/README.md)
-- [Infrastructure Provision (HostActivation API)](infra_provision/README.md)
+- [Infrastructure Management](inframgmt/README.md)
+- [Infrastructure Provision (HostActivation API)](infraprovision/README.md)
 - [Anycast Configuration Manager](anycast/README.md)
-- [Upgrade Policy](upgradePolicy/README.md)
+- [Upgrade Policy](upgradepolicy/README.md)
 - [Data Connector (CDC)](cdc/README.md)
 
 ## Infoblox Threat Defense
@@ -18,10 +18,12 @@ The following Universal DDI APIs are supported:
 
 ## Universal DDI
 - [IP Address Management](ipam/README.md)
-- [DNS Configuration](dns_config/README.md)
-- [DNS Data](dns_data/README.md)
+- [IPAM Federation](ipamfederation/README.md)
+- [DNS Configuration](dnsconfig/README.md)
+- [DNS Data](dnsdata/README.md)
 - [Keys](keys/README.md)
 - [DNS Traffic Control](dtc/README.md)
+- [Cloud Discovery (Discovery Configuration API V2)](clouddiscovery/README.md)
 - [Discovery Controller](discoverycontroller/README.md)
 
 # Migrating from bloxone-go-client
