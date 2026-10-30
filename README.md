@@ -10,6 +10,7 @@ The following Universal DDI APIs are supported:
 - [Anycast Configuration Manager](anycast/README.md)
 - [Upgrade Policy](upgradepolicy/README.md)
 - [Data Connector (CDC)](cdc/README.md)
+- [Identity](identity/README.md)
 
 ## Infoblox Threat Defense
 - [Threat Defense Cloud (FW API)](fw/README.md)
