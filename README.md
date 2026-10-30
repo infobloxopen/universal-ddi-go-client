@@ -24,6 +24,8 @@ The following Universal DDI APIs are supported:
 - [Keys](keys/README.md)
 - [DNS Traffic Control](dtc/README.md)
 - [Cloud Discovery (Discovery Configuration API V2)](clouddiscovery/README.md)
+
+## Universal Asset Insights
 - [Discovery Controller](discoverycontroller/README.md)
 
 # Migrating from bloxone-go-client
