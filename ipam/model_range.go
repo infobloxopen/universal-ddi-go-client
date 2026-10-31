@@ -23,7 +23,7 @@ var _ MappedNullable = &Range{}
 type Range struct {
 	// The description for the range. May contain 0 to 1024 characters. Can include UTF-8.
 	Comment *string `json:"comment,omitempty"`
-	// The compartment associated with the object. If no compartment is associated with the object, the value defaults to empty.
+	// The access view associated with the object. If no access view is associated with the object, the value defaults to empty.
 	CompartmentId *string `json:"compartment_id,omitempty"`
 	// Time when the object has been created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
@@ -53,6 +53,8 @@ type Range struct {
 	Parent *string `json:"parent,omitempty"`
 	// The type of protocol (_ip4_ or _ip6_).
 	Protocol *string `json:"protocol,omitempty"`
+	// Defines the type of provider. Listed below are supported providers:  * _nios_x_: provider type is NIOS-X.  * _azure_: provider type is Microsoft Azure.  * _aws_: provider type is Amazon Web Services.  * _msad_: provider type is Microsoft Active Directory.  * _nios_: provider type is NIOS.  * _gcp_: provider type is Google Cloud Platform.  * _meraki_: provider type is Cisco Meraki.
+	ProviderType *string `json:"provider_type,omitempty"`
 	// The resource identifier.
 	Space *string `json:"space,omitempty"`
 	// The name of the IP Space the range belongs to.
@@ -597,6 +599,38 @@ func (o *Range) SetProtocol(v string) {
 	o.Protocol = &v
 }
 
+// GetProviderType returns the ProviderType field value if set, zero value otherwise.
+func (o *Range) GetProviderType() string {
+	if o == nil || IsNil(o.ProviderType) {
+		var ret string
+		return ret
+	}
+	return *o.ProviderType
+}
+
+// GetProviderTypeOk returns a tuple with the ProviderType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Range) GetProviderTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.ProviderType) {
+		return nil, false
+	}
+	return o.ProviderType, true
+}
+
+// HasProviderType returns a boolean if a field has been set.
+func (o *Range) HasProviderType() bool {
+	if o != nil && !IsNil(o.ProviderType) {
+		return true
+	}
+
+	return false
+}
+
+// SetProviderType gets a reference to the given string and assigns it to the ProviderType field.
+func (o *Range) SetProviderType(v string) {
+	o.ProviderType = &v
+}
+
 // GetSpace returns the Space field value if set, zero value otherwise.
 func (o *Range) GetSpace() string {
 	if o == nil || IsNil(o.Space) {
@@ -901,6 +935,9 @@ func (o Range) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Protocol) {
 		toSerialize["protocol"] = o.Protocol
 	}
+	if !IsNil(o.ProviderType) {
+		toSerialize["provider_type"] = o.ProviderType
+	}
 	if !IsNil(o.Space) {
 		toSerialize["space"] = o.Space
 	}
@@ -983,6 +1020,7 @@ func (o *Range) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "parent")
 		delete(additionalProperties, "protocol")
+		delete(additionalProperties, "provider_type")
 		delete(additionalProperties, "space")
 		delete(additionalProperties, "space_name")
 		delete(additionalProperties, "start")

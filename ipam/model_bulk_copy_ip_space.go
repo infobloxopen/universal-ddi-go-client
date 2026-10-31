@@ -26,7 +26,7 @@ type BulkCopyIPSpace struct {
 	CopyObjects []string `json:"copy_objects"`
 	// Indicates whether child objects should be copied or not.  Defaults to _false_.
 	Recursive *bool `json:"recursive,omitempty"`
-	// Indicates whether the child objects are going to retain their compartment_id, or inherit from the object to copy into.  Defaults to false
+	// Indicates whether the child objects are going to retain their access view, or inherit from the object to copy into.  Defaults to false
 	RetainChildCompartment *bool `json:"retain_child_compartment,omitempty"`
 	// Indicates whether copying should skip object in case of error and continue with next, or abort copying in case of error.  Defaults to _false_.
 	SkipOnError *bool `json:"skip_on_error,omitempty"`

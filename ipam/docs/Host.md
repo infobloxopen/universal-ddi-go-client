@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Comment** | Pointer to **string** | The description for the on-prem host. | [optional] [readonly] 
 **CurrentVersion** | Pointer to **string** | Current dhcp application version of the host. | [optional] [readonly] 
 **Id** | Pointer to **string** | The resource identifier. | [optional] [readonly] 
+**Interfaces** | Pointer to [**[]DhcpHostInterface**](DhcpHostInterface.md) | The interfaces of the host. | [optional] 
 **IpSpace** | Pointer to **string** | The resource identifier. | [optional] 
 **Name** | Pointer to **string** | The display name of the on-prem host. | [optional] [readonly] 
 **Ophid** | Pointer to **string** | The on-prem host ID. | [optional] [readonly] 
@@ -186,6 +187,31 @@ SetId sets Id field to given value.
 `func (o *Host) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetInterfaces
+
+`func (o *Host) GetInterfaces() []DhcpHostInterface`
+
+GetInterfaces returns the Interfaces field if non-nil, zero value otherwise.
+
+### GetInterfacesOk
+
+`func (o *Host) GetInterfacesOk() (*[]DhcpHostInterface, bool)`
+
+GetInterfacesOk returns a tuple with the Interfaces field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInterfaces
+
+`func (o *Host) SetInterfaces(v []DhcpHostInterface)`
+
+SetInterfaces sets Interfaces field to given value.
+
+### HasInterfaces
+
+`func (o *Host) HasInterfaces() bool`
+
+HasInterfaces returns a boolean if a field has been set.
 
 ### GetIpSpace
 

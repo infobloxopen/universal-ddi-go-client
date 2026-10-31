@@ -30,7 +30,7 @@ type AddressBlock struct {
 	Cidr *int64 `json:"cidr,omitempty"`
 	// The description for the address block. May contain 0 to 1024 characters. Can include UTF-8.
 	Comment *string `json:"comment,omitempty"`
-	// The compartment associated with the object. If no compartment is associated with the object, the value defaults to empty.
+	// The access view associated with the object. If no access view is associated with the object, the value defaults to empty.
 	CompartmentId *string `json:"compartment_id,omitempty"`
 	// Time when the object has been created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
@@ -66,7 +66,7 @@ type AddressBlock struct {
 	DiscoveryMetadata map[string]interface{} `json:"discovery_metadata,omitempty"`
 	// The external keys (source key) for this address block in JSON format.
 	ExternalKeys map[string]interface{} `json:"external_keys,omitempty"`
-	// Reserved for future use.
+	// The IDs of the federated realms in which the address block participates.
 	FederatedRealms []string `json:"federated_realms,omitempty"`
 	// The configuration for header option filename field.
 	HeaderOptionFilename *string `json:"header_option_filename,omitempty"`
@@ -88,10 +88,16 @@ type AddressBlock struct {
 	InheritanceSources *DHCPInheritance `json:"inheritance_sources,omitempty"`
 	// The name of the address block. May contain 1 to 256 characters. Can include UTF-8.
 	Name *string `json:"name,omitempty"`
+	// The network compliance policy that constrains the prefix lengths of child address blocks and subnets. When set, descendant address blocks and subnets must have a CIDR prefix length within the defined minimum and maximum range.
+	NetworkCompliance *NetworkCompliance `json:"network_compliance,omitempty"`
+	// Read-only. Indicates whether this address block is compliant with its ancestor's _network_compliance_ policy. Derived as _true_ when the block itself is compliant and has no non-compliant children. Set asynchronously by the network compliance engine.
+	NetworkCompliant *bool `json:"network_compliant,omitempty"`
 	// The resource identifier.
 	Parent *string `json:"parent,omitempty"`
 	// The type of protocol of address block (_ip4_ or _ip6_).
 	Protocol *string `json:"protocol,omitempty"`
+	// Defines the type of provider. Listed below are supported providers:  * _nios_x_: provider type is NIOS-X.  * _azure_: provider type is Microsoft Azure.  * _aws_: provider type is Amazon Web Services.  * _msad_: provider type is Microsoft Active Directory.  * _nios_: provider type is NIOS.  * _gcp_: provider type is Google Cloud Platform.  * _meraki_: provider type is Cisco Meraki.
+	ProviderType *string `json:"provider_type,omitempty"`
 	// The resource identifier.
 	Space *string `json:"space,omitempty"`
 	// The tags for the address block in JSON format.
@@ -1216,6 +1222,70 @@ func (o *AddressBlock) SetName(v string) {
 	o.Name = &v
 }
 
+// GetNetworkCompliance returns the NetworkCompliance field value if set, zero value otherwise.
+func (o *AddressBlock) GetNetworkCompliance() NetworkCompliance {
+	if o == nil || IsNil(o.NetworkCompliance) {
+		var ret NetworkCompliance
+		return ret
+	}
+	return *o.NetworkCompliance
+}
+
+// GetNetworkComplianceOk returns a tuple with the NetworkCompliance field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AddressBlock) GetNetworkComplianceOk() (*NetworkCompliance, bool) {
+	if o == nil || IsNil(o.NetworkCompliance) {
+		return nil, false
+	}
+	return o.NetworkCompliance, true
+}
+
+// HasNetworkCompliance returns a boolean if a field has been set.
+func (o *AddressBlock) HasNetworkCompliance() bool {
+	if o != nil && !IsNil(o.NetworkCompliance) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkCompliance gets a reference to the given NetworkCompliance and assigns it to the NetworkCompliance field.
+func (o *AddressBlock) SetNetworkCompliance(v NetworkCompliance) {
+	o.NetworkCompliance = &v
+}
+
+// GetNetworkCompliant returns the NetworkCompliant field value if set, zero value otherwise.
+func (o *AddressBlock) GetNetworkCompliant() bool {
+	if o == nil || IsNil(o.NetworkCompliant) {
+		var ret bool
+		return ret
+	}
+	return *o.NetworkCompliant
+}
+
+// GetNetworkCompliantOk returns a tuple with the NetworkCompliant field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AddressBlock) GetNetworkCompliantOk() (*bool, bool) {
+	if o == nil || IsNil(o.NetworkCompliant) {
+		return nil, false
+	}
+	return o.NetworkCompliant, true
+}
+
+// HasNetworkCompliant returns a boolean if a field has been set.
+func (o *AddressBlock) HasNetworkCompliant() bool {
+	if o != nil && !IsNil(o.NetworkCompliant) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkCompliant gets a reference to the given bool and assigns it to the NetworkCompliant field.
+func (o *AddressBlock) SetNetworkCompliant(v bool) {
+	o.NetworkCompliant = &v
+}
+
 // GetParent returns the Parent field value if set, zero value otherwise.
 func (o *AddressBlock) GetParent() string {
 	if o == nil || IsNil(o.Parent) {
@@ -1278,6 +1348,38 @@ func (o *AddressBlock) HasProtocol() bool {
 // SetProtocol gets a reference to the given string and assigns it to the Protocol field.
 func (o *AddressBlock) SetProtocol(v string) {
 	o.Protocol = &v
+}
+
+// GetProviderType returns the ProviderType field value if set, zero value otherwise.
+func (o *AddressBlock) GetProviderType() string {
+	if o == nil || IsNil(o.ProviderType) {
+		var ret string
+		return ret
+	}
+	return *o.ProviderType
+}
+
+// GetProviderTypeOk returns a tuple with the ProviderType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AddressBlock) GetProviderTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.ProviderType) {
+		return nil, false
+	}
+	return o.ProviderType, true
+}
+
+// HasProviderType returns a boolean if a field has been set.
+func (o *AddressBlock) HasProviderType() bool {
+	if o != nil && !IsNil(o.ProviderType) {
+		return true
+	}
+
+	return false
+}
+
+// SetProviderType gets a reference to the given string and assigns it to the ProviderType field.
+func (o *AddressBlock) SetProviderType(v string) {
+	o.ProviderType = &v
 }
 
 // GetSpace returns the Space field value if set, zero value otherwise.
@@ -1616,11 +1718,20 @@ func (o AddressBlock) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+	if !IsNil(o.NetworkCompliance) {
+		toSerialize["network_compliance"] = o.NetworkCompliance
+	}
+	if !IsNil(o.NetworkCompliant) {
+		toSerialize["network_compliant"] = o.NetworkCompliant
+	}
 	if !IsNil(o.Parent) {
 		toSerialize["parent"] = o.Parent
 	}
 	if !IsNil(o.Protocol) {
 		toSerialize["protocol"] = o.Protocol
+	}
+	if !IsNil(o.ProviderType) {
+		toSerialize["provider_type"] = o.ProviderType
 	}
 	if !IsNil(o.Space) {
 		toSerialize["space"] = o.Space
@@ -1699,8 +1810,11 @@ func (o *AddressBlock) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "inheritance_parent")
 		delete(additionalProperties, "inheritance_sources")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "network_compliance")
+		delete(additionalProperties, "network_compliant")
 		delete(additionalProperties, "parent")
 		delete(additionalProperties, "protocol")
+		delete(additionalProperties, "provider_type")
 		delete(additionalProperties, "space")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "threshold")

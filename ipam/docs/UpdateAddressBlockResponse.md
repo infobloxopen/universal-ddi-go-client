@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**JobId** | Pointer to **string** | A unique ID to identify access view reassignment operation. | [optional] 
 **Result** | Pointer to [**AddressBlock**](AddressBlock.md) | The AddressBlock object. | [optional] 
 
 ## Methods
@@ -24,6 +25,31 @@ will change when the set of required properties is changed
 NewUpdateAddressBlockResponseWithDefaults instantiates a new UpdateAddressBlockResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetJobId
+
+`func (o *UpdateAddressBlockResponse) GetJobId() string`
+
+GetJobId returns the JobId field if non-nil, zero value otherwise.
+
+### GetJobIdOk
+
+`func (o *UpdateAddressBlockResponse) GetJobIdOk() (*string, bool)`
+
+GetJobIdOk returns a tuple with the JobId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetJobId
+
+`func (o *UpdateAddressBlockResponse) SetJobId(v string)`
+
+SetJobId sets JobId field to given value.
+
+### HasJobId
+
+`func (o *UpdateAddressBlockResponse) HasJobId() bool`
+
+HasJobId returns a boolean if a field has been set.
 
 ### GetResult
 

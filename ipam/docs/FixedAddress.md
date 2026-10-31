@@ -6,10 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Address** | **string** | The reserved address. | 
 **Comment** | Pointer to **string** | The description for the fixed address. May contain 0 to 1024 characters. Can include UTF-8. | [optional] 
-**CompartmentId** | Pointer to **string** | The compartment associated with the object. If no compartment is associated with the object, the value defaults to empty. | [optional] [readonly] 
+**CompartmentId** | Pointer to **string** | The access view associated with the object. If no access view is associated with the object, the value defaults to empty. | [optional] [readonly] 
 **CreatedAt** | Pointer to **time.Time** | Time when the object has been created. | [optional] [readonly] 
 **DhcpOptions** | Pointer to [**[]OptionItem**](OptionItem.md) | The list of DHCP options. May be either a specific option or a group of options. | [optional] 
 **DisableDhcp** | Pointer to **bool** | Optional. _true_ to disable object. The fixed address is converted to an exclusion when generating configuration.  Defaults to _false_. | [optional] 
+**DiscoveryAttrs** | Pointer to **map[string]interface{}** | The discovery attributes for this fixed address in JSON format. | [optional] 
+**DiscoveryMetadata** | Pointer to **map[string]interface{}** | The discovery metadata for this fixed address in JSON format. | [optional] 
+**ExternalKeys** | Pointer to **map[string]interface{}** | The external keys (source key) for this fixed address in JSON format. | [optional] 
 **HeaderOptionFilename** | Pointer to **string** | The configuration for header option filename field. | [optional] 
 **HeaderOptionServerAddress** | Pointer to **string** | The configuration for header option server address field. | [optional] 
 **HeaderOptionServerName** | Pointer to **string** | The configuration for header option server name field. | [optional] 
@@ -189,6 +192,81 @@ SetDisableDhcp sets DisableDhcp field to given value.
 `func (o *FixedAddress) HasDisableDhcp() bool`
 
 HasDisableDhcp returns a boolean if a field has been set.
+
+### GetDiscoveryAttrs
+
+`func (o *FixedAddress) GetDiscoveryAttrs() map[string]interface{}`
+
+GetDiscoveryAttrs returns the DiscoveryAttrs field if non-nil, zero value otherwise.
+
+### GetDiscoveryAttrsOk
+
+`func (o *FixedAddress) GetDiscoveryAttrsOk() (*map[string]interface{}, bool)`
+
+GetDiscoveryAttrsOk returns a tuple with the DiscoveryAttrs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDiscoveryAttrs
+
+`func (o *FixedAddress) SetDiscoveryAttrs(v map[string]interface{})`
+
+SetDiscoveryAttrs sets DiscoveryAttrs field to given value.
+
+### HasDiscoveryAttrs
+
+`func (o *FixedAddress) HasDiscoveryAttrs() bool`
+
+HasDiscoveryAttrs returns a boolean if a field has been set.
+
+### GetDiscoveryMetadata
+
+`func (o *FixedAddress) GetDiscoveryMetadata() map[string]interface{}`
+
+GetDiscoveryMetadata returns the DiscoveryMetadata field if non-nil, zero value otherwise.
+
+### GetDiscoveryMetadataOk
+
+`func (o *FixedAddress) GetDiscoveryMetadataOk() (*map[string]interface{}, bool)`
+
+GetDiscoveryMetadataOk returns a tuple with the DiscoveryMetadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDiscoveryMetadata
+
+`func (o *FixedAddress) SetDiscoveryMetadata(v map[string]interface{})`
+
+SetDiscoveryMetadata sets DiscoveryMetadata field to given value.
+
+### HasDiscoveryMetadata
+
+`func (o *FixedAddress) HasDiscoveryMetadata() bool`
+
+HasDiscoveryMetadata returns a boolean if a field has been set.
+
+### GetExternalKeys
+
+`func (o *FixedAddress) GetExternalKeys() map[string]interface{}`
+
+GetExternalKeys returns the ExternalKeys field if non-nil, zero value otherwise.
+
+### GetExternalKeysOk
+
+`func (o *FixedAddress) GetExternalKeysOk() (*map[string]interface{}, bool)`
+
+GetExternalKeysOk returns a tuple with the ExternalKeys field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternalKeys
+
+`func (o *FixedAddress) SetExternalKeys(v map[string]interface{})`
+
+SetExternalKeys sets ExternalKeys field to given value.
+
+### HasExternalKeys
+
+`func (o *FixedAddress) HasExternalKeys() bool`
+
+HasExternalKeys returns a boolean if a field has been set.
 
 ### GetHeaderOptionFilename
 

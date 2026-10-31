@@ -21,10 +21,15 @@ var _ MappedNullable = &HostAddress{}
 type HostAddress struct {
 	// Field usage depends on the operation:  * For read operation, _address_ of the _Address_ corresponding to the _ref_ resource.  * For write operation, _address_ to be created if the _Address_ does not exist. Required if _ref_ is not set on write:     * If the _Address_ already exists and is already pointing to the right _Host_, the operation proceeds.     * If the _Address_ already exists and is pointing to a different _Host, the operation must abort.     * If the _Address_ already exists and is not pointing to any _Host_, it is linked to the _Host_.
 	Address *string `json:"address,omitempty"`
+	// The _enable_dhcp_ field controls whether the DHCP server provides an address to the client using this assignment. When false, the address is reserved in IPAM and can be used for DNS registration and other IP address management features without being handed out via DHCP. This is for nios hosts.
+	EnableDhcp *bool   `json:"enable_dhcp,omitempty"`
+	MacAddr    *string `json:"mac_addr,omitempty"`
 	// The resource identifier.
 	Ref *string `json:"ref,omitempty"`
 	// The resource identifier.
-	Space                *string `json:"space,omitempty"`
+	Space *string `json:"space,omitempty"`
+	// The _usage_type_ field indicates how the associated _Address_ is being used. The value is derived from the _Address_ usage and is one of:  * _DHCP FIXEDADDRESS_: the address has a DHCP fixed address assignment.  * _IPAM RESERVED_: the address is reserved in IPAM and is not a fixed address.  * empty string: the address has neither a fixed address assignment nor a reservation.  This field is read-only and is set by the server.
+	UsageType            *string `json:"usage_type,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -77,6 +82,70 @@ func (o *HostAddress) HasAddress() bool {
 // SetAddress gets a reference to the given string and assigns it to the Address field.
 func (o *HostAddress) SetAddress(v string) {
 	o.Address = &v
+}
+
+// GetEnableDhcp returns the EnableDhcp field value if set, zero value otherwise.
+func (o *HostAddress) GetEnableDhcp() bool {
+	if o == nil || IsNil(o.EnableDhcp) {
+		var ret bool
+		return ret
+	}
+	return *o.EnableDhcp
+}
+
+// GetEnableDhcpOk returns a tuple with the EnableDhcp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HostAddress) GetEnableDhcpOk() (*bool, bool) {
+	if o == nil || IsNil(o.EnableDhcp) {
+		return nil, false
+	}
+	return o.EnableDhcp, true
+}
+
+// HasEnableDhcp returns a boolean if a field has been set.
+func (o *HostAddress) HasEnableDhcp() bool {
+	if o != nil && !IsNil(o.EnableDhcp) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableDhcp gets a reference to the given bool and assigns it to the EnableDhcp field.
+func (o *HostAddress) SetEnableDhcp(v bool) {
+	o.EnableDhcp = &v
+}
+
+// GetMacAddr returns the MacAddr field value if set, zero value otherwise.
+func (o *HostAddress) GetMacAddr() string {
+	if o == nil || IsNil(o.MacAddr) {
+		var ret string
+		return ret
+	}
+	return *o.MacAddr
+}
+
+// GetMacAddrOk returns a tuple with the MacAddr field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HostAddress) GetMacAddrOk() (*string, bool) {
+	if o == nil || IsNil(o.MacAddr) {
+		return nil, false
+	}
+	return o.MacAddr, true
+}
+
+// HasMacAddr returns a boolean if a field has been set.
+func (o *HostAddress) HasMacAddr() bool {
+	if o != nil && !IsNil(o.MacAddr) {
+		return true
+	}
+
+	return false
+}
+
+// SetMacAddr gets a reference to the given string and assigns it to the MacAddr field.
+func (o *HostAddress) SetMacAddr(v string) {
+	o.MacAddr = &v
 }
 
 // GetRef returns the Ref field value if set, zero value otherwise.
@@ -143,6 +212,38 @@ func (o *HostAddress) SetSpace(v string) {
 	o.Space = &v
 }
 
+// GetUsageType returns the UsageType field value if set, zero value otherwise.
+func (o *HostAddress) GetUsageType() string {
+	if o == nil || IsNil(o.UsageType) {
+		var ret string
+		return ret
+	}
+	return *o.UsageType
+}
+
+// GetUsageTypeOk returns a tuple with the UsageType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HostAddress) GetUsageTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.UsageType) {
+		return nil, false
+	}
+	return o.UsageType, true
+}
+
+// HasUsageType returns a boolean if a field has been set.
+func (o *HostAddress) HasUsageType() bool {
+	if o != nil && !IsNil(o.UsageType) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsageType gets a reference to the given string and assigns it to the UsageType field.
+func (o *HostAddress) SetUsageType(v string) {
+	o.UsageType = &v
+}
+
 func (o HostAddress) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -156,11 +257,20 @@ func (o HostAddress) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Address) {
 		toSerialize["address"] = o.Address
 	}
+	if !IsNil(o.EnableDhcp) {
+		toSerialize["enable_dhcp"] = o.EnableDhcp
+	}
+	if !IsNil(o.MacAddr) {
+		toSerialize["mac_addr"] = o.MacAddr
+	}
 	if !IsNil(o.Ref) {
 		toSerialize["ref"] = o.Ref
 	}
 	if !IsNil(o.Space) {
 		toSerialize["space"] = o.Space
+	}
+	if !IsNil(o.UsageType) {
+		toSerialize["usage_type"] = o.UsageType
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -185,8 +295,11 @@ func (o *HostAddress) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "address")
+		delete(additionalProperties, "enable_dhcp")
+		delete(additionalProperties, "mac_addr")
 		delete(additionalProperties, "ref")
 		delete(additionalProperties, "space")
+		delete(additionalProperties, "usage_type")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **AsmScopeFlag** | Pointer to **int64** | Incremented by 1 if the IP address usage limits for automated scope management are exceeded for any subnets in the address block. | [optional] [readonly] 
 **Cidr** | Pointer to **int64** | The CIDR of the address block. This is required, if _address_ does not specify it in its input. | [optional] 
 **Comment** | Pointer to **string** | The description for the address block. May contain 0 to 1024 characters. Can include UTF-8. | [optional] 
-**CompartmentId** | Pointer to **string** | The compartment associated with the object. If no compartment is associated with the object, the value defaults to empty. | [optional] 
+**CompartmentId** | Pointer to **string** | The access view associated with the object. If no access view is associated with the object, the value defaults to empty. | [optional] 
 **CreatedAt** | Pointer to **time.Time** | Time when the object has been created. | [optional] [readonly] 
 **DdnsClientUpdate** | Pointer to **string** | Controls who does the DDNS updates.  Valid values are: * _client_: DHCP server updates DNS if requested by client. * _server_: DHCP server always updates DNS, overriding an update request from the client, unless the client requests no updates. * _ignore_: DHCP server always updates DNS, even if the client says not to. * _over_client_update_: Same as _server_. DHCP server always updates DNS, overriding an update request from the client, unless the client requests no updates. * _over_no_update_: DHCP server updates DNS even if the client requests that no updates be done. If the client requests to do the update, DHCP server allows it.  Defaults to _client_. | [optional] 
 **DdnsConflictResolutionMode** | Pointer to **string** | The mode used for resolving conflicts while performing DDNS updates.  Valid values are: * _check_with_dhcid_: It includes adding a DHCID record and checking that record via conflict detection as per RFC 4703. * _no_check_with_dhcid_: This will ignore conflict detection but add a DHCID record when creating/updating an entry. * _check_exists_with_dhcid_: This will check if there is an existing DHCID record but does not verify the value of the record matches the update. This will also update the DHCID record for the entry. * _no_check_without_dhcid_: This ignores conflict detection and will not add a DHCID record when creating/updating a DDNS entry.  Defaults to _check_with_dhcid_. | [optional] 
@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 **DiscoveryAttrs** | Pointer to **map[string]interface{}** | The discovery attributes for this address block in JSON format. | [optional] [readonly] 
 **DiscoveryMetadata** | Pointer to **map[string]interface{}** | The discovery metadata for this address block in JSON format. | [optional] [readonly] 
 **ExternalKeys** | Pointer to **map[string]interface{}** | The external keys (source key) for this address block in JSON format. | [optional] 
-**FederatedRealms** | Pointer to **[]string** | Reserved for future use. | [optional] 
+**FederatedRealms** | Pointer to **[]string** | The IDs of the federated realms in which the address block participates. | [optional] 
 **HeaderOptionFilename** | Pointer to **string** | The configuration for header option filename field. | [optional] 
 **HeaderOptionServerAddress** | Pointer to **string** | The configuration for header option server address field. | [optional] 
 **HeaderOptionServerName** | Pointer to **string** | The configuration for header option server name field. | [optional] 
@@ -38,8 +38,11 @@ Name | Type | Description | Notes
 **InheritanceParent** | Pointer to **string** | The resource identifier. | [optional] 
 **InheritanceSources** | Pointer to [**DHCPInheritance**](DHCPInheritance.md) | The DHCP inheritance configuration for the address block. | [optional] 
 **Name** | Pointer to **string** | The name of the address block. May contain 1 to 256 characters. Can include UTF-8. | [optional] 
+**NetworkCompliance** | Pointer to [**NetworkCompliance**](NetworkCompliance.md) | The network compliance policy that constrains the prefix lengths of child address blocks and subnets. When set, descendant address blocks and subnets must have a CIDR prefix length within the defined minimum and maximum range. | [optional] 
+**NetworkCompliant** | Pointer to **bool** | Read-only. Indicates whether this address block is compliant with its ancestor&#39;s _network_compliance_ policy. Derived as _true_ when the block itself is compliant and has no non-compliant children. Set asynchronously by the network compliance engine. | [optional] [readonly] 
 **Parent** | Pointer to **string** | The resource identifier. | [optional] 
 **Protocol** | Pointer to **string** | The type of protocol of address block (_ip4_ or _ip6_). | [optional] [readonly] 
+**ProviderType** | Pointer to **string** | Defines the type of provider. Listed below are supported providers:  * _nios_x_: provider type is NIOS-X.  * _azure_: provider type is Microsoft Azure.  * _aws_: provider type is Amazon Web Services.  * _msad_: provider type is Microsoft Active Directory.  * _nios_: provider type is NIOS.  * _gcp_: provider type is Google Cloud Platform.  * _meraki_: provider type is Cisco Meraki. | [optional] [readonly] 
 **Space** | Pointer to **string** | The resource identifier. | [optional] 
 **Tags** | Pointer to **map[string]interface{}** | The tags for the address block in JSON format. | [optional] 
 **Threshold** | Pointer to [**UtilizationThreshold**](UtilizationThreshold.md) | The IP address utilization thresholds for the address block. | [optional] 
@@ -917,6 +920,56 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### GetNetworkCompliance
+
+`func (o *AddressBlock) GetNetworkCompliance() NetworkCompliance`
+
+GetNetworkCompliance returns the NetworkCompliance field if non-nil, zero value otherwise.
+
+### GetNetworkComplianceOk
+
+`func (o *AddressBlock) GetNetworkComplianceOk() (*NetworkCompliance, bool)`
+
+GetNetworkComplianceOk returns a tuple with the NetworkCompliance field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkCompliance
+
+`func (o *AddressBlock) SetNetworkCompliance(v NetworkCompliance)`
+
+SetNetworkCompliance sets NetworkCompliance field to given value.
+
+### HasNetworkCompliance
+
+`func (o *AddressBlock) HasNetworkCompliance() bool`
+
+HasNetworkCompliance returns a boolean if a field has been set.
+
+### GetNetworkCompliant
+
+`func (o *AddressBlock) GetNetworkCompliant() bool`
+
+GetNetworkCompliant returns the NetworkCompliant field if non-nil, zero value otherwise.
+
+### GetNetworkCompliantOk
+
+`func (o *AddressBlock) GetNetworkCompliantOk() (*bool, bool)`
+
+GetNetworkCompliantOk returns a tuple with the NetworkCompliant field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkCompliant
+
+`func (o *AddressBlock) SetNetworkCompliant(v bool)`
+
+SetNetworkCompliant sets NetworkCompliant field to given value.
+
+### HasNetworkCompliant
+
+`func (o *AddressBlock) HasNetworkCompliant() bool`
+
+HasNetworkCompliant returns a boolean if a field has been set.
+
 ### GetParent
 
 `func (o *AddressBlock) GetParent() string`
@@ -966,6 +1019,31 @@ SetProtocol sets Protocol field to given value.
 `func (o *AddressBlock) HasProtocol() bool`
 
 HasProtocol returns a boolean if a field has been set.
+
+### GetProviderType
+
+`func (o *AddressBlock) GetProviderType() string`
+
+GetProviderType returns the ProviderType field if non-nil, zero value otherwise.
+
+### GetProviderTypeOk
+
+`func (o *AddressBlock) GetProviderTypeOk() (*string, bool)`
+
+GetProviderTypeOk returns a tuple with the ProviderType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProviderType
+
+`func (o *AddressBlock) SetProviderType(v string)`
+
+SetProviderType sets ProviderType field to given value.
+
+### HasProviderType
+
+`func (o *AddressBlock) HasProviderType() bool`
+
+HasProviderType returns a boolean if a field has been set.
 
 ### GetSpace
 
